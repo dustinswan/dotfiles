@@ -11,3 +11,5 @@ compinit
 alias vi=vim
 alias grep='grep --color=auto'
 alias ls='ls --color=auto'
+
+export TERM="xterm-256color"

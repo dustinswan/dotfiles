@@ -38,3 +38,11 @@ set ruler
 set nohls
 
 au BufNewFile,BufRead *.less set filetype=less
+
+" solarized colors
+set background=dark
+let g:solarized_termtrans=1
+let g:solarized_termcolors=256
+let g:solarized_contrast="high"
+let g:solarized_visibility="high"
+colorscheme solarized
