@@ -45,3 +45,6 @@ let g:solarized_termcolors=256
 let g:solarized_contrast="high"
 let g:solarized_visibility="high"
 colorscheme solarized
+
+" NERDTree toggle mapped to <leader>n
+nnoremap <silent> <leader>n :NERDTreeToggle <CR>
