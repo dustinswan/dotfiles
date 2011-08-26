@@ -34,7 +34,9 @@ set mat=2
 set ruler
 set nohls
 
-au BufNewFile,BufRead *.less set filetype=less
+" so we get html goodies in php files
+au BufRead *.php set ft=php.html
+au BufNewFile *.php set ft=php.html
 
 syntax enable
 
