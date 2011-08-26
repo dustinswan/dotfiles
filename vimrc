@@ -46,5 +46,7 @@ let g:solarized_contrast="high"
 let g:solarized_visibility="high"
 colorscheme solarized
 
-" NERDTree toggle mapped to <leader>n
+" some maps
 nnoremap <silent> <leader>n :NERDTreeToggle <CR>
+nnoremap <silent> <leader>t :TagbarToggle <CR>
+let g:EasyMotion_leader_key = '<Leader>e'
