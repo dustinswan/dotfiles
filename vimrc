@@ -12,21 +12,18 @@ set noswapfile
 set undodir=~/.vim/undodir
 set undofile
 
-" filetype and plugin indentation
+" indentation
 filetype plugin on
 filetype indent on
+set autoindent
+set smartindent
 
 " search
 set hlsearch
 set incsearch
 set showmatch
 
-syntax enable
-
-set autoindent
-set smartindent
-
-" tabs
+" tab stops
 set expandtab
 set smarttab
 set tabstop=4
@@ -38,6 +35,8 @@ set ruler
 set nohls
 
 au BufNewFile,BufRead *.less set filetype=less
+
+syntax enable
 
 " solarized colors
 set background=dark
