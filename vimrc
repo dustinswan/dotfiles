@@ -52,3 +52,8 @@ colorscheme solarized
 nnoremap <silent> <leader>n :NERDTreeToggle <CR>
 nnoremap <silent> <leader>t :TagbarToggle <CR>
 let g:EasyMotion_leader_key = '<Leader>e'
+
+" hide toolbar in macvim, etc
+if has("gui_running")
+    set go=-t
+endif
