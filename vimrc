@@ -2,8 +2,15 @@
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
-" turn off vi compatability
+" turn off vi compatability, although i hear when vimrc exists this is set
+" automatically
 set nocompatible
+
+" allow hidden buffers
+set hidden
+
+" longer history
+set history=1000
 
 " turn off swapfiles
 set noswapfile
@@ -14,6 +21,19 @@ set undofile
 
 " line numbers
 set nu
+
+" wild menu
+set wildmenu
+set wildmode=longest:full
+
+" show the command as it is typed
+" set sc
+
+" remap the leader to ,. hate doing this but \ is so far away
+let mapleader = ","
+
+" when a file is changed externally
+set autoread
 
 " indentation
 filetype plugin on
@@ -32,7 +52,6 @@ set smarttab
 set tabstop=4
 set shiftwidth=4
 
-set autoread
 set mat=2
 set ruler
 set nohls
