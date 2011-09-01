@@ -12,6 +12,9 @@ set noswapfile
 set undodir=~/.vim/undodir
 set undofile
 
+" line numbers
+set nu
+
 " indentation
 filetype plugin on
 filetype indent on
