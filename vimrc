@@ -87,3 +87,9 @@ set statusline+=%*
 
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
+
+" quickly move between splits
+nmap <silent> <c-h> <c-w>h
+nmap <silent> <c-l> <c-w>l
+nmap <silent> <c-j> <c-w>j
+nmap <silent> <c-k> <c-w>k
