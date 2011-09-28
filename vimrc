@@ -95,4 +95,4 @@ nmap <silent> <c-j> <c-w>j
 nmap <silent> <c-k> <c-w>k
 
 " pretty line endings and trailing spaces
-set list listchars=trail:·,eol:·
+set list listchars=tab:»·,trail:·,eol:·
