@@ -93,3 +93,6 @@ nmap <silent> <c-h> <c-w>h
 nmap <silent> <c-l> <c-w>l
 nmap <silent> <c-j> <c-w>j
 nmap <silent> <c-k> <c-w>k
+
+" pretty line endings and trailing spaces
+set list listchars=trail:·,eol:·
