@@ -58,3 +58,6 @@
 [submodule "vim/bundle/ShowMarks"]
 	path = vim/bundle/ShowMarks
 	url = git://github.com/vim-scripts/ShowMarks
+[submodule "vim/bundle/CamelCaseMotion"]
+	path = vim/bundle/CamelCaseMotion
+	url = git://github.com/bkad/CamelCaseMotion
