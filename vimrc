@@ -70,8 +70,12 @@ let g:solarized_contrast="high"
 let g:solarized_visibility="high"
 colorscheme solarized
 
-" some maps
+" NERDTree
 nnoremap <silent> <leader>n :NERDTreeToggle <CR>
+let NERDTreeMinimalUI=1
+let NERDTreeDirArrows=1
+
+" Tagbar
 nnoremap <silent> <leader>t :TagbarToggle <CR>
 let g:EasyMotion_leader_key = '<Leader>e'
 
@@ -80,13 +84,29 @@ if has("gui_running")
     set go=-t
 endif
 
-" Syntastic
+" status line. stolen from here:
+" https://github.com/lukaszkorecki/DotFiles/blob/master/vimrc
+set statusline=
+set statusline+=%f\ %2*%m\ %1*%h
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%{fugitive#statusline()}
 set statusline+=%*
+set statusline+=%r%=[%{&encoding}\ %{&fileformat}\ %{strlen(&ft)?&ft:'none'}]\ %12.(%c:%l/%L%)
+set laststatus=2
 
+" Syntastic
 let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
+
+" Highlight current line
+set cursorline
+
+" Highlight column 80
+if version > 702
+    set colorcolumn=80
+endif
+
 
 " quickly move between splits
 nmap <silent> <c-h> <c-w>h
@@ -95,4 +115,5 @@ nmap <silent> <c-j> <c-w>j
 nmap <silent> <c-k> <c-w>k
 
 " pretty line endings and trailing spaces
-set list listchars=tab:»·,trail:·,eol:·
+set list listchars=tab:»·,trail:·,eol:↪
+" set list listchars=tab:»·,trail:·,eol:·
