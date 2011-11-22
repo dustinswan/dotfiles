@@ -67,3 +67,6 @@
 [submodule "oh-my-zsh"]
 	path = oh-my-zsh
 	url = git://github.com/robbyrussell/oh-my-zsh
+[submodule "vim/bundle/MatchTag"]
+	path = vim/bundle/MatchTag
+	url = git://github.com/gregsexton/MatchTag
