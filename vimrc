@@ -77,6 +77,8 @@ let NERDTreeDirArrows=1
 
 " Tagbar
 nnoremap <silent> <leader>t :TagbarToggle <CR>
+
+" Easy Motion
 let g:EasyMotion_leader_key = '<Leader>e'
 
 " hide toolbar in macvim, etc
@@ -108,13 +110,15 @@ if version > 702
     set colorcolumn=80
 endif
 
-
 " quickly move between splits
-nmap <silent> <c-h> <c-w>h
-nmap <silent> <c-l> <c-w>l
-nmap <silent> <c-j> <c-w>j
-nmap <silent> <c-k> <c-w>k
+" nnoremap <silent> <c-h> <c-w>h
+" nnoremap <silent> <c-l> <c-w>l
+" nnoremap <silent> <c-j> <c-w>j
+" nnoremap <silent> <c-k> <c-w>k
 
 " pretty line endings and trailing spaces
 set list listchars=tab:»·,trail:·,eol:↪
 " set list listchars=tab:»·,trail:·,eol:·
+
+" fine I give up
+inoremap jk <Esc>
