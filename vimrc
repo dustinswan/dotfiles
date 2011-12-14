@@ -78,9 +78,6 @@ let NERDTreeDirArrows=1
 " Tagbar
 nnoremap <silent> <leader>t :TagbarToggle <CR>
 
-" Easy Motion
-let g:EasyMotion_leader_key = '<Leader>e'
-
 " hide toolbar in macvim, etc
 if has("gui_running")
     set go=-t
