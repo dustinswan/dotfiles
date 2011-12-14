@@ -16,7 +16,7 @@ set history=1000
 set noswapfile
 
 " persistent undo
-if v:version > 700
+if v:version > 703
     set undodir=~/.vim/undodir
     set undofile
 endif
@@ -29,7 +29,7 @@ set wildmenu
 set wildmode=longest:full
 
 " show the command as it is typed
-" set sc
+set sc
 
 " remap the leader to ,. hate doing this but \ is so far away
 let mapleader = ","
@@ -79,10 +79,7 @@ let NERDTreeDirArrows=1
 " Tagbar
 nnoremap <silent> <leader>t :TagbarToggle <CR>
 
-" Easy Motion
-let g:EasyMotion_leader_key = '<Leader>e'
-
-" hide toolbar in macvim, gvim
+" hide toolbar in macvim, etc
 if has("gui_running")
     set go=-t
 endif
@@ -102,11 +99,11 @@ set statusline+=%15.(%c:%l/%L%)\ %P
 set laststatus=2
 
 " Syntastic
-if v:version < 703 " turn off syntastic for old vim
-    let g:loaded_syntastic_plugin = 1
-else
+if v:version > 700
     let g:syntastic_enable_signs=1
     let g:syntastic_auto_loc_list=1
+else
+    let g:loaded_syntastic_plugin = 1
 endif
 
 " Highlight current line
@@ -117,23 +114,11 @@ if version > 702
     set colorcolumn=80
 endif
 
-" quickly move between splits
-" nnoremap <silent> <c-h> <c-w>h
-" nnoremap <silent> <c-l> <c-w>l
-" nnoremap <silent> <c-j> <c-w>j
-" nnoremap <silent> <c-k> <c-w>k
-
 " pretty line endings and trailing spaces
 set list listchars=tab:»·,trail:·,eol:↪
-" set list listchars=tab:»·,trail:·,eol:·
 
-" no arrows in insert mode
-noremap <up> <nop>
-noremap <down> <nop>
-noremap <left> <nop>
-noremap <right> <nop>
-
-" fine I give up
+" fine I'll try it
 inoremap jk <Esc>
 inoremap kj <Esc>
+" stop hitting Esc or c-[!
 inoremap <Esc> <nop>
