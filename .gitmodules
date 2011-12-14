@@ -70,3 +70,12 @@
 [submodule "vim/bundle/MatchTag"]
 	path = vim/bundle/MatchTag
 	url = git://github.com/gregsexton/MatchTag
+[submodule "vim/bundle/vim-rails"]
+	path = vim/bundle/vim-rails
+	url = git://github.com/tpope/vim-rails
+[submodule "vim/bundle/endwise"]
+	path = vim/bundle/endwise
+	url = git://github.com/tpope/vim-endwise
+[submodule "vim/bundle/ctrlp"]
+	path = vim/bundle/ctrlp
+	url = git://github.com/kien/ctrlp.vim
