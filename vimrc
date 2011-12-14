@@ -15,9 +15,11 @@ set history=1000
 " turn off swapfiles
 set noswapfile
 
-" persistent undo (>7.3)
-set undodir=~/.vim/undodir
-set undofile
+" persistent undo
+if v:version > 700
+    set undodir=~/.vim/undodir
+    set undofile
+endif
 
 " line numbers
 set nu
@@ -54,7 +56,6 @@ set shiftwidth=4
 
 set mat=2
 set ruler
-set nohls
 
 " so we get html goodies in php files
 au BufRead *.php set ft=php.html
@@ -81,7 +82,7 @@ nnoremap <silent> <leader>t :TagbarToggle <CR>
 " Easy Motion
 let g:EasyMotion_leader_key = '<Leader>e'
 
-" hide toolbar in macvim, etc
+" hide toolbar in macvim, gvim
 if has("gui_running")
     set go=-t
 endif
@@ -91,7 +92,9 @@ endif
 set statusline=
 set statusline+=%f\ %2*%m\ %1*%h
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+if v:version > 700
+    set statusline+=%{SyntasticStatuslineFlag()}
+endif
 set statusline+=%{fugitive#statusline()}
 set statusline+=%*
 set statusline+=%r%=[%{&encoding}\ %{&fileformat}\ %{strlen(&ft)?&ft:'none'}]
@@ -99,8 +102,12 @@ set statusline+=%15.(%c:%l/%L%)\ %P
 set laststatus=2
 
 " Syntastic
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=1
+if v:version < 703 " turn off syntastic for old vim
+    let g:loaded_syntastic_plugin = 1
+else
+    let g:syntastic_enable_signs=1
+    let g:syntastic_auto_loc_list=1
+endif
 
 " Highlight current line
 set cursorline
@@ -120,5 +127,13 @@ endif
 set list listchars=tab:»·,trail:·,eol:↪
 " set list listchars=tab:»·,trail:·,eol:·
 
+" no arrows in insert mode
+noremap <up> <nop>
+noremap <down> <nop>
+noremap <left> <nop>
+noremap <right> <nop>
+
 " fine I give up
 inoremap jk <Esc>
+inoremap kj <Esc>
+inoremap <Esc> <nop>
