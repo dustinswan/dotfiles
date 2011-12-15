@@ -106,6 +106,9 @@ else
     let g:loaded_syntastic_plugin = 1
 endif
 
+" Supertab
+let g:SuperTabDefaultCompletionType = "context"
+
 " Highlight current line
 set cursorline
 
