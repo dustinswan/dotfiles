@@ -123,5 +123,7 @@ set list listchars=tab:»·,trail:·,eol:↪
 " fine I'll try it
 inoremap jk <Esc>
 inoremap kj <Esc>
+
 " stop hitting Esc or c-[!
 inoremap <Esc> <nop>
+nnoremap <Esc> :noh<CR><Esc>
