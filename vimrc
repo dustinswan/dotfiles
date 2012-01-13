@@ -127,3 +127,5 @@ inoremap kj <Esc>
 " stop hitting Esc or c-[!
 inoremap <Esc> <nop>
 nnoremap <Esc> :noh<CR><Esc>
+
+nnoremap <leader>p :! p4 edit %<CR>
