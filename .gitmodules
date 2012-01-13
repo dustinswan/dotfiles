@@ -81,4 +81,4 @@
 	url = git://github.com/kien/ctrlp.vim
 [submodule "vim/bundle/vim-powerline"]
 	path = vim/bundle/vim-powerline
-	url = https://github.com/Lokaltog/vim-powerline
+	url = git://github.com/Lokaltog/vim-powerline
