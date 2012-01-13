@@ -128,4 +128,5 @@ inoremap kj <Esc>
 inoremap <Esc> <nop>
 nnoremap <Esc> :noh<CR><Esc>
 
+" open the current file for edit in Perforce
 nnoremap <leader>p :! p4 edit %<CR>
