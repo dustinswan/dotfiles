@@ -25,7 +25,7 @@ COMPLETION_WAITING_DOTS="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git archlinux npm vi-mode node osx ruby rails3 gem)
+plugins=(git archlinux npm node osx ruby rails3 gem)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -33,3 +33,5 @@ source $ZSH/oh-my-zsh.sh
 alias vi=vim
 export TERM="screen-256color"
 export EDITOR=vim
+
+export PATH="/usr/local/bin:$PATH"
