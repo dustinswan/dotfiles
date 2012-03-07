@@ -31,7 +31,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 alias vi=vim
-export TERM="screen-256color"
+# export TERM="screen-256color"
 export EDITOR=vim
 
 export PATH="/usr/local/bin:$PATH"

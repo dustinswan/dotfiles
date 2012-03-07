@@ -1,6 +1,6 @@
 [user]
-	name = Dustin Swan
-	email = dustinswan@gmail.com
+    name = Dustin Swan
+    email = dustinswan@gmail.com
 
 [alias]
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
