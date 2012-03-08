@@ -31,7 +31,15 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 alias vi=vim
-# export TERM="screen-256color"
 export EDITOR=vim
-
 export PATH="/usr/local/bin:$PATH"
+
+# VCS stuff
+export P4USER=dswan
+export P4PORT="humu.insors.net:1666"
+export P4CONFIG=p4.cfg
+export P4EDITOR=vim
+export SVN_EDITOR=vim
+
+# sync visidev to latest Perforce
+alias visidev="ssh root@visidev.iocom.com 'cd /; p4 sync'"

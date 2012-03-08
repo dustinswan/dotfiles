@@ -30,6 +30,7 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'kien/ctrlp.vim'
 Bundle 'gregsexton/MatchTag'
 Bundle 'closetag.vim'
+Bundle 'rstacruz/sparkup'
 
 " Snipmate
 Bundle 'MarcWeber/vim-addon-mw-utils'
