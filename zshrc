@@ -43,3 +43,5 @@ export SVN_EDITOR=vim
 
 # sync visidev to latest Perforce
 alias visidev="ssh root@visidev.iocom.com 'cd /; p4 sync'"
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
