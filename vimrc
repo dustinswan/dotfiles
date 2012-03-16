@@ -17,6 +17,7 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-endwise'
+Bundle 'mileszs/ack.vim'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'bkad/CamelCaseMotion'
@@ -40,24 +41,35 @@ Bundle 'garbas/vim-snipmate'
 
 filetype plugin indent on " last Vundle requirement
 
+" general goodness
 syntax enable
-set hidden " allow hidden buffers
+let mapleader=","
+set hidden " allow hidden unsaved buffers
 set history=1000 " longer history
 set noswapfile " turn off swapfiles
-set nu " line numbers
-set sc " show the command as it is typed
+set number " line numbers
+"set relativenumber " TODO make a command to toggle this. <leader>n maybe..
+set showcmd " show the command as it is typed
+set showmode
 set wildmenu
-set wildmode=longest:full
-let mapleader = ","
+set backspace=indent,eol,start
+set ttyfast
+"set wildmode=longest:full
+set wildmode=list:longest " try this on for a while
 set autoread " when a file is changed externally
-set mat=2
 set ruler
 set cursorline " Highlight current line
 set encoding=utf-8 " Necessary to show unicode glyphs
 set laststatus=2 " Always show the statusline
+set scrolloff=5 " Give us a few lines before and after the cursor
 
-" Powerline
-let g:Powerline_symbols='fancy'
+" long lines
+set wrap
+set formatoptions=rqn1
+set textwidth=80
+if version > 702
+    set colorcolumn=80
+endif
 
 " persistent undo
 if v:version > 703
@@ -66,17 +78,24 @@ if v:version > 703
 endif
 
 " indentation
-filetype plugin on
-filetype indent on
 set autoindent
 set smartindent
 
 " search
 set hlsearch
 set incsearch
-set smartcase
+set ignorecase
+set gdefault " now substitutions assume /g
+set smartcase " if we include uppercase, it will be case sensitive
 set showmatch " matching brackets
 set matchtime=2 " blink brackets
+" turn off highlighting
+nnoremap <leader><space> :noh<cr>
+
+" regex " thanks stevelosh
+set magic
+nnoremap / /\v
+vnoremap / /\v
 
 " tab stops
 set tabstop=4
@@ -85,9 +104,24 @@ set shiftwidth=4
 set expandtab
 set smarttab
 
+" pretty line endings and trailing spaces
+set list
+set listchars=tab:»·,trail:·,eol:¬
+
 " so we get html goodies in php files
 au BufRead *.php set ft=php.html
 au BufNewFile *.php set ft=php.html
+
+set thesaurus+=~/.wordlists/mthesaur.txt
+set dictionary+=/usr/share/dict/words
+
+" hide toolbar in macvim, etc
+if has("gui_running")
+    set go=-t
+endif
+
+" Powerline
+let g:Powerline_symbols='fancy'
 
 " Solarized
 set background=dark
@@ -100,16 +134,15 @@ let g:solarized_hitrail=1 "default value is 0
 colorscheme solarized
 
 " NERDTree
-"nnoremap <silent> <leader>n :NERDTreeToggle <CR>
+"nnoremap <silent> <leader>n :NERDTreeToggle <cr>
 "let NERDTreeMinimalUI=1
 "let NERDTreeDirArrows=1
 
 " Tagbar
-nnoremap <silent> <leader>t :TagbarToggle <CR>
-
-" hide toolbar in macvim, etc
-if has("gui_running")
-    set go=-t
+nnoremap <silent> <leader>t :TagbarToggle <cr>
+" disable tagbar in old Vim
+if v:version < 703
+    let g:loaded_tagbar=1
 endif
 
 " Syntastic
@@ -123,21 +156,14 @@ endif
 " Supertab
 " let g:SuperTabDefaultCompletionType="context"
 
-" Highlight column 80
-if version > 702
-    set colorcolumn=80
-endif
-
-" pretty line endings and trailing spaces
-set list listchars=tab:»·,trail:·,eol:↪
-
-" turn off highlighting
-" nnoremap <Esc> :noh<CR><Esc>
+" CtrlP
+nnoremap <leader>b :CtrlPBuffer<cr>
 
 " open the current file for edit in Perforce
-nnoremap <leader>p :! p4 edit %<CR>
+nnoremap <leader>4 :! p4 edit %<cr>
 
-" disable tagbar in old Vim
-if v:version < 703
-    let g:loaded_tagbar=1
-endif
+" open vsplit and switch to it
+nnoremap <leader>w <c-w>v<c-w>l
+
+" open Ack
+nnoremap <leader>a :Ack 
