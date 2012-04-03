@@ -32,6 +32,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'gregsexton/MatchTag'
 Bundle 'closetag.vim'
 Bundle 'rstacruz/sparkup'
+Bundle 'sjl/clam.vim'
 
 " Snipmate
 Bundle 'MarcWeber/vim-addon-mw-utils'
@@ -166,4 +167,7 @@ nnoremap <leader>4 :! p4 edit %<cr>
 nnoremap <leader>w <c-w>v<c-w>l
 
 " open Ack
-nnoremap <leader>a :Ack 
+nnoremap <leader>a :Ack<space>
+
+" Clam
+nnoremap ! :Clam<space>
