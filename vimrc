@@ -28,11 +28,12 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'altercation/vim-colors-solarized'
 " Bundle 'ervandew/supertab'
 " Bundle 'sjl/gundo.vim'
+Bundle 'sjl/clam.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'gregsexton/MatchTag'
-Bundle 'closetag.vim'
-Bundle 'rstacruz/sparkup'
-Bundle 'sjl/clam.vim'
+" Bundle 'closetag.vim'
+Bundle 'kana/vim-smartinput'
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 " Snipmate
 Bundle 'MarcWeber/vim-addon-mw-utils'
@@ -45,6 +46,7 @@ filetype plugin indent on " last Vundle requirement
 " general goodness
 syntax enable
 let mapleader=","
+let maplocalleader="\\"
 set hidden " allow hidden unsaved buffers
 set history=1000 " longer history
 set noswapfile " turn off swapfiles
