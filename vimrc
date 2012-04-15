@@ -28,10 +28,12 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'altercation/vim-colors-solarized'
 " Bundle 'ervandew/supertab'
 " Bundle 'sjl/gundo.vim'
+Bundle 'sjl/clam.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'gregsexton/MatchTag'
-Bundle 'closetag.vim'
-Bundle 'rstacruz/sparkup'
+" Bundle 'closetag.vim'
+Bundle 'kana/vim-smartinput'
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 
 " Snipmate
 Bundle 'MarcWeber/vim-addon-mw-utils'
@@ -44,6 +46,7 @@ filetype plugin indent on " last Vundle requirement
 " general goodness
 syntax enable
 let mapleader=","
+let maplocalleader="\\"
 set hidden " allow hidden unsaved buffers
 set history=1000 " longer history
 set noswapfile " turn off swapfiles
@@ -166,7 +169,10 @@ nnoremap <leader>4 :! p4 edit %<cr>
 nnoremap <leader>w <c-w>v<c-w>l
 
 " open Ack
-nnoremap <leader>a :Ack 
+nnoremap <leader>a :Ack<space>
 
 " Marked
-:nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
+nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
+
+" Clam
+nnoremap ! :Clam<space>
