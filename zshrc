@@ -32,7 +32,6 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 alias vi=vim
 export EDITOR=vim
-export PATH="/usr/local/bin:$PATH"
 
 # VCS stuff
 export P4USER=dswan
@@ -44,4 +43,6 @@ export SVN_EDITOR=vim
 # sync visidev to latest Perforce
 alias visidev="ssh root@visidev.iocom.com 'cd /; p4 sync'"
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+export PATH=/usr/local/bin:$PATH # Homebrew
+export PATH=$HOME/.rvm/bin:$PATH # RVM
+export PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH # Postgres
