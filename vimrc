@@ -159,9 +159,6 @@ endif
 " Supertab
 " let g:SuperTabDefaultCompletionType="context"
 
-" CtrlP
-nnoremap <leader>b :CtrlPBuffer<cr>
-
 " open the current file for edit in Perforce
 nnoremap <leader>4 :! p4 edit %<cr>
 
@@ -173,3 +170,17 @@ nnoremap <leader>a :Ack<space>
 
 " Clam
 nnoremap ! :Clam<space>
+
+" CtrlP
+nnoremap <leader>b :CtrlPBuffer<cr>
+" Set the max files
+let g:ctrlp_max_files = 10000
+" Optimize file searching
+if has("unix")
+    let g:ctrlp_user_command = {
+                \   'types': {
+                \       1: ['.git/', 'cd %s && git ls-files']
+                \   },
+                \   'fallback': 'find %s -type f | head -' . g:ctrlp_max_files
+                \ }
+endif
