@@ -168,6 +168,9 @@ nnoremap <leader>w <c-w>v<c-w>l
 " open Ack
 nnoremap <leader>a :Ack<space>
 
+" Marked
+nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
+
 " Clam
 nnoremap ! :Clam<space>
 
