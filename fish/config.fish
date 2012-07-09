@@ -1,3 +1,4 @@
+alias l "ls -la"
 alias vi vim
 set -x EDITOR vim
 
