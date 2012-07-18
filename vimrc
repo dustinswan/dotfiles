@@ -166,6 +166,9 @@ nnoremap <leader>4 :! p4 edit %<cr>
 " open vsplit and switch to it
 nnoremap <leader>w <c-w>v<c-w>l
 
+" trim whitespace
+nnoremap <leader>W :%s/\s\+$//e<cr>
+
 " open Ack
 nnoremap <leader>a :Ack<space>
 
