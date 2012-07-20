@@ -157,6 +157,8 @@ else
     let g:loaded_syntastic_plugin=1
 endif
 
+nnoremap <leader>s :SyntasticToggleMode<cr>
+
 " Supertab
 " let g:SuperTabDefaultCompletionType="context"
 
@@ -164,10 +166,10 @@ endif
 nnoremap <leader>4 :! p4 edit %<cr>
 
 " open vsplit and switch to it
-nnoremap <leader>w <c-w>v<c-w>l
+nnoremap <leader>v <c-w>v<c-w>l
 
 " trim whitespace
-nnoremap <leader>W :%s/\s\+$//e<cr>
+nnoremap <leader>w :%s/\s\+$//e<cr>
 
 " open Ack
 nnoremap <leader>a :Ack<space>
@@ -180,14 +182,6 @@ nnoremap ! :Clam<space>
 
 " CtrlP
 nnoremap <leader>b :CtrlPBuffer<cr>
+
 " Set the max files
 let g:ctrlp_max_files = 10000
-" Optimize file searching
-"if has("unix")
-    "let g:ctrlp_user_command = {
-                "\   'types': {
-                "\       1: ['.git/', 'cd %s && git ls-files']
-                "\   },
-                "\   'fallback': 'find %s -type f | head -' . g:ctrlp_max_files
-                "\ }
-"endif
