@@ -43,7 +43,7 @@ export SVN_EDITOR=vim
 # sync visidev to latest Perforce
 alias visidev="ssh root@visidev.iocom.com 'cd /; p4 sync'"
 
-export PATH=/usr/local/bin:$PATH # Homebrew
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH # Homebrew
 export PATH=$HOME/.rvm/bin:$PATH # RVM
 export PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH # Postgres
 export PATH=$HOME/Library/Haskell/bin:$PATH # Haskell

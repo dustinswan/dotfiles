@@ -13,6 +13,7 @@ set -x SVN_EDITOR vim
 alias visidev "ssh root@visidev.iocom.com 'cd /; p4 sync'"
 
 set -x PATH /usr/local/bin $PATH # Homebrew
+set -x PATH /usr/local/sbin $PATH # Homebrew
 set -x PATH $HOME/.rvm/bin $PATH # RVM
 set -x PATH /Applications/Postgres.app/Contents/MacOS/bin $PATH # Postgres
 set -x PATH $HOME/Library/Haskell/bin $PATH # Haskell

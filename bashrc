@@ -16,7 +16,7 @@ export P4EDITOR=vi
 export SVN_EDITOR=vi
 
 export EDITOR=vim
-export PATH="/usr/local/bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 
 export TERM="xterm-256color"
 
