@@ -4,4 +4,8 @@ loadplugins '\.(js|penta)$'
 group user
 set editor='/usr/local/bin/mvim -f +<line> +"sil! call cursor(0, <column>)" <file>'
 
+" Grooveshark stuff. Works only if it is in the first tab
+map gsn :js if((gs = gBrowser.tabs[0].linkedBrowser.contentWindow.wrappedJSObject.Grooveshark) != undefined) gs.next();<CR>
+map gsp :js if((gs = gBrowser.tabs[0].linkedBrowser.contentWindow.wrappedJSObject.Grooveshark) != undefined) gs.previous();<CR>
+
 " vim: set ft=pentadactyl:
