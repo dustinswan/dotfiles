@@ -8,4 +8,7 @@ map gsp :js if((gs = gBrowser.tabs[0].linkedBrowser.contentWindow.wrappedJSObjec
 map gs<space> :js if((gs = gBrowser.tabs[0].linkedBrowser.contentWindow.wrappedJSObject.Grooveshark) != undefined) gs.togglePlayPause();<CR>
 cmap <C-c> <esc>
 
+" Save to pocket
+command! pocket -description "Save to Pocket" open javascript:(function(){ISRIL_H='ff69';PKT_D='getpocket.com';ISRIL_SCRIPT=document.createElement('SCRIPT');ISRIL_SCRIPT.type='text/javascript';ISRIL_SCRIPT.src='http://'+PKT_D+'/b/r.js';document.getElementsByTagName('head')[0].appendChild(ISRIL_SCRIPT)})();
+
 " vim: set ft=pentadactyl:
