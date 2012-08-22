@@ -181,7 +181,10 @@ nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
 nnoremap ! :Clam<space>
 
 " CtrlP
-nnoremap <leader>b :CtrlPBuffer<cr>
+"nnoremap <leader>b :CtrlPBuffer<cr>
+
+" Buffer selection
+nnoremap <leader>l :ls<cr>:b<space>
 
 " Set the max files
 let g:ctrlp_max_files = 10000
