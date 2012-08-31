@@ -11,6 +11,7 @@ Bundle 'groenewege/vim-less'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'spf13/PIV'
 Bundle 'jQuery'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-repeat'
@@ -34,12 +35,15 @@ Bundle 'gregsexton/MatchTag'
 " Bundle 'closetag.vim'
 Bundle 'kana/vim-smartinput'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'mbbill/undotree'
+Bundle 'Shougo/neocomplcache'
+Bundle 'coderifous/textobj-word-column.vim'
 
 " Snipmate
-Bundle 'MarcWeber/vim-addon-mw-utils'
-Bundle 'tomtom/tlib_vim'
-Bundle 'snipmate-snippets'
-Bundle 'garbas/vim-snipmate'
+" Bundle 'MarcWeber/vim-addon-mw-utils'
+" Bundle 'tomtom/tlib_vim'
+" Bundle 'snipmate-snippets'
+" Bundle 'garbas/vim-snipmate'
 
 filetype plugin indent on " last Vundle requirement
 
