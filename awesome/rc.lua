@@ -36,7 +36,7 @@ end
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
 -- beautiful.init("/usr/share/awesome/themes/default/theme.lua")
-beautiful.init("/home/dustinswan/.config/awesome/themes/default/theme.lua")
+beautiful.init("/home/dustinswan/.config/awesome/themes/dustin/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
 terminal = "urxvt"
