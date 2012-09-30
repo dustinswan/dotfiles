@@ -59,12 +59,12 @@ layouts =
     awful.layout.suit.tile.bottom,
     awful.layout.suit.tile.top,
     awful.layout.suit.fair,             -- 6
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier
+    awful.layout.suit.fair.horizontal,  -- 7
+    awful.layout.suit.spiral,           -- 8
+    awful.layout.suit.spiral.dwindle,   -- 9
+    awful.layout.suit.max,              -- 10
+    awful.layout.suit.max.fullscreen,   -- 11
+    awful.layout.suit.magnifier         -- 12
 }
 -- }}}
 
@@ -73,7 +73,9 @@ layouts =
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ "stat", "web", "mail", "chat", "dev", "media", 7, 8, 9 }, s, layouts[6])
+    tags[s] = awful.tag({ "stat", "web", "mail", "chat", "dev", "media", 7, 8, 9 },
+                        s,
+                        { layouts[6], layouts[10], layouts[6], layouts[6], layouts[6], layouts[6], layouts[6], layouts[6], layouts[6] })
 end
 -- }}}
 
