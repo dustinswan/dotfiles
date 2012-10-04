@@ -38,6 +38,8 @@ Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'mbbill/undotree'
 Bundle 'Shougo/neocomplcache'
 Bundle 'coderifous/textobj-word-column.vim'
+Bundle 'myusuf3/numbers.vim'
+Bundle 'benmills/vimux'
 
 " Snipmate
 " Bundle 'MarcWeber/vim-addon-mw-utils'
