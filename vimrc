@@ -199,7 +199,7 @@ nnoremap <leader>l :ls<cr>:b<space>
 let g:ctrlp_max_files = 10000
 
 " Workflowish stuff. Search for #todo
-nnoremap <silent> <leader>T :vimgrep /#todo/i %<cr>:copen<cr>:30wincmd _<cr>
+nnoremap <silent> <leader>T :vimgrep /\v^\s*\*+.*#todo.*/i %<cr>:copen<cr>:30wincmd _<cr>
 
 " Quickly switch back to quickfix
 nnoremap <silent> <leader>f :copen<cr>
