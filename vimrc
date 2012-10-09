@@ -39,6 +39,7 @@ Bundle 'mbbill/undotree'
 Bundle 'Shougo/neocomplcache'
 Bundle 'coderifous/textobj-word-column.vim'
 Bundle 'lukaszkorecki/workflowish'
+Bundle 'searchfold.vim'
 
 " Snipmate
 " Bundle 'MarcWeber/vim-addon-mw-utils'
@@ -103,7 +104,7 @@ set smartcase " if we include uppercase, it will be case sensitive
 set showmatch " matching brackets
 set matchtime=2 " blink brackets
 " turn off highlighting
-nnoremap <leader><space> :noh<cr>
+nnoremap <silent><leader><space> :noh<cr>
 
 " regex " thanks stevelosh
 set magic
@@ -152,7 +153,7 @@ colorscheme solarized
 "let NERDTreeDirArrows=1
 
 " Tagbar
-nnoremap <silent> <leader>t :TagbarToggle <cr>
+nnoremap <silent><leader>t :TagbarToggle <cr>
 " disable tagbar in old Vim
 if v:version < 703
     let g:loaded_tagbar=1
@@ -172,7 +173,7 @@ nnoremap <leader>s :SyntasticToggleMode<cr>
 " let g:SuperTabDefaultCompletionType="context"
 
 " open the current file for edit in Perforce
-nnoremap <leader>4 :! p4 edit %<cr>
+nnoremap <silent><leader>4 :! p4 edit %<cr>
 
 " open vsplit and switch to it
 nnoremap <leader>v <c-w>v<c-w>l
@@ -199,7 +200,5 @@ nnoremap <leader>l :ls<cr>:b<space>
 let g:ctrlp_max_files = 10000
 
 " Workflowish stuff. Search for #todo
-nnoremap <silent> <leader>T :vimgrep /\v^\s*\*+.*#todo.*/i %<cr>:copen<cr>:30wincmd _<cr>
-
-" Quickly switch back to quickfix
-nnoremap <silent> <leader>f :copen<cr>
+nnoremap <silent><leader>T :vimgrep /\v^\s*\*+.*#todo.*/i %<cr>:copen<cr>:30wincmd _<cr>
+nnoremap <silent><leader>TT /\v^\s*\*+.*#todo.*/i<cr>
