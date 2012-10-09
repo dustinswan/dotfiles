@@ -38,6 +38,7 @@ Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'mbbill/undotree'
 Bundle 'Shougo/neocomplcache'
 Bundle 'coderifous/textobj-word-column.vim'
+Bundle 'lukaszkorecki/workflowish'
 
 " Snipmate
 " Bundle 'MarcWeber/vim-addon-mw-utils'
@@ -196,3 +197,9 @@ nnoremap <leader>l :ls<cr>:b<space>
 
 " Set the max files
 let g:ctrlp_max_files = 10000
+
+" Workflowish stuff. Search for #todo
+nnoremap <silent> <leader>T :vimgrep /#todo/i %<cr>:copen<cr>
+
+" Quickly switch back to quickfix
+nnoremap <silent> <leader>f :copen<cr>
