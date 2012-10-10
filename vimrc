@@ -35,7 +35,7 @@ Bundle 'gregsexton/MatchTag'
 Bundle 'kana/vim-smartinput'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'mbbill/undotree'
-Bundle 'Shougo/neocomplcache'
+" Bundle 'Shougo/neocomplcache'
 Bundle 'coderifous/textobj-word-column.vim'
 " Bundle 'myusuf3/numbers'
 " Bundle 'benmills/vimux'
@@ -139,6 +139,10 @@ endif
 
 " Powerline
 let g:Powerline_symbols='fancy'
+
+" Colors
+set background=dark
+colorscheme default
 
 " Solarized
 "set background=dark
