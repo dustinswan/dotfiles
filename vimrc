@@ -6,7 +6,6 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
 
-" Custom Bundles:
 Bundle 'groenewege/vim-less'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'pangloss/vim-javascript'
@@ -26,10 +25,10 @@ Bundle 'majutsushi/tagbar'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdcommenter'
 " Bundle 'scrooloose/nerdtree'
-Bundle 'altercation/vim-colors-solarized'
+" Bundle 'altercation/vim-colors-solarized'
 " Bundle 'ervandew/supertab'
 " Bundle 'sjl/gundo.vim'
-Bundle 'sjl/clam.vim'
+" Bundle 'sjl/clam.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'gregsexton/MatchTag'
 " Bundle 'closetag.vim'
@@ -38,8 +37,9 @@ Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'mbbill/undotree'
 Bundle 'Shougo/neocomplcache'
 Bundle 'coderifous/textobj-word-column.vim'
-Bundle 'myusuf3/numbers.vim'
-Bundle 'benmills/vimux'
+" Bundle 'myusuf3/numbers'
+" Bundle 'benmills/vimux'
+" Bundle 'kikijump/tslime.vim'
 
 " Snipmate
 " Bundle 'MarcWeber/vim-addon-mw-utils'
@@ -49,7 +49,7 @@ Bundle 'benmills/vimux'
 
 filetype plugin indent on " last Vundle requirement
 
-" mouse!!!!!
+" mouse
 set mouse=a
 set ttymouse=xterm
 
@@ -138,14 +138,14 @@ endif
 let g:Powerline_symbols='fancy'
 
 " Solarized
-set background=dark
-let g:solarized_termtrans=1
-let g:solarized_termcolors=256 "default value is 16
-let g:solarized_contrast="high" "default value is normal
-let g:solarized_visibility="high" "default value is normal
-let g:solarized_diffmode="high" "default value is normal
-let g:solarized_hitrail=1 "default value is 0
-colorscheme solarized
+"set background=dark
+"let g:solarized_termtrans=1
+"let g:solarized_termcolors=256 "default value is 16
+"let g:solarized_contrast="high" "default value is normal
+"let g:solarized_visibility="high" "default value is normal
+"let g:solarized_diffmode="high" "default value is normal
+"let g:solarized_hitrail=1 "default value is 0
+"colorscheme solarized
 
 " NERDTree
 "nnoremap <silent> <leader>n :NERDTreeToggle <cr>
@@ -188,10 +188,10 @@ nnoremap <leader>a :Ack<space>
 nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
 
 " Clam
-nnoremap ! :Clam<space>
+" nnoremap ! :Clam<space>
 
 " CtrlP
-"nnoremap <leader>b :CtrlPBuffer<cr>
+nnoremap <leader>b :CtrlPBuffer<cr>
 
 " Buffer selection
 nnoremap <leader>l :ls<cr>:b<space>
