@@ -1,9 +1,0 @@
-vbell off
-defscrollback 1024
-startup_message off
-#caption always
-#caption string "%-Lw%{= bw}%50>%n%f* %t%{-}%+Lw%<"
-
-hardstatus alwayslastline
-#hardstatus string '%{= kG}%-Lw%{= kW}%50> %n%f* %t%{= kG}%+Lw%< %{= kG}%-=%c:%s%{-}'
-hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W}%c %{g}]'}
