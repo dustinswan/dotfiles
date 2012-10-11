@@ -6,7 +6,6 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
 
-" Custom Bundles:
 Bundle 'groenewege/vim-less'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'pangloss/vim-javascript'
@@ -26,18 +25,24 @@ Bundle 'majutsushi/tagbar'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdcommenter'
 " Bundle 'scrooloose/nerdtree'
-Bundle 'altercation/vim-colors-solarized'
+" Bundle 'altercation/vim-colors-solarized'
 " Bundle 'ervandew/supertab'
 " Bundle 'sjl/gundo.vim'
-Bundle 'sjl/clam.vim'
+" Bundle 'sjl/clam.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'gregsexton/MatchTag'
 " Bundle 'closetag.vim'
 Bundle 'kana/vim-smartinput'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'mbbill/undotree'
-Bundle 'Shougo/neocomplcache'
+" Bundle 'Shougo/neocomplcache'
 Bundle 'coderifous/textobj-word-column.vim'
+" Bundle 'myusuf3/numbers'
+" Bundle 'benmills/vimux'
+" Bundle 'kikijump/tslime.vim'
+Bundle 'lukaszkorecki/workflowish'
+Bundle 'searchfold.vim'
+Bundle 'godlygeek/tabular'
 
 " Snipmate
 " Bundle 'MarcWeber/vim-addon-mw-utils'
@@ -47,7 +52,7 @@ Bundle 'coderifous/textobj-word-column.vim'
 
 filetype plugin indent on " last Vundle requirement
 
-" mouse!!!!!
+" mouse
 set mouse=a
 set ttymouse=xterm
 
@@ -102,7 +107,7 @@ set smartcase " if we include uppercase, it will be case sensitive
 set showmatch " matching brackets
 set matchtime=2 " blink brackets
 " turn off highlighting
-nnoremap <leader><space> :noh<cr>
+nnoremap <silent><leader><space> :noh<cr>
 
 " regex " thanks stevelosh
 set magic
@@ -135,15 +140,19 @@ endif
 " Powerline
 let g:Powerline_symbols='fancy'
 
-" Solarized
+" Colors
 set background=dark
-let g:solarized_termtrans=1
-let g:solarized_termcolors=256 "default value is 16
-let g:solarized_contrast="high" "default value is normal
-let g:solarized_visibility="high" "default value is normal
-let g:solarized_diffmode="high" "default value is normal
-let g:solarized_hitrail=1 "default value is 0
-colorscheme solarized
+colorscheme default
+
+" Solarized
+"set background=dark
+"let g:solarized_termtrans=1
+"let g:solarized_termcolors=256 "default value is 16
+"let g:solarized_contrast="high" "default value is normal
+"let g:solarized_visibility="high" "default value is normal
+"let g:solarized_diffmode="high" "default value is normal
+"let g:solarized_hitrail=1 "default value is 0
+"colorscheme solarized
 
 " NERDTree
 "nnoremap <silent> <leader>n :NERDTreeToggle <cr>
@@ -151,7 +160,7 @@ colorscheme solarized
 "let NERDTreeDirArrows=1
 
 " Tagbar
-nnoremap <silent> <leader>t :TagbarToggle <cr>
+nnoremap <silent><leader>t :TagbarToggle <cr>
 " disable tagbar in old Vim
 if v:version < 703
     let g:loaded_tagbar=1
@@ -171,7 +180,7 @@ nnoremap <leader>s :SyntasticToggleMode<cr>
 " let g:SuperTabDefaultCompletionType="context"
 
 " open the current file for edit in Perforce
-nnoremap <leader>4 :! p4 edit %<cr>
+nnoremap <silent><leader>4 :! p4 edit %<cr>
 
 " open vsplit and switch to it
 nnoremap <leader>v <c-w>v<c-w>l
@@ -186,13 +195,17 @@ nnoremap <leader>a :Ack<space>
 nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
 
 " Clam
-nnoremap ! :Clam<space>
+" nnoremap ! :Clam<space>
 
 " CtrlP
-"nnoremap <leader>b :CtrlPBuffer<cr>
+nnoremap <leader>b :CtrlPBuffer<cr>
 
 " Buffer selection
 nnoremap <leader>l :ls<cr>:b<space>
 
 " Set the max files
 let g:ctrlp_max_files = 10000
+
+" Workflowish stuff. Search for #todo
+nnoremap <silent><leader>T :vimgrep /\v^\s*\*+.*#todo.*/i %<cr>:copen<cr>:30wincmd _<cr>
+nnoremap <silent><leader>TT /\v^\s*\*+.*#todo.*/i<cr>
