@@ -1,0 +1,52 @@
+2012-09-30 19:30:44	--	irc: connecting to server irc.oftc.net/6667...
+2012-09-30 19:30:44	--	irc: connected to irc.oftc.net/6667 (207.192.72.99)
+2012-09-30 19:30:44	--	weber.oftc.net (weber.oftc.net): *** Looking up your hostname...
+2012-09-30 19:30:44	--	weber.oftc.net (weber.oftc.net): *** Checking Ident
+2012-09-30 19:30:46	--	weber.oftc.net (weber.oftc.net): *** Couldn't look up your hostname
+2012-09-30 19:30:55	--	weber.oftc.net (weber.oftc.net): *** No Ident response
+2012-09-30 19:30:55	--	Welcome to the OFTC Internet Relay Chat Network dustinswan
+2012-09-30 19:30:55	--	Your host is weber.oftc.net[207.192.72.99/6667], running version hybrid-7.2.2+oftc1.6.8
+2012-09-30 19:30:55	--	This server was created Feb  7 2010 at 09:53:44
+2012-09-30 19:30:55	--	weber.oftc.net hybrid-7.2.2+oftc1.6.8 CDGPRSabcdfgiklnorsuwxyz biklmnopstveI bkloveI
+2012-09-30 19:30:55	--	CALLERID CASEMAPPING=rfc1459 DEAF=D KICKLEN=160 MODES=4 NICKLEN=30 PREFIX=(ov)@+ STATUSMSG=@+ TOPICLEN=390 NETWORK=OFTC MAXLIST=beI:100 MAXTARGETS=1 CHANTYPES=# :are supported by this server
+2012-09-30 19:30:55	--	CHANLIMIT=#:70 CHANNELLEN=50 CHANMODES=eIqb,k,l,imnpstMRS AWAYLEN=160 KNOCK ELIST=CMNTU SAFELIST EXCEPTS=e INVEX=I :are supported by this server
+2012-09-30 19:30:55	--	9YYAAJEL3 :your unique ID
+2012-09-30 19:30:55	--	There are 48 users and 8004 invisible on 16 servers
+2012-09-30 19:30:55	--	24 :IRC Operators online
+2012-09-30 19:30:55	--	2 :unknown connection(s)
+2012-09-30 19:30:55	--	1900 :channels formed
+2012-09-30 19:30:55	--	I have 1074 clients and 1 servers
+2012-09-30 19:30:55	--	Current local users: 1074  Max: 1539
+2012-09-30 19:30:55	--	Current global users: 8052  Max: 9456
+2012-09-30 19:30:55	--	Highest connection count: 1540 (1539 clients) (425514 connections received)
+2012-09-30 19:30:55	--	- weber.oftc.net Message of the Day -
+2012-09-30 19:30:55	--	- Welcome to OFTC - The Open and Free Technology Community
+2012-09-30 19:30:55	--	-
+2012-09-30 19:30:55	--	- You have connected to OFTC's IRC services.
+2012-09-30 19:30:55	--	-
+2012-09-30 19:30:55	--	- We are not a general purpose chat platform, but a topical
+2012-09-30 19:30:55	--	- network intent on providing the open source and free
+2012-09-30 19:30:55	--	- software communities a means to cooperate and communicate.
+2012-09-30 19:30:55	--	- As such, illegal and off-topic activity, such as warez
+2012-09-30 19:30:55	--	- trading, may result in being barred from access.
+2012-09-30 19:30:55	--	-
+2012-09-30 19:30:55	--	- The Open and Free Technology Community was founded at the
+2012-09-30 19:30:55	--	- end of 2001 by a group of experienced members of the Open
+2012-09-30 19:30:55	--	- Source and Free Software communities; it is aimed at
+2012-09-30 19:30:55	--	- providing these communities with better communication,
+2012-09-30 19:30:55	--	- development, and support infrastructure. Our goal is to
+2012-09-30 19:30:55	--	- provide stable services to members of the community in any
+2012-09-30 19:30:55	--	- part of the world, while listening closely to their needs
+2012-09-30 19:30:55	--	- and desires.
+2012-09-30 19:30:55	--	-
+2012-09-30 19:30:55	--	- For more information on OFTC please visit http://www.oftc.net/.
+2012-09-30 19:30:55	--	-
+2012-09-30 19:30:55	--	- If you require assistance stop by in channel #oftc, or email
+2012-09-30 19:30:55	--	- support@oftc.net with details.
+2012-09-30 19:30:55	--	-
+2012-09-30 19:30:55	--	- Thanks and enjoy your stay,
+2012-09-30 19:30:55	--	-
+2012-09-30 19:30:55	--	-         The OFTC team
+2012-09-30 19:30:55	--	End of /MOTD command.
+2012-09-30 19:30:55	--	User mode [+i] by dustinswan
+2012-09-30 19:42:12	--	irc: disconnected from server
