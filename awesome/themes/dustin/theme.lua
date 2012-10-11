@@ -77,7 +77,8 @@ theme.titlebar_maximized_button_focus_active  = "/usr/share/awesome/themes/defau
 -- theme.wallpaper_cmd = { "awsetbg /usr/share/awesome/themes/default/background.png" }
 -- theme.wallpaper_cmd = { "awsetbg /home/dustinswan/grid.png" }
 -- theme.wallpaper_cmd = { "feh --bg-tile /home/dustinswan/grid.png" }
-theme.wallpaper_cmd = { "feh --bg-tile /home/dustinswan/images/use_your_illusion.png" }
+-- theme.wallpaper_cmd = { "feh --bg-tile /home/dustinswan/images/use_your_illusion.png" }
+-- wallpapers generated randomly in .xinit using dropdox images
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = "/usr/share/awesome/themes/default/layouts/fairhw.png"

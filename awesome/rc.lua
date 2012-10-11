@@ -75,7 +75,7 @@ for s = 1, screen.count() do
     -- Each screen has its own tag table.
     tags[s] = awful.tag({ "stat", "web", "mail", "chat", "dev", "media", 7, 8, 9 },
                         s,
-                        { layouts[6], layouts[10], layouts[6], layouts[6], layouts[6], layouts[6], layouts[6], layouts[6], layouts[6] })
+                        { layouts[6], layouts[6], layouts[6], layouts[6], layouts[6], layouts[6], layouts[6], layouts[6], layouts[6] })
 end
 -- }}}
 
@@ -404,7 +404,7 @@ awful.rules.rules = {
     -- { rule = { class = "Firefox" },
     --   properties = { tag = tags[1][2] } },
     -- Set uzbl-browser to always map on tags number 2 of screen 1.
-    { rule = { class = "uzbl-browser" },
+    { rule = { class = "luakit" },
       properties = { tag = tags[1][2] } },
 }
 -- }}}
@@ -439,3 +439,23 @@ end)
 client.add_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+function run_once(prg,arg_string,pname,screen)
+    if not prg then
+        do return nil end
+    end
+
+    if not pname then
+       pname = prg
+    end
+
+    if not arg_string then
+        awful.util.spawn_with_shell("pgrep -f -u $USER -x '" .. pname .. "' || (" .. prg .. ")",screen)
+    else
+        awful.util.spawn_with_shell("pgrep -f -u $USER -x '" .. pname .. "' || (" .. prg .. " " .. arg_string .. ")",screen)
+    end
+end
+
+run_once("urxvt")
+run_once("luakit")
+run_once("mutt")
