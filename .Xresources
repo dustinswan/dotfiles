@@ -1,0 +1,46 @@
+! General
+urxvt*loginShell:       true
+urxvt*scrollBar:        false
+urxvt*secondaryScroll:  true
+urxvt*saveLines:        65535
+urxvt*cursorBlink:      false
+urxvt*urgentOnBell:     true
+urxvt*urlLauncher:      /usr/bin/uzbl-browser
+!urxvt*termName:         xterm-256color
+!urxvt*termName:         rxvt-256color
+urxvt*termName:         rxvt-unicode
+
+! Font
+!urxvt*font:            -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-*-*
+!urxvt*font:             xft:DejaVu Sans Mono:pixelsize=10:antialias=true:hinting=true
+!urxvt*font:             xft:Liberation Mono:pixelsize=10:antialias=true:hinting=true
+!urxvt*boldFont:        -xos4-terminus-bold-*-*-*-12-*-*-*-*-*-*-*
+!urxvt*font:             xft:inconsolata:size=9
+!urxvt*font:              -*-ohsnapu-medium-r-normal-*-11-*-*-*-*-*-*-*
+!urxvt*boldFont:          -*-ohsnapu-bold-r-normal-*-11-*-*-*-*-*-*-*
+urxvt*font:              xft:termsyn:pixelsize=10
+
+! Colors
+urxvt*depth:            32
+!urxvt*cursorColor:     #DCDCCC
+!urxvt*background:      #000000
+urxvt*foreground:       #FFFFFF
+urxvt*background:       rgba:0000/0000/0000/dddd
+
+*color0:  #1c1c1c
+*color8:  #3d3a3a
+*color1:  #d770af
+*color9:  #d28abf
+*color2 : #9acc79
+*color10: #8fb676
+*color3:  #d0d26b
+*color11: #c8bc45
+*color4 : #77b6c5
+*color12: #8fa7b9
+*color5:  #a488d9
+*color13: #bd89de
+*color6:  #7fcab3
+*color14: #6ec2a8
+*color7:  #8d8d8d
+*color15: #dad3d3
+
