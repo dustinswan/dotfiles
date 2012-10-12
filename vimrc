@@ -25,7 +25,7 @@ Bundle 'majutsushi/tagbar'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdcommenter'
 " Bundle 'scrooloose/nerdtree'
-" Bundle 'altercation/vim-colors-solarized'
+Bundle 'altercation/vim-colors-solarized'
 " Bundle 'ervandew/supertab'
 " Bundle 'sjl/gundo.vim'
 " Bundle 'sjl/clam.vim'
@@ -141,18 +141,18 @@ endif
 let g:Powerline_symbols='fancy'
 
 " Colors
-set background=dark
-colorscheme default
+"set background=dark
+" colorscheme default
 
 " Solarized
-"set background=dark
-"let g:solarized_termtrans=1
-"let g:solarized_termcolors=256 "default value is 16
-"let g:solarized_contrast="high" "default value is normal
-"let g:solarized_visibility="high" "default value is normal
-"let g:solarized_diffmode="high" "default value is normal
-"let g:solarized_hitrail=1 "default value is 0
-"colorscheme solarized
+set background=dark
+let g:solarized_termtrans=1
+let g:solarized_termcolors=256 "default value is 16
+let g:solarized_contrast="high" "default value is normal
+let g:solarized_visibility="high" "default value is normal
+let g:solarized_diffmode="high" "default value is normal
+let g:solarized_hitrail=1 "default value is 0
+colorscheme solarized
 
 " NERDTree
 "nnoremap <silent> <leader>n :NERDTreeToggle <cr>
