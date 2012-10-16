@@ -118,6 +118,10 @@ vicious.register(datewidget, vicious.widgets.date, '<span color="' .. beautiful.
 memwidget = widget({ type = "textbox"})
 vicious.register(memwidget, vicious.widgets.mem, 'mem <span color="' .. beautiful.fg_focus .. '">$1% [$2/$3]</span>', 13)
 
+-- Battery
+batwidget = widget({ type = "textbox" })
+vicious.register(batwidget, vicious.widgets.bat, 'bat <span color="' .. beautiful.fg_focus .. '">$2%</span>', 60, 'BAT0')
+
 -- Memory Graph
 --memgraphwidget = awful.widget.progressbar()
 --memgraphwidget:set_width(8)
@@ -226,6 +230,8 @@ for s = 1, screen.count() do
         --mylayoutbox[s],
         --separator,
         datewidget,
+        separator,
+        batwidget,
         separator,
         netwidget,
         separator,
