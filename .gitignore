@@ -1,4 +1,5 @@
 *.log
+weechat/logs/*
 vim/.netrwhist
 vim/bundle/*
 !vim/bundle/vundle/*
