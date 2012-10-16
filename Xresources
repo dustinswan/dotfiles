@@ -5,7 +5,7 @@ urxvt*secondaryScroll:  true
 urxvt*saveLines:        65535
 urxvt*cursorBlink:      false
 urxvt*urgentOnBell:     true
-urxvt*urlLauncher:      /usr/bin/uzbl-browser
+urxvt*urlLauncher:      /usr/bin/luakit
 !urxvt*termName:         xterm-256color
 !urxvt*termName:         rxvt-256color
 urxvt*termName:         rxvt-unicode
@@ -25,7 +25,7 @@ urxvt*depth:            32
 !urxvt*cursorColor:     #DCDCCC
 !urxvt*background:      #000000
 urxvt*foreground:       #FFFFFF
-urxvt*background:       rgba:0000/0000/0000/dddd
+urxvt*background:       rgba:0000/0000/0000/ee00
 
 *color0:  #1c1c1c
 *color8:  #3d3a3a
