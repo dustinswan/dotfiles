@@ -11,7 +11,9 @@ set record = "+[Gmail]/Sent Mail"
 set postponed = "+[Gmail]/Drafts"
 unset imap_passive
 set imap_keepalive = 300
-set mail_check = 120
+set mail_check = 60
+set smtp_url = "smtp://dustinswan@smtp.gmail.com:587/"
+set smtp_pass = $my_pw_personal
 
 # Sorting
 set sort = threads
