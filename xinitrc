@@ -7,7 +7,7 @@ compton -cGb
 
 dropboxd &
 
- random background
+# random background
 while true;
 do
   awsetbg -c -r ~/Dropbox/Photos/wallpaper
