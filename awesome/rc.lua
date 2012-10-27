@@ -108,7 +108,7 @@ vicious.register(uptimewidget, vicious.widgets.uptime, "uptime <span color='" ..
 
 -- Network
 netwidget = widget({ type = "textbox" })
-vicious.register(netwidget, vicious.widgets.net, 'down <span color="' .. beautiful.fg_focus .. '">${eth0 down_kb}</span> up <span color="' .. beautiful.fg_focus .. '">${eth0 up_kb}</span>', 3)
+vicious.register(netwidget, vicious.widgets.net, "down <span color='" .. beautiful.fg_focus .. "'>${wifi0 down_kb}</span> up <span color='" .. beautiful.fg_focus .. "'>${wifi0 up_kb}</span>", 3)
 
 -- Date
 datewidget = widget({ type = "textbox" })
