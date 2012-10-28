@@ -178,4 +178,9 @@ if unique then
     end)
 end
 
+-- Some plugins I found
+-- require "nscript_widget"
+-- require "private_browsing"
+require "useragent"
+
 -- vim: et:sw=4:ts=8:sts=4:tw=80
