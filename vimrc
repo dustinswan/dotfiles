@@ -43,6 +43,7 @@ Bundle 'coderifous/textobj-word-column.vim'
 Bundle 'lukaszkorecki/workflowish'
 Bundle 'searchfold.vim'
 Bundle 'godlygeek/tabular'
+Bundle 'kshenoy/vim-signature'
 
 " Snipmate
 " Bundle 'MarcWeber/vim-addon-mw-utils'
