@@ -11,14 +11,15 @@ urxvt*urlLauncher:      /usr/bin/luakit
 urxvt*termName:         rxvt-unicode
 
 ! Font
-!urxvt*font:            -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-*-*
 !urxvt*font:             xft:DejaVu Sans Mono:pixelsize=10:antialias=true:hinting=true
 !urxvt*font:             xft:Liberation Mono:pixelsize=10:antialias=true:hinting=true
-!urxvt*boldFont:        -xos4-terminus-bold-*-*-*-12-*-*-*-*-*-*-*
-!urxvt*font:             xft:inconsolata:size=9
+!urxvt*font:             xft:inconsolata:size=10
 !urxvt*font:              -*-ohsnapu-medium-r-normal-*-11-*-*-*-*-*-*-*
 !urxvt*boldFont:          -*-ohsnapu-bold-r-normal-*-11-*-*-*-*-*-*-*
-urxvt*font:              xft:termsyn:pixelsize=10
+!urxvt*font:              xft:termsyn:pixelsize=10
+!urxvt*font:             xft:DejaVu Sans Mono:pixelsize=10:antialias=false:hinting=true
+urxvt*font:             xft:terminus:size=9
+urxvt*boldFont:             xft:terminus:size=9
 
 ! Colors
 urxvt*depth:            32
