@@ -31,7 +31,10 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 alias vi=vim
+alias tmux="tmux -2"
 export EDITOR=vim
+export BROWSER=luakit
+# export TERM=xterm-256color
 
 # VCS stuff
 export P4USER=dswan

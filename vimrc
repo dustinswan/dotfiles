@@ -134,11 +134,12 @@ set dictionary+=/usr/share/dict/words
 
 " hide toolbar in macvim, etc
 if has("gui_running")
+    set gfn=Terminus\ 8
     set go=-t
 endif
 
 " Powerline
-let g:Powerline_symbols='fancy'
+" let g:Powerline_symbols='fancy'
 
 " Colors
 "set background=dark
