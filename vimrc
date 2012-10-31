@@ -17,7 +17,7 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-endwise'
-Bundle 'mileszs/ack.vim'
+Bundle 'mileszs/ack'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'bkad/CamelCaseMotion'
@@ -27,29 +27,24 @@ Bundle 'scrooloose/nerdcommenter'
 " Bundle 'scrooloose/nerdtree'
 Bundle 'altercation/vim-colors-solarized'
 " Bundle 'ervandew/supertab'
-" Bundle 'sjl/gundo.vim'
-" Bundle 'sjl/clam.vim'
-Bundle 'kien/ctrlp.vim'
+" Bundle 'sjl/gundo'
+" Bundle 'sjl/clam'
+Bundle 'kien/ctrlp'
 Bundle 'gregsexton/MatchTag'
-" Bundle 'closetag.vim'
+" Bundle 'closetag'
 Bundle 'kana/vim-smartinput'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'mbbill/undotree'
 " Bundle 'Shougo/neocomplcache'
-Bundle 'coderifous/textobj-word-column.vim'
+Bundle 'coderifous/textobj-word-column'
 " Bundle 'myusuf3/numbers'
 " Bundle 'benmills/vimux'
-" Bundle 'kikijump/tslime.vim'
+" Bundle 'kikijump/tslime'
 Bundle 'lukaszkorecki/workflowish'
-Bundle 'searchfold.vim'
+Bundle 'searchfold'
 Bundle 'godlygeek/tabular'
 Bundle 'kshenoy/vim-signature'
-
-" Snipmate
-" Bundle 'MarcWeber/vim-addon-mw-utils'
-" Bundle 'tomtom/tlib_vim'
-" Bundle 'snipmate-snippets'
-" Bundle 'garbas/vim-snipmate'
+Bundle 'SirVer/ultisnips'
 
 filetype plugin indent on " last Vundle requirement
 
@@ -180,6 +175,10 @@ nnoremap <leader>s :SyntasticToggleMode<cr>
 
 " Supertab
 " let g:SuperTabDefaultCompletionType="context"
+
+" UltiSnpis
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " open the current file for edit in Perforce
 nnoremap <silent><leader>4 :! p4 edit %<cr>
