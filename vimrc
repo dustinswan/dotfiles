@@ -17,7 +17,7 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-endwise'
-Bundle 'mileszs/ack'
+" Bundle 'mileszs/ack'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'bkad/CamelCaseMotion'
@@ -190,7 +190,7 @@ nnoremap <leader>v <c-w>v<c-w>l
 nnoremap <leader>w :%s/\s\+$//e<cr>
 
 " open Ack
-nnoremap <leader>a :Ack<space>
+" nnoremap <leader>a :Ack<space>
 
 " Marked
 nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
