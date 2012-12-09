@@ -10,7 +10,6 @@ Bundle 'groenewege/vim-less'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script'
-Bundle 'spf13/PIV'
 Bundle 'jQuery'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-repeat'
@@ -27,7 +26,6 @@ Bundle 'scrooloose/nerdcommenter'
 " Bundle 'scrooloose/nerdtree'
 " Bundle 'altercation/vim-colors-solarized'
 " Bundle 'ervandew/supertab'
-" Bundle 'sjl/gundo.vim'
 " Bundle 'sjl/clam.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'gregsexton/MatchTag'
@@ -38,8 +36,7 @@ Bundle 'mbbill/undotree'
 " Bundle 'Shougo/neocomplcache'
 Bundle 'coderifous/textobj-word-column.vim'
 " Bundle 'myusuf3/numbers'
-" Bundle 'benmills/vimux'
-" Bundle 'kikijump/tslime.vim'
+Bundle 'benmills/vimux'
 Bundle 'lukaszkorecki/workflowish'
 Bundle 'searchfold.vim'
 Bundle 'godlygeek/tabular'
@@ -186,7 +183,7 @@ nnoremap <silent><leader>4 :! p4 edit %<cr>
 nnoremap <leader>v <c-w>v<c-w>l
 
 " trim whitespace
-nnoremap <leader>w :%s/\s\+$//e<cr>
+nnoremap <leader>W :%s/\s\+$//e<cr>
 
 " open Ack
 nnoremap <leader>a :Ack<space>
@@ -197,9 +194,6 @@ nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
 " Clam
 " nnoremap ! :Clam<space>
 
-" CtrlP
-nnoremap <leader>b :CtrlPBuffer<cr>
-
 " Buffer selection
 nnoremap <leader>l :ls<cr>:b<space>
 
@@ -209,3 +203,12 @@ let g:ctrlp_max_files = 10000
 " Workflowish stuff. Search for #todo
 nnoremap <silent><leader>T :vimgrep /\v^\s*\*+.*#todo.*/i %<cr>:copen<cr>:30wincmd _<cr>
 nnoremap <silent><leader>TT /\v^\s*\*+.*#todo.*/i<cr>
+
+" Vimux stuff
+nnoremap <silent><leader><leader>vp :VimuxPromptCommand<cr>
+nnoremap <silent><leader><leader>vl :VimuxRunLastCommand<cr>
+nnoremap <silent><leader><leader>vi :VimuxInspectRunner<cr>
+nnoremap <silent><leader><leader>vq :VimuxCloseRunner<cr>
+nnoremap <silent><leader><leader>vs :VimuxInterruptRunner<cr>
+nnoremap <silent><leader><leader>vx :VimuxClosePanes<cr>
+nnoremap <silent><leader><leader>vc :VimuxClearRunnerHistory<cr>
