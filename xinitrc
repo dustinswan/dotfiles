@@ -1,7 +1,9 @@
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
-#transparency and shadows
-xcompmgr -c -C -t-5 -l-5 -r4.2 -o.55 &
+setxkbmap dvorak
+setxkbmap -option ctrl:nocaps
+
+compton -cGb
 
 dropboxd &
 
@@ -11,7 +13,5 @@ do
   awsetbg -c -r ~/Dropbox/Photos/wallpaper
   sleep 1m
 done &
-
-urxvt &
 
 exec awesome

@@ -11,25 +11,27 @@ Bundle 'digitaltoad/vim-jade'
 Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'jQuery'
+Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-endwise'
-Bundle 'mileszs/ack.vim'
-Bundle 'Lokaltog/vim-powerline'
+" Bundle 'mileszs/ack'
+Bundle 'Lokaltog/vim-powerline.git'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'bkad/CamelCaseMotion'
 Bundle 'majutsushi/tagbar'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdcommenter'
 " Bundle 'scrooloose/nerdtree'
-" Bundle 'altercation/vim-colors-solarized'
+Bundle 'altercation/vim-colors-solarized'
 " Bundle 'ervandew/supertab'
-" Bundle 'sjl/clam.vim'
+" Bundle 'sjl/gundo'
+" Bundle 'sjl/clam'
 Bundle 'kien/ctrlp.vim'
 Bundle 'gregsexton/MatchTag'
-" Bundle 'closetag.vim'
+" Bundle 'closetag'
 Bundle 'kana/vim-smartinput'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'mbbill/undotree'
@@ -40,12 +42,8 @@ Bundle 'benmills/vimux'
 Bundle 'lukaszkorecki/workflowish'
 Bundle 'searchfold.vim'
 Bundle 'godlygeek/tabular'
-
-" Snipmate
-" Bundle 'MarcWeber/vim-addon-mw-utils'
-" Bundle 'tomtom/tlib_vim'
-" Bundle 'snipmate-snippets'
-" Bundle 'garbas/vim-snipmate'
+Bundle 'kshenoy/vim-signature'
+Bundle 'SirVer/ultisnips'
 
 filetype plugin indent on " last Vundle requirement
 
@@ -131,25 +129,26 @@ set dictionary+=/usr/share/dict/words
 
 " hide toolbar in macvim, etc
 if has("gui_running")
+    set gfn=Terminus\ 8
     set go=-t
 endif
 
 " Powerline
-let g:Powerline_symbols='fancy'
+" let g:Powerline_symbols='fancy'
 
 " Colors
-set background=dark
-colorscheme default
+"set background=dark
+" colorscheme default
 
 " Solarized
-"set background=dark
-"let g:solarized_termtrans=1
-"let g:solarized_termcolors=256 "default value is 16
-"let g:solarized_contrast="high" "default value is normal
-"let g:solarized_visibility="high" "default value is normal
-"let g:solarized_diffmode="high" "default value is normal
-"let g:solarized_hitrail=1 "default value is 0
-"colorscheme solarized
+set background=dark
+let g:solarized_termtrans=1
+let g:solarized_termcolors=256 "default value is 16
+let g:solarized_contrast="high" "default value is normal
+let g:solarized_visibility="high" "default value is normal
+let g:solarized_diffmode="high" "default value is normal
+let g:solarized_hitrail=1 "default value is 0
+colorscheme solarized
 
 " NERDTree
 "nnoremap <silent> <leader>n :NERDTreeToggle <cr>
@@ -176,6 +175,10 @@ nnoremap <leader>s :SyntasticToggleMode<cr>
 " Supertab
 " let g:SuperTabDefaultCompletionType="context"
 
+" UltiSnpis
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
 " open the current file for edit in Perforce
 nnoremap <silent><leader>4 :! p4 edit %<cr>
 
@@ -186,7 +189,7 @@ nnoremap <leader>v <c-w>v<c-w>l
 nnoremap <leader>W :%s/\s\+$//e<cr>
 
 " open Ack
-nnoremap <leader>a :Ack<space>
+" nnoremap <leader>a :Ack<space>
 
 " Marked
 nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>

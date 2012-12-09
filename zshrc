@@ -25,13 +25,15 @@ COMPLETION_WAITING_DOTS="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git archlinux npm node osx ruby rails3 gem)
+plugins=(git archlinux heroku npm node osx brew ruby rbenv gem bundler rake rails3 gem lein vundle)
 
 source $ZSH/oh-my-zsh.sh
 
-# Customize to your needs...
 alias vi=vim
+alias tmux="tmux -2"
 export EDITOR=vim
+export BROWSER=luakit
+# export TERM=xterm-256color
 
 # VCS stuff
 export P4USER=dswan
@@ -44,6 +46,7 @@ export SVN_EDITOR=vim
 alias visidev="ssh root@visidev.iocom.com 'cd /; p4 sync'"
 
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH # Homebrew
-export PATH=$HOME/.rvm/bin:$PATH # RVM
+export PATH=$HOME/.rbenv/bin:$PATH # rbenv
+export PATH=$HOME/.gem/ruby/1.9.1/bin:$PATH # Ruby
 export PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH # Postgres
 export PATH=$HOME/Library/Haskell/bin:$PATH # Haskell

@@ -73,7 +73,7 @@ layouts =
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ "stat", "web", "mail", "chat", "dev", "media", 7, 8, 9 },
+    tags[s] = awful.tag({ "sys", "web", "mail", "chat", "dev", "media", "virt", 8, 9 },
                         s,
                         { layouts[6], layouts[6], layouts[6], layouts[6], layouts[6], layouts[6], layouts[6], layouts[6], layouts[6] })
 end
@@ -103,20 +103,31 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
 separator = widget({ type = "textbox" })
 separator.text = " | "
 
-uptimewidget = widget({ type = "textbox" })
-vicious.register(uptimewidget, vicious.widgets.uptime, "uptime <span color='" .. beautiful.fg_focus .. "'>$2.$3</span>'")
+--uptimewidget = widget({ type = "textbox" })
+--vicious.register(uptimewidget, vicious.widgets.uptime, "uptime <span color='" .. beautiful.fg_focus .. "'>$2.$3</span>'")
 
 -- Network
 netwidget = widget({ type = "textbox" })
-vicious.register(netwidget, vicious.widgets.net, 'down <span color="' .. beautiful.fg_focus .. '">${eth0 down_kb}</span> up <span color="' .. beautiful.fg_focus .. '">${eth0 up_kb}</span>', 3)
+vicious.register(netwidget, vicious.widgets.net, "down <span color='" .. beautiful.fg_focus .. "'>${wifi0 down_kb}</span> up <span color='" .. beautiful.fg_focus .. "'>${wifi0 up_kb}</span>", 3)
 
 -- Date
 datewidget = widget({ type = "textbox" })
-vicious.register(datewidget, vicious.widgets.date, '<span color="' .. beautiful.fg_focus .. '">%a %F, %T</span> ', 1)
+vicious.register(datewidget, vicious.widgets.date, '<span color="' .. beautiful.fg_focus .. '">%a %m-%d, %T</span> ', 1)
 
 -- Memory
 memwidget = widget({ type = "textbox"})
-vicious.register(memwidget, vicious.widgets.mem, 'mem <span color="' .. beautiful.fg_focus .. '">$1% [$2/$3]</span>', 13)
+--vicious.register(memwidget, vicious.widgets.mem, 'mem <span color="' .. beautiful.fg_focus .. '">$1% [$2/$3]</span>', 13)
+vicious.register(memwidget, vicious.widgets.mem, 'mem <span color="' .. beautiful.fg_focus .. '">$1%</span>', 13)
+
+-- Filesystem
+fswidget = widget({ type = "textbox"})
+vicious.register(fswidget, vicious.widgets.fs, function (widget, args)
+    return 'fs <span color="' .. beautiful.fg_focus .. '">' .. args["{/ used_gb}"] .. "/" .. args["{/ size_gb}"] .. 'GB</span>'
+end, 20)
+
+-- Battery
+batwidget = widget({ type = "textbox" })
+vicious.register(batwidget, vicious.widgets.bat, 'bat <span color="' .. beautiful.fg_focus .. '">$2%</span>', 60, 'BAT0')
 
 -- Memory Graph
 --memgraphwidget = awful.widget.progressbar()
@@ -144,7 +155,33 @@ vicious.register(cpuwidget, vicious.widgets.cpu, 'cpu <span color="' .. beautifu
 
 -- Temp
 tempwidget = widget({ type = "textbox" })
-vicious.register(tempwidget, vicious.widgets.thermal, 'temp <span color="' .. beautiful.fg_focus .. '">$1°C</span>', 9, "thermal_zone0")
+vicious.register(tempwidget, vicious.widgets.thermal, ' @ <span color="' .. beautiful.fg_focus .. '">$1°C</span>', 9, { "coretemp.0", "core" })
+
+volumewidget = widget({ type = "textbox" })
+vicious.register(volumewidget, vicious.widgets.volume, '$2 <span color="' .. beautiful.fg_focus .. '">$1%</span>', 1, "Master")
+
+volumewidget:buttons(awful.util.table.join(
+    awful.button({}, 1, function () awful.util.spawn("amixer set Master toggle", false) end),
+    awful.button({}, 3, function () awful.util.spawn("urxvt -e alsamixer", true) end),
+    awful.button({}, 4, function () awful.util.spawn("amixer -q set Master 1+", true) end),
+    awful.button({}, 5, function () awful.util.spawn("amixer -q set Master 1-", true) end)
+))
+
+-- Weather
+--weatherwidget = widget({ type = "textbox" })
+--vicious.register(weatherwidget, vicious.widgets.weather, 'weather <span color="' .. beautiful.fg_focus .. '">$1</span>', 120, "ORD")
+
+-- Wifi
+wifiwidget = widget({ type = "textbox" })
+vicious.register(wifiwidget, vicious.widgets.wifi,
+    function (widget, args)
+        --return string.format("<span>%s %i%%</span>", args["{ssid}"], args["{link}"]/70*100)
+        return args["{ssid}"] .. " <span color='" .. beautiful.fg_focus .. "'>" .. math.floor(args["{link}"] / 70 * 100) .. "%</span>"
+    end, 10, "wifi0" )
+
+-- Package widget
+--packagewidget = widget({ type = "textbox" })
+--vicious.register(packagewidget, vicious.widgets.pkg, 'pkgs <span color="' .. beautiful.fg_focus .. '">$1</span>', 60, "Arch")
 
 -- Create a systray
 mysystray = widget({ type = "systray" })
@@ -227,18 +264,29 @@ for s = 1, screen.count() do
         --separator,
         datewidget,
         separator,
+        batwidget,
+        separator,
         netwidget,
         separator,
         --memgraphwidget.widget,
+        fswidget,
+        separator,
         memwidget,
         separator,
         --cpugraphwidget.widget,
+        tempwidget,
         cpuwidget,
         separator,
-        uptimewidget,
+        --uptimewidget,
+        --separator,
+        volumewidget,
         separator,
-        -- tempwidget,
-        -- separator,
+        --weatherwidget,
+        --separator,
+        wifiwidget,
+        separator,
+        --packagewidget,
+        --separator,
         s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
@@ -256,6 +304,10 @@ root.buttons(awful.util.table.join(
 
 -- {{{ Key bindings
 globalkeys = awful.util.table.join(
+    -- media keys
+    awful.key({}, "XF86AudioRaiseVolume", function () awful.util.spawn("amixer set Master 4+") end ),
+    awful.key({}, "XF86AudioLowerVolume", function () awful.util.spawn("amixer set Master 4-") end ),
+    awful.key({}, "XF86AudioMute", function () awful.util.spawn("amixer set Master toggle") end ),
     awful.key({ modkey,           }, "p", function() awful.util.spawn( "dmenu_run" ) end ),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
