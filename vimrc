@@ -171,7 +171,7 @@ else
     let g:loaded_syntastic_plugin=1
 endif
 
-nnoremap <leader>s :SyntasticToggleMode<cr>
+nnoremap <leader>S :SyntasticToggleMode<cr>
 
 " Supertab
 " let g:SuperTabDefaultCompletionType="context"
