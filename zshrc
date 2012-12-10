@@ -42,8 +42,10 @@ export P4CONFIG=p4.cfg
 export P4EDITOR=vim
 export SVN_EDITOR=vim
 
+# IOCOM stuff
 # sync visidev to latest Perforce
 alias visidev="ssh root@visidev.iocom.com 'cd /; p4 sync'"
+alias dswan="ssh root@dswan.insors.net"
 
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH # Homebrew
 export PATH=$HOME/.rbenv/bin:$PATH # rbenv
