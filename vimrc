@@ -44,6 +44,7 @@ Bundle 'searchfold.vim'
 Bundle 'godlygeek/tabular'
 Bundle 'kshenoy/vim-signature'
 Bundle 'SirVer/ultisnips'
+Bundle 'fmoralesc/vim-pad'
 
 filetype plugin indent on " last Vundle requirement
 
@@ -215,3 +216,7 @@ nnoremap <silent><leader><leader>vq :VimuxCloseRunner<cr>
 nnoremap <silent><leader><leader>vs :VimuxInterruptRunner<cr>
 nnoremap <silent><leader><leader>vx :VimuxClosePanes<cr>
 nnoremap <silent><leader><leader>vc :VimuxClearRunnerHistory<cr>
+
+" Vim-Pad
+let g:pad_dir = "~/Dropbox/notes/"
+let g:pad_search_backend = "ack"
