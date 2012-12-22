@@ -18,7 +18,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-rsi'
-" Bundle 'mileszs/ack'
+Bundle 'mileszs/ack.vim'
 Bundle 'Lokaltog/vim-powerline.git'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'bkad/CamelCaseMotion'
@@ -44,7 +44,7 @@ Bundle 'lukaszkorecki/workflowish'
 Bundle 'searchfold.vim'
 Bundle 'godlygeek/tabular'
 Bundle 'kshenoy/vim-signature'
-Bundle 'SirVer/ultisnips'
+"Bundle 'SirVer/ultisnips'
 Bundle 'fmoralesc/vim-pad'
 
 filetype plugin indent on " last Vundle requirement
@@ -191,7 +191,7 @@ nnoremap <leader>v <c-w>v<c-w>l
 nnoremap <leader>W :%s/\s\+$//e<cr>
 
 " open Ack
-" nnoremap <leader>a :Ack<space>
+nnoremap <leader>a :Ack<space>
 
 " Marked
 nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
