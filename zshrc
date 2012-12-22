@@ -52,3 +52,4 @@ export PATH=$HOME/.rbenv/bin:$PATH # rbenv
 export PATH=$HOME/.gem/ruby/1.9.1/bin:$PATH # Ruby
 export PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH # Postgres
 export PATH=$HOME/Library/Haskell/bin:$PATH # Haskell
+export PATH=$HOME/dotfiles/bin:$PATH # Dotfiles bin
