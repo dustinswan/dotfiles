@@ -36,7 +36,7 @@ Bundle 'gregsexton/MatchTag'
 Bundle 'kana/vim-smartinput'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'mbbill/undotree'
-" Bundle 'Shougo/neocomplcache'
+Bundle 'Shougo/neocomplcache'
 Bundle 'coderifous/textobj-word-column.vim'
 " Bundle 'myusuf3/numbers'
 Bundle 'benmills/vimux'
@@ -46,6 +46,7 @@ Bundle 'godlygeek/tabular'
 Bundle 'kshenoy/vim-signature'
 "Bundle 'SirVer/ultisnips'
 Bundle 'fmoralesc/vim-pad'
+Bundle 'lukerandall/haskellmode-vim'
 
 filetype plugin indent on " last Vundle requirement
 
@@ -221,3 +222,11 @@ nnoremap <silent><leader><leader>vc :VimuxClearRunnerHistory<cr>
 " Vim-Pad
 let g:pad_dir = "~/Dropbox/notes/"
 let g:pad_search_backend = "ack"
+
+" Haskellmode
+let g:ghc = "/usr/bin/ghc"
+let g:haddock_browser = "open"
+let g:haddock_browser_callformat = "%s %s"
+
+" NeoComplCache
+let g:neocomplcache_enable_at_startup = 1
