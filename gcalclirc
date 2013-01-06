@@ -1,0 +1,3 @@
+[gcalcli]
+user: dustinswan
+pw: `gpg --decrypt ~/.my-pwds.gpg`
