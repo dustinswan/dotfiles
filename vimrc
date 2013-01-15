@@ -28,15 +28,12 @@ Bundle 'scrooloose/nerdcommenter'
 " Bundle 'scrooloose/nerdtree'
 Bundle 'altercation/vim-colors-solarized'
 " Bundle 'ervandew/supertab'
-" Bundle 'sjl/gundo'
-" Bundle 'sjl/clam'
 Bundle 'kien/ctrlp.vim'
 Bundle 'gregsexton/MatchTag'
 " Bundle 'closetag'
 Bundle 'kana/vim-smartinput'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'mbbill/undotree'
-Bundle 'Shougo/neocomplcache'
 Bundle 'coderifous/textobj-word-column.vim'
 " Bundle 'myusuf3/numbers'
 Bundle 'benmills/vimux'
@@ -47,6 +44,8 @@ Bundle 'kshenoy/vim-signature'
 "Bundle 'SirVer/ultisnips'
 Bundle 'fmoralesc/vim-pad'
 Bundle 'lukerandall/haskellmode-vim'
+Bundle 'Shougo/neocomplcache'
+Bundle 'ujihisa/neco-ghc'
 
 filetype plugin indent on " last Vundle requirement
 
@@ -229,4 +228,7 @@ let g:haddock_browser = "open"
 let g:haddock_browser_callformat = "%s %s"
 
 " NeoComplCache
-let g:neocomplcache_enable_at_startup = 1
+" let g:neocomplcache_enable_at_startup = 1
+
+" Undotree
+nnoremap <leader>u :UndotreeToggle<cr>
