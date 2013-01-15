@@ -232,3 +232,9 @@ let g:haddock_browser_callformat = "%s %s"
 
 " Undotree
 nnoremap <leader>u :UndotreeToggle<cr>
+
+" Move between splits
+map <c-j> <c-w>j<c-w>_
+map <c-k> <c-w>k<c-w>_
+map <c-l> <c-w>l<c-w>_
+map <c-h> <c-w>h<c-w>_
