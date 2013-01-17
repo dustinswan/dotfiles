@@ -33,7 +33,6 @@ alias vi=vim
 alias tmux="tmux -2"
 export EDITOR=vim
 export BROWSER=luakit
-# export TERM=xterm-256color
 
 # VCS stuff
 export P4USER=dswan
@@ -49,7 +48,6 @@ alias dswan="ssh root@dswan.insors.net"
 
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH # Homebrew
 export PATH=$HOME/.rbenv/bin:$PATH # rbenv
-export PATH=$HOME/.gem/ruby/1.9.1/bin:$PATH # Ruby
 export PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH # Postgres
 export PATH=$HOME/Library/Haskell/bin:$PATH # Haskell
 export PATH=$HOME/dotfiles/bin:$PATH # Dotfiles bin
