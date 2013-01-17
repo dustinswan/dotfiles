@@ -44,8 +44,8 @@ Bundle 'kshenoy/vim-signature'
 "Bundle 'SirVer/ultisnips'
 Bundle 'fmoralesc/vim-pad'
 Bundle 'lukerandall/haskellmode-vim'
-Bundle 'Shougo/neocomplcache'
-Bundle 'ujihisa/neco-ghc'
+Bundle 'bitc/vim-hdevtools'
+" Bundle 'Shougo/neocomplcache'
 
 filetype plugin indent on " last Vundle requirement
 
@@ -227,8 +227,9 @@ let g:ghc = "/usr/bin/ghc"
 let g:haddock_browser = "open"
 let g:haddock_browser_callformat = "%s %s"
 
-" NeoComplCache
-" let g:neocomplcache_enable_at_startup = 1
+" automatically open and close the popup menu / preview window
+au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+set completeopt=menu,preview,longest
 
 " Undotree
 nnoremap <leader>u :UndotreeToggle<cr>
@@ -238,3 +239,11 @@ map <c-j> <c-w>j<c-w>_
 map <c-k> <c-w>k<c-w>_
 map <c-l> <c-w>l<c-w>_
 map <c-h> <c-w>h<c-w>_
+
+" NeoComplCache
+" let g:neocomplcache_enable_at_startup = 1
+
+" hdevtools
+nnoremap <leader>ht :HdevtoolsType<cr>
+nnoremap <leader>hc :HdevtoolsClear<cr>
+nnoremap <leader>hi :HdevtoolsInfo<cr>
