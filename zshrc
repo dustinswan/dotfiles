@@ -25,7 +25,8 @@ COMPLETION_WAITING_DOTS="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git archlinux heroku npm node osx brew ruby rbenv gem bundler rake rails3 gem lein vundle)
+#plugins=(git archlinux heroku npm node osx brew ruby rbenv gem bundler rake rails3 gem lein vundle) # way too slow
+plugins=()
 
 source $ZSH/oh-my-zsh.sh
 
@@ -47,7 +48,8 @@ alias visidev="ssh root@visidev.iocom.com 'cd /; p4 sync'"
 alias dswan="ssh root@dswan.insors.net"
 
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH # Homebrew
-export PATH=$HOME/.rbenv/bin:$PATH # rbenv
 export PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH # Postgres
 export PATH=$HOME/Library/Haskell/bin:$PATH # Haskell
 export PATH=$HOME/dotfiles/bin:$PATH # Dotfiles bin
+export PATH=$HOME/.rbenv/bin:$PATH # rbenv
+eval "$(rbenv init -)"
