@@ -50,8 +50,10 @@ Bundle 'bitc/vim-hdevtools'
 filetype plugin indent on " last Vundle requirement
 
 " mouse
-set mouse=a
-set ttymouse=xterm
+if has("mouse")
+    set mouse=a
+    set ttymouse=xterm
+endif
 
 " general goodness
 set shell=/bin/bash " Syntastic breaks when trying to write to /var/folders
