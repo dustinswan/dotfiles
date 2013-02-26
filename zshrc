@@ -16,7 +16,7 @@ export SVN_EDITOR=vim
 # sync visidev to latest Perforce
 alias visidev="ssh root@visidev.iocom.com 'cd /; p4 sync'"
 alias dswan="ssh root@dswan.insors.net"
-alias sprites="pushd ~/smartsprites; ./smartsprites.sh --root-dir-path /opt/iocom/user/webclient/; popd"
+alias sprites="pushd ~/smartsprites; ./smartsprites.sh --root-dir-path /opt/iocom/user/webclient/; popd; p4 edit /opt/iocom/user/webclient/css/iocom-sprite.css"
 #export TERM="xterm-256color"
 
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH # Homebrew
