@@ -17,7 +17,7 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-rsi'
+Bundle 'tpope/vim-unimpared'
 Bundle 'mileszs/ack.vim'
 Bundle 'Lokaltog/vim-powerline.git'
 Bundle 'Lokaltog/vim-easymotion'
@@ -192,8 +192,10 @@ nnoremap <leader>v <c-w>v<c-w>l
 " trim whitespace
 nnoremap <leader>W :%s/\s\+$//e<cr>
 
-" open Ack
+" Ack
 nnoremap <leader>a :Ack<space>
+" use ag
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " Marked
 nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
