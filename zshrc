@@ -21,6 +21,7 @@ alias sprites="pushd ~/smartsprites; ./smartsprites.sh --root-dir-path /opt/ioco
 
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH # Homebrew
 export PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH # Postgres
+export PATH=/usr/local/share/python:$PATH
 export PATH=$HOME/Library/Haskell/bin:$PATH # Haskell
 export PATH=$HOME/dotfiles/bin:$PATH # Dotfiles bin
 export PATH=$HOME/.rbenv/bin:$PATH # rbenv
