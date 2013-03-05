@@ -17,7 +17,7 @@ Bundle 'tpope/vim-repeat'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-unimpared'
+" Bundle 'tpope/vim-unimpared'
 Bundle 'mileszs/ack.vim'
 Bundle 'Lokaltog/vim-powerline.git'
 Bundle 'Lokaltog/vim-easymotion'
@@ -46,6 +46,7 @@ Bundle 'fmoralesc/vim-pad'
 Bundle 'lukerandall/haskellmode-vim'
 Bundle 'bitc/vim-hdevtools'
 " Bundle 'Shougo/neocomplcache'
+Bundle 'airblade/vim-gitgutter'
 
 filetype plugin indent on " last Vundle requirement
 
