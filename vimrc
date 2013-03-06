@@ -48,6 +48,8 @@ Bundle 'bitc/vim-hdevtools'
 " Bundle 'Shougo/neocomplcache'
 Bundle 'airblade/vim-gitgutter'
 
+let $GIT_SSL_NO_VERIFY = 'true'
+
 filetype plugin indent on " last Vundle requirement
 
 " mouse
