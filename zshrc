@@ -1,4 +1,18 @@
-PROMPT="%~> "
+# powerline-shell
+function powerline_precmd() {
+  export PS1="$(~/dotfiles/powerline-shell/powerline-shell.py $? --shell zsh)"
+}
+
+function install_powerline_precmd() {
+  for s in "${precmd_functions[@]}"; do
+    if [ "$s" = "powerline_precmd" ]; then
+      return
+    fi
+  done
+  precmd_functions+=(powerline_precmd)
+}
+
+install_powerline_precmd
 
 alias vi=vim
 alias tmux="tmux -2"
