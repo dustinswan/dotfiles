@@ -141,7 +141,7 @@ if has("gui_running")
 endif
 
 " Powerline
-" let g:Powerline_symbols='fancy'
+let g:Powerline_symbols='fancy'
 
 " Colors
 "set background=dark
@@ -210,7 +210,8 @@ nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
 nnoremap <leader>l :ls<cr>:b<space>
 
 " Set the max files
-let g:ctrlp_max_files = 10000
+"let g:ctrlp_max_files = 10000
+let g:ctrlp_clear_cache_on_exit = 0
 
 " Workflowish stuff. Search for #todo
 nnoremap <silent><leader>T :vimgrep /\v^\s*\*+.*#todo.*/i %<cr>:copen<cr>:30wincmd _<cr>
