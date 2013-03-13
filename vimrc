@@ -113,8 +113,6 @@ nnoremap <silent><leader><space> :noh<cr>
 
 " regex " thanks stevelosh
 set magic
-nnoremap / /\v
-vnoremap / /\v
 
 " tab stops
 set tabstop=4
