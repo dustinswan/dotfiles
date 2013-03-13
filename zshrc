@@ -1,3 +1,6 @@
+# Start tmux... just trying it out
+if [ "$TMUX" = "" ]; then tmux; fi
+
 # powerline-shell
 function powerline_precmd() {
   export PS1="$(~/dotfiles/powerline-shell/powerline-shell.py $? --shell zsh)"
