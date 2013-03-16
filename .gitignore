@@ -4,3 +4,5 @@ vim/.netrwhist
 vim/bundle/*
 !vim/bundle/vundle/*
 mutt/hcache
+newsbeuter/cache.db
+newsbeuter/history.*
