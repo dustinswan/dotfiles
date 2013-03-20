@@ -1,0 +1,17 @@
+project_name: admin
+project_root: ~/
+tabs:
+  - system:
+      layout: main-vertical
+      panes:
+        - #empty, will just run plain bash
+        - htop
+  - comm:
+      layout: main-vertical
+      panes:
+        - weechat-curses
+        - mutt
+        - gcalcli
+  - news:
+      panes:
+        - newsbeuter
