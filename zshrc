@@ -17,6 +17,9 @@ function install_powerline_precmd() {
 
 install_powerline_precmd
 
+# Tmuxinator
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+
 alias vi=vim
 alias tmux="tmux -2"
 export EDITOR=vim
