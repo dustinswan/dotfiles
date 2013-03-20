@@ -3,7 +3,7 @@ reload-time 30
 browser "open %u"
 # pager "w3m %f"
 article-sort-order date
-# show-read-articles no
+show-read-articles no
 cache-file "~/Dropbox/Software/newsbeuter_cache.db"
 
 bind-key j down
