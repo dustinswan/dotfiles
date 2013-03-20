@@ -6,3 +6,4 @@ vim/bundle/*
 mutt/hcache
 newsbeuter/cache.db
 newsbeuter/history.*
+cortex/seen.cache

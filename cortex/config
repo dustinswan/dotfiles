@@ -1,0 +1,3 @@
+[config]
+frontpage=http://www.reddit.com/.json?feed=5d20874d375df428fda2295e59a872a3178e7fa5&user=dustinswan
+inbox=http://www.reddit.com/message/inbox/.json?feed=5d20874d375df428fda2295e59a872a3178e7fa5&user=dustinswan
