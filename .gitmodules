@@ -10,3 +10,6 @@
 [submodule "bin/gcalcli-git"]
 	path = bin/gcalcli-git
 	url = https://github.com/insanum/gcalcli
+[submodule "bin/cortex-git"]
+	path = bin/cortex-git
+	url = git://glacicle.org/projects/cortex.git
