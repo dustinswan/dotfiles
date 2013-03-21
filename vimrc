@@ -51,9 +51,6 @@ let $GIT_SSL_NO_VERIFY = 'true'
 
 filetype plugin indent on " last Vundle requirement
 
-" Powerline weirdness
-set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
-
 " mouse
 if has("mouse")
     set mouse=a
@@ -141,6 +138,8 @@ if has("gui_running")
 endif
 
 " Powerline
+set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
+set rtp+=/usr/lib/python2.7/site-packages/powerline/bindings/vim
 let g:Powerline_symbols='fancy'
 
 " Colors
