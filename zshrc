@@ -1,21 +1,8 @@
 # Start tmux... just trying it out
 # if [ "$TMUX" = "" ]; then tmux; fi
 
-# powerline-shell
-function powerline_precmd() {
-  export PS1="$(~/dotfiles/powerline-shell/powerline-shell.py $? --shell zsh)"
-}
-
-function install_powerline_precmd() {
-  for s in "${precmd_functions[@]}"; do
-    if [ "$s" = "powerline_precmd" ]; then
-      return
-    fi
-  done
-  precmd_functions+=(powerline_precmd)
-}
-
-install_powerline_precmd
+# Powerline
+. /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # Tmuxinator
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator

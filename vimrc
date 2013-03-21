@@ -19,7 +19,6 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-endwise'
 " Bundle 'tpope/vim-unimpared'
 Bundle 'mileszs/ack.vim'
-Bundle 'Lokaltog/vim-powerline.git'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'bkad/CamelCaseMotion'
 Bundle 'majutsushi/tagbar'
@@ -51,6 +50,9 @@ Bundle 'airblade/vim-gitgutter'
 let $GIT_SSL_NO_VERIFY = 'true'
 
 filetype plugin indent on " last Vundle requirement
+
+" Powerline weirdness
+set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
 
 " mouse
 if has("mouse")
