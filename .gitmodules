@@ -13,3 +13,6 @@
 [submodule "bin/cortex-git"]
 	path = bin/cortex-git
 	url = git://glacicle.org/projects/cortex.git
+[submodule "bin/rbenv-git"]
+	path = bin/rbenv-git
+	url = git://github.com/sstephenson/rbenv.git
