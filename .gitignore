@@ -1,9 +1,19 @@
 *.log
+
+# Weechat
 weechat/logs/*
+
+# Vim
 vim/.netrwhist
 vim/bundle/*
 !vim/bundle/vundle/*
-mutt/hcache
+
+# Newsbeuter
 newsbeuter/cache.db
 newsbeuter/history.*
+
+# Cortext
 cortex/seen.cache
+
+# Mutt
+mutt/hcache
