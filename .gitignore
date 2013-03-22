@@ -2,6 +2,7 @@
 
 # Weechat
 weechat/logs/*
+weechat/weechat.log
 
 # Vim
 vim/.netrwhist
