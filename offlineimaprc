@@ -1,0 +1,38 @@
+# Sample minimal config file.  Copy this to ~/.offlineimaprc and edit to
+# get started fast.
+
+[general]
+accounts = DustinSwanGmail
+pythonfile=~/.offlineimap/offlineimap.py
+
+[Account DustinSwanGmail]
+localrepository = DustinSwanGmail-Local
+remoterepository = DustinSwanGmail-Remote
+
+[Repository DustinSwanGmail-Local]
+type = Maildir
+localfolders = ~/.mail/dustinswan-gmail.com
+nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
+                            'sent':    '[Gmail]/Sent Mail',
+                            'flagged': '[Gmail]/Starred',
+                            'trash':   '[Gmail]/Trash',
+                            'archive': '[Gmail]/All Mail',
+                           }.get(folder, folder)
+
+[Repository DustinSwanGmail-Remote]
+maxconnections = 1
+type = Gmail
+remoteuser = dustinswan@gmail.com
+remetepasseval = gmail_password()
+realdelete = no
+nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
+                            '[Gmail]/Sent Mail': 'sent',
+                            '[Gmail]/Starred':   'flagged',
+                            '[Gmail]/Trash':     'trash',
+                            '[Gmail]/All Mail':  'archive',
+                           }.get(folder, folder)
+
+folderfilter = lambda folder: folder not in ['[Gmail]/Trash',
+                                             '[Gmail]/Spam',
+                                            ]
+cert_fingerprint = 6d1b5b5ee0180ab493b71d3b94534b5ab937d042
