@@ -3,7 +3,7 @@
 
 [general]
 accounts = DustinSwanGmail
-pythonfile=~/.offlineimap/offlineimap.py
+pythonfile=~/.mutt/offlineimap.py
 
 [Account DustinSwanGmail]
 localrepository = DustinSwanGmail-Local
