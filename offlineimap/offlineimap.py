@@ -1,7 +1,9 @@
+import subprocess
+
 def gmail_password():
-    path = "~/.gmail_password.pgp"
-    args = ["gpg", "--use-agent", "--quiet", "--batch", "-d", path]
+    path = "/Users/dustinswan/.gmail_password.gpg"
+    args = ["gpg", "-d", path]
     try:
-        return subprocess.check_output(args)
+        return subprocess.check_output(args).rstrip()
     except subprocess.CalledProcessError:
         return "".strip()
