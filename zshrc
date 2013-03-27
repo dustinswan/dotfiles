@@ -13,6 +13,7 @@ alias tmux="tmux -2"
 export EDITOR=vim
 export BROWSER=open
 [[ -s luakit ]] && export BROWSER=luakit
+alias gcal='while true; do gcalcli calw 3; sleep 60; done;'
 
 # VCS stuff
 export P4USER=dswan
@@ -27,6 +28,7 @@ alias visidev="ssh root@visidev.iocom.com 'cd /; p4 sync'"
 alias dswan="ssh root@dswan.insors.net"
 alias webdev='ssh -t root@webdev.insors.net "cd /var/www/html; /bin/bash -i"'
 alias sprites="pushd ~/smartsprites; ./smartsprites.sh --root-dir-path /opt/iocom/user/webclient/; popd; p4 edit /opt/iocom/user/webclient/css/iocom-sprite.css"
+alias visimeet="/Applications/visimeet.app/Contents/MacOS/visimeet --nologin &"
 #export TERM="xterm-256color"
 
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH # Homebrew
