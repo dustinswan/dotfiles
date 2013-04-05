@@ -3,15 +3,8 @@
 setxkbmap dvorak
 setxkbmap -option ctrl:nocaps
 
-compton -cGb
+xsetroot -cursor_name left_ptr
 
 dropboxd &
 
-# random background
-while true;
-do
-  awsetbg -c -r ~/Dropbox/Photos/wallpaper
-  sleep 1m
-done &
-
-exec awesome
+exec xmonad
