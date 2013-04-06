@@ -1,6 +1,16 @@
 ! General
 
-! Urxvt
+!Xft.antialias: false
+!Xft.dpi: 80
+!Xft.rgba: rgb
+
+! dzen2
+!dzen2*font:            -*-fixed-*-*-*-*-10-*-*-*-*-*-*-*
+dzen2*foreground:       #ffffff
+dzen2*background:       #000000
+dzen2*font:             Monospace:pixelsize=11:antialias=false
+
+! urxvt
 urxvt*loginShell:       true
 urxvt*scrollBar:        false
 urxvt*secondaryScroll:  true
@@ -8,27 +18,18 @@ urxvt*saveLines:        65535
 urxvt*cursorBlink:      false
 urxvt*urgentOnBell:     true
 urxvt*urlLauncher:      /usr/bin/luakit
-!urxvt*termName:         xterm-256color
-!urxvt*termName:         rxvt-256color
 urxvt*termName:         rxvt-unicode-256color
-
-! Font
-!urxvt*font:             xft:DejaVu Sans Mono:pixelsize=10:antialias=true:hinting=true
-!urxvt*font:             xft:Liberation Mono:pixelsize=10:antialias=true:hinting=true
-!urxvt*font:             xft:inconsolata:size=10
-!urxvt*font:              -*-ohsnapu-medium-r-normal-*-11-*-*-*-*-*-*-*
-!urxvt*boldFont:          -*-ohsnapu-bold-r-normal-*-11-*-*-*-*-*-*-*
-!urxvt*font:              xft:termsyn:pixelsize=10
-!urxvt*font:             xft:DejaVu Sans Mono:pixelsize=10:antialias=false:hinting=true
-urxvt*font:             xft:terminus:size=9
-urxvt*boldFont:             xft:terminus:size=9
+!urxvt*font:             -*-fixed-*-*-*-*-11-*-*-*-*-*-*-*
+!urxvt*boldFont:         -*-fixed-*-*-*-*-11-*-*-*-*-*-*-*
+urxvt*font:             xft:Monospace:size=10:antialias=false:dpi=80
+urxvt*boldFont:         xft:Monospace:size=10:antialias=false:dpi=80
 
 ! Colors
 urxvt*depth:            32
 !urxvt*cursorColor:     #DCDCCC
-!urxvt*background:      #000000
-urxvt*foreground:       #FFFFFF
-urxvt*background:       rgba:0000/0000/0000/ee00
+urxvt*foreground:       #ffffff
+!urxvt*background:       rgba:0000/0000/0000/ee00
+urxvt*background:       rgba:0000/0000/0000/cccc
 
 !*color0:  #1c1c1c
 !*color8:  #3d3a3a
@@ -46,8 +47,6 @@ urxvt*background:       rgba:0000/0000/0000/ee00
 !*color14: #6ec2a8
 !*color7:  #8d8d8d
 !*color15: #dad3d3
-
-
 
 !! drop in Solarized colorscheme for Xresources
 !!

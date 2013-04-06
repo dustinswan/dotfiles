@@ -1,0 +1,7 @@
+background yes
+out_to_console yes
+out_to_x no
+update_interval 1
+
+TEXT
+cpu ${cpu}% mem ${memperc}% down ${downspeed eth0} up ${upspeed eth0} | ${time %d %b %R} 
