@@ -3,5 +3,14 @@ out_to_console yes
 out_to_x no
 update_interval 1
 
+# hd: ${fs_used}/${fs_size} \
+#± ${weather 'http://weather.noaa.gov/pub/data/observations/metar/stations/' 'KORD' temperature} \
+
 TEXT
-cpu ${cpu}% mem ${memperc}% down ${downspeed eth0} up ${upspeed eth0} | ${time %d %b %R} 
+^fg(slate gray)Ú^fg() ^fg(white)${downspeedf eth0}KiB ^fg()\
+^fg(slate gray)Û^fg() ^fg(white)${upspeedf eth0}KiB ^fg()\
+^fg(slate gray)ê^fg() ^fg(white)${mixer vol}% ^fg()\
+^fg(slate gray)¡^fg() ^fg(white)${battery_percent}% ^fg()\
+^fg(slate gray)Ñ^fg() ^fg(white)${cpu}% ^fg()\
+^fg(slate gray)Î^fg() ^fg(white)${memperc}% ^fg()\
+^fg(slate gray)É^fg() ^fg(white)${time %d %b %R}^fg() \
