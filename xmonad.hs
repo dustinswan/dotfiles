@@ -13,10 +13,11 @@ import qualified System.IO
 import XMonad.Util.EZConfig (additionalKeysP)
 import XMonad.Util.Loggers
 
-lightBlue      = "#aabbff"
+lightBlue      = "#66aaff"
 darkBlue       = "#0000cc"
 lightGray      = "#aaaaaa"
 darkGray       = "#444444"
+dzenForeground = "#ffffff"
 dzenBackground = "#000000"
 myModMask      = mod4Mask -- command
 
@@ -25,8 +26,8 @@ myManageHook = composeAll
     , resource =? "feh"        --> doFloat
     ]
 
---myWorkspaces =  [ "1" , "2" , "3" , "4" , "5", "6", "7", "8", "9" ]
-myWorkspaces =  [ "α" , "β" , "γ" , "δ" , "ε", "ζ", "η", "θ", "ι" ]
+myWorkspaces =  [ "1" , "2" , "3" , "4" , "5", "6", "7", "8", "9" ]
+--myWorkspaces =  [ "α" , "β" , "γ" , "δ" , "ε", "ζ", "η", "θ", "ι" ]
 
 myNormalBorderColor     = "#333333"
 myFocusedBorderColor    = darkBlue
@@ -37,14 +38,15 @@ myFocusFollowsMouse = False
 myStatusBar = "conky -c /home/dustinswan/.conky | dzen2 -x '640' -w '640' -ta 'r' -y '0' -bg '#000000'"
 
 myLogHook h = dynamicLogWithPP $ defaultPP
-    { ppCurrent         = ("·" ++)
+    { -- ppCurrent         = (">" ++)
+      ppCurrent         = dzenColor lightBlue dzenBackground . wrap "" " "
     , ppVisible         = ("." ++)
-    , ppHidden          = dzenColor lightGray dzenBackground . (" " ++)
-    , ppHiddenNoWindows = dzenColor darkGray dzenBackground . (" " ++)
+    , ppHidden          = dzenColor lightGray dzenBackground . wrap "" " "
+    , ppHiddenNoWindows = dzenColor darkGray dzenBackground . wrap "" " "
     , ppLayout          = (\_ -> "") -- TODO I suck at haskell
     , ppOutput          = System.IO.hPutStrLn h
     , ppTitle           = shorten 20
-    , ppSep             = " | "
+    , ppSep             = ""
     , ppWsSep           = ""
     --, ppExtras        = [ date "%a %d %b" ]
     }
@@ -65,7 +67,7 @@ main = do
         , logHook            = myLogHook dzenLeftBar
         }
         `additionalKeysP`
-        [ ("M-p", spawn "dmenu_run -fn 'Monospace:pixelsize=11:antialias=false'")
+        [ ("M-p", spawn "dmenu_run -fn 'Tamsynmod:Regular:pixelsize=14'")
         , ("M-S-p", spawn "scrot")
         , ("<XF86AudioRaiseVolume>", spawn "amixer sset Master 3%+")
         , ("<XF86AudioLowerVolume>", spawn "amixer sset Master 3%-")
