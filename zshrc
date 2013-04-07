@@ -2,8 +2,10 @@
 # if [ "$TMUX" = "" ]; then tmux; fi
 
 # Powerline
+# Mac
 [[ -s /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh ]] && . /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
-[[ -s /usr/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh ]] && . /usr/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+# Linux
+[[ -s /usr/share/zsh/site-contrib/powerline.zsh ]] && . /usr/share/zsh/site-contrib/powerline.zsh
 
 # Tmuxinator
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
@@ -36,3 +38,5 @@ export PATH=$HOME/Library/Haskell/bin:$PATH # Haskell
 export PATH=$HOME/dotfiles/bin:$PATH # Dotfiles bin
 export PATH=$HOME/.rbenv/bin:$PATH # rbenv
 eval "$(rbenv init -)"
+
+export PYTHONPATH=/usr/lib/python3.3/site-packages
