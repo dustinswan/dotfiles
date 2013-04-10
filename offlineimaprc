@@ -2,7 +2,7 @@
 # get started fast.
 
 [general]
-accounts = DustinSwanGmail
+accounts = DustinSwanGmail, DswanIOCOM
 pythonfile=~/.mutt/offlineimap.py
 
 [Account DustinSwanGmail]
@@ -36,3 +36,7 @@ folderfilter = lambda folder: folder not in ['[Gmail]/Trash',
                                              '[Gmail]/Spam',
                                             ]
 cert_fingerprint = 6d1b5b5ee0180ab493b71d3b94534b5ab937d042
+
+[Account DswanIOCOM]
+type = Maildir
+localfolders = ~/.mail/dswan-iocom.com

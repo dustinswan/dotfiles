@@ -1,7 +1,8 @@
 import subprocess
+import os
 
 def gmail_password():
-    path = "/Users/dustinswan/.gmail_password.gpg"
+    path = os.environ['HOME'] + "/.gmail_password.gpg"
     args = ["gpg", "-d", path]
     try:
         return subprocess.check_output(args).rstrip()
