@@ -3,6 +3,7 @@
 !Xft.antialias: false
 !Xft.dpi: 80
 !Xft.rgba: rgb
+Xft*font:             Tamsynmod:Regular:pixelsize=14
 
 ! dzen2
 dzen2*foreground:       #ffffff

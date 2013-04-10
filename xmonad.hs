@@ -26,10 +26,11 @@ myManageHook = composeAll
     , resource =? "feh"        --> doFloat
     ]
 
+--myWorkspaces =  [ "!" , "@" , "#" , "$" , "%", "^^", "&", "*", "(" ]
 myWorkspaces =  [ "1" , "2" , "3" , "4" , "5", "6", "7", "8", "9" ]
 --myWorkspaces =  [ "α" , "β" , "γ" , "δ" , "ε", "ζ", "η", "θ", "ι" ]
 
-myNormalBorderColor     = "#333333"
+myNormalBorderColor     = "#000000"
 myFocusedBorderColor    = darkBlue
 
 myFocusFollowsMouse :: Bool
@@ -39,15 +40,16 @@ myStatusBar = "conky -c /home/dustinswan/.conky | dzen2 -x '640' -w '640' -ta 'r
 
 myLogHook h = dynamicLogWithPP $ defaultPP
     { -- ppCurrent         = (">" ++)
-      ppCurrent         = dzenColor lightBlue dzenBackground . wrap "" " "
+      --ppCurrent         = dzenColor lightBlue dzenBackground . wrap "" " "
+      ppCurrent         = dzenColor lightBlue dzenBackground . wrap "Ø" ""
     , ppVisible         = ("." ++)
-    , ppHidden          = dzenColor lightGray dzenBackground . wrap "" " "
-    , ppHiddenNoWindows = dzenColor darkGray dzenBackground . wrap "" " "
+    , ppHidden          = dzenColor lightGray dzenBackground . wrap " " ""
+    , ppHiddenNoWindows = dzenColor darkGray dzenBackground . wrap " " ""
     , ppLayout          = (\_ -> "") -- TODO I suck at haskell
     , ppOutput          = System.IO.hPutStrLn h
     , ppTitle           = shorten 20
-    , ppSep             = ""
-    , ppWsSep           = ""
+    , ppSep             = "  "
+    , ppWsSep           = " "
     --, ppExtras        = [ date "%a %d %b" ]
     }
 
@@ -72,4 +74,5 @@ main = do
         , ("<XF86AudioRaiseVolume>", spawn "amixer sset Master 3%+")
         , ("<XF86AudioLowerVolume>", spawn "amixer sset Master 3%-")
         , ("<XF86AudioMute>", spawn "amixer sset Master toggle")
+        , ("<XF86Eject>", spawn "eject")
         ]

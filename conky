@@ -7,10 +7,10 @@ update_interval 1
 #± ${weather 'http://weather.noaa.gov/pub/data/observations/metar/stations/' 'KORD' temperature} \
 
 TEXT
-^fg(slate gray)Ú^fg() ^fg(white)${downspeedf eth0}KiB ^fg()\
-^fg(slate gray)Û^fg() ^fg(white)${upspeedf eth0}KiB ^fg()\
-^fg(slate gray)ê^fg() ^fg(white)${mixer vol}% ^fg()\
-^fg(slate gray)¡^fg() ^fg(white)${battery_percent}% ^fg()\
-^fg(slate gray)Ñ^fg() ^fg(white)${cpu}% ^fg()\
-^fg(slate gray)Î^fg() ^fg(white)${memperc}% ^fg()\
-^fg(slate gray)É^fg() ^fg(white)${time %d %b %R}^fg() \
+^fg(\#66aaff)Ú^fg() ^fg(white)${downspeedf eth0}KiB ^fg()\
+^fg(\#66aaff)Û^fg() ^fg(white)${upspeedf eth0}KiB ^fg()\
+^fg(\#66aaff)í^fg() ^fg(white)${mixer vol}% ^fg()\
+^fg(\#66aaff)¡^fg() ^fg(white)${battery_percent}% ^fg()\
+^fg(\#66aaff)Ñ^fg() ^fg(white)${cpu}% ^fg()\
+^fg(\#66aaff)Î^fg() ^fg(white)${memperc}% ^fg()\
+^fg(\#66aaff)É^fg() ^fg(white)${time %d %b %R}^fg() \
