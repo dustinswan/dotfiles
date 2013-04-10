@@ -27,8 +27,9 @@ myManageHook = composeAll
     ]
 
 --myWorkspaces =  [ "!" , "@" , "#" , "$" , "%", "^^", "&", "*", "(" ]
-myWorkspaces =  [ "1" , "2" , "3" , "4" , "5", "6", "7", "8", "9" ]
+--myWorkspaces =  [ "1" , "2" , "3" , "4" , "5", "6", "7", "8", "9" ]
 --myWorkspaces =  [ "α" , "β" , "γ" , "δ" , "ε", "ζ", "η", "θ", "ι" ]
+myWorkspaces =  [ "1" , "2" , "3" , "Ë" , "ê", "®", "7", "8", "9" ]
 
 myNormalBorderColor     = "#000000"
 myFocusedBorderColor    = darkBlue
