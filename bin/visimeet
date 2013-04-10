@@ -1,0 +1,3 @@
+#!/bin/sh
+export IGVERBOSE=3
+/opt/visimeet/visimeet --nologin &
