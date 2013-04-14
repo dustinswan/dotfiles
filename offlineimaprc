@@ -1,25 +1,36 @@
-# Sample minimal config file.  Copy this to ~/.offlineimaprc and edit to
-# get started fast.
-
 [general]
-accounts = DustinSwanGmail, DswanIOCOM
+accounts = DustinswanGmail, DswanIOCOM
 pythonfile=~/.mutt/offlineimap.py
+maxsyncaccounts = 2
+# ui = quiet
 
-[Account DustinSwanGmail]
-localrepository = DustinSwanGmail-Local
-remoterepository = DustinSwanGmail-Remote
+[mbnames]
+enabled = yes
+filename = ~/.mutt/mailboxes
+header = "mailboxes "
+peritem = "+%(accountname)s/%(foldername)s"
+sep = " "
+footer = "\n"
 
-[Repository DustinSwanGmail-Local]
+[Account DustinswanGmail]
+localrepository = DustinswanGmail-Local
+remoterepository = DustinswanGmail-Remote
+autorefresh = 5
+quick = 10
+postsynchook = notmuch new
+
+[Repository DustinswanGmail-Local]
 type = Maildir
-localfolders = ~/.mail/dustinswan-gmail.com
-nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
-                            'sent':    '[Gmail]/Sent Mail',
-                            'flagged': '[Gmail]/Starred',
-                            'trash':   '[Gmail]/Trash',
-                            'archive': '[Gmail]/All Mail',
+localfolders = ~/.mail/DustinswanGmail
+nametrans = lambda folder: {'drafts':    '[Gmail]/Drafts',
+                            'sent':      '[Gmail]/Sent Mail',
+                            'flagged':   '[Gmail]/Starred',
+                            'trash':     '[Gmail]/Trash',
+                            'archive':   '[Gmail]/All Mail',
+                            'important': '[Gmail]/Important',
                            }.get(folder, folder)
 
-[Repository DustinSwanGmail-Remote]
+[Repository DustinswanGmail-Remote]
 maxconnections = 1
 type = Gmail
 remoteuser = dustinswan@gmail.com
@@ -30,6 +41,7 @@ nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
                             '[Gmail]/Starred':   'flagged',
                             '[Gmail]/Trash':     'trash',
                             '[Gmail]/All Mail':  'archive',
+                            '[Gmail]/Important': 'important',
                            }.get(folder, folder)
 
 folderfilter = lambda folder: folder not in ['[Gmail]/Trash',
@@ -38,5 +50,20 @@ folderfilter = lambda folder: folder not in ['[Gmail]/Trash',
 cert_fingerprint = 6d1b5b5ee0180ab493b71d3b94534b5ab937d042
 
 [Account DswanIOCOM]
+localrepository = DswanIOCOM-Local
+remoterepository = DswanIOCOM-Remote
+autorefresh = 5
+quick = 10
+postsynchook = notmuch new
+
+[Repository DswanIOCOM-Local]
 type = Maildir
-localfolders = ~/.mail/dswan-iocom.com
+localfolders = ~/.mail/DswanIOCOM
+
+folderfilter = lambda f: f not in ['drafts']
+
+[Repository DswanIOCOM-Remote]
+type = IMAP
+remotehost = secure.emailsrvr.com
+remoteuser = dswan@insors.com
+remotepasseval = iocom_password()
