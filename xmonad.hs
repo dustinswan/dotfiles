@@ -6,6 +6,7 @@ import qualified Data.Map        as M
 
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.ManageHelpers (doFullFloat, isFullscreen)
 
 import XMonad.Util.Run (spawnPipe) -- for spawnPipe and hPutStrLn
 import qualified System.IO
@@ -24,6 +25,7 @@ myModMask      = mod4Mask -- command
 myManageHook = composeAll
     [ resource =? "visimeet"   --> doFloat
     , resource =? "feh"        --> doFloat
+    , isFullscreen --> doFullFloat
     ]
 
 --myWorkspaces =  [ "!" , "@" , "#" , "$" , "%", "^^", "&", "*", "(" ]

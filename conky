@@ -48,6 +48,20 @@ ${endif}\
 ${endif}\
 Ñ ^fg(white)${cpu}% \
 #
-# Memory
+# Memory TODO COLORS!
 ^fg(\#66aaff)Î ^fg(white)${memperc}% \
+#
+# Mail dustinswan@gmail.com
+${if_match ${new_mails /home/dustinswan/.mail/DustinswanGmail/INBOX} == 0}^fg(\#66aaff)\
+${else}^fg(\#ff0000)\
+${endif}\
+Ë ^fg(white)${new_mails /home/dustinswan/.mail/DustinswanGmail/INBOX} \
+#
+# Mail dswan@iocom.com
+${if_match ${new_mails /home/dustinswan/.mail/DswanIOCOM/INBOX} == 0}^fg(\#66aaff)\
+${else}^fg(\#ff0000)\
+${endif}\
+Ë ^fg(white)${new_mails /home/dustinswan/.mail/DswanIOCOM/INBOX} \
+#
+# Clock
 ^fg(\#66aaff)É ^fg(white)${time %d %b %R} \
