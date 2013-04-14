@@ -1,0 +1,8 @@
+set from          = "dswan@iocom.com"
+set sendmail      = "msmtp -a DswanIOCOM"
+
+set spoolfile = "+DswanIOCOM/INBOX"
+set mbox      = "+DswanIOCOM/archive"
+set postponed = "+DswanIOCOM/drafts"
+
+color status white blue

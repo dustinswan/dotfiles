@@ -1,49 +1,37 @@
-# Get passwords from gpg'd file
-set my_gmail_password = `gpg -d ~/.gmail_password.gpg`
-
 # General
 set realname = "Dustin Swan"
 
-# When usisng offlineimap
 set folder           = ~/.mail
 set alias_file       = ~/.mutt/alias
 set header_cache     = ~/.mutt/cache/headers
 set message_cachedir = ~/.mutt/cache/bodies
 set certificate_file = ~/.mutt/certificates
-set mailcap_path     = ~/.mutt/mailcap
+set mailcap_path     = ~/.mailcap
 set tmpdir           = ~/.mutt/temp
 set signature        = ~/.mutt/sig
 
 set mbox_type = Maildir
-unset move
 
-set spoolfile = "+dustinswan-gmail.com/INBOX"
-set mbox      = "+dustinswan-gmail.com/archive"
-set postponed = "+dustinswan-gmail.com/drafts"
+# Start with these
+set spoolfile = "+DustinswanGmail/INBOX"
+set mbox      = "+DustinswanGmail/archive"
+set postponed = "+DustinswanGmail/drafts"
 
-folder-hook dustinswan-gmail.com set from="dustinswan@gmail.com"
-folder-hook dswan-iocom.com set from="dustinswan@gmail.com"
+folder-hook DustinswanGmail 'source ~/.mutt/DustinswanGmail.muttrc'
+folder-hook DswanIOCOM 'source ~/.mutt/DswanIOCOM.muttrc'
 
-# Gmail IMAP
-#set imap_user = "dustinswan@gmail.com"
-#set imap_pass = $my_gmail_password
-#set folder = "imaps://imap.gmail.com/"
-#set spoolfile = +INBOX
-#set imap_check_subscribed
-#set header_cache  = ~/.mutt/hcache
-# # Don't need this because Gmail saves it automatically
-# set record = "+[Gmail]/Sent Mail"
-#set postponed = "+[Gmail]/Drafts"
-#unset imap_passive
-#set imap_keepalive = 300
-#set mail_check = 60
-
-# SMTP
-set smtp_url = "smtp://dustinswan@smtp.gmail.com:587/"
-set smtp_pass = $my_gmail_password
+set sendmail_wait = 0
 set send_charset = "utf-8"
 
-set mailcap_path = ~/.mutt/mailcap
+unset record
+
+bind index gg first-entry
+bind index G  last-entry
+bind index R  group-reply # Was g
+
+bind pager gg top
+bind pager G  bottom
+bind pager R  group-reply # Was g
 
 # Edit headers
 #set edit_headers = yes
@@ -60,14 +48,13 @@ set sort = threads
 set sort_aux = reverse-last-date-received
 
 # Sidebar
-#set sidebar_delim   = '  │'
-#set sidebar_visible = yes
-#set sidebar_width   = 24
-#color sidebar_new color221 color233
-
-#bind index <down>     sidebar-next
-#bind index <up>       sidebar-prev
-#bind index <right>    sidebar-open
+set sidebar_delim   = '  │'
+set sidebar_visible = yes
+set sidebar_width   = 40
+# color sidebar_new color221 color233
+bind index <down>     sidebar-next
+bind index <up>       sidebar-prev
+bind index <right>    sidebar-open
 
 # Status Bar
 #set status_chars = "  *&A"
@@ -79,3 +66,12 @@ set sort_aux = reverse-last-date-received
 
 # Colors
 # source ~/.mutt/mutt-colors-solarized-dark-256.muttrc
+
+# Source offlineimap's mailbox list
+source ~/.mutt/mailboxes
+
+# Notmuch
+# 'L' performs a notmuch query, showing only the results
+macro index L "<enter-command>unset wait_key<enter><shell-escape>read -p 'notmuch query: ' x; echo \$x >~/.cache/mutt_terms<enter><limit>~i \"\`notmuch search --output=messages \$(cat ~/.cache/mutt_terms) | head -n 600 | perl -le '@a=<>;chomp@a;s/\^id:// for@a;$,=\"|\";print@a'\`\"<enter>" "show only messages matching a notmuch pattern"
+# 'a' shows all messages again (supersedes default <alias> binding)
+macro index a "<limit>all\n" "show all messages (undo limit)"
