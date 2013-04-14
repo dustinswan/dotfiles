@@ -18,3 +18,8 @@ cortex/seen.cache
 
 # Mutt
 mutt/hcache
+mutt/mailboxes
+mutt/macros
+mutt/temp
+mutt/gmail_cert
+mutt/offlineimap.pyc
