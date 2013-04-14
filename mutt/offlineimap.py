@@ -8,3 +8,11 @@ def gmail_password():
         return subprocess.check_output(args).rstrip()
     except subprocess.CalledProcessError:
         return "".strip()
+
+def iocom_password():
+    path = os.environ['HOME'] + "/.iocom_password.gpg"
+    args = ["gpg", "-d", path]
+    try:
+        return subprocess.check_output(args).rstrip()
+    except subprocess.CalledProcessError:
+        return "".strip()
