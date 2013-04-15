@@ -1,3 +1,4 @@
 #!/bin/sh
 export IGVERBOSE=3
-/opt/visimeet/visimeet --nologin &
+[ -s /opt/visimeet/visimeet ] && /opt/visimeet/visimeet --nologin &
+[ -s /Applications/visimeet.app/Contents/MacOS/visimeet ] && /Applications/visimeet.app/Contents/MacOS/visimeet --nologin &
