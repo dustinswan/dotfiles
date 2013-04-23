@@ -6,6 +6,7 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
 
+Bundle 'terryma/vim-multiple-cursors'
 Bundle 'tpope/vim-characterize.git'
 Bundle 'chrisbra/csv.vim'
 Bundle 'szw/vim-dict'
