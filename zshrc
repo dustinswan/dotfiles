@@ -28,4 +28,6 @@ export PATH=/usr/local/share/python:$PATH
 export PATH=$HOME/Library/Haskell/bin:$PATH # Haskell
 export PATH=$HOME/dotfiles/bin:$PATH # Dotfiles bin
 export PATH=$HOME/.rbenv/bin:$PATH # rbenv
+export PATH=/usr/local/share/npm/bin:$PATH # npm
+export NODE_PATH=/usr/local/lib/node
 eval "$(rbenv init -)"
