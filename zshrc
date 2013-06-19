@@ -33,10 +33,12 @@ export PATH=/usr/local/share/npm/bin:$PATH # npm
 export NODE_PATH=/usr/local/lib/node
 
 # Chruby
-source '/usr/local/share/chruby/chruby.sh'
-source '/usr/local/share/chruby/auto.sh'
-if [[ -e /usr/share/chruby ]]; then
-    source /usr/local/share/chruby/chruby.sh
-    source /usr/local/share/chruby/auto.sh
-    chruby $(cat ~/.ruby-version)
+if [[ -e /usr/local/share/chruby ]]; then
+    source '/usr/local/share/chruby/chruby.sh'
+    source '/usr/local/share/chruby/auto.sh'
 fi
+if [[ -e /usr/share/chruby ]]; then
+    source /usr/share/chruby/chruby.sh
+    source /usr/share/chruby/auto.sh
+fi
+chruby $(cat ~/.ruby-version)
