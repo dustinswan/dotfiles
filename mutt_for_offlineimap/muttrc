@@ -1,0 +1,80 @@
+# General
+set realname = "Dustin Swan"
+
+set folder           = ~/.mail
+set alias_file       = ~/.mutt/alias
+set header_cache     = ~/.mutt/cache/headers
+set message_cachedir = ~/.mutt/cache/bodies
+set certificate_file = ~/.mutt/certificates
+set mailcap_path     = ~/.mailcap
+set tmpdir           = ~/.mutt/temp
+set signature        = ~/.mutt/sig
+
+set mbox_type = Maildir
+
+# Start with these
+set spoolfile = "+DustinswanGmail/INBOX"
+set mbox      = "+DustinswanGmail/archive"
+set postponed = "+DustinswanGmail/drafts"
+
+folder-hook DustinswanGmail 'source ~/.mutt/DustinswanGmail.muttrc'
+folder-hook DswanIOCOM 'source ~/.mutt/DswanIOCOM.muttrc'
+
+set sendmail_wait = 0
+set send_charset = "utf-8"
+
+unset record
+
+bind index gg first-entry
+bind index G  last-entry
+bind index R  group-reply # Was g
+
+bind pager gg top
+bind pager G  bottom
+bind pager R  group-reply # Was g
+
+# Edit headers
+#set edit_headers = yes
+#unset use_from
+#unset use_domain
+#unset user_agent
+#unmy_hdr *
+
+# Use ppl for address book
+set query_command = "ppl mutt '%s'"
+
+# Sorting
+set sort = threads
+set sort_aux = reverse-last-date-received
+
+# Sidebar
+set sidebar_delim   = '  │'
+set sidebar_visible = yes
+set sidebar_width   = 40
+# color sidebar_new color221 color233
+bind index <down>     sidebar-next
+bind index <up>       sidebar-prev
+bind index <right>    sidebar-open
+
+# Status Bar
+#set status_chars = "  *&A"
+#set status_format = "---[ Folder: %f ]---[%r%n messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]---%>-%?p?( %p postponed )?---""
+
+# Fucking html mail
+#auto_view text/html
+#alternative_order text/plain text/enriched text/html
+
+# Colors
+# source ~/.mutt/mutt-colors-solarized-dark-256.muttrc
+
+# Source offlineimap's mailbox list
+source ~/.mutt/mailboxes
+
+# Notmuch
+# 'L' performs a notmuch query, showing only the results
+macro index L "<enter-command>unset wait_key<enter><shell-escape>read -p 'notmuch query: ' x; echo \$x >~/.cache/mutt_terms<enter><limit>~i \"\`notmuch search --output=messages \$(cat ~/.cache/mutt_terms) | head -n 600 | perl -le '@a=<>;chomp@a;s/\^id:// for@a;$,=\"|\";print@a'\`\"<enter>" "show only messages matching a notmuch pattern"
+# 'a' shows all messages again (supersedes default <alias> binding)
+macro index a "<limit>all\n" "show all messages (undo limit)"
+
+# Urlview
+macro pager \Cu "|urlview<enter>" "call urlview to open links"

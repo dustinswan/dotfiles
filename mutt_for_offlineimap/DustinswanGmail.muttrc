@@ -1,0 +1,10 @@
+set from     = "dustinswan@gmail.com"
+set sendmail = "msmtp -a DustinswanGmail"
+
+set spoolfile = "+DustinswanGmail/INBOX"
+set mbox      = "+DustinswanGmail/archive"
+set postponed = "+DustinswanGmail/drafts"
+
+unset move
+
+color status white red

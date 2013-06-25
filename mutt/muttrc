@@ -1,7 +1,7 @@
 # General
 set realname = "Dustin Swan"
 
-set folder           = ~/.mail
+#set folder           = ~/.mail
 set alias_file       = ~/.mutt/alias
 set header_cache     = ~/.mutt/cache/headers
 set message_cachedir = ~/.mutt/cache/bodies
@@ -72,9 +72,36 @@ source ~/.mutt/mailboxes
 
 # Notmuch
 # 'L' performs a notmuch query, showing only the results
-macro index L "<enter-command>unset wait_key<enter><shell-escape>read -p 'notmuch query: ' x; echo \$x >~/.cache/mutt_terms<enter><limit>~i \"\`notmuch search --output=messages \$(cat ~/.cache/mutt_terms) | head -n 600 | perl -le '@a=<>;chomp@a;s/\^id:// for@a;$,=\"|\";print@a'\`\"<enter>" "show only messages matching a notmuch pattern"
+#macro index L "<enter-command>unset wait_key<enter><shell-escape>read -p 'notmuch query: ' x; echo \$x >~/.cache/mutt_terms<enter><limit>~i \"\`notmuch search --output=messages \$(cat ~/.cache/mutt_terms) | head -n 600 | perl -le '@a=<>;chomp@a;s/\^id:// for@a;$,=\"|\";print@a'\`\"<enter>" "show only messages matching a notmuch pattern"
 # 'a' shows all messages again (supersedes default <alias> binding)
 macro index a "<limit>all\n" "show all messages (undo limit)"
 
 # Urlview
 macro pager \Cu "|urlview<enter>" "call urlview to open links"
+
+
+
+
+
+
+
+
+
+# New stuff
+## General options
+set imap_check_subscribed
+set imap_keepalive = 300
+unset imap_passive
+set mail_check = 60
+set mbox_type=Maildir
+
+## Gmail
+source "~/.mutt/DustinswanGmail.muttrc"
+# Here we use the $folder variable that has just been set in the sourced file.
+# We must set it right now otherwise the 'folder' variable will change in the next sourced file.
+folder-hook $folder 'source ~/.mutt/DustinswanGmail.muttrc'
+
+## IOCOM
+source "~/.mutt/DswanIOCOM.muttrc"
+folder-hook *dswan@iocom.com/ 'source ~/.mutt/DswanIOCOM.muttrc'
+
