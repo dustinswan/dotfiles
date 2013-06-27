@@ -5,34 +5,29 @@
 #set mbox      = "+DustinswanGmail/archive"
 #set postponed = "+DustinswanGmail/drafts"
 
-#unset move
+color status white red
 
-#color status white red
-
-
-
-
-
-
-# New Stuff
-## Receive options.
-set imap_user=dustinswan@gmail.com
-#set imap_pass=****
-set folder = imaps://dustinswan@imap.gmail.com/
+# Receive options.
+set imap_user = "dustinswan@gmail.com"
+set imap_pass = $my_gmail_password
+set folder = "imaps://dustinswan@imap.gmail.com"
 set spoolfile = +INBOX
 set postponed = +Drafts
-set record = +Sent
+# set record = +Sent # Gmail saves this automatically
 
-## Send options.
-set smtp_url=smtps://dustinswan@smtp.gmail.com
-set realname='Dustin Swan'
-set from=dustinswan@gmail.com
-set hostname="gmail.com"
-set signature="Dustin Swan"
+set move = no
+
+# Send options.
+set smtp_url = "smtps://dustinswan@smtp.gmail.com"
+set smtp_pass = $my_gmail_password
+set realname = 'Dustin Swan'
+set from = "dustinswan@gmail.com"
+set hostname = "gmail.com"
+
 # Connection options
 set ssl_force_tls = yes
 unset ssl_starttls
 
-## Hook -- IMPORTANT!
-#account-hook $folder "set imap_user=dustinswan@gmail.com imap_pass=****"
-account-hook $folder "set imap_user=dustinswan@gmail.com"
+# Hook
+account-hook $folder "set imap_user = dustinswan@gmail.com"
+account-hook $folder "set imap_pass = $my_gmail_password"

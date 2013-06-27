@@ -5,32 +5,27 @@
 #set mbox      = "+DswanIOCOM/archive"
 #set postponed = "+DswanIOCOM/drafts"
 
-#color status white blue
+color status white blue
 
-
-
-
-
-
-# New Stuff
-## Receive options.
-set imap_user=dswan@insors.com
-#set imap_pass=****
-set folder = imaps://dswan@secure.emailsrvr.com/
+# Receive options.
+set imap_user = "dswan@insors.com"
+set imap_pass = $my_iocom_password
+set folder = "imaps://secure.emailsrvr.com/"
 set spoolfile = +INBOX
 set postponed = +Drafts
 set record = +Sent
 
-## Send options.
-set smtp_url=smtps://dswan@secure.emailsrvr.com
-set realname='Dustin Swan'
-set from=dswan@iocom.com
-set hostname="iocom.com"
-set signature="Dustin Swan"
+# Send options.
+set smtp_url = "smtps://dswan@secure.emailsrvr.com"
+set smtp_pass = $my_iocom_password
+set realname = "Dustin Swan"
+set from = "dswan@iocom.com"
+set hostname = "iocom.com"
+
 # Connection options
 set ssl_force_tls = yes
 unset ssl_starttls
 
-## Hook -- IMPORTANT!
-#account-hook $folder "set imap_user=dswan@insors.com imap_pass=****"
-account-hook $folder "set imap_user=dswan@insors.com"
+# Hook
+account-hook $folder "set imap_user = dswan@insors.com"
+account-hook $folder "set imap_pass = $my_iocom_password"

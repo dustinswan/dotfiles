@@ -10,12 +10,10 @@ set mailcap_path     = ~/.mailcap
 set tmpdir           = ~/.mutt/temp
 set signature        = ~/.mutt/sig
 
-set mbox_type = Maildir
+#set mbox_type = Maildir
 
-# Start with these
-set spoolfile = "+DustinswanGmail/INBOX"
-set mbox      = "+DustinswanGmail/archive"
-set postponed = "+DustinswanGmail/drafts"
+source "gpg -d ~/.gmail_password_mutt.gpg |"
+source "gpg -d ~/.iocom_password_mutt.gpg |"
 
 folder-hook DustinswanGmail 'source ~/.mutt/DustinswanGmail.muttrc'
 folder-hook DswanIOCOM 'source ~/.mutt/DswanIOCOM.muttrc'
@@ -50,7 +48,7 @@ set sort_aux = reverse-last-date-received
 # Sidebar
 set sidebar_delim   = '  │'
 set sidebar_visible = yes
-set sidebar_width   = 40
+set sidebar_width   = 41
 # color sidebar_new color221 color233
 bind index <down>     sidebar-next
 bind index <up>       sidebar-prev
@@ -66,9 +64,6 @@ bind index <right>    sidebar-open
 
 # Colors
 # source ~/.mutt/mutt-colors-solarized-dark-256.muttrc
-
-# Source offlineimap's mailbox list
-source ~/.mutt/mailboxes
 
 # Notmuch
 # 'L' performs a notmuch query, showing only the results
@@ -87,21 +82,19 @@ macro pager \Cu "|urlview<enter>" "call urlview to open links"
 
 
 
-# New stuff
-## General options
+# General options
 set imap_check_subscribed
 set imap_keepalive = 300
 unset imap_passive
 set mail_check = 60
-set mbox_type=Maildir
 
-## Gmail
-source "~/.mutt/DustinswanGmail.muttrc"
-# Here we use the $folder variable that has just been set in the sourced file.
-# We must set it right now otherwise the 'folder' variable will change in the next sourced file.
-folder-hook $folder 'source ~/.mutt/DustinswanGmail.muttrc'
-
-## IOCOM
+# IOCOM
 source "~/.mutt/DswanIOCOM.muttrc"
-folder-hook *dswan@iocom.com/ 'source ~/.mutt/DswanIOCOM.muttrc'
+folder-hook 'imaps://dswan@secure.emailsrvr.com""' 'source ~/.mutt/DswanIOCOM.muttrc'
 
+# Gmail
+source "~/.mutt/DustinswanGmail.muttrc"
+folder-hook 'imaps://dustinswan@imap.gmail.com' 'source ~/.mutt/DustinswanGmail.muttrc'
+
+macro index <f2> '<change-folder>imaps://dustinswan@imap.gmail.com<enter>'
+macro index <f3> '<change-folder>imaps://dswan@secure.emailsrvr.com<enter>'
