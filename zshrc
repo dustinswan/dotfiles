@@ -5,7 +5,9 @@
 [[ -s /usr/share/zsh/site-contrib/powerline.zsh ]] && . /usr/share/zsh/site-contrib/powerline.zsh
 
 alias vi=vim
+alias l="ls -l"
 alias tmux="tmux -2"
+alias dustinswan="ssh dustinswan@dustinswan.org"
 export EDITOR=vim
 
 export BROWSER=open
@@ -42,3 +44,6 @@ if [[ -e /usr/share/chruby ]]; then
     source /usr/share/chruby/auto.sh
 fi
 chruby $(cat ~/.ruby-version)
+
+# GPG
+~/dotfiles/bin/gpg-agent.sh
