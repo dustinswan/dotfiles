@@ -2,7 +2,7 @@
 # Mac
 [[ -s /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh ]] && . /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 # Linux
-[[ -s /usr/share/zsh/site-contrib/powerline.zsh ]] && . /usr/share/zsh/site-contrib/powerline.zsh
+[[ -s /usr/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh ]] && . /usr/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
 alias vi=vim
 alias tmux="tmux -2"
