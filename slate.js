@@ -23,6 +23,11 @@ var pushUpHalf = slate.operation("push", {
   "style" : "bar-resize:screenSizeY/2"
 });
 
+var pushDownHalf = slate.operation("push", {
+  "direction" : "down",
+  "style" : "bar-resize:screenSizeY/2"
+});
+
 var pushFull = slate.operation("push", {
   "direction" : "up",
   "style" : "bar-resize:screenSizeX"
@@ -34,4 +39,5 @@ slate.bind("right:ctrl,alt,cmd", pushRightHalf);
 slate.bind("right:ctrl,alt,cmd,shift", pushRightThird);
 
 slate.bind("up:ctrl,alt,cmd", pushUpHalf);
+slate.bind("down:ctrl,alt,cmd", pushDownHalf);
 slate.bind("up:shift,ctrl,alt,cmd", pushFull);
