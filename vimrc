@@ -50,9 +50,8 @@ Bundle 'lukerandall/haskellmode-vim'
 Bundle 'bitc/vim-hdevtools'
 " Bundle 'Shougo/neocomplcache'
 Bundle 'airblade/vim-gitgutter'
-Bundle 'yonchu/accelerated-smooth-scroll'
 Bundle 'qstrahl/vim-matchmaker'
-
+Bundle 'bling/vim-airline'
 
 let $GIT_SSL_NO_VERIFY = 'true'
 
@@ -145,8 +144,14 @@ if has("gui_running")
 endif
 
 " Powerline
-set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
+"set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
 "set rtp+=/usr/lib/python2.7/site-packages/powerline/bindings/vim
+
+" Airline
+"let g:airline_left_sep=''
+"let g:airline_right_sep=''
+let g:airline_theme='solarized'
+let g:airline_powerline_fonts=1
 
 " Colors
 "set background=dark

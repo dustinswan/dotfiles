@@ -4,6 +4,8 @@
 # Linux
 [[ -s /usr/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh ]] && . /usr/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
+bindkey -e
+
 alias vi=vim
 alias l="ls -l"
 alias tmux="tmux -2"
