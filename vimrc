@@ -51,6 +51,8 @@ Bundle 'bitc/vim-hdevtools'
 " Bundle 'Shougo/neocomplcache'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'yonchu/accelerated-smooth-scroll'
+Bundle 'qstrahl/vim-matchmaker'
+
 
 let $GIT_SSL_NO_VERIFY = 'true'
 
