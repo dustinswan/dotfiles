@@ -53,6 +53,7 @@ Bundle 'bitc/vim-hdevtools'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'qstrahl/vim-matchmaker'
 Bundle 'bling/vim-airline'
+Bundle 'matze/vim-move'
 
 let $GIT_SSL_NO_VERIFY = 'true'
 
@@ -266,3 +267,6 @@ map <c-h> <c-w>h<c-w>_
 nnoremap <leader>ht :HdevtoolsType<cr>
 nnoremap <leader>hc :HdevtoolsClear<cr>
 nnoremap <leader>hi :HdevtoolsInfo<cr>
+
+" Vim-move
+let g:move_key_modifier = 'C'
