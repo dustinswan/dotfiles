@@ -45,7 +45,7 @@ Bundle 'lukaszkorecki/workflowish'
 Bundle 'searchfold.vim'
 Bundle 'godlygeek/tabular'
 Bundle 'kshenoy/vim-signature'
-"Bundle 'SirVer/ultisnips'
+Bundle 'SirVer/ultisnips'
 "Bundle 'fmoralesc/vim-pad' " Takes forever to start
 Bundle 'lukerandall/haskellmode-vim'
 Bundle 'bitc/vim-hdevtools'
