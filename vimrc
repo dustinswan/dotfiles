@@ -89,6 +89,9 @@ set encoding=utf-8 " Necessary to show unicode glyphs
 set laststatus=2 " Always show the statusline
 set scrolloff=5 " Give us a few lines before and after the cursor
 
+" Encryption
+set cryptmethod=blowfish
+
 " long lines
 set wrap
 set formatoptions=rqn1
