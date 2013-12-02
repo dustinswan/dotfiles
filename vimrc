@@ -54,6 +54,7 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'qstrahl/vim-matchmaker'
 Bundle 'bling/vim-airline'
 Bundle 'matze/vim-move'
+Bundle 'bruno-/vim-vertical-move'
 
 let $GIT_SSL_NO_VERIFY = 'true'
 
