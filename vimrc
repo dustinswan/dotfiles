@@ -31,7 +31,8 @@ Bundle 'majutsushi/tagbar'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdcommenter'
 " Bundle 'scrooloose/nerdtree'
-Bundle 'altercation/vim-colors-solarized'
+" Bundle 'altercation/vim-colors-solarized'
+Bundle 'w0ng/vim-hybrid'
 " Bundle 'ervandew/supertab'
 Bundle 'kien/ctrlp.vim'
 Bundle 'gregsexton/MatchTag'
@@ -157,23 +158,22 @@ endif
 " Airline
 "let g:airline_left_sep=''
 "let g:airline_right_sep=''
-let g:airline_theme='solarized'
+" let g:airline_theme='solarized'
 let g:airline_powerline_fonts=1
 let g:airline#extensions#tabline#enabled=1
 
 " Colors
-"set background=dark
-" colorscheme default
-
-" Solarized
 set background=dark
-let g:solarized_termtrans=1
-let g:solarized_termcolors=256 "default value is 16
-let g:solarized_contrast="high" "default value is normal
-let g:solarized_visibility="high" "default value is normal
-let g:solarized_diffmode="high" "default value is normal
-let g:solarized_hitrail=1 "default value is 0
-colorscheme solarized
+" colorscheme default
+colorscheme hybrid
+
+"let g:solarized_termtrans=1
+"let g:solarized_termcolors=256 "default value is 16
+"let g:solarized_contrast="high" "default value is normal
+"let g:solarized_visibility="high" "default value is normal
+"let g:solarized_diffmode="high" "default value is normal
+"let g:solarized_hitrail=1 "default value is 0
+"colorscheme solarized
 
 " NERDTree
 "nnoremap <silent> <leader>n :NERDTreeToggle <cr>

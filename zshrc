@@ -11,6 +11,7 @@ alias l="ls -l"
 alias tmux="tmux -2"
 alias dustinswan="ssh dustinswan@dustinswan.org"
 export EDITOR=vim
+export TERM="screen-256color"
 
 export BROWSER=open
 [[ -s luakit ]] && export BROWSER=luakit
