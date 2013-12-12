@@ -11,7 +11,7 @@
 # configured here named ".notmuch".
 #
 [database]
-path=/home/dustinswan/.mail
+path=/Users/dustinswan/.mail
 
 # User configuration
 #
@@ -31,7 +31,6 @@ path=/home/dustinswan/.mail
 [user]
 name=Dustin Swan
 primary_email=dustinswan@gmail.com
-other_email=dswan@iocom.com;
 
 # Configuration for "notmuch new"
 #
