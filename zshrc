@@ -7,7 +7,7 @@
 bindkey -e
 
 alias vi=vim
-alias l="ls -l"
+alias l="ls -la"
 alias tmux="tmux -2"
 alias dustinswan="ssh dustinswan@dustinswan.org"
 export EDITOR=vim
