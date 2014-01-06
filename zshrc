@@ -9,7 +9,7 @@ bindkey -e
 alias vi=vim
 alias l="ls -la"
 alias tmux="tmux -2"
-alias dustinswan="ssh dustinswan@dustinswan.org"
+alias dustinswan="mosh dustinswan@dustinswan.org"
 export EDITOR=vim
 export TERM="screen-256color"
 
@@ -27,7 +27,6 @@ export P4EDITOR=vim
 alias visidev="ssh root@visidev.iocom.com 'cd /; p4 sync'; scp /opt/iocom/user/webclient/all_desktop.js root@visidev.iocom.com:/opt/iocom/user/webclient/; scp /opt/iocom/user/webclient/css/all_desktop.css root@visidev.iocom.com:/opt/iocom/user/webclient/css/"
 alias dswan="ssh root@dswan.insors.net"
 alias webdev='ssh -t root@webdev.insors.net "cd /var/www/html; /bin/bash -i"'
-alias sprites="pushd ~/smartsprites; ./smartsprites.sh --root-dir-path /opt/iocom/user/webclient/; popd; p4 edit /opt/iocom/user/webclient/css/iocom-sprite.css"
 
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH # Homebrew
 export PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH # Postgres
