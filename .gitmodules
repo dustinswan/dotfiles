@@ -16,9 +16,3 @@
 [submodule "bin/rbenv-git"]
 	path = bin/rbenv-git
 	url = git://github.com/sstephenson/rbenv.git
-[submodule "rbenv/plugins/rbenv-readline"]
-	path = rbenv/plugins/rbenv-readline
-	url = git://github.com/tpope/rbenv-readline.git
-[submodule "rbenv/plugins/rbenv-openssl"]
-	path = rbenv/plugins/rbenv-openssl
-	url = git://github.com/DevelopStuff/rbenv-openssl.git

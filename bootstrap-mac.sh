@@ -24,9 +24,10 @@ brew install ffind
 brew install node
 brew install chruby
 brew install ruby-install
+brew install msmtp
 brew install mutt
-brew install mosh
 brew install isync
+brew install mosh
 brew install haskell-platform
 brew install brew-cask
 brew cask install rdio
@@ -54,6 +55,7 @@ brew cleanup
 # Ruby TODO -- set up chruby, ruby-install some stuff
 # Gems TODO
 # Node packages TODO
+# Cabal packages TODO
 
 # Change to fish shell
 # TODO check if it's already in there first!!
@@ -61,9 +63,7 @@ echo "/usr/local/bin/fish" | sudo tee -a /etc/shells
 chsh -s /usr/local/bin/fish dustinswan
 
 # Symlinks
-rm ~/.vimrc; ln -s ~/dotfiles/vimrc ~/.vimrc
-rm -rf ~/.vim; ln -s ~/dotfiles/vim ~/.vim
-rm ~/.ackrc; ln -s ~/dotfiles/ackrc ~/.ackrc
+bash ~/dotfiles/symlinks.sh
 
 # Sane OS X defaults
 bash ~/dotfiles/osx
