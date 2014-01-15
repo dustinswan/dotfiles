@@ -11,11 +11,12 @@ brew tap phinze/homebrew-cask
 
 brew install coreutils
 brew install findutils
+brew install aspell
 brew install git
 brew install tmux
 brew install vim --override-system-vi
 brew install wget --enable-iri
-brew install weechat
+brew install weechat --with-aspell --with-python --with-ruby
 brew install bash
 brew install fish
 brew install ack
@@ -24,7 +25,8 @@ brew install node
 brew install chruby
 brew install ruby-install
 brew install mutt
-brew install mbsync
+brew install mosh
+brew install isync
 brew install haskell-platform
 brew install brew-cask
 brew cask install rdio
@@ -58,7 +60,10 @@ brew cleanup
 echo "/usr/local/bin/fish" | sudo tee -a /etc/shells
 chsh -s /usr/local/bin/fish dustinswan
 
-# Symlink TODO
+# Symlinks
+rm ~/.vimrc; ln -s ~/dotfiles/vimrc ~/.vimrc
+rm -rf ~/.vim; ln -s ~/dotfiles/vim ~/.vim
+rm ~/.ackrc; ln -s ~/dotfiles/ackrc ~/.ackrc
 
 # Sane OS X defaults
 bash ~/dotfiles/osx
