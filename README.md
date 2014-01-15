@@ -1,15 +1,13 @@
 # dotfiles
 
-I primarily use Arch Linux and OS X. I'm trying to do as much as I can using the command line. I realize the Unix Philosophy isn't perfect, but I love it anyway.
+I primarily use OS X and Arch Linux. UNIX Philosophy when relevant.
 
 Current tool set:
 - tmux
-- zsh
+- fish
 - vim + vundle + too many plugins
-- mutt + offlineimap + notmuch (new to this. Also considering just notmuch + frontend)
-- newsbeuter (still trying to get the hang of this.)
+- mutt + offlineimap + notmuch (new to this. Also considering mbsync. Also considering notmuch + frontend)
 - weechat
-- gcalcli
 
 Linux-only tools:
 - XMonad + dzen2 + conky
@@ -17,4 +15,4 @@ Linux-only tools:
 - luakit
 
 OS X-only tools:
-- slate.js
+- Amethyst

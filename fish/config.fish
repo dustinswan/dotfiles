@@ -6,9 +6,7 @@ set -x EDITOR "vim"
 set -x TERM "screen-256color"
 
 # PATH
-set -x PATH $PATH /usr/local/bin /usr/local/sbin # Homebrew
-set -x PATH $PATH /Applications/Postgres.app/Contents/MacOS/bin # Postgres
-set -x PATH $PATH /usr/local/share/python
+set -x PATH /usr/local/bin /usr/local/sbin $PATH# Homebrew
 set -x PATH $PATH $HOME/Library/Haskell/bin # Haskell
 set -x PATH $PATH $HOME/dotfiles/bin # Dotfiles bin
 set -x PATH $PATH /usr/local/share/npm/bin # npm
