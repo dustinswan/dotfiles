@@ -1,6 +1,7 @@
 alias vi vim
 alias l "ls -la"
 alias tmux "tmux -2"
+alias ta "tmux attach"
 alias dustinswan "mosh dustinswan@dustinswan.org"
 set -x EDITOR "vim"
 set -x TERM "screen-256color"

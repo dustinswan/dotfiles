@@ -50,6 +50,8 @@ brew cask install sketchup
 #brew cask install vagrant
 #brew cask install bittorrent-sync 
 #brew cask install truecrypt
+brew cask install asepsis
+brew cask install keyremap4macbook
 brew cleanup
 
 # Ruby TODO -- set up chruby, ruby-install some stuff
