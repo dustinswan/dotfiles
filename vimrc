@@ -233,10 +233,6 @@ nnoremap <leader>l :ls<cr>:b<space>
 "let g:ctrlp_max_files = 10000
 let g:ctrlp_clear_cache_on_exit = 0
 
-" Workflowish stuff. Search for #todo
-nnoremap <silent><leader>T :vimgrep /\v^\s*\*+.*#todo.*/i %<cr>:copen<cr>:30wincmd _<cr>
-nnoremap <silent><leader>TT /\v^\s*\*+.*#todo.*/i<cr>
-
 " Vimux stuff
 nnoremap <silent><leader><leader>vp :VimuxPromptCommand<cr>
 nnoremap <silent><leader><leader>vl :VimuxRunLastCommand<cr>
