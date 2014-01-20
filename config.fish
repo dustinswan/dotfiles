@@ -5,6 +5,7 @@ alias ta "tmux attach"
 alias dustinswan "mosh dustinswan@dustinswan.org"
 set -x EDITOR "vim"
 set -x TERM "screen-256color"
+set -x BROWSER "open"
 
 # PATH
 set -x PATH /usr/local/bin /usr/local/sbin $PATH# Homebrew

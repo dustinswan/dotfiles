@@ -233,10 +233,6 @@ nnoremap <leader>l :ls<cr>:b<space>
 "let g:ctrlp_max_files = 10000
 let g:ctrlp_clear_cache_on_exit = 0
 
-" Workflowish stuff. Search for #todo
-nnoremap <silent><leader>T :vimgrep /\v^\s*\*+.*#todo.*/i %<cr>:copen<cr>:30wincmd _<cr>
-nnoremap <silent><leader>TT /\v^\s*\*+.*#todo.*/i<cr>
-
 " Vimux stuff
 nnoremap <silent><leader><leader>vp :VimuxPromptCommand<cr>
 nnoremap <silent><leader><leader>vl :VimuxRunLastCommand<cr>
@@ -278,3 +274,27 @@ nnoremap <leader>hi :HdevtoolsInfo<cr>
 
 " Vim-move
 let g:move_key_modifier = 'C'
+
+" Open URLs
+ruby << EOF
+  def open_uri
+    re = %r{(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))}
+
+    line = VIM::Buffer.current.line
+
+    if url = line[re]
+      system("open", url)
+      VIM::message(url)
+    else
+      VIM::message("No URI found in line.")
+    end
+  end
+EOF
+
+if !exists("*OpenURI")
+  function! OpenURI()
+    :ruby open_uri
+  endfunction
+endif
+
+nnoremap <leader>b :call OpenURI()<CR>
