@@ -33,7 +33,7 @@ brew install brew-cask
 brew cask install rdio
 brew cask install alfred
 brew cask alfred link
-brew cask install amethyst
+brew cask install slate
 brew cask install google-chrome 
 brew cask install charles 
 brew cask install dropbox 
