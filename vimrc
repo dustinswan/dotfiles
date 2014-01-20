@@ -58,6 +58,7 @@ Bundle 'bling/vim-airline'
 Bundle 'matze/vim-move'
 Bundle 'bruno-/vim-vertical-move'
 Bundle 'tpope/vim-vinegar'
+Bundle 'itchyny/calendar.vim'
 
 let $GIT_SSL_NO_VERIFY = 'true'
 
