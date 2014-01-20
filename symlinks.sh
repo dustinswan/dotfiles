@@ -1,9 +1,9 @@
 #!/bin/bash
 
 rm ~/.ackrc; ln -s ~/dotfiles/ackrc ~/.ackrc
-mkdir -p ~/.config/fish; ln -s ~/dotfiles/config.fish ~/.config/fish/config.fish
+rm -rf ~/.config/fish; mkdir -p ~/.config/fish; ln -s ~/dotfiles/config.fish ~/.config/fish/config.fish
 rm ~/.gemrc; ln -s ~/dotfiles/gemrc ~/.gemrc
-mkdir ~/.ghc; rm ~/.ghc/ghci.conf; ln -s ~/dotfiles/ghci.conf ~/.ghc/ghci.conf
+rm -rf ~/.ghc; mkdir ~/.ghc; ln -s ~/dotfiles/ghci.conf ~/.ghc/ghci.conf
 rm ~/.gitconfig; ln -s ~/dotfiles/gitconfig ~/.gitconfig
 rm ~/.mbsyncrc; ln -s ~/dotfiles/mbsyncrc ~/.mbsyncrc
 rm ~/.msmtprc; ln -s ~/dotfiles/msmtprc ~/.msmtprc
