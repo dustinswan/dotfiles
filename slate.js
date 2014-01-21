@@ -5,7 +5,7 @@ var pushLeftHalf = slate.operation("push", {
 
 var pushLeftThird = slate.operation("push", {
   "direction" : "left",
-  "style" : "bar-resize:screenSizeX/3"
+  "style" : "bar-resize:2 * screenSizeX/3"
 });
 
 var pushRightHalf = slate.operation("push", {
