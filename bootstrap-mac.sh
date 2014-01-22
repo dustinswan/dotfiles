@@ -20,6 +20,7 @@ brew install weechat --with-aspell --with-python --with-ruby
 brew install bash
 brew install fish
 brew install ack
+brew install ssh-copy-id
 brew install ffind
 brew install node
 brew install chruby
