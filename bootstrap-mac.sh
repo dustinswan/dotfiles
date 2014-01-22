@@ -15,7 +15,6 @@ brew install findutils
 brew install aspell
 brew install git
 brew install tmux
-brew install vim --override-system-vi
 brew install wget --enable-iri
 brew install weechat --with-aspell --with-python --with-ruby
 brew install bash
@@ -29,6 +28,7 @@ brew install node
 brew install ruby-install
 # brew install chruby
 brew install python --with-brewed-openssl
+brew install vim --override-system-vi
 brew install msmtp
 brew install mutt
 brew install urlview
