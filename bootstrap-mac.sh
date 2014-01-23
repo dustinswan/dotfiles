@@ -14,9 +14,11 @@ brew install coreutils
 brew install findutils
 brew install aspell
 brew install git
+brew install perforce
 brew install tmux
 brew install wget --enable-iri
 brew install weechat --with-aspell --with-python --with-ruby
+brew install ranger
 brew install bash
 brew install fish
 brew install ack
