@@ -54,11 +54,12 @@ Bundle 'bitc/vim-hdevtools'
 " Bundle 'Shougo/neocomplcache'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'qstrahl/vim-matchmaker'
-Bundle 'bling/vim-airline'
+"Bundle 'bling/vim-airline'
 Bundle 'matze/vim-move'
 Bundle 'bruno-/vim-vertical-move'
 Bundle 'tpope/vim-vinegar'
 Bundle 'itchyny/calendar.vim'
+Bundle 'openurl.vim'
 
 let $GIT_SSL_NO_VERIFY = 'true'
 
@@ -156,13 +157,17 @@ endif
 " Powerline
 "set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
 "set rtp+=/usr/lib/python2.7/site-packages/powerline/bindings/vim
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
+
 
 " Airline
 "let g:airline_left_sep=''
 "let g:airline_right_sep=''
 " let g:airline_theme='solarized'
-let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled=1
+"let g:airline_powerline_fonts=1
+"let g:airline#extensions#tabline#enabled=1
 
 " Colors
 set background=dark
@@ -233,10 +238,6 @@ nnoremap <leader>l :ls<cr>:b<space>
 "let g:ctrlp_max_files = 10000
 let g:ctrlp_clear_cache_on_exit = 0
 
-" Workflowish stuff. Search for #todo
-nnoremap <silent><leader>T :vimgrep /\v^\s*\*+.*#todo.*/i %<cr>:copen<cr>:30wincmd _<cr>
-nnoremap <silent><leader>TT /\v^\s*\*+.*#todo.*/i<cr>
-
 " Vimux stuff
 nnoremap <silent><leader><leader>vp :VimuxPromptCommand<cr>
 nnoremap <silent><leader><leader>vl :VimuxRunLastCommand<cr>
@@ -278,3 +279,5 @@ nnoremap <leader>hi :HdevtoolsInfo<cr>
 
 " Vim-move
 let g:move_key_modifier = 'C'
+
+nnoremap <leader>b :OpenUrl<cr>
