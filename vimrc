@@ -225,9 +225,6 @@ nnoremap <leader>a :Ack<space>
 " use ag
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
-" Marked
-nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr>
-
 " Clam
 " nnoremap ! :Clam<space>
 
