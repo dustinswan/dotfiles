@@ -54,11 +54,12 @@ Bundle 'bitc/vim-hdevtools'
 " Bundle 'Shougo/neocomplcache'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'qstrahl/vim-matchmaker'
-Bundle 'bling/vim-airline'
+"Bundle 'bling/vim-airline'
 Bundle 'matze/vim-move'
 Bundle 'bruno-/vim-vertical-move'
 Bundle 'tpope/vim-vinegar'
 Bundle 'itchyny/calendar.vim'
+Bundle 'openurl.vim'
 
 let $GIT_SSL_NO_VERIFY = 'true'
 
@@ -156,13 +157,17 @@ endif
 " Powerline
 "set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
 "set rtp+=/usr/lib/python2.7/site-packages/powerline/bindings/vim
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
+
 
 " Airline
 "let g:airline_left_sep=''
 "let g:airline_right_sep=''
 " let g:airline_theme='solarized'
-let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled=1
+"let g:airline_powerline_fonts=1
+"let g:airline#extensions#tabline#enabled=1
 
 " Colors
 set background=dark
@@ -275,26 +280,4 @@ nnoremap <leader>hi :HdevtoolsInfo<cr>
 " Vim-move
 let g:move_key_modifier = 'C'
 
-" Open URLs
-ruby << EOF
-  def open_uri
-    re = %r{(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))}
-
-    line = VIM::Buffer.current.line
-
-    if url = line[re]
-      system("open", url)
-      VIM::message(url)
-    else
-      VIM::message("No URI found in line.")
-    end
-  end
-EOF
-
-if !exists("*OpenURI")
-  function! OpenURI()
-    :ruby open_uri
-  endfunction
-endif
-
-nnoremap <leader>b :call OpenURI()<CR>
+nnoremap <leader>b :OpenUrl<cr>

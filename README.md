@@ -15,4 +15,5 @@ Linux-only tools:
 - luakit
 
 OS X-only tools:
-- Amethyst
+- Slate
+- ...

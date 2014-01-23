@@ -11,4 +11,7 @@ rm ~/.ruby-version; ln -s ~/dotfiles/ruby-version ~/.ruby-version
 rm ~/.tmux.conf; ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 rm ~/.vimrc; ln -s ~/dotfiles/vimrc ~/.vimrc
 rm -rf ~/.vim; ln -s ~/dotfiles/vim ~/.vim
+
+# TODO mac only
 rm ~/.slate.js; ln -s ~/dotfiles/slate.js ~/.slate.js
+rm ~/.urlview; ln -s ~/dotfiles/urlview.mac ~/.urlview
