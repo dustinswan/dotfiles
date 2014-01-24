@@ -15,3 +15,4 @@ rm -rf ~/.vim; ln -s ~/dotfiles/vim ~/.vim
 # TODO mac only
 rm ~/.slate.js; ln -s ~/dotfiles/slate.js ~/.slate.js
 rm ~/.urlview; ln -s ~/dotfiles/urlview.mac ~/.urlview
+rm ~/Library/KeyBindings/DefaultKeyBinding.dict; cp ~/dotfiles/DefaultKeyBinding.dict ~/Library/KeyBindings/DefaultKeyBinding.dict
