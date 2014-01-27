@@ -22,8 +22,8 @@ brew install ranger
 brew install bash
 brew install fish
 brew install ack
-brew innstall openssl
-brew innstall openssh --with-brewed-openssl
+brew install openssl
+brew install openssh --with-brewed-openssl
 brew install ssh-copy-id
 brew install ffind
 brew install node
