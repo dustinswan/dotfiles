@@ -36,14 +36,12 @@ Bundle 'w0ng/vim-hybrid'
 " Bundle 'ervandew/supertab'
 Bundle 'kien/ctrlp.vim'
 Bundle 'gregsexton/MatchTag'
-" Bundle 'closetag'
 " Bundle 'kana/vim-smartinput'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'mbbill/undotree'
 Bundle 'coderifous/textobj-word-column.vim'
 " Bundle 'myusuf3/numbers'
 " Bundle 'benmills/vimux'
-Bundle 'lukaszkorecki/workflowish'
 Bundle 'searchfold.vim'
 Bundle 'godlygeek/tabular'
 Bundle 'kshenoy/vim-signature'
@@ -278,3 +276,9 @@ nnoremap <leader>hi :HdevtoolsInfo<cr>
 let g:move_key_modifier = 'C'
 
 nnoremap <leader>b :OpenUrl<cr>
+
+" Matchmaker on
+let g:matchmaker_enable_startup = 1
+
+" Dict word under cursor
+nnoremap <leader>d :Dict
