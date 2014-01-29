@@ -37,6 +37,7 @@ Bundle 'w0ng/vim-hybrid'
 Bundle 'kien/ctrlp.vim'
 Bundle 'gregsexton/MatchTag'
 " Bundle 'kana/vim-smartinput'
+Bundle 'Raimondi/delimitMate'
 Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
 Bundle 'mbbill/undotree'
 Bundle 'coderifous/textobj-word-column.vim'
@@ -58,6 +59,7 @@ Bundle 'bruno-/vim-vertical-move'
 Bundle 'tpope/vim-vinegar'
 Bundle 'itchyny/calendar.vim'
 Bundle 'openurl.vim'
+Bundle 'lfilho/cosco.vim'
 
 let $GIT_SSL_NO_VERIFY = 'true'
 
@@ -282,3 +284,7 @@ let g:matchmaker_enable_startup = 1
 
 " Dict word under cursor
 nnoremap <leader>d :Dict
+
+" Cosco
+autocmd FileType javascript,css nnoremap <silent> ,; :call cosco#commaOrSemiColon()<CR>
+autocmd FileType javascript,css inoremap <silent> ,; <ESC>:call cosco#commaOrSemiColon()"<CR>a
