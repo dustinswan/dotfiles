@@ -30,7 +30,7 @@ brew install node
 brew install ruby-install
 # brew install chruby
 brew install python --with-brewed-openssl
-brew install vim --override-system-vi
+brew install macvim --HEAD --override-system-vim
 brew install msmtp
 brew install mutt
 brew install urlview
@@ -46,7 +46,7 @@ brew cask install google-chrome
 brew cask install charles 
 brew cask install dropbox 
 brew cask install iterm2 
-brew cask install macvim 
+#brew cask install macvim 
 brew cask install vlc 
 brew cask install transmission 
 brew cask install firefox 
@@ -60,6 +60,7 @@ brew cask install sketchup
 #brew cask install truecrypt
 brew cask install asepsis
 brew cask install keyremap4macbook
+brew cask install audacity
 brew cleanup
 
 # Symlinks
