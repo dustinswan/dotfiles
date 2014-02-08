@@ -1,0 +1,65 @@
+// Keys must be one of:
+// brew, cask, arch, aur, pip, gem, npm
+
+var packages = [
+
+// With which to build
+{ brew: "node", arch: "nodejs" },
+{ brew: "python --with-brewed-openssl", arch: "python2" },
+{ brew: "ruby-install" },
+//{ brew: "chruby", aur: "chruby" }, // TODO chruby fish
+{ brew: "haskell-platform" },
+{ arch: "ghc cabal-install haddock happy alex" }, // No Haskell-Platform on Arch
+
+// Command Line Utils
+{ brew: "coreutils" },
+{ brew: "findutils" },
+{ brew: "aspell" },
+{ brew: "git" },
+{ brew: "perforce", aur: "p4" },
+{ brew: "tmux", arch: "tmux" },
+{ brew: "wget" },
+{ brew: "weechat", arch: "weechat" },
+{ brew: "ranger", arch: "ranger" },
+{ brew: "bash" },
+{ brew: "fish", arch: "fish" },
+{ brew: "ack", arch: "ack" },
+{ brew: "openssl" },
+{ brew: "openssh --with-brewed-openssl" },
+{ brew: "ssh-copy-id" },
+{ brew: "ffind" },
+{ brew: "vim --HEAD --override-system-vim", arch: "gvim" },
+{ brew: "msmtp", arch: "msmtp" },
+{ brew: "mutt", aur: "mutt-sidebar" }, // TODO sidebar patch
+{ brew: "urlview", aur: "urlview" },
+{ brew: "isync", aur: "isync" },
+{ brew: "mosh", arch: "mosh" },
+
+// Desktop Applications
+// Mac Only
+{ brew: "brew-cask" },
+{ cask: "rdio" },
+{ cask: "alfred" },
+{ cask: "slate" },
+{ cask: "charles" },
+{ cask: "iterm2" },
+{ cask: "asepsis" },
+{ cask: "keyremap4macbook" },
+{ cask: "the-unarchiver" },
+
+// Linux Only
+{ arch: "rxvt-unicode" },
+// TODO wm
+
+// All OSes
+{ cask: "google-chrome", arch: "chromium" },
+{ cask: "firefox", arch: "firefox" },
+{ cask: "dropbox", aur: "dropbox" },
+{ cask: "vlc", arch: "vlc" },
+{ cask: "transmission" }, // TODO linux
+{ cask: "electrum", aur: "electrum" },
+{ cask: "steam" }, // TODO linux
+{ cask: "sketchup" }, // TODO linux
+{ cask: "audacity", arch: "audacity" },
+
+],
