@@ -7,6 +7,7 @@ set -x EDITOR "vim"
 set -x TERM "screen-256color"
 # TODO fix this for linux
 set -x BROWSER "open"
+alias browser "eval $BROWSER"
 set -x MOSH_TITLE_NOPREFIX 1
 
 # PATH

@@ -60,6 +60,7 @@ Bundle 'tpope/vim-vinegar'
 Bundle 'itchyny/calendar.vim'
 Bundle 'lfilho/cosco.vim'
 Bundle 'ntpeters/vim-better-whitespace'
+Bundle "sdanielf/vim-stdtabs"
 
 let $GIT_SSL_NO_VERIFY = 'true'
 
@@ -279,3 +280,6 @@ nnoremap <leader>d :Dict
 " Cosco
 autocmd FileType javascript,css nnoremap <silent> ,; :call cosco#commaOrSemiColon()<CR>
 autocmd FileType javascript,css inoremap <silent> ,; <ESC>:call cosco#commaOrSemiColon()"<CR>a
+
+" Browser
+:let g:netrw_browsex_viewer = "browser"
