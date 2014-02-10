@@ -58,8 +58,8 @@ Bundle 'matze/vim-move'
 Bundle 'bruno-/vim-vertical-move'
 Bundle 'tpope/vim-vinegar'
 Bundle 'itchyny/calendar.vim'
-Bundle 'openurl.vim'
 Bundle 'lfilho/cosco.vim'
+Bundle 'ntpeters/vim-better-whitespace'
 
 let $GIT_SSL_NO_VERIFY = 'true'
 
@@ -137,10 +137,6 @@ set shiftwidth=4
 set expandtab
 set smarttab
 
-" pretty line endings and trailing spaces
-set list
-set listchars=tab:»·,trail:·,eol:¬
-
 " so we get html goodies in php files
 au BufRead *.php set ft=php.html
 au BufNewFile *.php set ft=php.html
@@ -217,9 +213,6 @@ nnoremap <silent><leader>4 :! p4 edit %<cr>
 " open vsplit and switch to it
 nnoremap <leader>v <c-w>v<c-w>l
 
-" trim whitespace
-nnoremap <leader>W :%s/\s\+$//e<cr>
-
 " Ack
 nnoremap <leader>a :Ack<space>
 " use ag
@@ -276,8 +269,6 @@ nnoremap <leader>hi :HdevtoolsInfo<cr>
 
 " Vim-move
 let g:move_key_modifier = 'C'
-
-nnoremap <leader>b :OpenUrl<cr>
 
 " Matchmaker on
 let g:matchmaker_enable_startup = 1
