@@ -9,6 +9,7 @@ brew upgrade
 #brew tap homebrew/versions
 brew tap homebrew/dupes
 brew tap phinze/homebrew-cask
+brew tap jimbojsb/launchrocket
 
 brew install coreutils
 brew install findutils
@@ -61,6 +62,7 @@ brew cask install sketchup
 brew cask install asepsis
 brew cask install keyremap4macbook
 brew cask install audacity
+brew cask install launchrocket
 brew cleanup
 
 # Symlinks
