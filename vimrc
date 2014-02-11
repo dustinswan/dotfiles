@@ -51,7 +51,6 @@ Bundle 'SirVer/ultisnips'
 Bundle 'lukerandall/haskellmode-vim'
 Bundle 'bitc/vim-hdevtools'
 " Bundle 'Shougo/neocomplcache'
-Bundle 'airblade/vim-gitgutter'
 Bundle 'qstrahl/vim-matchmaker'
 "Bundle 'bling/vim-airline'
 Bundle 'matze/vim-move'
@@ -60,7 +59,9 @@ Bundle 'tpope/vim-vinegar'
 Bundle 'itchyny/calendar.vim'
 Bundle 'lfilho/cosco.vim'
 Bundle 'ntpeters/vim-better-whitespace'
-Bundle "sdanielf/vim-stdtabs"
+" No good for IOCOM
+Bundle 'sdanielf/vim-stdtabs'
+Bundle 'airblade/vim-gitgutter'
 
 let $GIT_SSL_NO_VERIFY = 'true'
 
