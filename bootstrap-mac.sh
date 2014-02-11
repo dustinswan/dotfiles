@@ -23,6 +23,7 @@ brew install ranger
 brew install bash
 brew install fish
 brew install ack
+brew install tree
 brew install openssl
 brew install openssh --with-brewed-openssl
 brew install ssh-copy-id

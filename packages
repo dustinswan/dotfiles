@@ -34,6 +34,7 @@ var packages = [
 { brew: "urlview", aur: "urlview" },
 { brew: "isync", aur: "isync" },
 { brew: "mosh", arch: "mosh" },
+{ brew: "tree", arch: "tree" },
 
 // Desktop Applications
 // Mac Only
