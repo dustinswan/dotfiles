@@ -1,10 +1,10 @@
 IMAPAccount gmail
 Host imap.gmail.com
 User dustinswan@gmail.com
-# PassCmd "gpg -d ~/.gmail-password.gpg"
+PassCmd "gpg -d ~/.gmail-password.gpg"
 # SSL
 UseIMAPS yes
-CertificateFile ~/.mail/gmail.pem
+#CertificateFile ~/.mail/gmail.pem
 
 IMAPStore gmail-remote
 Account gmail
@@ -17,7 +17,7 @@ Channel gmail
 Master :gmail-remote:
 Slave :gmail-local:
 # Include everything
-# Patterns *
+Patterns *
 # Automatically create missing mailboxes, both locally and on the server
 Create Both
 # Expunge Both
