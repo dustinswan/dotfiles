@@ -35,6 +35,7 @@ var packages = [
 { brew: "isync", aur: "isync" },
 { brew: "mosh", arch: "mosh" },
 { brew: "tree", arch: "tree" },
+{ brew: "imagesnap" }, // TODO linux
 
 // Desktop Applications
 // Mac Only
