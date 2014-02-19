@@ -23,6 +23,7 @@ set -x P4USER "dswan"
 set -x P4PORT "humu.insors.net:1666"
 set -x P4CONFIG "p4.cfg"
 set -x P4EDITOR "vim"
+alias p4vimdiff "set -x P4DIFF vimdiff; p4 diff"
 alias visidev "ssh root@visidev.iocom.com 'cd /; p4 sync'; scp /opt/iocom/user/webclient/all_desktop.js root@visidev.iocom.com:/opt/iocom/user/webclient/; scp /opt/iocom/user/webclient/css/all_desktop.css root@visidev.iocom.com:/opt/iocom/user/webclient/css/"
 alias dswan "ssh root@dswan.insors.net"
 alias webdev 'ssh -t root@webdev.insors.net "cd /var/www/html; /bin/bash -i"'
