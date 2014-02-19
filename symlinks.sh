@@ -11,6 +11,7 @@ rm ~/.ruby-version; ln -s ~/dotfiles/ruby-version ~/.ruby-version
 rm ~/.tmux.conf; ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 rm ~/.vimrc; ln -s ~/dotfiles/vimrc ~/.vimrc
 rm -rf ~/.vim; ln -s ~/dotfiles/vim ~/.vim
+rm ~/.vimperatorrc; ln -s ~/dotfiles/vimperatorrc ~/.vimperatorrc
 
 # TODO mac only
 rm ~/.slate.js; ln -s ~/dotfiles/slate.js ~/.slate.js

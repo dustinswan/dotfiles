@@ -23,6 +23,9 @@ brew install ranger
 brew install bash
 brew install fish
 brew install ack
+brew install tree
+brew install imagesnap
+brew install imagemagick
 brew install openssl
 brew install openssh --with-brewed-openssl
 brew install ssh-copy-id
@@ -43,26 +46,27 @@ brew cask install rdio
 brew cask install alfred
 brew cask alfred link
 brew cask install slate
-brew cask install google-chrome 
-brew cask install charles 
-brew cask install dropbox 
-brew cask install iterm2 
-#brew cask install macvim 
-brew cask install vlc 
-brew cask install transmission 
-brew cask install firefox 
-brew cask install the-unarchiver 
+brew cask install google-chrome
+brew cask install charles
+brew cask install dropbox
+brew cask install iterm2
+#brew cask install macvim
+brew cask install vlc
+brew cask install transmission
+brew cask install firefox
+brew cask install the-unarchiver
 brew cask install electrum
 brew cask install steam
 brew cask install sketchup
 #brew cask install gpgtools ???
 #brew cask install vagrant
-#brew cask install bittorrent-sync 
+#brew cask install bittorrent-sync
 #brew cask install truecrypt
 brew cask install asepsis
 brew cask install keyremap4macbook
 brew cask install audacity
 brew cask install launchrocket
+brew cask install thunderbird
 brew cleanup
 
 # Symlinks

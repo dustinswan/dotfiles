@@ -46,13 +46,13 @@ set sort = threads
 set sort_aux = reverse-last-date-received
 
 # Sidebar
-set sidebar_delim   = '  │'
-set sidebar_visible = yes
-set sidebar_width   = 50
-# color sidebar_new color221 color233
-bind index <down>     sidebar-next
-bind index <up>       sidebar-prev
-bind index <right>    sidebar-open
+#set sidebar_delim   = '  │'
+#set sidebar_visible = yes
+#set sidebar_width   = 50
+## color sidebar_new color221 color233
+#bind index <down>     sidebar-next
+#bind index <up>       sidebar-prev
+#bind index <right>    sidebar-open
 
 # Status Bar
 #set status_chars = "  *&A"

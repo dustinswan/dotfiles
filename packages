@@ -34,6 +34,9 @@ var packages = [
 { brew: "urlview", aur: "urlview" },
 { brew: "isync", aur: "isync" },
 { brew: "mosh", arch: "mosh" },
+{ brew: "tree", arch: "tree" },
+{ brew: "imagesnap" }, // TODO linux
+{ brew: "imagemagick", arch: "imagemagick" },
 
 // Desktop Applications
 // Mac Only
@@ -46,6 +49,8 @@ var packages = [
 { cask: "asepsis" },
 { cask: "keyremap4macbook" },
 { cask: "the-unarchiver" },
+{ cask: "launchrocket" },
+{ cask: "thunderbird" },
 
 // Linux Only
 { arch: "rxvt-unicode" },
@@ -62,4 +67,4 @@ var packages = [
 { cask: "sketchup" }, // TODO linux
 { cask: "audacity", arch: "audacity" },
 
-],
+];
