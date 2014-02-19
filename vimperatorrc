@@ -2,6 +2,7 @@ ignorekeys add mail\.google\.com
 ignorekeys add google\.com/calendar
 ignorekeys add docs\.google\.com
 ignorekeys add feedly\.com
+ignorekeys add reddit\.com
 
-set gui = nonavigation
+set gui=nonavigation
 set editor='bash -lc "mvim -f \$*" mvim'
