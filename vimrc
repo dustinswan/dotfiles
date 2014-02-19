@@ -62,6 +62,7 @@ Bundle 'ntpeters/vim-better-whitespace'
 " No good for IOCOM
 Bundle 'sdanielf/vim-stdtabs'
 Bundle 'airblade/vim-gitgutter'
+Bundle 'gcmt/wildfire.vim'
 
 let $GIT_SSL_NO_VERIFY = 'true'
 
