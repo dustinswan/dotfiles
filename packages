@@ -36,6 +36,7 @@ var packages = [
 { brew: "mosh", arch: "mosh" },
 { brew: "tree", arch: "tree" },
 { brew: "imagesnap" }, // TODO linux
+{ brew: "imagemagick", arch: "imagemagick" },
 
 // Desktop Applications
 // Mac Only

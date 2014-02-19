@@ -1,0 +1,3 @@
+:ignorekeys add mail\.google\.com
+:ignorekeys add google\.com/calendar
+:ignorekeys add feedly\.com
