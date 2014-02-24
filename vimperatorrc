@@ -6,3 +6,5 @@ ignorekeys add reddit\.com
 
 set gui=nonavigation
 set editor='bash -lc "mvim -f \$*" mvim'
+
+map <M-l> :open 
