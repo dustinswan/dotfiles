@@ -21,7 +21,7 @@ brew install wget --enable-iri
 brew install weechat --with-aspell --with-python --with-ruby
 brew install ranger
 brew install bash
-brew install fish
+brew install zsh
 brew install ack
 brew install tree
 brew install imagesnap
@@ -78,7 +78,6 @@ pip install --upgrade pip
 pip install git+git://github.com/Lokaltog/powerline
 
 # Ruby TODO -- set up chruby, ruby-install some stuff
-# https://github.com/JeanMertz/chruby-fish
 ruby-install ruby 1.9
 ruby-install ruby 2.1
 chruby 1.9
@@ -88,11 +87,6 @@ gem install earthquake
 
 # Node packages TODO
 # Cabal packages TODO
-
-# Change to fish shell
-# TODO check if it's already in there first!!
-echo "/usr/local/bin/fish" | sudo tee -a /etc/shells
-chsh -s /usr/local/bin/fish dustinswan
 
 # Sane OS X defaults
 bash ~/dotfiles/osx

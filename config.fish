@@ -29,8 +29,8 @@ alias dswan "ssh root@dswan.insors.net"
 alias webdev 'ssh -t root@webdev.insors.net "cd /var/www/html; /bin/bash -i"'
 
 # chruby-fish: https://github.com/JeanMertz/chruby-fish
-. /usr/local/share/chruby/chruby.fish
+#. /usr/local/share/chruby/chruby.fish
 # source /usr/local/share/chruby/auto.fish # SERIOUSY BROKEN
 
 # GPG
-~/dotfiles/bin/gpg-agent.sh
+#~/dotfiles/bin/gpg-agent.sh
