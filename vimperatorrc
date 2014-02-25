@@ -8,3 +8,4 @@ set gui=nonavigation
 set editor='bash -lc "mvim -f \$*" mvim'
 
 map <M-l> :open 
+noremap <M-t> <M-t> :open 
