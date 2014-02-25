@@ -4,11 +4,11 @@ I primarily use OS X and Arch Linux. UNIX Philosophy when able.
 
 Current tool set:
 - tmux
-- fish
+- zsh (I try fish every few months.. never sticks though)
 - vim + vundle + too many plugins
-- mutt + offlineimap + notmuch (new to this. Also considering mbsync. Also considering notmuch + frontend)
+- mutt + mbsync + notmuch (new to this. Also considering just notmuch + alot + afew)
 - weechat
-- Firefox
+- Firefox + vimperator
 
 Linux-only tools:
 - XMonad + dzen2 + conky. Thinking about trying out i3.
