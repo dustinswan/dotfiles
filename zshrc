@@ -54,5 +54,5 @@ chruby $(cat ~/.ruby-version)
 # GPG
 ~/dotfiles/bin/gpg-agent.sh
 
-autoload predict-on
-predict-on
+#autoload predict-on
+#predict-on
