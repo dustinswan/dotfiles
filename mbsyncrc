@@ -8,10 +8,12 @@ UseIMAPS yes
 
 IMAPStore gmail-remote
 Account gmail
+Path [Gmail]/
 
 MaildirStore gmail-local
 Path ~/.mail/gmail/
 Inbox ~/.mail/gmail/INBOX
+Flatten . 
 
 Channel gmail
 Master :gmail-remote:

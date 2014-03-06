@@ -4,6 +4,8 @@ ignorekeys add docs\.google\.com
 ignorekeys add feedly\.com
 ignorekeys add reddit\.com
 ignorekeys add tumblr\.com
+ignorekeys add cmd\.fm
+ignorekeys add getpocket\.com
 
 set gui=nonavigation
 set editor='bash -lc "mvim -f \$*" mvim'

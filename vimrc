@@ -124,6 +124,7 @@ set gdefault " now substitutions assume /g
 set smartcase " if we include uppercase, it will be case sensitive
 set showmatch " matching brackets
 set matchtime=2 " blink brackets
+
 " turn off highlighting
 nnoremap <silent><leader><space> :noh<cr>
 
@@ -157,7 +158,6 @@ python from powerline.vim import setup as powerline_setup
 python powerline_setup()
 python del powerline_setup
 
-
 " Airline
 "let g:airline_left_sep=''
 "let g:airline_right_sep=''
@@ -169,19 +169,6 @@ python del powerline_setup
 set background=dark
 " colorscheme default
 colorscheme hybrid
-
-"let g:solarized_termtrans=1
-"let g:solarized_termcolors=256 "default value is 16
-"let g:solarized_contrast="high" "default value is normal
-"let g:solarized_visibility="high" "default value is normal
-"let g:solarized_diffmode="high" "default value is normal
-"let g:solarized_hitrail=1 "default value is 0
-"colorscheme solarized
-
-" NERDTree
-"nnoremap <silent> <leader>n :NERDTreeToggle <cr>
-"let NERDTreeMinimalUI=1
-"let NERDTreeDirArrows=1
 
 " Tagbar
 nnoremap <silent><leader>t :TagbarToggle <cr>
