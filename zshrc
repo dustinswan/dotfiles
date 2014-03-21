@@ -37,7 +37,7 @@ export PATH=/usr/local/share/python:$PATH
 export PATH=$HOME/Library/Haskell/bin:$PATH # Haskell
 export PATH=$HOME/dotfiles/bin:$PATH # Dotfiles bin
 export PATH=/usr/local/share/npm/bin:$PATH # npm
-export NODE_PATH=/usr/local/lib/node
+export NODE_PATH=/usr/local/lib/node:/usr/local/share/npm/lib/node_modules
 export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
 
 # Chruby

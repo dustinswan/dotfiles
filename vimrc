@@ -23,6 +23,7 @@ Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-vinegar'
 Bundle 'tpope/vim-characterize.git'
 Bundle 'tpope/vim-jdaddy'
+Bundle 'tpope/vim-eunuch'
 " Bundle 'tpope/vim-unimpared'
 Bundle 'mileszs/ack.vim'
 Bundle 'justinmk/vim-sneak'
@@ -181,6 +182,7 @@ endif
 if v:version > 700
     let g:syntastic_enable_signs=1
     let g:syntastic_auto_loc_list=1
+    let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
 else
     let g:loaded_syntastic_plugin=1
 endif
