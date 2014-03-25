@@ -25,3 +25,30 @@ Create Both
 # Expunge Both
 # Save the synchronization state files in the relevant directory
 SyncState *
+
+
+
+IMAPAccount iocom
+Host secure.emailsrvr.com
+User dswan@insors.com
+PassCmd "gpg -d ~/.iocom-password.gpg"
+# SSL
+UseIMAPS yes
+
+IMAPStore iocom-remote
+Account iocom
+
+MaildirStore iocom-local
+Path ~/.mail/iocom/
+Inbox ~/.mail/iocom/INBOX
+
+Channel iocom
+Master :iocom-remote:
+Slave :iocom-local:
+# Include everything
+Patterns *
+# Automatically create missing mailboxes, both locally and on the server
+Create Both
+# Expunge Both
+# Save the synchronization state files in the relevant directory
+SyncState *

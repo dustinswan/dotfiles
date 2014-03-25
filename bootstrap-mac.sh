@@ -58,7 +58,7 @@ brew cask install the-unarchiver
 brew cask install electrum
 brew cask install steam
 brew cask install sketchup
-#brew cask install gpgtools ???
+brew cask install gpgtools
 #brew cask install vagrant
 #brew cask install bittorrent-sync
 #brew cask install truecrypt

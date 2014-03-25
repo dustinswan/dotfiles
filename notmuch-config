@@ -47,7 +47,8 @@ primary_email=dustinswan@gmail.com
 #		in the mail store.
 #
 [new]
-tags=unread;inbox;
+tags=new
+#tags=unread;inbox;
 ignore=
 
 # Search configuration

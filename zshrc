@@ -52,7 +52,13 @@ fi
 chruby $(cat ~/.ruby-version)
 
 # GPG
-~/dotfiles/bin/gpg-agent.sh
+GPG_AGENT=$(which gpg-agent)
+GPG_TTY=`tty`
+export GPG_TTY
+
+if [ -f ${GPG_AGENT} ]; then
+    . ~/dotfiles/bin/gpg-agent.sh
+fi
 
 #autoload predict-on
 #predict-on
