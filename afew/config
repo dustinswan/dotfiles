@@ -1,7 +1,28 @@
-# This is the default filter chain
 [SpamFilter]
 #[ClassifyingFilter]
 [KillThreadsFilter]
 [ListMailsFilter]
 [ArchiveSentMailsFilter]
+
+#[Filter.1]
+#message = Tagging IOCOM netmon emails
+#query = to:netmon@insors.com
+#tags = +netmon;-new
+
+[FolderNameFilter]
+folder_blacklist = iocom/INBOX
+folder_transforms = Archive:archive Drafts:drafts Sent:sent Trash:trash Builder:builder Info:info Netmon:netmon Spam:spam
+
+[Filter.1]
+message = Removing archived mails from inbox
+query = tag:archive
+tags = -new;-archive
+
 [InboxFilter]
+
+[MailMover]
+folders = iocom/INBOX/ iocom/INBOX.Archive/
+max_age = 15
+
+iocom/INBOX/ = 'NOT tag:inbox':iocom/INBOX.Archive/
+iocom/INBOX.Archive/ = 'tag:inbox':iocom/INBOX/

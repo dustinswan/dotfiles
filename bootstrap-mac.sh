@@ -42,6 +42,9 @@ brew install isync
 brew install mosh
 brew install haskell-platform
 brew install brew-cask
+brew install gnupg
+brew install gpg-agent
+brew install gpgme
 brew cask install rdio
 brew cask install alfred
 brew cask alfred link

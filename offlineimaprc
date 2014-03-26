@@ -1,0 +1,15 @@
+[general]
+accounts = IOCOM
+
+[Account IOCOM]
+localrepository = IOCOMLocal
+remoterepository = IOCOMRemote
+
+[Repository IOCOMLocal]
+type = Maildir
+localfolders = ~/.mail/iocom
+
+[Repository IOCOMRemote]
+type = IMAP
+remotehost = secure.emailsrvr.com
+remoteuser = dswan@insors.com

@@ -18,8 +18,8 @@ export MOSH_TITLE_NOPREFIX=1
 export BROWSER=open
 [[ -s luakit ]] && export BROWSER=luakit
 
-alias browser='open'
-[[ -s luakit ]] && alias browser='luakit'
+#alias browser='open -a Firefox.app'
+#[[ -s luakit ]] && alias browser='luakit'
 
 # IOCOM stuff
 export P4USER=dswan

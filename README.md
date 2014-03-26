@@ -6,7 +6,7 @@ Current tool set:
 - tmux
 - zsh (I try fish every few months.. never sticks though)
 - vim + vundle + too many plugins
-- mutt + mbsync + notmuch (new to this. Also considering just notmuch + alot + afew)
+- mbsync + notmuch + afew + alot + msmtp (Very new to this, but liking it so far)
 - weechat
 - Firefox + vimperator
 

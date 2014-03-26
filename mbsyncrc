@@ -13,11 +13,11 @@ Account gmail
 MaildirStore gmail-local
 Path ~/.mail/gmail/
 Inbox ~/.mail/gmail/INBOX
-Flatten .
 
 Channel gmail
 Master :gmail-remote:
 Slave :gmail-local:
+#Path "[Gmail]."
 # Include everything
 Patterns *
 # Automatically create missing mailboxes, both locally and on the server
@@ -37,10 +37,12 @@ UseIMAPS yes
 
 IMAPStore iocom-remote
 Account iocom
+Path INBOX
 
 MaildirStore iocom-local
 Path ~/.mail/iocom/
 Inbox ~/.mail/iocom/INBOX
+Flatten .
 
 Channel iocom
 Master :iocom-remote:
