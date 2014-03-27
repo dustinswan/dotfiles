@@ -2,7 +2,6 @@ IMAPAccount gmail
 Host imap.gmail.com
 User dustinswan@gmail.com
 PassCmd "gpg -d ~/.gmail-password.gpg"
-# SSL
 UseIMAPS yes
 #CertificateFile ~/.mail/gmail.pem
 
@@ -13,11 +12,11 @@ Account gmail
 MaildirStore gmail-local
 Path ~/.mail/gmail/
 Inbox ~/.mail/gmail/INBOX
+Flatten .
 
 Channel gmail
 Master :gmail-remote:
 Slave :gmail-local:
-#Path "[Gmail]."
 # Include everything
 Patterns *
 # Automatically create missing mailboxes, both locally and on the server
@@ -32,7 +31,6 @@ IMAPAccount iocom
 Host secure.emailsrvr.com
 User dswan@insors.com
 PassCmd "gpg -d ~/.iocom-password.gpg"
-# SSL
 UseIMAPS yes
 
 IMAPStore iocom-remote

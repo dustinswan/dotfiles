@@ -17,3 +17,8 @@ tabwidth = 4
         gpg_key = 2B3A6377
         sendmail_command = msmtp --account=DustinswanGmail -t
         # sent_tags = sent
+
+[bindings]
+    [[search]]
+    'I I' = search tag:iocom AND tag:inbox
+    'G G' = search tag:gmail AND tag:inbox

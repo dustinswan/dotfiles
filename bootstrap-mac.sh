@@ -36,7 +36,7 @@ brew install ruby-install
 brew install python --with-brewed-openssl
 brew install macvim --HEAD --override-system-vim
 brew install msmtp
-brew install mutt
+brew install watch
 brew install urlview
 brew install isync
 brew install mosh

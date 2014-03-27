@@ -2,21 +2,69 @@
 #[ClassifyingFilter]
 [KillThreadsFilter]
 [ListMailsFilter]
-[ArchiveSentMailsFilter]
+[ArchiveSentMailsFilter] # Looks for mails sent from my addresses, adds sent tag
 
-#[Filter.1]
-#message = Tagging IOCOM netmon emails
-#query = to:netmon@insors.com
-#tags = +netmon;-new
-
-[FolderNameFilter]
-folder_blacklist = iocom/INBOX
-folder_transforms = Archive:archive Drafts:drafts Sent:sent Trash:trash Builder:builder Info:info Netmon:netmon Spam:spam
+#[FolderNameFilter]
+#folder_blacklist = iocom/INBOX gmail/INBOX gmail/[Gmail].Important gmail/[Gmail].Starred
+#folder_transforms = Archive:archive Drafts:drafts Sent:sent Trash:trash Builder:builder Info:info Netmon:netmon Spam:spam "gmail/Kara Hetz":"Kara Hetz" "All Mail":archive "gmail/[Gmail].Drafts":drafts "gmail/[Gmail].Sent Mail":sent "Spam":spam "Important":important "gmail/[Gmail].Trash":trash
+# This is getting nasty. Let's just use filters
 
 [Filter.1]
-message = Removing archived mails from inbox
-query = tag:archive
-tags = -new;-archive
+message = Gmail
+query = folder:gmail
+tags = +gmail
+
+[Filter.2]
+message = IOCOM
+query = folder:iocom
+tags = +iocom
+
+[Filter.3]
+message = Archived
+query = folder:iocom/INBOX.Archive OR 'folder:"gmail/[Gmail].All Mail"'
+tags = -new;-inbox
+
+[Filter.4]
+message = Drafts
+query = folder:iocom/INBOX.Drafts OR 'folder:"gmail/[Gmail].Drafts"'
+tags = -new;+drafts
+
+[Filter.5]
+message = Sent
+query = folder:iocom/INBOX.Sent OR 'folder:"gmail/[Gmail].Sent Mail"'
+tags = -new;+sent
+
+[Filter.6]
+message = Spam
+query = folder:iocom/INBOX.spam OR 'folder:"gmail/[Gmail].Spam"'
+tags = -new;+spam
+
+[Filter.7]
+message = Trash
+query = folder:iocom/INBOX.Trash OR 'folder:"gmail/[Gmail].Trash"'
+tags = -new;+trash
+
+# IOCOM folders
+
+[Filter.8]
+message = Builder
+query = folder:iocom/INBOX.builder
+tags = +builder;-spam;-new
+
+[Filter.9]
+message = Netmon
+query = folder:iocom/INBOX.netmon
+tags = +netmon;-spam;-new
+
+# IOCOM tags
+
+[Filter.10]
+message = Bugzilla
+query = from:bugzilla-daemon@bugzilla.insors.net
+tags = +bugzilla
+
+# Gmail folders (what Gmail calls tags) TODO
+
 
 [InboxFilter]
 
@@ -26,3 +74,5 @@ max_age = 15
 
 iocom/INBOX/ = 'NOT tag:inbox':iocom/INBOX.Archive/
 iocom/INBOX.Archive/ = 'tag:inbox':iocom/INBOX/
+
+# TODO All folders <-> tags
