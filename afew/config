@@ -19,60 +19,68 @@ message = IOCOM
 query = folder:iocom
 tags = +iocom
 
-[Filter.3]
+[Filter.4] # Need this filter before the All Mail one.. I think
+message = Gmail Inbox
+query = folder:gmail/INBOX
+tags = -new;+inbox
+
+[Filter.6]
 message = Archived
 query = folder:iocom/INBOX.Archive OR 'folder:"gmail/[Gmail].All Mail"'
-tags = -new;-inbox
+tags = -new
 
-[Filter.4]
+[Filter.8]
 message = Drafts
 query = folder:iocom/INBOX.Drafts OR 'folder:"gmail/[Gmail].Drafts"'
 tags = -new;+drafts
 
-[Filter.5]
+[Filter.10]
 message = Sent
 query = folder:iocom/INBOX.Sent OR 'folder:"gmail/[Gmail].Sent Mail"'
 tags = -new;+sent
 
-[Filter.6]
+[Filter.12]
 message = Spam
 query = folder:iocom/INBOX.spam OR 'folder:"gmail/[Gmail].Spam"'
 tags = -new;+spam
 
-[Filter.7]
+[Filter.14]
 message = Trash
 query = folder:iocom/INBOX.Trash OR 'folder:"gmail/[Gmail].Trash"'
 tags = -new;+trash
 
 # IOCOM folders
 
-[Filter.8]
+[Filter.16]
 message = Builder
 query = folder:iocom/INBOX.builder
 tags = +builder;-spam;-new
 
-[Filter.9]
+[Filter.18]
 message = Netmon
 query = folder:iocom/INBOX.netmon
 tags = +netmon;-spam;-new
 
 # IOCOM tags
 
-[Filter.10]
+[Filter.20]
 message = Bugzilla
 query = from:bugzilla-daemon@bugzilla.insors.net
 tags = +bugzilla
 
 # Gmail folders (what Gmail calls tags) TODO
 
-
 [InboxFilter]
 
 [MailMover]
-folders = iocom/INBOX/ iocom/INBOX.Archive/
+folders = iocom/INBOX/ iocom/INBOX.Archive/ gmail/INBOX/
 max_age = 15
 
 iocom/INBOX/ = 'NOT tag:inbox':iocom/INBOX.Archive/
 iocom/INBOX.Archive/ = 'tag:inbox':iocom/INBOX/
 
+gmail/INBOX/ = 'NOT tag:inbox':"gmail/[Gmail].All Mail"
+gmail/[Gmail].Important/ = 'NOT tag:inbox':"gmail/[Gmail].All Mail"
+
 # TODO All folders <-> tags
+#

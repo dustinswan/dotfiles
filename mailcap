@@ -1,4 +1,3 @@
 #text/html; luakit %s &; test=test -n "%DISPLAY"; needsterminal;
 #text/html; firefox %s &; test=test -n "%DISPLAY"; needsterminal;
-text/html; firefox %s;
 text/html; w3m -I %{charset} -T text/html; copiousoutput;
