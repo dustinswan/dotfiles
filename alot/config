@@ -9,14 +9,12 @@ tabwidth = 4
         sendmail_command = msmtp --account=DswanIOCOM -t
         sent_box = maildir:///users/dustinswan/.mail/iocom/INBOX.Sent
         draft_box = maildir:///users/dustinswan/.mail/iocom/INBOX.Drafts
-        # sent_tags = sent
 
     [[Gmail]]
         realname = Dustin Swan
         address = dustinswan@gmail.com
         gpg_key = 2B3A6377
         sendmail_command = msmtp --account=DustinswanGmail -t
-        # sent_tags = sent
 
 [bindings]
     [[search]]

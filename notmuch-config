@@ -31,6 +31,7 @@ path=/Users/dustinswan/.mail
 [user]
 name=Dustin Swan
 primary_email=dustinswan@gmail.com
+other_email=dswan@iocom.com,dswan@insors.com
 
 # Configuration for "notmuch new"
 #

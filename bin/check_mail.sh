@@ -1,5 +1,5 @@
 #!/bin/bash
 while true; do
-    afew -m; mbsync -a; notmuch new
+    afew -m; offlineimap; notmuch new
     sleep 45
 done

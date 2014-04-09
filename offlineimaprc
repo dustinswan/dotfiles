@@ -1,9 +1,12 @@
 [general]
-accounts = IOCOM
+accounts = IOCOM, Gmail
+pythonfile = ~/dotfiles/offlineimap.py
+
 
 [Account IOCOM]
 localrepository = IOCOMLocal
 remoterepository = IOCOMRemote
+status_backend = sqlite
 
 [Repository IOCOMLocal]
 type = Maildir
@@ -13,3 +16,22 @@ localfolders = ~/.mail/iocom
 type = IMAP
 remotehost = secure.emailsrvr.com
 remoteuser = dswan@insors.com
+remotepasseval = iocom_password()
+realdelete = no
+
+
+[Account Gmail]
+localrepository = GmailLocal
+remoterepository = GmailRemote
+status_backend = sqlite
+
+[Repository GmailLocal]
+type = Maildir
+localfolders = ~/.mail/gmail
+
+[Repository GmailRemote]
+type = Gmail
+remoteuser = dustinswan@gmail.com
+remotepasseval = gmail_password()
+realdelete = no
+sslcacertfile = /usr/local/opt/curl-ca-bundle/share/ca-bundle.crt

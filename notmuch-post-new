@@ -1,2 +1,9 @@
 #!/bin/sh
+
+# For mail my other MUAs has moved
+
+# Look for mail in folder INBOX.Archive that have inbox. Remove inbox.
+notmuch tag -inbox -- folder:INBOX.Archive tag:inbox
+
+# Initial tagging for new mail
 afew --tag --new

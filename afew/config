@@ -24,11 +24,6 @@ message = Gmail Inbox
 query = folder:gmail/INBOX
 tags = -new;+inbox
 
-[Filter.6]
-message = Archived
-query = folder:iocom/INBOX.Archive OR 'folder:"gmail/[Gmail].All Mail"'
-tags = -new
-
 [Filter.8]
 message = Drafts
 query = folder:iocom/INBOX.Drafts OR 'folder:"gmail/[Gmail].Drafts"'
@@ -49,7 +44,12 @@ message = Trash
 query = folder:iocom/INBOX.Trash OR 'folder:"gmail/[Gmail].Trash"'
 tags = -new;+trash
 
-# IOCOM folders
+[Filter.15]
+message = Archived
+query = folder:iocom/INBOX.Archive OR 'folder:"gmail/[Gmail].All Mail"'
+tags = -new;-inbox
+
+# IOCOM specific folders
 
 [Filter.16]
 message = Builder
@@ -61,26 +61,26 @@ message = Netmon
 query = folder:iocom/INBOX.netmon
 tags = +netmon;-spam;-new
 
-# IOCOM tags
+# IOCOM tags, no corresponding folder
 
 [Filter.20]
 message = Bugzilla
 query = from:bugzilla-daemon@bugzilla.insors.net
 tags = +bugzilla
 
-# Gmail folders (what Gmail calls tags) TODO
+# Gmail specific folders (what Gmail calls tags) TODO
 
 [InboxFilter]
 
 [MailMover]
-folders = iocom/INBOX/ iocom/INBOX.Archive/ gmail/INBOX/
-max_age = 15
+folders = iocom/INBOX/ iocom/INBOX.Archive/
+#max_age = 15
 
 iocom/INBOX/ = 'NOT tag:inbox':iocom/INBOX.Archive/
 iocom/INBOX.Archive/ = 'tag:inbox':iocom/INBOX/
 
-gmail/INBOX/ = 'NOT tag:inbox':"gmail/[Gmail].All Mail"
-gmail/[Gmail].Important/ = 'NOT tag:inbox':"gmail/[Gmail].All Mail"
+#gmail/INBOX/ = 'NOT tag:inbox':"gmail/[Gmail].All Mail"
+#gmail/[Gmail].Important/ = 'NOT tag:inbox':"gmail/[Gmail].All Mail"
 
 # TODO All folders <-> tags
 #
