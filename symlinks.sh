@@ -10,9 +10,11 @@ rm ~/.tmux.conf; ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 rm ~/.vimrc; ln -s ~/dotfiles/vimrc ~/.vimrc
 rm -rf ~/.vim; ln -s ~/dotfiles/vim ~/.vim
 rm ~/.vimperatorrc; ln -s ~/dotfiles/vimperatorrc ~/.vimperatorrc
+rm -rf ~/.config/khal; mkdir -p ~/.config/khal; ln -s ~/dotfiles/khal.conf ~/.config/khal/khal.conf
 
 # Mail stuff
-rm ~/.mbsyncrc; ln -s ~/dotfiles/mbsyncrc ~/.mbsyncrc
+#rm ~/.mbsyncrc; ln -s ~/dotfiles/mbsyncrc ~/.mbsyncrc
+rm ~/.offlineimaprc; ln -s ~/dotfiles/offlineimaprc ~/.offlineimaprc
 rm ~/.msmtprc; ln -s ~/dotfiles/msmtprc ~/.msmtprc
 rm -rf ~/.config/alot; ln -s ~/dotfiles/alot ~/.config/
 rm -rf ~/.config/afew; ln -s ~/dotfiles/afew ~/.config/
