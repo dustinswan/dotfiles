@@ -28,6 +28,13 @@ status_backend = sqlite
 [Repository GmailLocal]
 type = Maildir
 localfolders = ~/.mail/gmail
+nametrans = lambda folder: re.sub('spam', '[Gmail].Spam',
+                           re.sub('drafts', '[Gmail].Drafts',
+                           re.sub('sent', '[Gmail].Sent Mail',
+                           re.sub('starred', '[Gmail].Starred',
+                           re.sub('trash', '[Gmail].Trash',
+                           re.sub('important', '[Gmail].Important',
+                           re.sub('archive', '[Gmail].All Mail', folder)))))))
 
 [Repository GmailRemote]
 type = Gmail
@@ -35,3 +42,10 @@ remoteuser = dustinswan@gmail.com
 remotepasseval = gmail_password()
 realdelete = no
 sslcacertfile = /usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
+nametrans = lambda folder: re.sub('.*Spam$', 'spam',
+                           re.sub('.*Drafts$', 'drafts',
+                           re.sub('.*Sent Mail$', 'sent',
+                           re.sub('.*Starred$', 'starred',
+                           re.sub('.*Trash$', 'trash',
+                           re.sub('.*Important$', 'important',
+                           re.sub('.*All Mail$', 'archive', folder)))))))

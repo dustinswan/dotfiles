@@ -26,27 +26,27 @@ tags = -new;+inbox
 
 [Filter.8]
 message = Drafts
-query = folder:iocom/INBOX.Drafts OR 'folder:"gmail/[Gmail].Drafts"'
+query = folder:iocom/INBOX.Drafts OR folder:gmail/drafts
 tags = -new;+drafts
 
 [Filter.10]
 message = Sent
-query = folder:iocom/INBOX.Sent OR 'folder:"gmail/[Gmail].Sent Mail"'
+query = folder:iocom/INBOX.Sent OR folder:gmail/sent
 tags = -new;+sent
 
 [Filter.12]
 message = Spam
-query = folder:iocom/INBOX.spam OR 'folder:"gmail/[Gmail].Spam"'
+query = folder:iocom/INBOX.spam OR folder:gmail/spam
 tags = -new;+spam
 
 [Filter.14]
 message = Trash
-query = folder:iocom/INBOX.Trash OR 'folder:"gmail/[Gmail].Trash"'
+query = folder:iocom/INBOX.Trash OR folder:gmail/trash
 tags = -new;+trash
 
 [Filter.15]
 message = Archived
-query = folder:iocom/INBOX.Archive OR 'folder:"gmail/[Gmail].All Mail"'
+query = folder:iocom/INBOX.Archive OR folder:gmail/archive
 tags = -new;-inbox
 
 # IOCOM specific folders
@@ -79,6 +79,7 @@ folders = iocom/INBOX/ iocom/INBOX.Archive/
 iocom/INBOX/ = 'NOT tag:inbox':iocom/INBOX.Archive/
 iocom/INBOX.Archive/ = 'tag:inbox':iocom/INBOX/
 
+gmail/INBOX = 'NOT tag:inbox':gmail/archive/
 #gmail/INBOX/ = 'NOT tag:inbox':"gmail/[Gmail].All Mail"
 #gmail/[Gmail].Important/ = 'NOT tag:inbox':"gmail/[Gmail].All Mail"
 
