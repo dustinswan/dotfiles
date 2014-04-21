@@ -39,6 +39,7 @@ export PATH=$HOME/dotfiles/bin:$PATH # Dotfiles bin
 export PATH=/usr/local/share/npm/bin:$PATH # npm
 export NODE_PATH=/usr/local/lib/node:/usr/local/share/npm/lib/node_modules
 export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
+export SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
 
 # Chruby
 if [[ -e /usr/local/share/chruby ]]; then
@@ -62,3 +63,7 @@ fi
 
 #autoload predict-on
 #predict-on
+
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.history
