@@ -1,12 +1,12 @@
 # dotfiles
 
-I primarily use OS X and Arch Linux. UNIX Philosophy when able.
+I primarily use OS X and Arch Linux.
 
 Current tool set:
 - tmux
 - zsh (I try fish every few months.. never sticks though)
 - vim + vundle + too many plugins
-- mbsync + notmuch + afew + alot + msmtp (Very new to this, but liking it so far)
+- mbsync + notmuch + afew + alot + msmtp
 - weechat
 - Firefox + vimperator
 
