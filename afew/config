@@ -7,6 +7,8 @@
 #[FolderNameFilter]
 #folder_blacklist = iocom/INBOX gmail/INBOX gmail/[Gmail].Important gmail/[Gmail].Starred
 #folder_transforms = Archive:archive Drafts:drafts Sent:sent Trash:trash Builder:builder Info:info Netmon:netmon Spam:spam "gmail/Kara Hetz":"Kara Hetz" "All Mail":archive "gmail/[Gmail].Drafts":drafts "gmail/[Gmail].Sent Mail":sent "Spam":spam "Important":important "gmail/[Gmail].Trash":trash
+#folder_explicit_list = gmail/
+#folder_transforms = Archive:archive Drafts:drafts Sent:sent Trash:trash Builder:builder Info:info Netmon:netmon Spam:spam "gmail/Kara Hetz":"Kara Hetz" "All Mail":archive "gmail/[Gmail].Drafts":drafts "gmail/[Gmail].Sent Mail":sent "Spam":spam "Important":important "gmail/[Gmail].Trash":trash
 # This is getting nasty. Let's just use filters
 
 [Filter.1]
@@ -73,15 +75,12 @@ tags = +bugzilla
 [InboxFilter]
 
 [MailMover]
-folders = iocom/INBOX/ iocom/INBOX.Archive/
-#max_age = 15
+folders = iocom/INBOX/ iocom/INBOX.Archive/ gmail/INBOX/
+max_age = 15
 
 iocom/INBOX/ = 'NOT tag:inbox':iocom/INBOX.Archive/
 iocom/INBOX.Archive/ = 'tag:inbox':iocom/INBOX/
 
-gmail/INBOX = 'NOT tag:inbox':gmail/archive/
-#gmail/INBOX/ = 'NOT tag:inbox':"gmail/[Gmail].All Mail"
-#gmail/[Gmail].Important/ = 'NOT tag:inbox':"gmail/[Gmail].All Mail"
+gmail/INBOX/ = 'NOT tag:inbox':gmail/archive/
 
 # TODO All folders <-> tags
-#
