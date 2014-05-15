@@ -11,6 +11,7 @@ rm ~/.vimrc; ln -s ~/dotfiles/vimrc ~/.vimrc
 rm -rf ~/.vim; ln -s ~/dotfiles/vim ~/.vim
 rm ~/.vimperatorrc; ln -s ~/dotfiles/vimperatorrc ~/.vimperatorrc
 rm -rf ~/.config/khal; mkdir -p ~/.config/khal; ln -s ~/dotfiles/khal.conf ~/.config/khal/khal.conf
+rm -rf ~/.vdirsyncer; mkdir ~/.vdirsyncer; ln -s ~/dotfiles/vdirsyncer/config ~/.vdirsyncer/config
 
 # Mail stuff
 #rm ~/.mbsyncrc; ln -s ~/dotfiles/mbsyncrc ~/.mbsyncrc

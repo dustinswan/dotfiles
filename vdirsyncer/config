@@ -1,0 +1,112 @@
+# An example configuration for vdirsyncer.
+# Optional parameters are commented out.
+
+[general]
+# A folder where vdirsyncer can store some metadata about each pair.
+status_path = ~/.vdirsyncer/status/
+
+# The amount of processes to use when synchronizing. If the CPU of your server
+# is the bottleneck (which is plausible for small homeservers), set this to the
+# number of cores * 2. Defaults to one process for each collection, which means
+# all collections will be synced at once. The value 0 will be ignored, the
+# value 1 disables multiprocessing.
+processes = 2
+
+# CONTACTS
+#[pair google_contacts]
+## A `[pair <name>]` block defines two storages `a` and `b` that should be
+## synchronized. The definition of these storages follows in `[storage <name>]`
+## blocks. This is similar to accounts in OfflineIMAP.
+#a = google_contacts_local
+#b = google_contacts_remote
+
+## If you want to synchronize several addressbooks, calendars etc that share
+## the same storage location and differ only in a suffix to this location
+## (i.e., a subdirectory) you can use collections. The comma-separated values
+## in this parameter represent these subdirectories and are added as URL
+## segments or similar.
+
+## Together with the definition of the following two `[storage]` blocks below
+## in this example it means that
+##   - https://owncloud.example.com/remote.php/carddav/addressbooks/bob/default/
+##     will get synced with ~/.contacts/default/
+##   - https://owncloud.example.com/remote.php/carddav/addressbooks/bob/work/
+##     will get synced with ~/.contacts/work/
+
+## Omitting this parameter implies that the given path and URL in the
+## corresponding `[storage <name>]` blocks are already pointing to a
+## collection each.
+##collections = default,work
+
+## conflict_resolution = None  # abort when collisions occur (default)
+## conflict_resolution = a wins  # assume a's items to be more up-to-date
+## conflict_resolution = b wins  # assume b's items to be more up-to-date
+
+#[storage google_contacts_local]
+## A storage references actual data on a remote server or on the local disk.
+## Similar to repositories in OfflineIMAP.
+#type = filesystem
+#path = ~/.contacts/
+#fileext = .vcf
+#create = True  # create directory if it doesn't exist
+#encoding = utf-8
+
+#[storage google_contacts_remote]
+#type = carddav
+#url = http://google.com
+##auth = basic  # basic|digest
+#username = dustinswan@gmail.com # for http auth, if empty, no auth will be used
+
+#true: The NSA can spy on you with some effort
+#false: Everybody can spy on you with no effort
+#path to SSL cert: People will call you paranoid
+#verify = True
+
+# CALDAV
+[pair google_calendar]
+a = google_calendar_local
+b = google_calendar_remote
+#collections = private,work
+
+[storage google_calendar_local]
+type = filesystem
+path = ~/.calendar
+fileext = .ics
+
+[storage google_calendar_remote]
+type = caldav
+url = https://www.google.com/calendar/dav/dustinswan@gmail.com/user
+auth = basic
+username = dustinswan
+#verify = True
+
+# Optional: Specify a time range which should be synchronized. Either both
+# start_date and end_date or neither have to be set. The default is to
+# synchronize everything.  The following example synchronizes from one year in
+# the past to one year in the future.
+
+# All Python expressions are allowed here. The global namespace contains
+# everything from the datetime module. The expression has to evaluate to a
+# datetime.
+#start_date = datetime.now() - timedelta(days=365)
+
+# Here, start_date is also in the namespace.
+#end_date = datetime.now() + timedelta(days=365)
+
+# HTTP CALENDAR
+#[pair holidays]
+#a = holidays_local
+#b = holidays_remote
+
+#[storage holidays_local]
+#type = filesystem
+#path = ~/.config/vdir/calendars/holidays/
+#fileext = .ics
+
+#[storage holidays_remote]
+#type = http
+#url = https://mozorg.cdn.mozilla.net/media/caldata/QueenslandHolidays.ics
+#auth = basic
+#username =
+#password =
+#verify = True

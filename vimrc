@@ -8,11 +8,13 @@ Bundle 'gmarik/vundle'
 
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'chrisbra/csv.vim'
+Bundle 'spreadsheet.vim'
 Bundle 'szw/vim-dict'
 Bundle 'groenewege/vim-less'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'jelera/vim-javascript-syntax'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'burnettk/vim-angular'
 Bundle 'jQuery'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
@@ -61,6 +63,7 @@ Bundle 'ntpeters/vim-better-whitespace'
 Bundle 'sdanielf/vim-stdtabs'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'gcmt/wildfire.vim'
+Bundle 'lambdatoast/elm.vim'
 
 let $GIT_SSL_NO_VERIFY = 'true'
 
@@ -192,7 +195,7 @@ nnoremap <leader>S :SyntasticToggleMode<cr>
 " Supertab
 " let g:SuperTabDefaultCompletionType="context"
 
-" UltiSnpis
+" UltiSnips
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
@@ -227,8 +230,8 @@ nnoremap <silent><leader><leader>vx :VimuxClosePanes<cr>
 nnoremap <silent><leader><leader>vc :VimuxClearRunnerHistory<cr>
 
 " Vim-Pad
-let g:pad_dir = "~/Dropbox/notes/"
-let g:pad_search_backend = "ack"
+"let g:pad_dir = "~/Dropbox/notes/"
+"let g:pad_search_backend = "ack"
 
 " Haskellmode
 let g:ghc = "/usr/bin/ghc"

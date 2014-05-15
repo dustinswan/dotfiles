@@ -1,5 +1,6 @@
 prefer_plaintext = True
 tabwidth = 4
+bug_on_exit = True
 
 [accounts]
     [[IOCOM]]
