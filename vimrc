@@ -45,14 +45,14 @@ Plugin 'coderifous/textobj-word-column.vim'
 Plugin 'searchfold.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'kshenoy/vim-signature'
-Plugin 'SirVer/ultisnips'
+"Plugin 'SirVer/ultisnips'
 "Plugin 'fmoralesc/vim-pad' " Takes forever to start
 Plugin 'eagletmt/ghc-mod'
-"Plugin 'eagletmt/neco-ghc'
+Plugin 'eagletmt/neco-ghc'
 "Plugin 'lukerandall/haskellmode-vim'
 "Plugin 'bitc/vim-hdevtools'
 Plugin 'Shougo/vimproc.vim'
-"Plugin 'Shougo/neocomplcache'
+Plugin 'Shougo/neocomplcache'
 Plugin 'qstrahl/vim-matchmaker'
 "Plugin 'bling/vim-airline'
 Plugin 'matze/vim-move'
@@ -244,6 +244,8 @@ nnoremap <silent><leader><leader>vc :VimuxClearRunnerHistory<cr>
 "nnoremap <leader>hc :HdevtoolsClear<cr>
 "nnoremap <leader>hi :HdevtoolsInfo<cr>
 
+let g:necoghc_enable_detailed_browse = 1
+
 " automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menu,preview,longest
@@ -258,7 +260,9 @@ map <c-l> <c-w>l<c-w>_
 map <c-h> <c-w>h<c-w>_
 
 " NeoComplCache
-" let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_smart_case = 1
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
 " Vim-move
 let g:move_key_modifier = 'C'
