@@ -1,72 +1,73 @@
 set nocompatible
-
-" Vundle stuff
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Bundle 'gmarik/vundle'
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'chrisbra/csv.vim'
-Bundle 'spreadsheet.vim'
-Bundle 'szw/vim-dict'
-Bundle 'groenewege/vim-less'
-Bundle 'digitaltoad/vim-jade'
-Bundle 'jelera/vim-javascript-syntax'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'burnettk/vim-angular'
-Bundle 'jQuery'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-vinegar'
-Bundle 'tpope/vim-characterize.git'
-Bundle 'tpope/vim-jdaddy'
-Bundle 'tpope/vim-eunuch'
-" Bundle 'tpope/vim-unimpared'
-Bundle 'mileszs/ack.vim'
-Bundle 'justinmk/vim-sneak'
-Bundle 'bkad/CamelCaseMotion'
-Bundle 'majutsushi/tagbar'
-Bundle 'scrooloose/syntastic'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'w0ng/vim-hybrid'
-" Bundle 'ervandew/supertab'
-Bundle 'kien/ctrlp.vim'
-Bundle 'gregsexton/MatchTag'
-" Bundle 'kana/vim-smartinput'
-Bundle 'Raimondi/delimitMate'
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-Bundle 'mbbill/undotree'
-Bundle 'coderifous/textobj-word-column.vim'
-" Bundle 'myusuf3/numbers'
-" Bundle 'benmills/vimux'
-Bundle 'searchfold.vim'
-Bundle 'godlygeek/tabular'
-Bundle 'kshenoy/vim-signature'
-Bundle 'SirVer/ultisnips'
-"Bundle 'fmoralesc/vim-pad' " Takes forever to start
-Bundle 'lukerandall/haskellmode-vim'
-Bundle 'bitc/vim-hdevtools'
-" Bundle 'Shougo/neocomplcache'
-Bundle 'qstrahl/vim-matchmaker'
-"Bundle 'bling/vim-airline'
-Bundle 'matze/vim-move'
-Bundle 'bruno-/vim-vertical-move'
-Bundle 'itchyny/calendar.vim'
-Bundle 'lfilho/cosco.vim'
-Bundle 'ntpeters/vim-better-whitespace'
+Plugin 'gmarik/Vundle.vim'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'chrisbra/csv.vim'
+"Plugin 'spreadsheet.vim'
+Plugin 'szw/vim-dict'
+Plugin 'groenewege/vim-less'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'burnettk/vim-angular'
+Plugin 'jQuery'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-vinegar'
+Plugin 'tpope/vim-characterize.git'
+Plugin 'tpope/vim-jdaddy'
+Plugin 'tpope/vim-eunuch'
+" Plugin 'tpope/vim-unimpared'
+Plugin 'mileszs/ack.vim'
+Plugin 'justinmk/vim-sneak'
+Plugin 'bkad/CamelCaseMotion'
+Plugin 'majutsushi/tagbar'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'w0ng/vim-hybrid'
+" Plugin 'ervandew/supertab'
+Plugin 'kien/ctrlp.vim'
+Plugin 'gregsexton/MatchTag'
+" Plugin 'kana/vim-smartinput'
+Plugin 'Raimondi/delimitMate'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'mbbill/undotree'
+Plugin 'coderifous/textobj-word-column.vim'
+" Plugin 'myusuf3/numbers'
+" Plugin 'benmills/vimux'
+Plugin 'searchfold.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'kshenoy/vim-signature'
+Plugin 'SirVer/ultisnips'
+"Plugin 'fmoralesc/vim-pad' " Takes forever to start
+Plugin 'eagletmt/ghc-mod'
+"Plugin 'eagletmt/neco-ghc'
+"Plugin 'lukerandall/haskellmode-vim'
+"Plugin 'bitc/vim-hdevtools'
+Plugin 'Shougo/vimproc.vim'
+"Plugin 'Shougo/neocomplcache'
+Plugin 'qstrahl/vim-matchmaker'
+"Plugin 'bling/vim-airline'
+Plugin 'matze/vim-move'
+Plugin 'bruno-/vim-vertical-move'
+Plugin 'itchyny/calendar.vim'
+Plugin 'lfilho/cosco.vim'
+Plugin 'ntpeters/vim-better-whitespace'
 " No good for IOCOM
-Bundle 'sdanielf/vim-stdtabs'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'gcmt/wildfire.vim'
-Bundle 'lambdatoast/elm.vim'
+Plugin 'sdanielf/vim-stdtabs'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'gcmt/wildfire.vim'
+Plugin 'lambdatoast/elm.vim'
 
-let $GIT_SSL_NO_VERIFY = 'true'
-
+"let $GIT_SSL_NO_VERIFY = 'true'
+call vundle#end()
 filetype plugin indent on " last Vundle requirement
 
 " mouse
@@ -234,9 +235,14 @@ nnoremap <silent><leader><leader>vc :VimuxClearRunnerHistory<cr>
 "let g:pad_search_backend = "ack"
 
 " Haskellmode
-let g:ghc = "/usr/bin/ghc"
-let g:haddock_browser = "open"
-let g:haddock_browser_callformat = "%s %s"
+"let g:ghc = "/usr/bin/ghc"
+"let g:haddock_browser = "open"
+"let g:haddock_browser_callformat = "%s %s"
+
+" hdevtools
+"nnoremap <leader>ht :HdevtoolsType<cr>
+"nnoremap <leader>hc :HdevtoolsClear<cr>
+"nnoremap <leader>hi :HdevtoolsInfo<cr>
 
 " automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
@@ -253,11 +259,6 @@ map <c-h> <c-w>h<c-w>_
 
 " NeoComplCache
 " let g:neocomplcache_enable_at_startup = 1
-
-" hdevtools
-nnoremap <leader>ht :HdevtoolsType<cr>
-nnoremap <leader>hc :HdevtoolsClear<cr>
-nnoremap <leader>hi :HdevtoolsInfo<cr>
 
 " Vim-move
 let g:move_key_modifier = 'C'
