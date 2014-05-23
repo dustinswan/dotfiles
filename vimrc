@@ -65,6 +65,7 @@ Plugin 'sdanielf/vim-stdtabs'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'gcmt/wildfire.vim'
 Plugin 'lambdatoast/elm.vim'
+Plugin 'AndrewRadev/splitjoin.vim'
 
 "let $GIT_SSL_NO_VERIFY = 'true'
 call vundle#end()
