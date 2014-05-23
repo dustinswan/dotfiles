@@ -44,6 +44,7 @@ Plugin 'coderifous/textobj-word-column.vim'
 " Plugin 'benmills/vimux'
 Plugin 'searchfold.vim'
 Plugin 'godlygeek/tabular'
+Plugin 'tommcdo/vim-lion'
 Plugin 'kshenoy/vim-signature'
 "Plugin 'SirVer/ultisnips'
 "Plugin 'fmoralesc/vim-pad' " Takes forever to start
