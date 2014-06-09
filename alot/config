@@ -22,3 +22,4 @@ bug_on_exit = True
     'I I' = search tag:iocom AND tag:inbox
     'G G' = search tag:gmail AND tag:inbox
     r = refresh
+    R = shellescape --thread true quick_check_mail.sh; refresh
