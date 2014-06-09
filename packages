@@ -1,70 +1,180 @@
-// Keys must be one of:
-// brew, cask, arch, aur, pip, gem, npm
+# Keys: brew, cask, arch, aur, pip, gem, npm
 
-var packages = [
+# Buildy stuff
+brew-cask:
+    brew: brew-cask
+node:
+    brew: node
+    arch: nodejs
+openssl:
+    brew: openssl
+    arch: openssl
+python:
+    brew: python --with-brewed-openssl
+    arch: python2
+ruby:
+    brew: chruby ruby-build
+    aur: chruby ruby-build
+haskell:
+    brew: haskell-platform
+    arch: ghc cabal-install haddock happy alex
 
-// With which to build
-{ brew: "node", arch: "nodejs" },
-{ brew: "python --with-brewed-openssl", arch: "python2" },
-{ brew: "ruby-install" },
-//{ brew: "chruby", aur: "chruby" }, // TODO chruby fish
-{ brew: "haskell-platform" },
-{ arch: "ghc cabal-install haddock happy alex" }, // No Haskell-Platform on Arch
+# Unixy stuff
+coreutils:
+    brew: coreutils
+    arch: coreutils
+findutils:
+    brew: findutils
+    arch: findutils
+aspell:
+    brew: aspell
+    arch: apsell
+git:
+    brew: git
+    arch: git
+perforce:
+    brew: perforce
+    aur: p4
+tmux:
+    brew: tmux
+    arch: tmux
+wget:
+    brew: wget --enable-iri
+    arch: wget
+weechat:
+    brew: weechat --with-aspell --with-python --with-ruby
+    arch: weechat
+ranger:
+    brew: ranger
+    arch: ranger
+bash:
+    brew: bash
+    arch: bash
+zsh:
+    brew: zsh
+    arch: zsh
+ack:
+    brew: ack
+    arch: ack
+tree:
+    brew: tree
+    arch: tree
+openssh:
+    brew: openssh --with-brewed-openssl
+ssh-copy-id:
+    brew: ssh-copy-id
+ffind:
+    brew: ffind # No arch package
+vim:
+    brew: macvim --HEAD --override-system-vim
+    arch: gvim
+imagemagick:
+    brew: imagemagick
+    arch: imagemagick
+imagesnap:
+    brew: imagesnap # TODO Linux
+mosh:
+    brew: mosh
+    arch: mosh
+ca-certificates:
+    brew: curl-ca-bundle
+    arch: ca-certificates
+watch:
+    brew: watch
+gnupg:
+    brew: gnupg
+    arch: gnupg
+gpg-agent:
+    brew: gpg-agent
+gpgme:
+    brew: gpgme
+    arch: gpgme
+mplayer:
+    brew: mplayer
+    arch: mplayer
+ncmpcpp:
+    brew: ncmpcpp --clock --outputs --visualizer --HEAD
+    arch: ncmpcpp
+mopidy: # TODO
+    pip: mopidy
+gstreamer:
+    brew: gstreamer010 # TODO gst-plugnis*** --with-***
 
-// Command Line Utils
-{ brew: "coreutils" },
-{ brew: "findutils" },
-{ brew: "aspell" },
-{ brew: "git" },
-{ brew: "perforce", aur: "p4" },
-{ brew: "tmux", arch: "tmux" },
-{ brew: "wget" },
-{ brew: "weechat", arch: "weechat" },
-{ brew: "ranger", arch: "ranger" },
-{ brew: "bash" },
-{ brew: "fish", arch: "fish" },
-{ brew: "ack", arch: "ack" },
-{ brew: "openssl" },
-{ brew: "openssh --with-brewed-openssl" },
-{ brew: "ssh-copy-id" },
-{ brew: "ffind" },
-{ brew: "vim --HEAD --override-system-vim", arch: "gvim" },
-{ brew: "msmtp", arch: "msmtp" },
-{ brew: "mutt", aur: "mutt-sidebar" }, // TODO sidebar patch
-{ brew: "urlview", aur: "urlview" },
-{ brew: "isync", aur: "isync" },
-{ brew: "mosh", arch: "mosh" },
-{ brew: "tree", arch: "tree" },
-{ brew: "imagesnap" }, // TODO linux
-{ brew: "imagemagick", arch: "imagemagick" },
+# Mail stuff
+msmtp:
+    brew: msmtp
+    arch: msmtp
+urlview:
+    brew: urlview
+    aur: urlview
+offlineimap:
+    brew: offlineimap
+    arch: offlineimap
+notmuch:
+    brew: notmuch
+    arch: notmuch
+alot:
+    aur: alot
+    # brew: alot # TODO
+#afew: # TODO
 
-// Desktop Applications
-// Mac Only
-{ brew: "brew-cask" },
-{ cask: "rdio" },
-{ cask: "alfred" },
-{ cask: "slate" },
-{ cask: "charles" },
-{ cask: "iterm2" },
-{ cask: "asepsis" },
-{ cask: "keyremap4macbook" },
-{ cask: "the-unarchiver" },
-{ cask: "launchrocket" },
-{ cask: "thunderbird" },
+# Multiplatform desktop stuff
 
-// Linux Only
-{ arch: "rxvt-unicode" },
-// TODO wm
-
+spotify:
+    cask: spotify
+    aur: spotify
 // All OSes
-{ cask: "google-chrome", arch: "chromium" },
-{ cask: "firefox", arch: "firefox" },
-{ cask: "dropbox", aur: "dropbox" },
-{ cask: "vlc", arch: "vlc" },
-{ cask: "transmission" }, // TODO linux
-{ cask: "electrum", aur: "electrum" },
-{ cask: "steam" }, // TODO linux
-{ cask: "sketchup" }, // TODO linux
-{ cask: "audacity", arch: "audacity" },
+firefox:
+    cask: firefox
+    arch: firefox
+chrome:
+    cask: google-chrome
+    arch: chromium
+dropbox:
+    cask: dropbox
+    aur: dropbox
+google-drive:
+    cask: google-drive # TODO linux
+vlc:
+    cask: vlc
+    arch: vlc
+electrum:
+    cask: electrum
+    aur: electrum
+steam:
+    cask: steam
+    arch: steam
+sketchup:
+    cask: sketchup # TODO linux
+truecrypt:
+    cask: truecrypt
+    arch: truecrypt
 
-];
+# Mac-only desktop stuff
+alfred:
+    cask: alfred
+slate:
+    cask: slate
+charles:
+    cask: charles
+iterm2:
+    brew: iterm2
+keyremap4macbook:
+    cask: keyremap4macbook
+the-unarchiver:
+    cask: the-unarchiver
+launchrocket:
+    cask: launchrocket
+flux:
+    cask: flux
+xquartz:
+    cask: xquartz
+macpass:
+    cask: macpass
+time-out:
+    cask: time-out
+
+# Linux-only
+urxvt:
+    arch: rxvt-unicode
+# TODO wm
