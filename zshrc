@@ -11,6 +11,7 @@ alias l="ls -la"
 alias tmux="tmux -2"
 alias ta="tmux attach -d"
 alias dustinswan="mosh dustinswan@dustinswan.org"
+alias kill_offlienimap="ps aux | grep offlineimap | awk '{ print $2 }' | xargs kill -9"
 export EDITOR=vim
 export TERM="screen-256color"
 export MOSH_TITLE_NOPREFIX=1
@@ -30,6 +31,7 @@ alias p4vimdiff "set -x P4DIFF vimdiff; p4 diff"
 alias visidev="ssh root@visidev.iocom.com 'cd /; p4 sync'; scp /opt/iocom/user/webclient/all_desktop.js root@visidev.iocom.com:/opt/iocom/user/webclient/; scp /opt/iocom/user/webclient/css/all_desktop.css root@visidev.iocom.com:/opt/iocom/user/webclient/css/"
 alias dswan="ssh root@dswan.insors.net"
 alias webdev='ssh -t root@webdev.insors.net "cd /var/www/html; /bin/bash -i"'
+alias er='rm -rf logs; unzip -o -P qt'
 
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH # Homebrew
 export PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH # Postgres
