@@ -3,18 +3,14 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+Plugin 'sheerun/vim-polyglot'
 Plugin 'gmarik/Vundle.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'chrisbra/csv.vim'
 "Plugin 'spreadsheet.vim'
 Plugin 'szw/vim-dict'
-Plugin 'groenewege/vim-less'
-Plugin 'digitaltoad/vim-jade'
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'kchmck/vim-coffee-script'
 Plugin 'burnettk/vim-angular'
 Plugin 'jQuery'
-Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-surround'
