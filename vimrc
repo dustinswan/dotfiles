@@ -3,8 +3,8 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'sheerun/vim-polyglot'
 Plugin 'gmarik/Vundle.vim'
+Plugin 'sheerun/vim-polyglot'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'chrisbra/csv.vim'
 "Plugin 'spreadsheet.vim'
