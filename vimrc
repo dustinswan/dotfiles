@@ -75,7 +75,7 @@ if has("mouse")
 endif
 
 " general goodness
-set shell=/bin/bash " Syntastic breaks when trying to write to /var/folders
+"set shell=/bin/bash " Syntastic breaks when trying to write to /var/folders
 syntax enable
 let mapleader=","
 let maplocalleader="\\"
