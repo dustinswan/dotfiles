@@ -8,6 +8,9 @@ ignorekeys add cmd\.fm
 ignorekeys add getpocket\.com
 ignorekeys add google\.com\/search
 ignorekeys add grooveshark\.com
+ignorekeys add dswan\.insors\.net\/webclient
+ignorekeys add visitest\.iocom\.com\/webclient
+ignorekeys add visimeet\.iocom\.com\/webclient
 
 set gui=nonavigation
 set editor='bash -lc "mvim -f \$*" mvim'
