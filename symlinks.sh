@@ -30,4 +30,4 @@ rm ~/Library/KeyBindings/DefaultKeyBinding.dict; cp ~/dotfiles/DefaultKeyBinding
 # TODO linux only
 rm -rf ~/.i3; mkdir ~/.i3; ln -s ~/dotfiles/i3/config ~/.i3/config
 rm -rf ~/.Xresources; ln -s ~/dotfiles/Xresources ~/.Xresources
-rm -rf ~/.xinitrc; ln -s ~/dotfiles/xinitrc ~/.xinitrc
+rm -rf ~/.xinitrc; ln -s ~/dotfiles/xinitrc.nixos ~/.xinitrc

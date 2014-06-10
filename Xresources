@@ -3,13 +3,14 @@
 !Xft.antialias: false
 !Xft.dpi: 80
 !Xft.rgba: rgb
-Xft*font:             Tamsynmod:Regular:pixelsize=14
+!Xft*font:             Tamsynmod:Regular:pixelsize=14
+!Xft*font:             Regular:pixelsize=14
 
 ! dzen2
 dzen2*foreground:       #ffffff
 dzen2*background:       #000000
 !dzen2*font:            -*-fixed-*-*-*-*-10-*-*-*-*-*-*-*
-dzen2*font:             Tamsynmod:Regular:pixelsize=14
+!dzen2*font:             Tamsynmod:Regular:pixelsize=14
 
 ! urxvt
 urxvt*loginShell:       true
@@ -20,10 +21,12 @@ urxvt*cursorBlink:      false
 urxvt*urgentOnBell:     true
 urxvt*urlLauncher:      /usr/bin/luakit
 urxvt*termName:         rxvt-unicode-256color
-!urxvt*font:             -*-fixed-*-*-*-*-11-*-*-*-*-*-*-*
-!urxvt*boldFont:         -*-fixed-*-*-*-*-11-*-*-*-*-*-*-*
-urxvt*font:             xft:Tamsyn:Regular:pixelsize=14,xft:Inconsolata for Powerline:Regular:pixelsize=14
-urxvt*boldFont:         xft:Tamsyn:Bold:pixelsize=14,xft:Inconsolata for Powerline:Bold:pixelsize=14
+!urxvt*font:             -*-fixed-*-*-*-*-14-*-*-*-*-*-*-*
+!urxvt*boldFont:         -*-fixed-*-*-*-*-14-*-*-*-*-*-*-*
+!urxvt*font:             xft:Tamsyn:Regular:pixelsize=14,xft:Inconsolata for Powerline:Regular:pixelsize=14
+!urxvt*boldFont:         xft:Tamsyn:Bold:pixelsize=14,xft:Inconsolata for Powerline:Bold:pixelsize=14
+urxvt*font:             -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+urxvt*boldFont:             -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 
 ! Colors
 urxvt*depth:            32
