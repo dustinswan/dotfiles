@@ -1,5 +1,9 @@
 # Powerline
-source $(find -L ~ -name "powerline.zsh" | head -n 1)
+# Mac
+[[ -s /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh ]] && . /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+# Linux
+[[ -s /usr/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh ]] && . /usr/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+
 
 bindkey -e
 
