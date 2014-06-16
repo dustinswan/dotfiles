@@ -4,7 +4,6 @@
 # Linux
 [[ -s /usr/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh ]] && . /usr/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
-
 bindkey -e
 
 alias vi=vim
@@ -56,14 +55,16 @@ if [[ -e /usr/share/chruby ]]; then
     chruby $(cat ~/.ruby-version)
 fi
 
-# GPG
-GPG_AGENT=$(which gpg-agent)
-GPG_TTY=`tty`
-export GPG_TTY
+eval `keychain --eval id_rsa`
 
-if [ -f ${GPG_AGENT} ]; then
-    . ~/dotfiles/bin/gpg-agent.sh
-fi
+# GPG
+#GPG_AGENT=$(which gpg-agent)
+#GPG_TTY=`tty`
+#export GPG_TTY
+
+#if [ -f ${GPG_AGENT} ]; then
+    #. ~/dotfiles/bin/gpg-agent.sh
+#fi
 
 #autoload predict-on
 #predict-on
