@@ -11,7 +11,7 @@ alias l="ls -la"
 alias tmux="tmux -2"
 alias ta="tmux attach -d"
 alias dustinswan="mosh dustinswan@dustinswan.org"
-alias kill_offlienimap="ps aux | grep offlineimap | awk '{ print $2 }' | xargs kill -9"
+alias kill_offlineimap="ps aux | grep offlineimap | awk '{ print $2 }' | xargs kill -9"
 export EDITOR=vim
 export TERM="screen-256color"
 export MOSH_TITLE_NOPREFIX=1
@@ -56,15 +56,6 @@ if [[ -e /usr/share/chruby ]]; then
 fi
 
 eval `keychain --eval id_rsa`
-
-# GPG
-#GPG_AGENT=$(which gpg-agent)
-#GPG_TTY=`tty`
-#export GPG_TTY
-
-#if [ -f ${GPG_AGENT} ]; then
-    #. ~/dotfiles/bin/gpg-agent.sh
-#fi
 
 #autoload predict-on
 #predict-on
