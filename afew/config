@@ -2,76 +2,7 @@
 #[ClassifyingFilter]
 [KillThreadsFilter]
 [ListMailsFilter]
-[ArchiveSentMailsFilter] # Looks for mails sent from my addresses, adds sent tag
-
-#[FolderNameFilter]
-#folder_blacklist = iocom/INBOX gmail/INBOX gmail/[Gmail].Important gmail/[Gmail].Starred
-#folder_transforms = Archive:archive Drafts:drafts Sent:sent Trash:trash Builder:builder Info:info Netmon:netmon Spam:spam "gmail/Kara Hetz":"Kara Hetz" "All Mail":archive "gmail/[Gmail].Drafts":drafts "gmail/[Gmail].Sent Mail":sent "Spam":spam "Important":important "gmail/[Gmail].Trash":trash
-#folder_explicit_list = gmail/
-#folder_transforms = Archive:archive Drafts:drafts Sent:sent Trash:trash Builder:builder Info:info Netmon:netmon Spam:spam "gmail/Kara Hetz":"Kara Hetz" "All Mail":archive "gmail/[Gmail].Drafts":drafts "gmail/[Gmail].Sent Mail":sent "Spam":spam "Important":important "gmail/[Gmail].Trash":trash
-# This is getting nasty. Let's just use filters
-
-[Filter.1]
-message = Gmail
-query = folder:gmail
-tags = +gmail
-
-[Filter.2]
-message = IOCOM
-query = folder:iocom
-tags = +iocom
-
-[Filter.4] # Need this filter before the All Mail one.. I think
-message = Gmail Inbox
-query = folder:gmail/INBOX
-tags = -new;+inbox
-
-[Filter.8]
-message = Drafts
-query = folder:iocom/INBOX.Drafts OR folder:gmail/drafts
-tags = -new;+drafts
-
-[Filter.10]
-message = Sent
-query = folder:iocom/INBOX.Sent OR folder:gmail/sent
-tags = -new;+sent
-
-[Filter.12]
-message = Spam
-query = folder:iocom/INBOX.spam OR folder:gmail/spam
-tags = -new;+spam
-
-[Filter.14]
-message = Trash
-query = folder:iocom/INBOX.Trash OR folder:gmail/trash
-tags = -new;+trash
-
-[Filter.15]
-message = Archived
-query = folder:iocom/INBOX.Archive OR folder:gmail/archive
-tags = -new;-inbox
-
-# IOCOM specific folders
-
-[Filter.16]
-message = Builder
-query = folder:iocom/INBOX.builder
-tags = +builder;-spam;-new
-
-[Filter.18]
-message = Netmon
-query = folder:iocom/INBOX.netmon
-tags = +netmon;-spam;-new
-
-# IOCOM tags, no corresponding folder
-
-[Filter.20]
-message = Bugzilla
-query = from:bugzilla-daemon@bugzilla.insors.net
-tags = +bugzilla
-
-# Gmail specific folders (what Gmail calls tags) TODO
-
+[ArchiveSentMailsFilter]
 [InboxFilter]
 
 [MailMover]
@@ -82,5 +13,4 @@ iocom/INBOX/ = 'NOT tag:inbox':iocom/INBOX.Archive/
 iocom/INBOX.Archive/ = 'tag:inbox':iocom/INBOX/
 
 gmail/INBOX/ = 'NOT tag:inbox':gmail/archive/
-
 # TODO All folders <-> tags

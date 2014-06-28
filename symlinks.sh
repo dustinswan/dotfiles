@@ -13,6 +13,7 @@ rm ~/.vimperatorrc; ln -s ~/dotfiles/vimperatorrc ~/.vimperatorrc
 rm -rf ~/.config/khal; mkdir -p ~/.config/khal; ln -s ~/dotfiles/khal.conf ~/.config/khal/khal.conf
 rm -rf ~/.vdirsyncer; mkdir ~/.vdirsyncer; ln -s ~/dotfiles/vdirsyncer/config ~/.vdirsyncer/config
 rm ~/.zshrc; ln -s ~/dotfiles/zshrc ~/.zshrc
+rm ~/.jrnl_config; ln -s ~/dotfiles/jrnl_config ~/.jrnl_config
 
 # Mail stuff
 #rm ~/.mbsyncrc; ln -s ~/dotfiles/mbsyncrc ~/.mbsyncrc

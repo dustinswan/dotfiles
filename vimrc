@@ -63,6 +63,9 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'gcmt/wildfire.vim'
 Plugin 'lambdatoast/elm.vim'
 Plugin 'AndrewRadev/splitjoin.vim'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'junegunn/goyo.vim'
 
 "let $GIT_SSL_NO_VERIFY = 'true'
 call vundle#end()
@@ -169,9 +172,9 @@ python del powerline_setup
 "let g:airline#extensions#tabline#enabled=1
 
 " Colors
-set background=dark
 " colorscheme default
 colorscheme hybrid
+set background=dark
 
 " Tagbar
 nnoremap <silent><leader>t :TagbarToggle <cr>
@@ -277,3 +280,4 @@ autocmd FileType javascript,css inoremap <silent> ,; <ESC>:call cosco#commaOrSem
 
 " Browser
 :let g:netrw_browsex_viewer = "browser"
+
