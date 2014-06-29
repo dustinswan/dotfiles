@@ -10,6 +10,7 @@ notmuch tag +iocom +draft               -- tag:new AND folder:iocom/INBOX.Drafts
 notmuch tag +iocom +sent                -- tag:new AND folder:iocom/INBOX.Sent
 notmuch tag +iocom +spam                -- tag:new AND folder:iocom/INBOX.Spam
 notmuch tag +iocom +trash               -- tag:new AND folder:iocom/INBOX.Trash
+notmuch tag +iocom                      -- tag:new AND folder:iocom/INBOX.Archive
 notmuch tag +iocom -inbox               -- folder:iocom/INBOX.Archive AND tag:inbox
 
 # Gmail
@@ -18,6 +19,7 @@ notmuch tag +gmail +draft               -- tag:new AND folder:gmail/drafts
 notmuch tag +gmail +sent                -- tag:new AND folder:gmail/sent
 notmuch tag +gmail +spam                -- tag:new AND folder:gmail/spam
 notmuch tag +gmail +trash               -- tag:new AND folder:gmail/trash
+notmuch tag +gmail                      -- tag:new AND folder:gmail/archive
 notmuch tag +gmail -inbox               -- tag:inbox AND tag:gmail NOT folder:gmail/INBOX
 # TODO gmail tags
 

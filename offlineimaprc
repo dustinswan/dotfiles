@@ -16,7 +16,7 @@ localfolders = ~/.mail/iocom
 type = IMAP
 remotehost = secure.emailsrvr.com
 remoteuser = dswan@insors.com
-remotepasseval = iocom_password()
+remotepasseval = decrypt_password(".iocom-password.gpg")
 realdelete = no
 
 
@@ -39,7 +39,7 @@ nametrans = lambda folder: re.sub('spam', '[Gmail].Spam',
 [Repository GmailRemote]
 type = Gmail
 remoteuser = dustinswan@gmail.com
-remotepasseval = gmail_password()
+remotepasseval = decrypt_password(".gmail-password.gpg")
 realdelete = no
 sslcacertfile = /usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
 nametrans = lambda folder: re.sub('.*Spam$', 'spam',
