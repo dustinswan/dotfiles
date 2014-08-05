@@ -1,4 +1,5 @@
 ignorekeys add mail\.google\.com
+ignorekeys add apps\.rackspace\.com\/a\/webmail.php
 ignorekeys add google\.com/calendar
 ignorekeys add docs\.google\.com
 ignorekeys add feedly\.com
