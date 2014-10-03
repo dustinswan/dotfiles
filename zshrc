@@ -1,12 +1,3 @@
-# Powerline
-# Mac
-#[[ -s /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh ]] && . /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
-# Linux
-#[[ -s /usr/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh ]] && . /usr/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
-
-# Nix
-. /Users/dustinswan/.nix-profile/etc/profile.d/nix.sh
-
 bindkey -e
 
 alias vi=vim
@@ -32,6 +23,7 @@ alias visidev="ssh root@visidev.iocom.com 'cd /; p4 sync'; scp /opt/iocom/user/w
 alias dswan="ssh root@dswan.insors.net"
 alias er='rm -rf logs; unzip -o -P'
 
+# PATH
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH # Homebrew
 export PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH
 export PATH=/usr/local/share/python:$PATH
@@ -43,6 +35,9 @@ export NODE_PATH=/usr/local/lib/node:/usr/local/share/npm/lib/node_modules
 export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
 export SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
 
+# Nix
+. /Users/dustinswan/.nix-profile/etc/profile.d/nix.sh
+
 # Chruby
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
@@ -52,8 +47,8 @@ source /usr/local/share/chruby/auto.sh
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 
-autoload predict-on
-predict-on
+#autoload predict-on
+#predict-on
 
 eval `keychain --eval id_rsa`
 
