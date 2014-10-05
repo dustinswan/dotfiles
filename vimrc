@@ -45,11 +45,12 @@ Plugin 'kshenoy/vim-signature'
 "Plugin 'SirVer/ultisnips'
 "Plugin 'fmoralesc/vim-pad' " Takes forever to start
 Plugin 'eagletmt/ghc-mod'
-Plugin 'eagletmt/neco-ghc'
+"Plugin 'eagletmt/neco-ghc'
 "Plugin 'lukerandall/haskellmode-vim'
-"Plugin 'bitc/vim-hdevtools'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'Shougo/neocomplcache'
+Plugin 'bitc/vim-hdevtools'
+Plugin 'idris-hackers/idris-vim'
+"Plugin 'Shougo/vimproc.vim'
+"Plugin 'Shougo/neocomplcache'
 Plugin 'qstrahl/vim-matchmaker'
 "Plugin 'bling/vim-airline'
 Plugin 'matze/vim-move'
@@ -59,13 +60,14 @@ Plugin 'lfilho/cosco.vim'
 Plugin 'ntpeters/vim-better-whitespace'
 " No good for IOCOM
 Plugin 'sdanielf/vim-stdtabs'
-Plugin 'airblade/vim-gitgutter'
+"Plugin 'airblade/vim-gitgutter'
 Plugin 'gcmt/wildfire.vim'
 Plugin 'lambdatoast/elm.vim'
 Plugin 'AndrewRadev/splitjoin.vim'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'junegunn/goyo.vim'
+Plugin 'Rykka/clickable.vim'
 
 "let $GIT_SSL_NO_VERIFY = 'true'
 call vundle#end()
@@ -102,7 +104,7 @@ set laststatus=2 " Always show the statusline
 set scrolloff=5 " Give us a few lines before and after the cursor
 
 " Encryption
-set cryptmethod=blowfish
+set cryptmethod=blowfish2
 
 " long lines
 set wrap
@@ -241,11 +243,13 @@ nnoremap <silent><leader><leader>vc :VimuxClearRunnerHistory<cr>
 "let g:haddock_browser_callformat = "%s %s"
 
 " hdevtools
-"nnoremap <leader>ht :HdevtoolsType<cr>
-"nnoremap <leader>hc :HdevtoolsClear<cr>
-"nnoremap <leader>hi :HdevtoolsInfo<cr>
+nnoremap <leader>ht :HdevtoolsType<cr>
+nnoremap <leader>hc :HdevtoolsClear<cr>
+nnoremap <leader>hi :HdevtoolsInfo<cr>
 
-let g:necoghc_enable_detailed_browse = 1
+autocmd BufEnter *.hs set formatprg=pointfree
+
+"let g:necoghc_enable_detailed_browse = 1
 
 " automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
