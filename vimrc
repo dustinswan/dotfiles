@@ -1,74 +1,73 @@
 set nocompatible
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+"filetype off
+"set rtp+=~/.vim/bundle/Vundle.vim
+"call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'
-Plugin 'sheerun/vim-polyglot'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'chrisbra/csv.vim'
-"Plugin 'spreadsheet.vim'
-Plugin 'szw/vim-dict'
-Plugin 'burnettk/vim-angular'
-Plugin 'jQuery'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-vinegar'
-Plugin 'tpope/vim-characterize.git'
-Plugin 'tpope/vim-jdaddy'
-Plugin 'tpope/vim-eunuch'
-" Plugin 'tpope/vim-unimpared'
-Plugin 'mileszs/ack.vim'
-Plugin 'justinmk/vim-sneak'
-Plugin 'bkad/CamelCaseMotion'
-Plugin 'majutsushi/tagbar'
-Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'w0ng/vim-hybrid'
-" Plugin 'ervandew/supertab'
-Plugin 'kien/ctrlp.vim'
-Plugin 'gregsexton/MatchTag'
-" Plugin 'kana/vim-smartinput'
-Plugin 'Raimondi/delimitMate'
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plugin 'mbbill/undotree'
-Plugin 'coderifous/textobj-word-column.vim'
-" Plugin 'myusuf3/numbers'
-" Plugin 'benmills/vimux'
-Plugin 'searchfold.vim'
-Plugin 'godlygeek/tabular'
-Plugin 'tommcdo/vim-lion'
-Plugin 'kshenoy/vim-signature'
-"Plugin 'SirVer/ultisnips'
-"Plugin 'fmoralesc/vim-pad' " Takes forever to start
-Plugin 'eagletmt/ghc-mod'
-Plugin 'eagletmt/neco-ghc'
-"Plugin 'lukerandall/haskellmode-vim'
-"Plugin 'bitc/vim-hdevtools'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'Shougo/neocomplcache'
-Plugin 'qstrahl/vim-matchmaker'
-"Plugin 'bling/vim-airline'
-Plugin 'matze/vim-move'
-Plugin 'bruno-/vim-vertical-move'
-Plugin 'itchyny/calendar.vim'
-Plugin 'lfilho/cosco.vim'
-Plugin 'ntpeters/vim-better-whitespace'
-" No good for IOCOM
-Plugin 'sdanielf/vim-stdtabs'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'gcmt/wildfire.vim'
-Plugin 'lambdatoast/elm.vim'
-Plugin 'AndrewRadev/splitjoin.vim'
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'junegunn/goyo.vim'
+call plug#begin('~/.vim/plugged')
 
+"Plug 'gmarik/Vundle.vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'szw/vim-dict'
+Plug 'burnettk/vim-angular'
+Plug 'jQuery'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-characterize'
+Plug 'tpope/vim-jdaddy'
+Plug 'tpope/vim-eunuch'
+" Plug 'tpope/vim-unimpared'
+Plug 'mileszs/ack.vim'
+Plug 'justinmk/vim-sneak'
+Plug 'bkad/CamelCaseMotion'
+Plug 'majutsushi/tagbar'
+Plug 'scrooloose/syntastic'
+Plug 'scrooloose/nerdcommenter'
+Plug 'w0ng/vim-hybrid'
+" Plug 'ervandew/supertab'
+Plug 'kien/ctrlp.vim'
+Plug 'gregsexton/MatchTag'
+" Plug 'kana/vim-smartinput'
+Plug 'Raimondi/delimitMate'
+Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plug 'mbbill/undotree'
+Plug 'coderifous/textobj-word-column.vim'
+Plug 'benmills/vimux'
+Plug 'searchfold.vim'
+Plug 'godlygeek/tabular'
+Plug 'tommcdo/vim-lion'
+Plug 'kshenoy/vim-signature'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+Plug 'eagletmt/ghc-mod'
+"Plug 'eagletmt/neco-ghc'
+"Plug 'lukerandall/haskellmode-vim'
+Plug 'bitc/vim-hdevtools'
+Plug 'idris-hackers/idris-vim'
+Plug 'qstrahl/vim-matchmaker'
+"Plug 'bling/vim-airline'
+Plug 'matze/vim-move'
+Plug 'bruno-/vim-vertical-move'
+Plug 'itchyny/calendar.vim'
+Plug 'lfilho/cosco.vim'
+Plug 'ntpeters/vim-better-whitespace'
+Plug 'sdanielf/vim-stdtabs'
+Plug 'airblade/vim-gitgutter'
+Plug 'gcmt/wildfire.vim'
+Plug 'lambdatoast/elm.vim'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'junegunn/goyo.vim'
+
+call plug#end()
 "let $GIT_SSL_NO_VERIFY = 'true'
-call vundle#end()
+"call vundle#end()
 filetype plugin indent on " last Vundle requirement
 
 " mouse
@@ -78,7 +77,7 @@ if has("mouse")
 endif
 
 " general goodness
-"set shell=/bin/bash " Syntastic breaks when trying to write to /var/folders
+set shell=/bin/bash " Syntastic breaks when trying to write to /var/folders
 syntax enable
 let mapleader=","
 let maplocalleader="\\"
@@ -102,7 +101,7 @@ set laststatus=2 " Always show the statusline
 set scrolloff=5 " Give us a few lines before and after the cursor
 
 " Encryption
-set cryptmethod=blowfish
+set cryptmethod=blowfish2
 
 " long lines
 set wrap
@@ -164,13 +163,6 @@ python from powerline.vim import setup as powerline_setup
 python powerline_setup()
 python del powerline_setup
 
-" Airline
-"let g:airline_left_sep=''
-"let g:airline_right_sep=''
-" let g:airline_theme='solarized'
-"let g:airline_powerline_fonts=1
-"let g:airline#extensions#tabline#enabled=1
-
 " Colors
 " colorscheme default
 colorscheme hybrid
@@ -198,6 +190,7 @@ nnoremap <leader>S :SyntasticToggleMode<cr>
 " let g:SuperTabDefaultCompletionType="context"
 
 " UltiSnips
+let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
@@ -212,9 +205,6 @@ nnoremap <leader>a :Ack<space>
 " use ag
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
-" Clam
-" nnoremap ! :Clam<space>
-
 " Buffer selection
 nnoremap <leader>l :ls<cr>:b<space>
 
@@ -222,18 +212,13 @@ nnoremap <leader>l :ls<cr>:b<space>
 "let g:ctrlp_max_files = 10000
 let g:ctrlp_clear_cache_on_exit = 0
 
-" Vimux stuff
-nnoremap <silent><leader><leader>vp :VimuxPromptCommand<cr>
-nnoremap <silent><leader><leader>vl :VimuxRunLastCommand<cr>
-nnoremap <silent><leader><leader>vi :VimuxInspectRunner<cr>
-nnoremap <silent><leader><leader>vq :VimuxCloseRunner<cr>
-nnoremap <silent><leader><leader>vs :VimuxInterruptRunner<cr>
-nnoremap <silent><leader><leader>vx :VimuxClosePanes<cr>
-nnoremap <silent><leader><leader>vc :VimuxClearRunnerHistory<cr>
-
-" Vim-Pad
-"let g:pad_dir = "~/Dropbox/notes/"
-"let g:pad_search_backend = "ack"
+" Vimux
+nnoremap <Leader>vp :VimuxPromptCommand<CR>
+nnoremap <Leader>vl :VimuxRunLastCommand<CR>
+nnoremap <Leader>vi :VimuxInspectRunner<CR>
+nnoremap <Leader>vq :VimuxCloseRunner<CR>
+nnoremap <Leader>vx :VimuxInterruptRunner<CR>
+nnoremap <Leader>vz :call VimuxZoomRunner()<CR>
 
 " Haskellmode
 "let g:ghc = "/usr/bin/ghc"
@@ -241,11 +226,13 @@ nnoremap <silent><leader><leader>vc :VimuxClearRunnerHistory<cr>
 "let g:haddock_browser_callformat = "%s %s"
 
 " hdevtools
-"nnoremap <leader>ht :HdevtoolsType<cr>
-"nnoremap <leader>hc :HdevtoolsClear<cr>
-"nnoremap <leader>hi :HdevtoolsInfo<cr>
+nnoremap <leader>ht :HdevtoolsType<cr>
+nnoremap <leader>hc :HdevtoolsClear<cr>
+nnoremap <leader>hi :HdevtoolsInfo<cr>
 
-let g:necoghc_enable_detailed_browse = 1
+autocmd BufEnter *.hs set formatprg=pointfree
+
+"let g:necoghc_enable_detailed_browse = 1
 
 " automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
@@ -255,15 +242,8 @@ set completeopt=menu,preview,longest
 nnoremap <leader>u :UndotreeToggle<cr>
 
 " Move between splits
-map <c-j> <c-w>j<c-w>_
-map <c-k> <c-w>k<c-w>_
 map <c-l> <c-w>l<c-w>_
 map <c-h> <c-w>h<c-w>_
-
-" NeoComplCache
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_smart_case = 1
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
 " Vim-move
 let g:move_key_modifier = 'C'
@@ -281,3 +261,5 @@ autocmd FileType javascript,css inoremap <silent> ,; <ESC>:call cosco#commaOrSem
 " Browser
 :let g:netrw_browsex_viewer = "browser"
 
+" Calendar
+let g:calendar_google_calendar = 1
