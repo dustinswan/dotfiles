@@ -41,9 +41,9 @@ Plug 'searchfold.vim'
 Plug 'godlygeek/tabular'
 Plug 'tommcdo/vim-lion'
 Plug 'kshenoy/vim-signature'
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+"Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
 Plug 'eagletmt/ghc-mod'
 "Plug 'eagletmt/neco-ghc'
 "Plug 'lukerandall/haskellmode-vim'
@@ -64,6 +64,7 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'junegunn/goyo.vim'
+Plug 'haya14busa/incsearch.vim'
 
 call plug#end()
 "let $GIT_SSL_NO_VERIFY = 'true'
@@ -263,3 +264,8 @@ autocmd FileType javascript,css inoremap <silent> ,; <ESC>:call cosco#commaOrSem
 
 " Calendar
 let g:calendar_google_calendar = 1
+
+" incsearch
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)

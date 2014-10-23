@@ -55,3 +55,6 @@ eval `keychain --eval id_rsa`
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.history
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
