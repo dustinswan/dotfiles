@@ -29,9 +29,10 @@ set -x PATH /Applications/Postgres.app/Contents/MacOS/bin $PATH
 set -x PATH $HOME/Library/Haskell/bin $PATH
 set -x PATH $HOME/dotfiles/bin $PATH
 set -x PATH /usr/local/share/npm/bin $PATH
+set -x PATH $HOME/.cabal/bin $PATH
+set -x PATH $HOME/.cask/bin $PATH
 set -x NODE_PATH $NODE_PATH /usr/local/lib/node
 set -x PYTHONPATH $PYTHONPATH /usr/local/lib/python2.7/site-packages
-set -x SSL_CERT_FILE /usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
 
 # Nix
 . $HOME/.nix-profile/etc/fish/config.fish
@@ -43,7 +44,7 @@ source /usr/local/share/chruby/chruby.fish
 source /usr/local/share/chruby/auto.fish
 
 # NVM
-test -s /Users/dustinswan/.nvm/nvm.fish; and source /Users/dustinswan/.nvm/nvm.fish
+test -s /Users/dustinswan/.nvm-fish/nvm.fish; and source /Users/dustinswan/.nvm-fish/nvm.fish
 
 if status --is-interactive;
     keychain ~/.ssh/id_rsa
