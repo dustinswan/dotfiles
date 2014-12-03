@@ -21,7 +21,7 @@ export P4EDITOR=vim
 alias p4vimdiff "set -x P4DIFF vimdiff; p4 diff"
 alias visidev="ssh root@visidev.iocom.com 'cd /; p4 sync'; scp /opt/iocom/user/webclient/all_desktop.js root@visidev.iocom.com:/opt/iocom/user/webclient/; scp /opt/iocom/user/webclient/css/all_desktop.css root@visidev.iocom.com:/opt/iocom/user/webclient/css/"
 alias dswan="ssh root@dswan.insors.net"
-alias er='rm -rf logs; unzip -o -P'
+alias er='rm -rf logs; unzip -o'
 
 # PATH
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH # Homebrew
@@ -33,7 +33,6 @@ export PATH=$HOME/dotfiles/bin:$PATH
 export PATH=/usr/local/share/npm/bin:$PATH
 export NODE_PATH=/usr/local/lib/node:/usr/local/share/npm/lib/node_modules
 export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
-export SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
 
 # Nix
 . /Users/dustinswan/.nix-profile/etc/profile.d/nix.sh
