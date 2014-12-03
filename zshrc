@@ -6,7 +6,7 @@ alias tmux="tmux -2"
 alias ta="tmux attach -d"
 alias dustinswan="mosh dustinswan@dustinswan.org"
 alias kill_offlineimap="ps aux | grep offlineimap | awk '{ print $2 }' | xargs kill -9"
-export EDITOR=vim
+export EDITOR="emacsclient -ct"
 export TERM="screen-256color"
 export MOSH_TITLE_NOPREFIX=1
 
@@ -57,3 +57,7 @@ HISTFILE=~/.history
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+# start up emacs daemon if not running
+pgrep emacs &> /dev/null || emacs --daemon
+alias emacs="emacsclient -ct"
