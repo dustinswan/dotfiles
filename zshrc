@@ -6,7 +6,8 @@ alias tmux="tmux -2"
 alias ta="tmux attach -d"
 alias dustinswan="mosh dustinswan@dustinswan.org"
 alias kill_offlineimap="ps aux | grep offlineimap | awk '{ print $2 }' | xargs kill -9"
-export EDITOR="emacsclient -ct"
+alias em='emacsclient -a "" -t'
+export EDITOR="emacsclient -a "" -t"
 export TERM="screen-256color"
 export MOSH_TITLE_NOPREFIX=1
 
@@ -35,7 +36,7 @@ export NODE_PATH=/usr/local/lib/node:/usr/local/share/npm/lib/node_modules
 export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
 
 # Nix
-. /Users/dustinswan/.nix-profile/etc/profile.d/nix.sh
+. $HOME/.nix-profile/etc/profile.d/nix.sh
 
 # Chruby
 source /usr/local/share/chruby/chruby.sh
@@ -57,5 +58,3 @@ HISTFILE=~/.history
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
-
-alias emacs='emacsclient -a "" -t'
