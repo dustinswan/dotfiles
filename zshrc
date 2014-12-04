@@ -58,6 +58,4 @@ HISTFILE=~/.history
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-# start up emacs daemon if not running
-pgrep emacs &> /dev/null || emacs --daemon
-alias emacs="emacsclient -ct"
+alias emacs='emacsclient -a "" -t'

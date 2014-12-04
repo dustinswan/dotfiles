@@ -2,13 +2,17 @@
 (require 'package)
 
 ; Cask & Pallet
-(require 'cask "/usr/local/Cellar/cask/0.7.2/cask.el") ;TODO this path sucks
+(if (file-exists-p "~/.cask/cask.el")
+    (require 'cask "~/.cask/cask.el")
+    (require 'cask "/usr/local/Cellar/cask/0.7.2/cask.el") ;TODO this path sucks
+  )
+
 (cask-initialize)
 (require 'pallet)
 (pallet-mode t)
 
 ; Evil
-(require 'evil-leader)
+;(require 'evil-leader)
 (global-evil-leader-mode)
 (evil-leader/set-leader ",")
 (evil-leader/set-key "b" 'switch-to-buffer)
@@ -49,16 +53,21 @@
 
 ; Dired
 (require 'dired-x)
+(add-hook 'dired-load-hook
+	  (function (lambda () (load "dired-x"))))
 
 ; Powerline
 ;(powerline-default-theme)
+
+; Smex
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 ; TODO
 ; evil-org-mode
 ; expand-region
 ; helm
-; smex
-; magit
 ; ace-jump
 ; god-mode??
 
