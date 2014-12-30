@@ -19,7 +19,8 @@ export P4USER=dswan
 export P4PORT="humu.insors.net:1666"
 export P4CONFIG=p4.cfg
 export P4EDITOR=vim
-alias p4vimdiff "set -x P4DIFF vimdiff; p4 diff"
+alias p4diffv="export P4DIFF=vimdiff; set -x P4DIFF vimdiff; p4 diff"
+alias p4diffi="export P4DIFF=icdiff; set -x P4DIFF icdiff; p4 diff"
 alias visidev="ssh root@visidev.iocom.com 'cd /; p4 sync'; scp /opt/iocom/user/webclient/all_desktop.js root@visidev.iocom.com:/opt/iocom/user/webclient/; scp /opt/iocom/user/webclient/css/all_desktop.css root@visidev.iocom.com:/opt/iocom/user/webclient/css/"
 alias dswan="ssh root@dswan.insors.net"
 alias er='rm -rf logs; unzip -o'
@@ -58,3 +59,6 @@ HISTFILE=~/.history
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+autoload -U select-word-style
+select-word-style bash
