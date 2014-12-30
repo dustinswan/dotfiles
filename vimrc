@@ -201,11 +201,6 @@ nnoremap <silent><leader>4 :! p4 edit %<cr>
 " open vsplit and switch to it
 nnoremap <leader>v <c-w>v<c-w>l
 
-" Ack
-nnoremap <leader>a :Ack<space>
-" use ag
-let g:ackprg = 'ag --nogroup --nocolor --column'
-
 " Buffer selection
 nnoremap <leader>l :ls<cr>:b<space>
 
@@ -269,3 +264,27 @@ let g:calendar_google_calendar = 1
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
+
+" Ack
+"nnoremap <leader>a :Ack<space>
+" No wait, Ack motion! Thanks again sjl
+nnoremap <silent> <leader>a :set opfunc=<SID>AckMotion<CR>g@
+xnoremap <silent> <leader>a :<C-U>call <SID>AckMotion(visualmode())<CR>
+
+function! s:CopyMotionForType(type)
+    if a:type ==# 'v'
+    silent execute "normal! `<" . a:type . "`>y"
+    elseif a:type ==# 'char'
+    silent execute "normal! `[v`]y"
+    endif
+endfunction
+
+function! s:AckMotion(type) abort
+    let reg_save = @@
+
+    call s:CopyMotionForType(a:type)
+
+    execute "normal! :Ack! --literal " . shellescape(@@) . "\<cr>"
+
+    let @@ = reg_save
+endfunction
