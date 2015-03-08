@@ -17,7 +17,6 @@ rm ~/.jrnl_config; ln -s ~/dotfiles/jrnl_config ~/.jrnl_config
 rm ~/.emacs.d; ln -s ~/dotfiles/emacs.d ~/.emacs.d
 
 # Mail stuff
-#rm ~/.mbsyncrc; ln -s ~/dotfiles/mbsyncrc ~/.mbsyncrc
 rm ~/.offlineimaprc; ln -s ~/dotfiles/offlineimaprc ~/.offlineimaprc
 rm ~/.msmtprc; ln -s ~/dotfiles/msmtprc ~/.msmtprc
 rm -rf ~/.config/alot; ln -s ~/dotfiles/alot ~/.config/
@@ -33,3 +32,8 @@ rm ~/Library/KeyBindings/DefaultKeyBinding.dict; cp ~/dotfiles/DefaultKeyBinding
 rm -rf ~/.i3; mkdir ~/.i3; ln -s ~/dotfiles/i3/config ~/.i3/config
 rm -rf ~/.Xresources; ln -s ~/dotfiles/Xresources ~/.Xresources
 rm -rf ~/.xinitrc; ln -s ~/dotfiles/xinitrc.nixos ~/.xinitrc
+
+# Spacemacs
+mv ~/.emacs.d ~/.emacs.bak
+git clone --recursive http://github.com/syl20bnr/spacemacs ~/.emacs.d
+rm ~/.spacemacs; ln -s ~/dotfiles/spacemacs ~/.spacemacs
