@@ -1,3 +1,9 @@
+source ~/dotfiles/antigen.zsh
+antigen use oh-my-zsh
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle git
+antigen theme S1cK94/minimal minimal-path-git
+
 bindkey -e
 
 alias vi=vim
@@ -6,7 +12,7 @@ alias tmux="tmux -2"
 alias ta="tmux attach -d"
 alias dustinswan="mosh dustinswan@dustinswan.org"
 alias kill_offlineimap="ps aux | grep offlineimap | awk '{ print $2 }' | xargs kill -9"
-alias em='emacsclient -a "" -t'
+alias e='emacsclient -a "" -t'
 export EDITOR="emacsclient -a "" -t"
 export TERM="screen-256color"
 export MOSH_TITLE_NOPREFIX=1
@@ -26,6 +32,16 @@ alias dswan="ssh root@dswan.insors.net"
 alias er='rm -rf logs; unzip -o'
 
 # PATH
+
+export PATH=$HOME/depot_tools:$PATH
+#export GYP_CROSSCOMPILE=1
+#export GYP_GENERATORS="ninja,xcode-ninja"
+#export GYP_DEFINES="OS=ios target_arch=arm64 target_subarch=arm64 build_with_chromium=0"
+#export GYP_GENERATOR_FLAGS="xcode_project_version=3.2 xcode_ninja_target_pattern=All_iOS xcode_ninja_executable_target_pattern=AppRTCDemo|libjingle_peerconnection_unittest|libjingle_peerconnection_objc_test output_dir=out_ios64"
+export GYP_DEFINES="OS=ios target_arch=armv64 target_subarch=64"
+export GYP_CROSSCOMPILE=1
+export GYP_GENERATOR_FLAGS="output_dir=out_ios"
+
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH # Homebrew
 export PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH
 export PATH=/usr/local/share/python:$PATH
@@ -37,7 +53,8 @@ export NODE_PATH=/usr/local/lib/node:/usr/local/share/npm/lib/node_modules
 export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
 
 # Nix
-. $HOME/.nix-profile/etc/profile.d/nix.sh
+# . $HOME/.nix-profile/etc/profile.d/nix.sh
+# export NIX_PATH=$HOME/nixpkgs:nixpkgs=$HOME/nixpkgs
 
 # Chruby
 source /usr/local/share/chruby/chruby.sh
@@ -47,9 +64,6 @@ source /usr/local/share/chruby/auto.sh
 # NVM
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
-
-#autoload predict-on
-#predict-on
 
 eval `keychain --eval id_rsa`
 
