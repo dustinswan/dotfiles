@@ -12,7 +12,7 @@
  dotspacemacs-configuration-layer-path '()
  ;; List of configuration layers to load. If it is the symbol `all' instead
  ;; of a list then all discovered layers will be installed.
- dotspacemacs-configuration-layers '(perforce)
+ dotspacemacs-configuration-layers '(perforce git c-c++ haskell html javascript php markdown extra-langs company-mode)
  ;; A list of packages and/or extensions that will not be install and loaded.
  dotspacemacs-excluded-packages '(evil-escape)
  ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that

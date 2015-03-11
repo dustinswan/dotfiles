@@ -1,7 +1,4 @@
 set nocompatible
-"filetype off
-"set rtp+=~/.vim/bundle/Vundle.vim
-"call vundle#begin()
 
 call plug#begin('~/.vim/plugged')
 
@@ -65,11 +62,9 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'junegunn/goyo.vim'
 Plug 'haya14busa/incsearch.vim'
+Plug 'EinfachToll/DidYouMean'
 
 call plug#end()
-"let $GIT_SSL_NO_VERIFY = 'true'
-"call vundle#end()
-filetype plugin indent on " last Vundle requirement
 
 " mouse
 if has("mouse")
