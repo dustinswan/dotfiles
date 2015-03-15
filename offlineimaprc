@@ -6,11 +6,10 @@ pythonfile = ~/dotfiles/offlineimap.py
 [Account IOCOM]
 localrepository = IOCOMLocal
 remoterepository = IOCOMRemote
-status_backend = sqlite
 
 [Repository IOCOMLocal]
 type = Maildir
-localfolders = ~/.mail/iocom
+localfolders = ~/Mail/IOCOM
 
 [Repository IOCOMRemote]
 type = IMAP
@@ -23,29 +22,15 @@ realdelete = no
 [Account Gmail]
 localrepository = GmailLocal
 remoterepository = GmailRemote
-status_backend = sqlite
 
 [Repository GmailLocal]
 type = Maildir
-localfolders = ~/.mail/gmail
-nametrans = lambda folder: re.sub('spam', '[Gmail].Spam',
-                           re.sub('drafts', '[Gmail].Drafts',
-                           re.sub('sent', '[Gmail].Sent Mail',
-                           re.sub('starred', '[Gmail].Starred',
-                           re.sub('trash', '[Gmail].Trash',
-                           re.sub('important', '[Gmail].Important',
-                           re.sub('archive', '[Gmail].All Mail', folder)))))))
+localfolders = ~/Mail/Gmail
 
 [Repository GmailRemote]
 type = Gmail
 remoteuser = dustinswan@gmail.com
 remotepasseval = decrypt_password(".gmail-password.gpg")
 realdelete = no
-sslcacertfile = /usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
-nametrans = lambda folder: re.sub('.*Spam$', 'spam',
-                           re.sub('.*Drafts$', 'drafts',
-                           re.sub('.*Sent Mail$', 'sent',
-                           re.sub('.*Starred$', 'starred',
-                           re.sub('.*Trash$', 'trash',
-                           re.sub('.*Important$', 'important',
-                           re.sub('.*All Mail$', 'archive', folder)))))))
+cert_fingerprint=fb28fb2d7a043b18d051bd0cfddf22bfc14012fc
+ssl = yes
