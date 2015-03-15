@@ -4,7 +4,7 @@
   "encrypt": false, 
   "default_minute": 0, 
   "tagsymbols": "@", 
-  "editor": "vim -c Goyo -c startinsert",
+  "editor": "emacsclient -a \"\" -t",
   "timeformat": "%Y-%m-%d %H:%M", 
   "highlight": true, 
   "journals": {
