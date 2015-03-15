@@ -5,7 +5,7 @@ I primarily use OS X and [NixOS](http://nixos.org/).
 After ~15 years with Vim, I'm slowly making the switch to Emacs.
 I recently found Spacemacs and I'm giving that a try. I like it a lot so far.
 
-I'm also in the process of converting my notes, TODOs, bookmarks, etc. to Org mode. It ss going well.
+I'm also in the process of converting my notes, TODOs, bookmarks, etc. to Org mode. It is going well.
 
 ## Current Tool Set
 - Terminal Multiplexer: [tmux](http://tmux.sourceforge.net/)
