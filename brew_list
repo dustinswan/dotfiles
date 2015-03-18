@@ -48,10 +48,9 @@ nvm
 offline-imap
 openssl
 perforce
-pinentry
+pinentry-mac
 postgresql
 python3
-ranger
 readline
 reattach-to-user-namespace
 rlog
@@ -68,7 +67,6 @@ tree
 urlview
 w3m
 watch
-weechat
 wget
 zsh
-emacs --cocoa --with-mailutils --with-imagemagick
+emacs --cocoa --with-glib --with-imagemagick --with-librsvg --with-mailutils
