@@ -16,5 +16,4 @@ dropbox &
 feh --bg-fill ~/Dropbox/Photos/wallpaper/cycloid.gif
 # ~/dotfiles/bin/animated_wallpaper.sh ~/Dropbox/Photos/wallpaper/cycloid.gif &
 
-#exec xmonad
 exec i3
