@@ -1,11 +1,7 @@
 *.log
 *.pyc
 
-# Weechat
-weechat/logs/*
-weechat/weechat.log
 
 # Vim
 vim/.netrwhist
-vim/bundle/*
-!vim/bundle/vundle/*
+vim/plugged/*
