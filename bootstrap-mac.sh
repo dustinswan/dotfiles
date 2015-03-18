@@ -11,28 +11,18 @@ brew tap phinze/homebrew-cask
 brew tap jimbojsb/launchrocket
 brew tap homebrew/versions
 
-# TODO
-
-#brew cask install gpgtools
-brew cleanup
-
-brew cask alfred link
-
 # Symlinks
 bash ~/dotfiles/symlinks.sh
 
 # Python
 pip install --upgrade setuptools
 pip install --upgrade pip
-pip install git+git://github.com/Lokaltog/powerline
 
 # Ruby TODO -- set up chruby, ruby-build some stuff
 ruby-build 2.1.0 ~/.rubies/ruby-2.1.0
 chruby 2.1.0
 
 # Gems TODO
-gem install earthquake
-
 # Node packages TODO
 # Cabal packages TODO
 

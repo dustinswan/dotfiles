@@ -1,4 +1,0 @@
-set disablesites=mail.google.com, docs.google.com, feedly.com, www.tumblr.com, dswan.insors.net
-
-set autocomplete_prev=<C-p>
-set autocomplete_next=<C-n>
