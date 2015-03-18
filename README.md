@@ -2,16 +2,19 @@
 
 I primarily use OS X and [NixOS](http://nixos.org/).
 
-After ~15 years with Vim, I'm slowly making the switch to Emacs.
-I recently found Spacemacs and I'm giving that a try. I like it a lot so far.
+After like 15 years with Vim, I've recently switched to Emacs (via [Spacemacs](https://github.com/syl20bnr/spacemacs)).
 
-I'm also in the process of converting my notes, TODOs, bookmarks, etc. to Org mode. It is going well.
+## To speed up the switch, I've decided to Emacs all the things
+- Email: [offlineimap](http://offlineimap.org/) & [mu](https://github.com/djcb/mu) & [mu4e](http://www.djcbsoftware.nl/code/mu/mu4e.html)
+- Terminal: [multiterm](http://www.emacswiki.org/emacs/MultiTerm) (although I'm having some issues)
+- Shell: [EShell](http://www.gnu.org/software/emacs/manual/html_mono/eshell.html) (only for quick tasks, for now)
+- Browser: [eww](http://www.emacswiki.org/emacs/eww) (for quick one-off searches)
+- IRC: [ERC](http://www.emacswiki.org/emacs/ERC)
+- Notes & TODO & bookmarks, etc.: [Org mode](http://orgmode.org/)
 
-## Current Tool Set
+## Outside of Emacs
 - Terminal Multiplexer: [tmux](http://tmux.sourceforge.net/)
 - Shell: [zsh](http://www.zsh.org) & [Antigen](https://github.com/zsh-users/antigen) (I try [Fish](http://fishshell.com) every few months but it never sticks)
-- Editor: [Spacemacs](https://github.com/syl20bnr/spacemacs) (Emacs & Evil & lots of other things)
-- Email: [offlineimap](http://offlineimap.org/) & [mu](https://github.com/djcb/mu) & [mu4e](http://www.djcbsoftware.nl/code/mu/mu4e.html)
 - Browser: [Firefox](https://www.mozilla.org/en-US/firefox/)
 - Window Manager (Linux): [i3](https://i3wm.org/)
 - Window Manager (OS X): [Slate](https://github.com/jigish/slate)
@@ -29,4 +32,4 @@ I'm also in the process of converting my notes, TODOs, bookmarks, etc. to Org mo
 - [vdirsyncer](https://github.com/untitaker/vdirsyncer) to sync CardDAV and CalDAV (to be hosted on Fastmail)
   - Calendar: [khal](https://github.com/geier/khal) (Or maybe something in Emacs)
   - Contacts: [khard](https://github.com/scheibler/khard)
-- Music: [mpd](http://www.musicpd.org/) or [Mopidy](https://www.mopidy.com/) & [ncmpcpp](http://ncmpcpp.rybczak.net/) (currently using Spotify)
+- Music: [mpd](http://www.musicpd.org/) or [Mopidy](https://www.mopidy.com/) & [ncmpcpp](http://ncmpcpp.rybczak.net/) (Or Emacs's mpc. I'm currently using Spotify)
