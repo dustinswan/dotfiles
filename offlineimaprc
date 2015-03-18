@@ -32,5 +32,5 @@ type = Gmail
 remoteuser = dustinswan@gmail.com
 remotepasseval = decrypt_password(".gmail-password.gpg")
 realdelete = no
-cert_fingerprint=fb28fb2d7a043b18d051bd0cfddf22bfc14012fc
+sslcacertfile=/usr/local/etc/openssl/osx_cert.pem
 ssl = yes
