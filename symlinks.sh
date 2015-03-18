@@ -14,7 +14,6 @@ rm -rf ~/.config/khal; mkdir -p ~/.config/khal; ln -s ~/dotfiles/khal.conf ~/.co
 rm -rf ~/.vdirsyncer; mkdir ~/.vdirsyncer; ln -s ~/dotfiles/vdirsyncer/config ~/.vdirsyncer/config
 rm ~/.zshrc; ln -s ~/dotfiles/zshrc ~/.zshrc
 rm ~/.jrnl_config; ln -s ~/dotfiles/jrnl_config ~/.jrnl_config
-rm ~/.emacs.d; ln -s ~/dotfiles/emacs.d ~/.emacs.d
 rm ~/.gnupg/gpg-agent.conf; ln -s ~/dotfiles/gpg-agent.conf ~/.gnupg/gpg-agent.conf
 
 # Mail stuff
