@@ -1,7 +1,0 @@
-#!/bin/bash
-while [ 1 ];
-do
-    imagesnap - | convert - -resize "50%" jpeg:- | ssh dustinswan@dustinswan.org "cat > /srv/http/dustinswan.org/dustin.jpg"
-    sleep 10;
-done
-
