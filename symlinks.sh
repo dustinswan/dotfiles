@@ -12,7 +12,7 @@ rm -rf ~/.config/khal; mkdir -p ~/.config/khal; ln -s ~/dotfiles/khal.conf ~/.co
 rm -rf ~/.vdirsyncer; mkdir ~/.vdirsyncer; ln -s ~/dotfiles/vdirsyncer/config ~/.vdirsyncer/config
 rm ~/.zshrc; ln -s ~/dotfiles/zshrc ~/.zshrc
 rm ~/.jrnl_config; ln -s ~/dotfiles/jrnl_config ~/.jrnl_config
-rm ~/.gnupg/gpg-agent.conf; ln -s ~/dotfiles/gpg-agent.conf ~/.gnupg/gpg-agent.conf
+rm ~/.gnupg/gpg-agent.conf; mkdir ~/.gnupg; ln -s ~/dotfiles/gpg-agent.conf ~/.gnupg/gpg-agent.conf
 
 # Mail stuff
 rm ~/.offlineimaprc; ln -s ~/dotfiles/offlineimaprc ~/.offlineimaprc
@@ -31,3 +31,5 @@ rm -rf ~/.xinitrc; ln -s ~/dotfiles/xinitrc.nixos ~/.xinitrc
 mv ~/.emacs.d ~/.emacs.bak
 git clone --recursive http://github.com/syl20bnr/spacemacs ~/.emacs.d
 rm ~/.spacemacs; ln -s ~/dotfiles/spacemacs ~/.spacemacs
+ln -s ~/dotfiles/spacemacs_private/twittering-mode ~/.emacs.d/private/twittering-mode
+ln -s ~/dotfiles/spacemacs_private/mu4e ~/.emacs.d/private/mu4e
