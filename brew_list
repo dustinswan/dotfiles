@@ -40,10 +40,9 @@ mpfr
 mpg123
 mplayer
 msmtp
-mu
+mu --with-emacs
 multitail
 neovim
-notmuch
 nvm
 offline-imap
 openssl
