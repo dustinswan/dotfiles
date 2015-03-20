@@ -1,21 +1,18 @@
 ack
 bash
-bitlbee
 brew-cask
 cask
 chruby
 coreutils
 ctags
-fasd
 ffmpeg
 findutils
 flac
 ghc
 gist
 git
-gnupg2
+gnupg2 --with-readline
 gnutls
-gpg-agent
 haskell-platform
 htop-osx
 imagemagick
