@@ -20,6 +20,7 @@
   '(
     ;; post extension mu4es go here
     mu4e
+    mu4e-multi
     )
   "List of all extensions to load after the packages.")
 
@@ -28,7 +29,9 @@
 (defun mu4e/init-mu4e ()
   "Initialize my extension"
   (add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
+  (add-to-list 'load-path "~/dotfiles/")
   (require 'mu4e)
+  (require 'mu4e-multi)
   )
 ;;
 ;; Often the body of an initialize function uses `use-package'

@@ -1,51 +1,111 @@
 (eval-after-load 'mu4e
   '(progn
 
+     (require 'mu4e-multi)
+     (require 'mu4e-contrib)
+
+     (setq mu4e-multi-account-alist
+           '(("Gmail"
+              (user-mail-address . "dustinswan@gmail.com")
+              (mu4e-drafts-folder . "/Gmail/[Gmail].Drafts")
+              (mu4e-refile-folder . "/Gmail/[Gmail].All Mail")
+              (mu4e-sent-folder . "/Gmail/[Gmail].Sent Mail")
+              (mu4e-trash-folder . "/Gmail/[Gmail].Trash"))
+             ("IOCOM"
+              (user-mail-address . "dswan@iocom.com")
+              (mu4e-drafts-folder . "/IOCOM/INBOX.Drafts")
+              (mu4e-refile-folder . "/IOCOM/INBOX.Archive")
+              (mu4e-sent-folder . "/IOCOM/INBOX.Sent")
+              (mu4e-trash-folder . "/IOCOM/INBOX.Trash"))))
+
+     (mu4e-multi-enable)
+
+     ;; (add-hook 'message-send-mail-hook 'mu4e-multi-smtpmail-set-msmtp-account)
+
      (setq
-      user-mail-address "dustinswan@gmail.com"
 
-      mu4e-maildir "~/Mail" ;; top-level Maildir
-      mu4e-sent-folder "/Gmail/[Gmail].Sent Mail" ;; folder for sent messages
-      mu4e-drafts-folder "/Gmail/[Gmail].Drafts" ;; unfinished messages
-      mu4e-trash-folder "/Gmail/[Gmail].Trash" ;; trashed messages
-      mu4e-refile-folder "/Gmail/[Gmail].All Mail" ;; saved messages
-      mu4e-sent-messages-behavior 'delete
+      mu4e-maildir "~/Mail"
+      mu4e-user-mail-address-list '("dustinswan@gmail.com"
+                                    "dswan@iocom.com"
+                                    "dswan@insors.com"
+                                    "dustin@dustinswan.com")
 
-      smtpmail-default-smtp-server "smtp.gmail.com"
-      smtpmail-local-domain "gmail.com" ;; what the fuck is this
-      smtpmail-smtp-server "smtp.gmail.com"
-      smtpmail-smtp-service 25
-      
+      user-full-name  "Dustin Swan"
+      mu4e-attachment-dir "~/Downloads"
+      message-signature "Dustin Swan"
+      mu4e-compose-signature "Dustin Swan"
+      mail-host-address "gmail.com"
+
       mu4e-get-mail-command "offlineimap -q"
       mu4e-update-interval 120
+
+      ;; mu4e-use-fancy-chars t
+
+      ;; mu4e-html2text-command "html2text -nobs"
+      ;; mu4e-html2text-command "w3m -T text/html"
+      mu4e-html2text-command 'mu4e-shr2text
+      mu4e-view-prefer-html 't ;; sorryboutit
+      mu4e-view-show-images t ;; doesn't work with shr2text
+
+      message-send-mail-function 'message-send-mail-with-sendmail
+      message-sendmail-extra-arguments '("--read-envelope-from")
+      message-sendmail-f-is-evil 't
+      sendmail-program "/usr/local/bin/msmtp"
+
+      ;; just Gmail at first
+      ;; user-mail-address "dustinswan@gmail.com"
+      ;; mu4e-sent-folder "/Gmail/[Gmail].Sent Mail"
+      ;; mu4e-drafts-folder "/Gmail/[Gmail].Drafts"
+      ;; mu4e-trash-folder "/Gmail/[Gmail].Trash"
+      ;; mu4e-refile-folder "/Gmail/[Gmail].All Mail"
+      ;; mu4e-sent-messages-behavior 'delete
+      ;; mail-host-address "gmail.com"
+
       )
 
+     ; multiple accounts
      ;; (defvar my-mu4e-account-alist
      ;;   '(("Gmail"
-     ;;      (mu4e-sent-folder "/Account1/Saved Items")
-     ;;      (mu4e-drafts-folder "/Account1/Drafts")
-     ;;      (user-mail-address "my.address@account1.tld")
-     ;;      (smtpmail-default-smtp-server "smtp.account1.tld")
-     ;;      (smtpmail-local-domain "account1.tld")
-     ;;      (smtpmail-smtp-user "username1")
-     ;;      (smtpmail-smtp-server "smtp.account1.tld")
-     ;;      (smtpmail-stream-type starttls)
-     ;;      (smtpmail-smtp-service 25))
+     ;;      (user-mail-address "dustinswan@gmail.com")
+     ;;      (mu4e-sent-folder "/Gmail/[Gmail].Sent Mail")
+     ;;      (mu4e-drafts-folder "/Gmail/[Gmail].Drafts")
+     ;;      (mu4e-trash-folder "/Gmail/[Gmail].Trash")
+     ;;      ;; (mu4e-refile-folder "/Gmail/[Gmail].All Mail")
+     ;;      (mu4e-sent-messages-behavior 'delete)
+     ;;      (mail-host-address "gmail.com")
+
      ;;     ("IOCOM"
-     ;;      (mu4e-sent-folder "/Account2/Saved Items")
-     ;;      (mu4e-drafts-folder "/Account2/Drafts")
-     ;;      (user-mail-address "my.address@account2.tld")
-     ;;      (smtpmail-default-smtp-server "smtp.account2.tld")
-     ;;      (smtpmail-local-domain "account2.tld")
-     ;;      (smtpmail-smtp-user "username2")
-     ;;      (smtpmail-smtp-server "smtp.account2.tld")
-     ;;      (smtpmail-stream-type starttls)
-     ;;      (smtpmail-smtp-service 587))))
+     ;;      (user-mail-address "dswan@iocom.com")
+     ;;      (mu4e-sent-folder "/IOCOM/INBOX.Sent")
+     ;;      (mu4e-drafts-folder "/IOCOM/INBOX.Drafts")
+     ;;      (mu4e-trash-folder "/IOCOM/INBOX.Trash")
+     ;;      ;; (mu4e-refile-folder "/IOCOM/INBOX.Archive")
+     ;;      (mu4e-sent-messages-behavior 'sent)
+     ;;      (mail-host-address "iocom.com")))))
 
-     (setq mu4e-attachment-dir "~/Downloads")
+     (add-to-list 'mu4e-bookmarks '("maildir:/IOCOM/INBOX OR maildir:/Gmail/INBOX" "All Inboxes" ?I))
+     (add-to-list 'mu4e-bookmarks '("maildir:/IOCOM/INBOX" "IOCOM Inbox" ?i))
+     (add-to-list 'mu4e-bookmarks '("maildir:/Gmail/INBOX" "Gmail Inbox" ?g))
 
-     (setq mu4e-view-show-images t) ;; enable inline images
+     ;; refile
+     ;; (setq mu4e-refile-folder
+     ;;       (lambda (msg)
+     ;;         (cond
+     ;;          ((mu4e-message-contact-field-matches msg :to "dustinswan@gmail.com")
+     ;;           "/Gmail/[Gmail].All Mail")
+     ;;          ((mu4e-message-contact-field-matches msg :to "dswan@iocom.com")
+     ;;           "/IOCOM/INBOX.Archive")
+     ;;          ;; messages sent by me go to the sent folder
+     ;;          ;; ((find-if
+     ;;          ;;   (lambda (addr)
+     ;;          ;;     (mu4e-message-contact-field-matches msg :from addr))
+     ;;          ;;   mu4e-user-mail-address-list)
+     ;;          ;; mu4e-sent-folder)
+     ;;          (t  "/Gmail/[Gmail].All Mail"))))
+
+     (add-to-list 'mu4e-view-actions '("ViewInBrowser" . mu4e-action-view-in-browser) t)
 
      ;; use imagemagick, if available
      (when (fboundp 'imagemagick-register-types)
        (imagemagick-register-types))))
+
