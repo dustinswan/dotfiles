@@ -40,7 +40,7 @@
  ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
  ;; size to make separators look not too crappy.
  dotspacemacs-default-font '("Source Code Pro"
-                             :size 13
+                             :size 11
                              :weight normal
                              :width normal
                              :powerline-scale 1.0)
@@ -71,7 +71,7 @@
  dotspacemacs-fullscreen-use-non-native nil
  ;; If non nil the frame is maximized when Emacs starts up (Emacs 24.4+ only).
  ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
- dotspacemacs-maximized-at-startup nil
+ dotspacemacs-maximized-at-startup t
  ;; A value from the range (0..100), in increasing opacity, which describes the
  ;; transparency level of a frame when it's active or selected. Transparency can
  ;; be toggled through `toggle-transparency'.
@@ -102,13 +102,13 @@
 (defun dotspacemacs/init ()
   "User initialization for Spacemacs. This function is called at the very
  startup."
-  (setq-default dotspacemacs-default-font '("Source Code Pro"
-                                          :size 12
-                                          :weight normal
-                                          :width normal
-                                          :powerline-scale 1.0))
 
   (setq-default git-enable-github-support t)
+
+  (defun custom-persp/mail ()
+    (interactive)
+    (custom-persp "Mail"
+                  (mu4e)))
 
   )
 
@@ -117,6 +117,7 @@
 This function is called at the very end of Spacemacs initialization."
   (rainbow-mode)
   (setq powerline-default-separator 'nil)
+  (evil-leader/set-key "Lom" 'custom-persp/mail)
 )
 
 ;; Custom variables

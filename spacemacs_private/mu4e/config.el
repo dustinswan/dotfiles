@@ -44,12 +44,13 @@
       ;; mu4e-html2text-command "html2text -nobs"
       ;; mu4e-html2text-command "w3m -T text/html"
       mu4e-html2text-command 'mu4e-shr2text
-      mu4e-view-prefer-html 't ;; sorryboutit
+      mu4e-view-prefer-html t ;; sorryboutit
       mu4e-view-show-images t ;; doesn't work with shr2text
 
       message-send-mail-function 'message-send-mail-with-sendmail
       message-sendmail-extra-arguments '("--read-envelope-from")
-      message-sendmail-f-is-evil 't
+      message-sendmail-f-is-evil t
+      message-kill-buffer-on-exit t
       sendmail-program "/usr/local/bin/msmtp"
 
       ;; just Gmail at first
@@ -104,6 +105,11 @@
      ;;          (t  "/Gmail/[Gmail].All Mail"))))
 
      (add-to-list 'mu4e-view-actions '("ViewInBrowser" . mu4e-action-view-in-browser) t)
+
+     (add-hook 'mu4e-index-updated-hook
+               (lambda ()
+                 (shell-command (concat "youve_got_mail "
+                                        (number-to-string mu4e-update-interval)))))
 
      ;; use imagemagick, if available
      (when (fboundp 'imagemagick-register-types)

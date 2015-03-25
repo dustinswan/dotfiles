@@ -22,9 +22,15 @@ which require an initialization must be listed explicitly in the list.")
 
 ;; For each package, define a function mu4e/init-<package-mu4e>
 ;;
-;; (defun mu4e/init-my-package ()
-;;   "Initialize my package"
-;;   )
+;; (defun mu4e/init-mu4e-maildirs-extension ()
+  "Initialize my package"
+  ;; (use-package mu4e-maildirs-extension
+    ;; :config
+    ;; (require 'mu4e-maildirs-extension)
+    ;; (require 'mu4e-multi)
+    ;; (mu4e-maildirs-extension)
+    ;; )
+  ;; )
 ;;
 ;; Often the body of an initialize function uses `use-package'
 ;; For more info on `use-package', see readme:
