@@ -13,6 +13,7 @@ rm -rf ~/.vdirsyncer; mkdir ~/.vdirsyncer; ln -s ~/dotfiles/vdirsyncer/config ~/
 rm ~/.zshrc; ln -s ~/dotfiles/zshrc ~/.zshrc
 rm ~/.jrnl_config; ln -s ~/dotfiles/jrnl_config ~/.jrnl_config
 rm ~/.gnupg/gpg-agent.conf; mkdir ~/.gnupg; ln -s ~/dotfiles/gpg-agent.conf ~/.gnupg/gpg-agent.conf
+mkdir -p ~/.ssh; rm ~/.ssh/config; ln -s ~/dotfiles/ssh/config ~/.ssh/config
 
 # Mail stuff
 rm ~/.offlineimaprc; ln -s ~/dotfiles/offlineimaprc ~/.offlineimaprc
