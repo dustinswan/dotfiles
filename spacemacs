@@ -12,7 +12,7 @@
  dotspacemacs-configuration-layer-path '()
  ;; List of configuration layers to load. If it is the symbol `all' instead
  ;; of a list then all discovered layers will be installed.
- dotspacemacs-configuration-layers '(perforce git c-c++ haskell html javascript php markdown extra-langs company-mode (colors :variables colors-enable-rainbow-identifiers t) restclient evil-snipe mu4e dustin perspectives rcirc)
+ dotspacemacs-configuration-layers '(perforce git c-c++ haskell html javascript php markdown extra-langs auto-completion (colors :variables colors-enable-rainbow-identifiers t) restclient evil-snipe mu4e dustin perspectives rcirc org syntax-checking)
  ;; A list of packages and/or extensions that will not be install and loaded.
  dotspacemacs-excluded-packages '(evil-escape)
  ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -65,13 +65,13 @@
  ;; Enable micro-state for helm buffer when pressing on TAB."
  dotspacemacs-helm-micro-state t
  ;; If non nil the frame is fullscreen when Emacs starts up (Emacs 24.4+ only).
- dotspacemacs-fullscreen-at-startup nil
+ dotspacemacs-fullscreen-at-startup t
  ;; If non nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
  ;; Use to disable fullscreen animations in OSX."
  dotspacemacs-fullscreen-use-non-native nil
  ;; If non nil the frame is maximized when Emacs starts up (Emacs 24.4+ only).
  ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
- dotspacemacs-maximized-at-startup t
+ dotspacemacs-maximized-at-startup nil
  ;; A value from the range (0..100), in increasing opacity, which describes the
  ;; transparency level of a frame when it's active or selected. Transparency can
  ;; be toggled through `toggle-transparency'.
