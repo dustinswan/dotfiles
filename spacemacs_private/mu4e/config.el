@@ -20,6 +20,8 @@
 
      (mu4e-multi-enable)
 
+     (global-set-key (kbd "C-x m") 'mu4e-multi-compose-new)
+
      ;; (add-hook 'message-send-mail-hook 'mu4e-multi-smtpmail-set-msmtp-account)
 
      (setq
