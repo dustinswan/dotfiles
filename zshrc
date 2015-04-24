@@ -2,7 +2,8 @@ source ~/dotfiles/antigen.zsh
 antigen use oh-my-zsh
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle git
-antigen theme S1cK94/minimal minimal-path-git
+antigen theme S1cK94/minimal minimal
+export ZSH_THEME="minimal"
 
 bindkey -e
 
@@ -28,19 +29,20 @@ export P4EDITOR=vim
 alias p4diffv="export P4DIFF=vimdiff; set -x P4DIFF vimdiff; p4 diff"
 alias p4diffi="export P4DIFF=icdiff; set -x P4DIFF icdiff; p4 diff"
 alias visidev="ssh root@visidev.iocom.com 'cd /; p4 sync'; scp /opt/iocom/user/webclient/all_desktop.js root@visidev.iocom.com:/opt/iocom/user/webclient/; scp /opt/iocom/user/webclient/css/all_desktop.css root@visidev.iocom.com:/opt/iocom/user/webclient/css/"
-alias dswan="ssh root@dswan.insors.net"
 alias er='rm -rf logs; unzip -o'
 
 # PATH
 
+# building webrtc
 export PATH=$HOME/depot_tools:$PATH
-#export GYP_CROSSCOMPILE=1
-#export GYP_GENERATORS="ninja,xcode-ninja"
-#export GYP_DEFINES="OS=ios target_arch=arm64 target_subarch=arm64 build_with_chromium=0"
-#export GYP_GENERATOR_FLAGS="xcode_project_version=3.2 xcode_ninja_target_pattern=All_iOS xcode_ninja_executable_target_pattern=AppRTCDemo|libjingle_peerconnection_unittest|libjingle_peerconnection_objc_test output_dir=out_ios64"
-export GYP_DEFINES="OS=ios target_arch=armv64 target_subarch=64"
 export GYP_CROSSCOMPILE=1
-export GYP_GENERATOR_FLAGS="output_dir=out_ios"
+export GYP_GENERATORS=ninja
+# arm64
+export GYP_DEFINES="OS=ios target_arch=arm64 target_subarch=arm64 build_with_chromium=0 include_tests=0 enable_video=0 clang_xcode=1 clang=1"
+export GYP_GENERATOR_FLAGS="output_dir=out_ios64"
+# armv7
+#export GYP_DEFINES="OS=ios target_arch=arm arm_version=7 build_with_chromium=0 include_tests=0 enable_video=0 clang_xcode=1 clang=1"
+#export GYP_GENERATOR_FLAGS="output_dir=out_iosv7"
 
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH # Homebrew
 export PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH
