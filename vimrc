@@ -47,7 +47,7 @@ Plug 'eagletmt/ghc-mod'
 Plug 'bitc/vim-hdevtools'
 Plug 'idris-hackers/idris-vim'
 Plug 'qstrahl/vim-matchmaker'
-"Plug 'bling/vim-airline'
+Plug 'bling/vim-airline'
 Plug 'matze/vim-move'
 Plug 'bruno-/vim-vertical-move'
 Plug 'itchyny/calendar.vim'
@@ -150,13 +150,6 @@ if has("gui_running")
     set gfn=Terminus\ 8
     set go=-t
 endif
-
-" Powerline
-"set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
-"set rtp+=/usr/lib/python2.7/site-packages/powerline/bindings/vim
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
 
 " Colors
 " colorscheme default
@@ -277,3 +270,7 @@ function! s:AckMotion(type) abort
 
     let @@ = reg_save
 endfunction
+
+" Airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
