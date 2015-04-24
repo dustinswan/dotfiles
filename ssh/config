@@ -1,0 +1,3 @@
+Host dswan
+    HostName dswan.insors.net
+    User dustinswan

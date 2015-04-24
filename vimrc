@@ -61,7 +61,6 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'junegunn/goyo.vim'
-Plug 'haya14busa/incsearch.vim'
 Plug 'EinfachToll/DidYouMean'
 
 call plug#end()
@@ -254,11 +253,6 @@ autocmd FileType javascript,css inoremap <silent> ,; <ESC>:call cosco#commaOrSem
 
 " Calendar
 let g:calendar_google_calendar = 1
-
-" incsearch
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
 
 " Ack
 "nnoremap <leader>a :Ack<space>
