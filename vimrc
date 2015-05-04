@@ -191,6 +191,7 @@ nnoremap <leader>l :ls<cr>:b<space>
 " Set the max files
 "let g:ctrlp_max_files = 10000
 let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_cmd = 'CtrlPMixed'
 
 " Vimux
 nnoremap <Leader>vp :VimuxPromptCommand<CR>
