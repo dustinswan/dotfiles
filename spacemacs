@@ -12,13 +12,48 @@
  dotspacemacs-configuration-layer-path '()
  ;; List of configuration layers to load. If it is the symbol `all' instead
  ;; of a list then all discovered layers will be installed.
- dotspacemacs-configuration-layers '(perforce git c-c++ haskell html javascript php markdown extra-langs auto-completion (colors :variables colors-enable-rainbow-identifiers t) restclient evil-snipe mu4e dustin perspectives rcirc org syntax-checking)
+ dotspacemacs-configuration-layers '(version-control
+                                     git
+                                     github
+                                     perforce
+                                     c-c++
+                                     haskell
+                                     html
+                                     javascript
+                                     purescript
+                                     rust
+                                     ruby
+                                     python
+                                     markdown
+                                     extra-langs
+                                     latex
+                                     auto-completion
+                                     colors
+                                     restclient
+                                     evil-snipe
+                                     mu4e
+                                     dustin
+                                     eyebrowse
+                                     search-engine
+                                     erc
+                                     (org :variables org-enable-github-support t)
+                                     emacs-lisp
+                                     slime
+                                     (shell :variables shell-default-shell 'eshell shell-default-term-shell "/bin/bash")
+                                     emoji 
+                                     syntax-checking)
+
  ;; A list of packages and/or extensions that will not be install and loaded.
- dotspacemacs-excluded-packages '(evil-escape)
+ dotspacemacs-excluded-packages '()
  ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
  ;; are declared in a layer which is not a member of
  ;; the list `dotspacemacs-configuration-layers'
  dotspacemacs-delete-orphan-packages t
+
+ dotspacemacs-search-tools '("ag" "ack" "grep")
+
+ dotspacemacs-additional-packages '()
+
 )
 
 ;; Settings
@@ -103,22 +138,16 @@
   "User initialization for Spacemacs. This function is called at the very
  startup."
 
+  (setq-default git-magit-status-fullscreen t)
   (setq-default git-enable-github-support t)
-
-  (defun custom-persp/mail ()
-    (interactive)
-    (custom-persp "Mail"
-                  (mu4e)))
-
   )
 
 (defun dotspacemacs/config ()
   "This is were you can ultimately override default Spacemacs configuration.
 This function is called at the very end of Spacemacs initialization."
-  (rainbow-mode)
+  (eyebrowse-setup-opinionated-keys)
   (setq powerline-default-separator 'nil)
-  (evil-leader/set-key "Lom" 'custom-persp/mail)
-)
+  )
 
 ;; Custom variables
 ;; ----------------
