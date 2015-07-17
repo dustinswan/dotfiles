@@ -7,14 +7,14 @@ export ZSH_THEME="minimal"
 
 bindkey -e
 
-alias vi=vim
+alias vi=nvim
+alias vim=nvim
 alias l="ls -la"
-alias tmux="tmux -2"
 alias ta="tmux attach -d"
 alias dustinswan="mosh dustinswan@dustinswan.org"
 alias kill_offlineimap="ps aux | grep offlineimap | awk '{ print $2 }' | xargs kill -9"
 alias e='emacsclient -a "" -t'
-export EDITOR="emacsclient -a "" -t"
+export EDITOR=nvim
 export TERM="screen-256color"
 export MOSH_TITLE_NOPREFIX=1
 
@@ -37,16 +37,16 @@ alias er='rm -rf logs; unzip -o'
 export PATH=$HOME/depot_tools:$PATH
 export GYP_CROSSCOMPILE=1
 export GYP_GENERATORS=ninja
-# arm64
-export GYP_DEFINES="OS=ios target_arch=arm64 target_subarch=arm64 build_with_chromium=0 include_tests=0 enable_video=0 clang_xcode=1 clang=1"
-export GYP_GENERATOR_FLAGS="output_dir=out_ios64"
+## arm64
+#export GYP_DEFINES="OS=ios target_arch=arm64 target_subarch=arm64 build_with_chromium=0 include_tests=0 enable_video=0 clang_xcode=1 clang=1"
+#export GYP_GENERATOR_FLAGS="output_dir=out_ios64"
 # armv7
-#export GYP_DEFINES="OS=ios target_arch=arm arm_version=7 build_with_chromium=0 include_tests=0 enable_video=0 clang_xcode=1 clang=1"
-#export GYP_GENERATOR_FLAGS="output_dir=out_iosv7"
+# export GYP_DEFINES="OS=ios target_arch=arm arm_version=7 build_with_chromium=0 include_tests=0 enable_video=0 clang_xcode=1 clang=1"
+# export GYP_GENERATOR_FLAGS="output_dir=out_iosv7"
 
+export PATH=/usr/texbin:$PATH # Basictex
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH # Homebrew
 export PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH
-export PATH=/usr/local/share/python:$PATH
 export PATH=$HOME/Library/Haskell/bin:$PATH
 export PATH=~/.cabal/bin:$PATH
 export PATH=$HOME/dotfiles/bin:$PATH
@@ -55,8 +55,8 @@ export NODE_PATH=/usr/local/lib/node:/usr/local/share/npm/lib/node_modules
 export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
 
 # Nix
-# . $HOME/.nix-profile/etc/profile.d/nix.sh
-# export NIX_PATH=$HOME/nixpkgs:nixpkgs=$HOME/nixpkgs
+. $HOME/.nix-profile/etc/profile.d/nix.sh
+export NIX_PATH=nixpkgs=$HOME/nixpkgs
 
 # Chruby
 source /usr/local/share/chruby/chruby.sh
@@ -67,7 +67,19 @@ source /usr/local/share/chruby/auto.sh
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+# Keychain
 eval `keychain --eval id_rsa`
+
+# Tex
+eval `/usr/libexec/path_helper -s`
+
+powerline-daemon -q
 
 HISTSIZE=1000
 SAVEHIST=1000

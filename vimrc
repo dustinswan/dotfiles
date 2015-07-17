@@ -2,7 +2,6 @@ set nocompatible
 
 call plug#begin('~/.vim/plugged')
 
-"Plug 'gmarik/Vundle.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'szw/vim-dict'
@@ -17,18 +16,19 @@ Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-jdaddy'
 Plug 'tpope/vim-eunuch'
-" Plug 'tpope/vim-unimpared'
+"Plug 'tpope/vim-unimpared'
 Plug 'mileszs/ack.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'bkad/CamelCaseMotion'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdcommenter'
-Plug 'w0ng/vim-hybrid'
-" Plug 'ervandew/supertab'
+"Plug 'w0ng/vim-hybrid'
+Plug 'sickill/vim-monokai'
+"Plug 'ervandew/supertab'
 Plug 'kien/ctrlp.vim'
 Plug 'gregsexton/MatchTag'
-" Plug 'kana/vim-smartinput'
+"Plug 'kana/vim-smartinput'
 Plug 'Raimondi/delimitMate'
 Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plug 'mbbill/undotree'
@@ -62,6 +62,7 @@ Plug 'kien/rainbow_parentheses.vim'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'junegunn/goyo.vim'
 Plug 'EinfachToll/DidYouMean'
+Plug 'jceb/vim-orgmode'
 
 call plug#end()
 
@@ -149,9 +150,7 @@ if has("gui_running")
 endif
 
 " Colors
-" colorscheme default
-colorscheme hybrid
-set background=dark
+colorscheme monokai
 
 " Tagbar
 nnoremap <silent><leader>t :TagbarToggle <cr>
@@ -272,3 +271,8 @@ endfunction
 " Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+
+" Powerline
+" python from powerline.vim import setup as powerline_setup
+" python powerline_setup()
+" python del powerline_setup
