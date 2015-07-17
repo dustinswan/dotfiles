@@ -100,7 +100,7 @@
  ;; Enable micro-state for helm buffer when pressing on TAB."
  dotspacemacs-helm-micro-state t
  ;; If non nil the frame is fullscreen when Emacs starts up (Emacs 24.4+ only).
- dotspacemacs-fullscreen-at-startup t
+ dotspacemacs-fullscreen-at-startup nil
  ;; If non nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
  ;; Use to disable fullscreen animations in OSX."
  dotspacemacs-fullscreen-use-non-native nil
@@ -146,6 +146,7 @@
   "This is were you can ultimately override default Spacemacs configuration.
 This function is called at the very end of Spacemacs initialization."
   (eyebrowse-setup-opinionated-keys)
+  (add-hook 'doc-view-mode-hook 'auto-revert-mode)
   (setq powerline-default-separator 'nil)
   )
 
@@ -161,12 +162,13 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ac-ispell-requires 4)
+ '(ac-ispell-requires 4 t)
  '(ahs-case-fold-search nil)
  '(ahs-default-range (quote ahs-range-whole-buffer))
  '(ahs-idle-interval 0.25)
  '(ahs-idle-timer 0 t)
  '(ahs-inhibit-face-list nil)
+ '(erc-modules (quote (scrolltobottom)))
  '(paradox-github-token t)
  '(ring-bell-function (quote ignore) t))
 (custom-set-faces
@@ -174,4 +176,6 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((((class color) (min-colors 257)) (:foreground "#F8F8F2" :background "#272822")) (((class color) (min-colors 89)) (:foreground "#F5F5F5" :background "#1B1E1C"))))
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
