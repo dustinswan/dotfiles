@@ -4,7 +4,7 @@ I primarily use OS X and [NixOS](http://nixos.org/) GNU/Linux.
 
 After ~15 years with Vim, I've recently switched to Emacs, via [Spacemacs](https://github.com/syl20bnr/spacemacs).
 
-## To speed up the switch, I've decided to Emacs All The Things
+## Emacs All The Things
 - Email: [offlineimap](http://offlineimap.org/) & [mu](https://github.com/djcb/mu) & [mu4e](http://www.djcbsoftware.nl/code/mu/mu4e.html)
 - Terminal: [multiterm](http://www.emacswiki.org/emacs/MultiTerm) (although I'm having some issues)
 - Shell: [EShell](http://www.gnu.org/software/emacs/manual/html_mono/eshell.html) (only for quick tasks, for now)
