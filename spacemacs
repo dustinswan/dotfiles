@@ -32,7 +32,6 @@
                                      restclient
                                      evil-snipe
                                      mu4e
-                                     dustin
                                      eyebrowse
                                      search-engine
                                      erc
@@ -40,7 +39,7 @@
                                      emacs-lisp
                                      slime
                                      (shell :variables shell-default-shell 'eshell shell-default-term-shell "/bin/bash")
-                                     emoji 
+                                     emoji
                                      syntax-checking)
 
  ;; A list of packages and/or extensions that will not be install and loaded.
