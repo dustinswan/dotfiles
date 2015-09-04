@@ -1,5 +1,5 @@
 [general]
-accounts = IOCOM, Gmail
+accounts = IOCOM, FastMail
 pythonfile = ~/dotfiles/offlineimap.py
 
 
@@ -19,18 +19,19 @@ remotepasseval = decrypt_password(".iocom-password.gpg")
 realdelete = no
 
 
-[Account Gmail]
-localrepository = GmailLocal
-remoterepository = GmailRemote
+[Account FastMail]
+localrepository = FastMailLocal
+remoterepository = FastMailRemote
 
-[Repository GmailLocal]
+[Repository FastMailLocal]
 type = Maildir
-localfolders = ~/Mail/Gmail
+localfolders = ~/Mail/FastMail
 
-[Repository GmailRemote]
-type = Gmail
-remoteuser = dustinswan@gmail.com
-remotepasseval = decrypt_password(".gmail-password.gpg")
+[Repository FastMailRemote]
+type = IMAP
+remotehost = mail.messagingengine.com
+remoteuser = dustinswan@fastmail.com
+remotepasseval = decrypt_password(".dustinswan@fastmail.com-password.gpg")
 realdelete = no
 sslcacertfile=/usr/local/etc/openssl/osx_cert.pem
 ssl = yes

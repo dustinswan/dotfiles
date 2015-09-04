@@ -15,7 +15,6 @@
  dotspacemacs-configuration-layers '(version-control
                                      git
                                      github
-                                     perforce
                                      c-c++
                                      haskell
                                      html
@@ -43,7 +42,7 @@
                                      syntax-checking)
 
  ;; A list of packages and/or extensions that will not be install and loaded.
- dotspacemacs-excluded-packages '()
+ dotspacemacs-excluded-packages '(org-bullets)
  ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
  ;; are declared in a layer which is not a member of
  ;; the list `dotspacemacs-configuration-layers'
@@ -74,10 +73,10 @@
  ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
  ;; size to make separators look not too crappy.
  dotspacemacs-default-font '("Source Code Pro"
-                             :size 11
-                             :weight normal
-                             :width normal
-                             :powerline-scale 1.0)
+                              :size 11
+                              :weight normal
+                              :width normal
+                              :powerline-scale 1.0)
 
  ;; The leader key
  dotspacemacs-leader-key "SPC"
@@ -137,6 +136,10 @@
   "User initialization for Spacemacs. This function is called at the very
  startup."
 
+ (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                          ("marmalade" . "https://marmalade-repo.org/packages/")
+                          ("melpa" . "http://melpa.org/packages/")))
+
   (setq-default git-magit-status-fullscreen t)
   (setq-default git-enable-github-support t)
   )
@@ -168,6 +171,7 @@ This function is called at the very end of Spacemacs initialization."
  '(ahs-idle-timer 0 t)
  '(ahs-inhibit-face-list nil)
  '(erc-modules (quote (scrolltobottom)))
+ '(js2-basic-offset 2)
  '(paradox-github-token t)
  '(ring-bell-function (quote ignore) t))
 (custom-set-faces
