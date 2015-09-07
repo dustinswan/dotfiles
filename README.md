@@ -28,10 +28,10 @@ After ~15 years with Vim, I've recently switched to Emacs, via [Spacemacs](https
 - Journal: [jrnl](http://maebert.github.io/jrnl/)
 
 ## TODO
-- Switch from Gmail to [Fastmail](http://www.fastmail.com)
-- Switch to NixOS full time
-- Switch from Dropbox to... I don't know. BitTorrent Sync?
-- [vdirsyncer](https://github.com/untitaker/vdirsyncer) to sync CardDAV and CalDAV (to be hosted on Fastmail)
-  - Calendar: [khal](https://github.com/geier/khal) (Or maybe something in Emacs)
-  - Contacts: [khard](https://github.com/scheibler/khard)
-- Music: [mpd](http://www.musicpd.org/) or [Mopidy](https://www.mopidy.com/) & [ncmpcpp](http://ncmpcpp.rybczak.net/) (Or [Mingus](https://github.com/pft/mingus) in Emacs)
+- [x] ~~Switch from Gmail to [Fastmail](http://www.fastmail.com)~~
+- [ ] Switch to NixOS full time
+- [ ] Switch from Dropbox to... I don't know. BitTorrent Sync?
+- [x] ~~[vdirsyncer](https://github.com/untitaker/vdirsyncer) to sync CardDAV and CalDAV (to be hosted on Fastmail)~~
+  - ~~Calendar: [khal](https://github.com/geier/khal) (Or maybe something in Emacs)~~
+  - ~~Contacts: [khard](https://github.com/scheibler/khard)~~
+- [ ] Music: [mpd](http://www.musicpd.org/) or [Mopidy](https://www.mopidy.com/) & [ncmpcpp](http://ncmpcpp.rybczak.net/) (Or [Mingus](https://github.com/pft/mingus) in Emacs)
