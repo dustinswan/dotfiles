@@ -48,7 +48,7 @@ export PATH=/usr/texbin:$PATH # Basictex
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH # Homebrew
 export PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH
 export PATH=$HOME/Library/Haskell/bin:$PATH
-export PATH=~/.cabal/bin:$PATH
+export PATH=$HOME/.cabal/bin:$PATH
 export PATH=$HOME/dotfiles/bin:$PATH
 export PATH=/usr/local/share/npm/bin:$PATH
 export NODE_PATH=/usr/local/lib/node:/usr/local/share/npm/lib/node_modules
@@ -90,3 +90,11 @@ export PATH="/usr/local/heroku/bin:$PATH"
 
 autoload -U select-word-style
 select-word-style bash
+
+# OPAM configuration
+. /Users/dustinswan/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+export PATH=$HOME/ghc-mod/dist/build/ghc-mod:$PATH # Take out when ghc-mod is fixed
+
+# FZF
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
