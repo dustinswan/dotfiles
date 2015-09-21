@@ -14,6 +14,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-characterize'
+Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-jdaddy'
 Plug 'tpope/vim-eunuch'
 "Plug 'tpope/vim-unimpared'
@@ -26,7 +27,8 @@ Plug 'scrooloose/nerdcommenter'
 "Plug 'w0ng/vim-hybrid'
 Plug 'sickill/vim-monokai'
 "Plug 'ervandew/supertab'
-Plug 'kien/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'junegunn/fzf.vim'
 Plug 'gregsexton/MatchTag'
 "Plug 'kana/vim-smartinput'
 Plug 'Raimondi/delimitMate'
@@ -68,9 +70,8 @@ call plug#end()
 
 " mouse
 if has("mouse")
-    set mouse=a
-    set ttymouse=xterm
 endif
+    set mouse=a
 
 " general goodness
 set shell=/bin/bash " Syntastic breaks when trying to write to /var/folders
@@ -187,11 +188,6 @@ nnoremap <leader>v <c-w>v<c-w>l
 " Buffer selection
 nnoremap <leader>l :ls<cr>:b<space>
 
-" Set the max files
-"let g:ctrlp_max_files = 10000
-let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_cmd = 'CtrlPMixed'
-
 " Vimux
 nnoremap <Leader>vp :VimuxPromptCommand<CR>
 nnoremap <Leader>vl :VimuxRunLastCommand<CR>
@@ -276,3 +272,7 @@ let g:airline_powerline_fonts = 1
 " python from powerline.vim import setup as powerline_setup
 " python powerline_setup()
 " python del powerline_setup
+
+" FZF
+nnoremap <silent> <Leader>f :Files<CR>
+nnoremap <silent> <Leader>b :Buffers<CR>
