@@ -98,3 +98,9 @@ export PATH=$HOME/ghc-mod/dist/build/ghc-mod:$PATH # Take out when ghc-mod is fi
 
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/Users/dustinswan/google-cloud-sdk/path.zsh.inc'
+
+# The next line enables shell command completion for gcloud.
+source '/Users/dustinswan/google-cloud-sdk/completion.zsh.inc'
