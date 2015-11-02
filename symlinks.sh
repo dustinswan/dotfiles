@@ -22,6 +22,7 @@ mkdir -p ~/.ssh; rm ~/.ssh/config; ln -s ~/dotfiles/ssh/config ~/.ssh/config
 # Mail stuff
 rm ~/.offlineimaprc; ln -s ~/dotfiles/offlineimaprc ~/.offlineimaprc
 rm ~/.msmtprc; ln -s ~/dotfiles/msmtprc ~/.msmtprc
+rm ~/.muttrc; ln -s ~/dotfiles/muttrc ~/.muttrc
 
 # TODO mac only
 rm ~/.slate.js; ln -s ~/dotfiles/slate.js ~/.slate.js
