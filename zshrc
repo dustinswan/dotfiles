@@ -5,6 +5,9 @@ antigen bundle git
 antigen theme S1cK94/minimal minimal
 export ZSH_THEME="minimal"
 
+autoload -U select-word-style
+select-word-style bash
+
 bindkey -e
 
 alias vi=nvim
@@ -22,6 +25,7 @@ export BROWSER=open
 [[ -s luakit ]] && export BROWSER=luakit
 
 # IOCOM stuff
+alias dswan="ssh root@dswan.insors.net"
 export P4USER=dswan
 export P4PORT="humu.insors.net:1666"
 export P4CONFIG=p4.cfg
@@ -48,8 +52,6 @@ eval `keychain --eval id_rsa`
 # Tex
 eval `/usr/libexec/path_helper -s`
 
-powerline-daemon -q
-
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.history
@@ -57,14 +59,5 @@ HISTFILE=~/.history
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-autoload -U select-word-style
-select-word-style bash
-
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-PATH="/Users/dustinswan/perl5/bin${PATH+:}${PATH}"; export PATH;
-PERL5LIB="/Users/dustinswan/perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/Users/dustinswan/perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/Users/dustinswan/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/Users/dustinswan/perl5"; export PERL_MM_OPT;
