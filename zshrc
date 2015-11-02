@@ -49,9 +49,6 @@ if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc
 # Keychain
 eval `keychain --eval id_rsa`
 
-# Tex
-eval `/usr/libexec/path_helper -s`
-
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.history
