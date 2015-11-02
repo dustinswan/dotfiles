@@ -1,21 +1,13 @@
 #!/bin/bash
 
-rm ~/.ackrc; ln -s ~/dotfiles/ackrc ~/.ackrc
+rm ~/.zshrc; ln -s ~/dotfiles/zshrc ~/.zshrc
 rm ~/.gemrc; ln -s ~/dotfiles/gemrc ~/.gemrc
 rm -rf ~/.ghc; mkdir ~/.ghc; ln -s ~/dotfiles/ghci.conf ~/.ghc/ghci.conf
 rm ~/.gitconfig; ln -s ~/dotfiles/gitconfig ~/.gitconfig
-rm ~/.ruby-version; ln -s ~/dotfiles/ruby-version ~/.ruby-version
 rm -rf ~/.tmux; ln -s ~/dotfiles/tmux ~/.tmux
 rm ~/.tmux.conf; ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
-
-rm ~/.vimrc; ln -s ~/dotfiles/vimrc ~/.vimrc
-rm ~/.nvimrc; ln -s ~/dotfiles/vimrc ~/.nvimrc
-rm -rf ~/.vim; ln -s ~/dotfiles/vim ~/.vim
-rm -rf ~/.nvim; ln -s ~/dotfiles/vim ~/.nvim
-
 rm -rf ~/.config/khal; mkdir -p ~/.config/khal; ln -s ~/dotfiles/khal.conf ~/.config/khal/khal.conf
 rm -rf ~/.vdirsyncer; mkdir ~/.vdirsyncer; ln -s ~/dotfiles/vdirsyncer/config ~/.vdirsyncer/config
-rm ~/.zshrc; ln -s ~/dotfiles/zshrc ~/.zshrc
 rm ~/.jrnl_config; ln -s ~/dotfiles/jrnl_config ~/.jrnl_config
 rm ~/.gnupg/gpg-agent.conf; mkdir ~/.gnupg; ln -s ~/dotfiles/gpg-agent.conf ~/.gnupg/gpg-agent.conf
 mkdir -p ~/.ssh; rm ~/.ssh/config; ln -s ~/dotfiles/ssh/config ~/.ssh/config
@@ -25,14 +17,20 @@ rm ~/.offlineimaprc; ln -s ~/dotfiles/offlineimaprc ~/.offlineimaprc
 rm ~/.msmtprc; ln -s ~/dotfiles/msmtprc ~/.msmtprc
 rm ~/.muttrc; ln -s ~/dotfiles/muttrc ~/.muttrc
 
-# TODO mac only
+# mac only
 rm ~/.slate.js; ln -s ~/dotfiles/slate.js ~/.slate.js
 rm ~/Library/KeyBindings/DefaultKeyBinding.dict; cp ~/dotfiles/DefaultKeyBinding.dict ~/Library/KeyBindings/DefaultKeyBinding.dict
 
-# TODO linux only
+# linux only
 rm -rf ~/.i3; mkdir ~/.i3; ln -s ~/dotfiles/i3/config ~/.i3/config
 rm -rf ~/.Xresources; ln -s ~/dotfiles/Xresources ~/.Xresources
 rm -rf ~/.xinitrc; ln -s ~/dotfiles/xinitrc ~/.xinitrc
+
+# Vim
+rm ~/.vimrc; ln -s ~/dotfiles/vimrc ~/.vimrc
+rm ~/.nvimrc; ln -s ~/dotfiles/vimrc ~/.nvimrc
+rm -rf ~/.vim; ln -s ~/dotfiles/vim ~/.vim
+rm -rf ~/.nvim; ln -s ~/dotfiles/vim ~/.nvim
 
 # Spacemacs
 mv ~/.emacs.d ~/.emacs.bak
