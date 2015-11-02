@@ -6,9 +6,12 @@ rm -rf ~/.ghc; mkdir ~/.ghc; ln -s ~/dotfiles/ghci.conf ~/.ghc/ghci.conf
 rm ~/.gitconfig; ln -s ~/dotfiles/gitconfig ~/.gitconfig
 rm ~/.ruby-version; ln -s ~/dotfiles/ruby-version ~/.ruby-version
 rm ~/.tmux.conf; ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
+
 rm ~/.vimrc; ln -s ~/dotfiles/vimrc ~/.vimrc
-rm -rf ~/.nvim; mkdir ~/.nvim; ln -s ~/dotfiles/vimrc ~/.nvim/nvimrc
+rm ~/.nvimrc; ln -s ~/dotfiles/vimrc ~/.nvimrc
 rm -rf ~/.vim; ln -s ~/dotfiles/vim ~/.vim
+rm -rf ~/.nvim; ln -s ~/dotfiles/vim ~/.nvim
+
 rm -rf ~/.config/khal; mkdir -p ~/.config/khal; ln -s ~/dotfiles/khal.conf ~/.config/khal/khal.conf
 rm -rf ~/.vdirsyncer; mkdir ~/.vdirsyncer; ln -s ~/dotfiles/vdirsyncer/config ~/.vdirsyncer/config
 rm ~/.zshrc; ln -s ~/dotfiles/zshrc ~/.zshrc
