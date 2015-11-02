@@ -5,6 +5,7 @@ rm ~/.gemrc; ln -s ~/dotfiles/gemrc ~/.gemrc
 rm -rf ~/.ghc; mkdir ~/.ghc; ln -s ~/dotfiles/ghci.conf ~/.ghc/ghci.conf
 rm ~/.gitconfig; ln -s ~/dotfiles/gitconfig ~/.gitconfig
 rm ~/.ruby-version; ln -s ~/dotfiles/ruby-version ~/.ruby-version
+rm -rf ~/.tmux; ln -s ~/dotfiles/tmux ~/.tmux
 rm ~/.tmux.conf; ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 
 rm ~/.vimrc; ln -s ~/dotfiles/vimrc ~/.vimrc

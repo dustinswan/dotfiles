@@ -12,6 +12,7 @@ ignorekeys add google\.com\/search
 ignorekeys add dswan\.insors\.net\/webclient
 ignorekeys add visitest\.iocom\.com\/webclient
 ignorekeys add visimeet\.iocom\.com\/webclient
+ignorekeys add lingvist\.io
 
 set gui=nonavigation
 set editor='bash -lc "mvim -f \$*" mvim'
