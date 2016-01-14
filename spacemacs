@@ -28,6 +28,7 @@ values."
 
      osx
      nixos
+     (mu4e :variables mu4e-installation-path "/usr/local/share/emacs/site-lisp/mu4e")
 
      c-c++
      haskell
@@ -60,7 +61,8 @@ values."
      emacs-lisp
      common-lisp
      scheme
-     (shell :variables shell-default-shell 'eshell shell-default-term-shell "/bin/bash")
+     ;; (shell :variables shell-default-shell 'eshell shell-default-term-shell "/bin/bash")
+     (shell :variables shell-default-term-shell "/bin/bash")
      xkcd
      spotify
      emoji)
@@ -85,6 +87,7 @@ values."
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (setq-default
+   dotspacemacs-scratch-mode 'emacs-lisp-mode
    ;; One of `vim', `emacs' or `hybrid'. Evil is always enabled but if the
    ;; variable is `emacs' then the `holy-mode' is enabled at startup. `hybrid'
    ;; uses emacs key bindings for vim's insert mode, but otherwise leaves evil
@@ -169,7 +172,7 @@ values."
    dotspacemacs-fullscreen-at-startup t
    ;; If non nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
    ;; Use to disable fullscreen animations in OSX. (default nil)
-   dotspacemacs-fullscreen-use-non-native t
+   dotspacemacs-fullscreen-use-non-native nil
    ;; If non nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (default nil) (Emacs 24.4+ only)
@@ -214,7 +217,6 @@ It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
   (setq-default git-magit-status-fullscreen t)
   (setq-default git-enable-github-support t)
-  (add-to-list 'load-path "~/ghc-mod/elisp")
 
   ;(org-babel-do-load-languages
   ; 'org-babel-load-languages
@@ -232,7 +234,70 @@ layers configuration. You are free to put any user code."
   (eyebrowse-setup-opinionated-keys)
   ;; (add-hook 'doc-view-mode-hook 'auto-revert-mode)
   ;; (setq org-default-notes-file (concat org-directory "~/Dropbox/Org/org.org"))
-  (setq ort/prefix-arg-directory "/Users/dustinswan/Dropbox/Org/")
+  (setq org/prefix-arg-directory "/Users/dustinswan/Dropbox/Org/")
+
+  (setq mu4e-account-alist
+        '(("FastMail"
+           (mu4e-sent-messages-behavior sent)
+           (mu4e-sent-folder "/FastMail/INBOX.Sent")
+           (mu4e-drafts-folder "/FastMail/INBOX.Drafts")
+           (mu4e-refile-folder "/FastMail/INBOX.Archive")
+           (mu4e-trash-folder "/FastMail/INBOX.Trash")
+           (user-mail-address "dustin@dustinswan.com"))
+          ("IOCOM"
+           (mu4e-sent-messages-behavior sent)
+           (mu4e-sent-folder "/IOCOM/INBOX.Sent")
+           (mu4e-drafts-folder "/IOCOM/INBOX.Drafts")
+           (mu4e-refile-folder "/IOCOM/INBOX.Archive")
+           (mu4e-trash-folder "/IOCOM/INBOX.Trash")
+           (user-mail-address "dswan@iocom.com"))))
+
+  (mu4e/mail-account-reset)
+
+  (setq mu4e-maildir "~/Mail"
+        user-full-name "Dustin Swan"
+        mu4e-user-mail-address-list '("dustin@dustinswan.com"
+                                      "dustinswan@gmail.com"
+                                      "dswan@iocom.com"
+                                      "dswan@insors.com")
+        mu4e-get-mail-command "offlineimap -q"
+        mu4e-update-interval 120
+        mu4e-compose-signature-auto-include nil
+
+        ;; Viewing Mail
+        mu4e-headers-show-threads t
+        mu4e-attachment-dir "~/Downloads"
+        mu4e-view-show-images t
+        mu4e-view-show-addresses t
+        ;; mu4e-html2text-command 'mu4e-shr2text
+        mu4e-view-prefer-html t
+
+        ;; Sending Mail
+        message-send-mail-function 'message-send-mail-with-sendmail
+        message-sendmail-extra-arguments '("--read-envelope-from")
+        message-sendmail-f-is-evil 't
+        sendmail-program "/usr/local/bin/msmtp"
+        )
+
+  ;;; Mail directory shortcuts
+  (setq mu4e-maildir-shortcuts
+        '(("/FastMail/INBOX" . ?F)
+          ("/IOCOM/INBOX" . ?I)))
+
+  ;;; Bookmarks
+  (setq mu4e-bookmarks
+        `(("flag:unread AND NOT flag:trashed" "Unread messages" ?u)
+          ("date:today..now" "Today's messages" ?t)
+          ("date:7d..now" "Last 7 days" ?w)
+          ("mime:image/*" "Messages with images" ?p)
+          (,(mapconcat 'identity
+                       (mapcar
+                        (lambda (maildir)
+                          (concat "maildir:" (car maildir)))
+                        mu4e-maildir-shortcuts) " OR ")
+                    "All inboxes" ?i)))
+
+  (setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages")
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
