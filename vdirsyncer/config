@@ -4,7 +4,6 @@
 [general]
 # A folder where vdirsyncer can store some metadata about each pair.
 status_path = ~/.vdirsyncer/status/
-password_command = ~/dotfiles/bin/decrypt_password.sh
 
 # CONTACTS
 #[pair google_contacts]
@@ -72,6 +71,7 @@ type = caldav
 url = https://caldav.messagingengine.com/
 auth = basic
 username = dustinswan@fastmail.com
+password.fetch = ["command", "~/dotfiles/bin/decrypt_password.sh", "dustinswan@fastmail.com"]
 #verify = True
 
 # Optional: Specify a time range which should be synchronized. Either both
