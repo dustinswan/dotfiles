@@ -114,7 +114,7 @@ antigen-bundles () {
 antigen-update () {
     # Update your bundles, i.e., `git pull` in all the plugin repos.
 
-    date > $ADOTDIR/revert-info
+    date >! $ADOTDIR/revert-info
 
     -antigen-echo-record |
         awk '$4 == "true" {print $1}' |
@@ -137,21 +137,19 @@ antigen-update () {
 
 antigen-revert () {
     if [[ -f $ADOTDIR/revert-info ]]; then
-        cat $ADOTDIR/revert-info | sed '1!p' | while read line; do
-            dir="$(echo "$line" | cut -d: -f1)"
+        cat $ADOTDIR/revert-info | sed -n '1!p' | while read line; do
+            local dir="$(echo "$line" | cut -d: -f1)"
             git --git-dir="$dir/.git" --work-tree="$dir" \
                 checkout "$(echo "$line" | cut -d: -f2)" 2> /dev/null
-
         done
 
         echo "Reverted to state before running -update on $(
-                cat $ADOTDIR/revert-info | sed -n 1p)."
+                cat $ADOTDIR/revert-info | sed -n '1p')."
 
-    else 
+    else
         echo 'No revert information available. Cannot revert.' >&2
+        return 1
     fi
-
-
 }
 
 -antigen-get-clone-dir () {
@@ -260,10 +258,12 @@ antigen-revert () {
     # The full location where the plugin is located.
     local location
     if $make_local_clone; then
-        location="$(-antigen-get-clone-dir "$url")/$loc"
+        location="$(-antigen-get-clone-dir "$url")/"
     else
-        location="$url/$loc"
+        location="$url/"
     fi
+
+    [[ $loc != "/" ]] && location="$location$loc"
 
     if [[ -f "$location" ]]; then
         source "$location"
@@ -293,17 +293,19 @@ antigen-revert () {
         elif ls "$location" | grep -l '\.zsh$' &> /dev/null; then
             # If there is no `*.plugin.zsh` file, source *all* the `*.zsh`
             # files.
-            for script ($location/*.zsh(N)) source "$script"
+            for script ($location/*.zsh(N)) { source "$script" }
 
         elif ls "$location" | grep -l '\.sh$' &> /dev/null; then
             # If there are no `*.zsh` files either, we look for and source any
             # `*.sh` files instead.
-            for script ($location/*.sh(N)) source "$script"
+            for script ($location/*.sh(N)) { source "$script" }
 
         fi
 
-        # Add to $fpath, for completion(s).
-        fpath=($location $fpath)
+        # Add to $fpath, for completion(s), if not in there already
+        if (( ! ${fpath[(I)$location]} )); then
+            fpath=($location $fpath)
+        fi
 
     fi
 
@@ -337,7 +339,7 @@ antigen-cleanup () {
         force=true
     fi
 
-    if [[ ! -d "$ADOTDIR/repos" || -z "$(ls "$ADOTDIR/repos/")" ]]; then
+    if [[ ! -d "$ADOTDIR/repos" || -z "$(\ls "$ADOTDIR/repos/")" ]]; then
         echo "You don't have any bundles."
         return 0
     fi
@@ -350,7 +352,7 @@ antigen-cleanup () {
                 -antigen-get-clone-dir "$line"
             done |
             sort -u) \
-        <(ls -d "$ADOTDIR/repos/"* | sort -u))"
+        <(\ls -d "$ADOTDIR/repos/"* | sort -u))"
 
     if [[ -z $unused_clones ]]; then
         echo "You don't have any unidentified bundles."
@@ -395,6 +397,9 @@ antigen-use () {
 -antigen-use-oh-my-zsh () {
     if [[ -z "$ZSH" ]]; then
         export ZSH="$(-antigen-get-clone-dir "$ANTIGEN_DEFAULT_REPO_URL")"
+    fi
+    if [[ -z "$ZSH_CACHE_DIR" ]]; then
+        export ZSH_CACHE_DIR="$ZSH/cache/"
     fi
     antigen-bundle --loc=lib
 }
@@ -441,7 +446,11 @@ antigen-apply () {
     # Load the compinit module. This will readefine the `compdef` function to
     # the one that actually initializes completions.
     autoload -U compinit
-    compinit -i
+    if [[ -z $ANTIGEN_COMPDUMPFILE ]]; then
+        compinit -i
+    else
+        compinit -i -d $ANTIGEN_COMPDUMPFILE
+    fi
 
     # Apply all `compinit`s that have been deferred.
     eval "$(for cdef in $__deferred_compdefs; do
@@ -734,20 +743,56 @@ antigen () {
 
 # Setup antigen's autocompletion
 _antigen () {
-    compadd        \
-        bundle     \
-        bundles    \
-        update     \
-        revert     \
-        list       \
-        cleanup    \
-        use        \
-        selfupdate \
-        theme      \
-        apply      \
-        snapshot   \
-        restore    \
-        help
+  local -a _1st_arguments
+  _1st_arguments=(
+    'bundle:Install and load the given plugin'
+    'bundles:Bulk define bundles'
+    'update:Update all bundles'
+    'revert:Revert the state of all bundles to how they were before the last antigen update'
+    'list:List out the currently loaded bundles'
+    'cleanup:Clean up the clones of repos which are not used by any bundles currently loaded'
+    'use:Load any (supported) zsh pre-packaged framework'
+    'theme:Switch the prompt theme'
+    'apply:Load all bundle completions'
+    'snapshot:Create a snapshot of all the active clones'
+    'restore:Restore the bundles state as specified in the snapshot'
+    'selfupdate:Update antigen itself'
+    'help:Print help message'
+  )
+
+  __bundle() {
+    _arguments \
+      '--loc[Path to the location <path-to/location>]' \
+      '--url[Path to the repository <github-account/repository>]' \
+      '--branch[Git branch name]' \
+      '--no-local-clone[Do not create a clone]' \
+      '--btype[Indicates whether the bundle is a theme or a simple plugin]'
+  }
+
+  __cleanup() {
+    _arguments \
+      '--force[Do not ask for confirmation]'
+  }
+
+  _arguments '*:: :->command'
+
+  if (( CURRENT == 1 )); then
+    _describe -t commands "antigen command" _1st_arguments
+    return
+  fi
+
+  local -a _command_args
+  case "$words[1]" in
+    bundle)
+      __bundle
+      ;;
+    use)
+      compadd "$@" "oh-my-zsh" "prezto"
+      ;;
+    cleanup)
+      __cleanup
+      ;;
+  esac
 }
 
 -antigen-env-setup
