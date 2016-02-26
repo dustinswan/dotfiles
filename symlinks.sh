@@ -27,10 +27,12 @@ rm -rf ~/.Xresources; ln -s ~/dotfiles/Xresources ~/.Xresources
 rm -rf ~/.xinitrc; ln -s ~/dotfiles/xinitrc ~/.xinitrc
 
 # Vim
-rm ~/.vimrc; ln -s ~/dotfiles/vimrc ~/.vimrc
-rm ~/.nvimrc; ln -s ~/dotfiles/vimrc ~/.nvimrc
 rm -rf ~/.vim; ln -s ~/dotfiles/vim ~/.vim
-rm -rf ~/.nvim; ln -s ~/dotfiles/vim ~/.nvim
+rm ~/.vimrc; ln -s ~/dotfiles/vimrc ~/.vimrc
+
+# Neovim
+rm -rf ~/.config/nvim; ln -s ~/dotfiles/vim ~/.config/nvim
+rm ~/.config/nvim/init.vim; ln -s ~/dotfiles/vimrc ~/.config/nvim/init.vim
 
 # Spacemacs
 mv ~/.emacs.d ~/.emacs.bak
