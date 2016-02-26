@@ -2,6 +2,7 @@ ignorekeys add www\.fastmail\.com
 ignorekeys add mail\.google\.com
 ignorekeys add apps\.rackspace\.com\/a\/webmail.php
 ignorekeys add google\.com/calendar
+ignorekeys add duckduckgo\.com
 ignorekeys add docs\.google\.com
 ignorekeys add feedly\.com
 ignorekeys add reddit\.com
@@ -15,6 +16,6 @@ ignorekeys add visimeet\.iocom\.com\/webclient
 ignorekeys add lingvist\.io
 
 set gui=nonavigation
-set editor='bash -lc "mvim -f \$*" mvim'
 
-map <M-l> :open <F37>
+map <M-l> :open 
+map <M-t> :tabopen <CR> :open 
