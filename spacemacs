@@ -21,33 +21,14 @@ values."
      git
      github
      perforce
-
      syntax-checking
      spell-checking
      better-defaults
-
      osx
      nixos
-     (mu4e :variables mu4e-installation-path "/usr/local/share/emacs/site-lisp/mu4e")
-
-     c-c++
-     haskell
-     idris
-     ocaml
-     html
-     react
-     javascript
-     elm
-     purescript
-     rust
-     ruby
-     ruby-on-rails
-     python
-     markdown
-     yaml
-     extra-langs
-     latex
-
+     (mu4e :variables mu4e-installation-path "/usr/local/share/emacs/site-lisp/mu/mu4e")
+     (ranger :variables ranger-show-preview t)
+     speed-reading
      auto-completion
      colors
      restclient
@@ -58,18 +39,45 @@ values."
      search-engine
      erc
      (org :variables org-enable-github-support t)
+     ;; (shell :variables shell-default-shell 'eshell shell-default-term-shell "/bin/bash")
+     (shell :variables shell-default-term-shell "/Users/dustinswan/.nix-profile/bin/zsh")
+     xkcd
+     spotify
+     finance
+     dash
+     emoji
+     (elfeed :variables rmh-elfeed-org-files (list "/Users/dustinswan/dotfiles/elfeed.org"))
+     ;; (geolocation :variables
+     ;;              geolocation-enable-osx-location-service-support t
+     ;;              geolocation-enable-weather-forecast t)
+
+     ;; Langs
+     c-c++
      emacs-lisp
      common-lisp
      scheme
-     ;; (shell :variables shell-default-shell 'eshell shell-default-term-shell "/bin/bash")
-     (shell :variables shell-default-term-shell "/bin/bash")
-     xkcd
-     spotify
-     emoji)
+     (haskell :variables haskell-enable-hindent-style "fundamental")
+     idris
+     purescript
+     elm
+     javascript
+     react
+     html
+     php
+     rust
+     go
+     shell-scripts
+     ruby
+     ruby-on-rails
+     python
+     markdown
+     yaml
+     extra-langs
+     latex)
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
-   ;; packages then consider to create a layer, you can also put the
-   ;; configuration in `dotspacemacs/config'.
+   ;; packages, then consider creating a layer. You can also put the
+   ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '()
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
@@ -87,7 +95,18 @@ values."
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (setq-default
-   dotspacemacs-scratch-mode 'emacs-lisp-mode
+   ;; If non nil ELPA repositories are contacted via HTTPS whenever it's
+   ;; possible. Set it to nil if you have no way to use HTTPS in your
+   ;; environment, otherwise it is strongly recommended to let it set to t.
+   ;; This variable has no effect if Emacs is launched with the parameter
+   ;; `--insecure' which forces the value of this variable to nil.
+   ;; (default t)
+   dotspacemacs-elpa-https t
+   ;; Maximum allowed time in seconds to contact an ELPA repository.
+   dotspacemacs-elpa-timeout 5
+   ;; If non nil then spacemacs will check for updates at startup
+   ;; when the current branch is not `develop'. (default t)
+   dotspacemacs-check-for-update t
    ;; One of `vim', `emacs' or `hybrid'. Evil is always enabled but if the
    ;; variable is `emacs' then the `holy-mode' is enabled at startup. `hybrid'
    ;; uses emacs key bindings for vim's insert mode, but otherwise leaves evil
@@ -105,16 +124,23 @@ values."
    ;; List of items to show in the startup buffer. If nil it is disabled.
    ;; Possible values are: `recents' `bookmarks' `projects'.
    ;; (default '(recents projects))
-   dotspacemacs-startup-lists '(recents projects)
+   dotspacemacs-startup-lists '(recents bookmarks projects)
+   ;; Number of recent files to show in the startup buffer. Ignored if
+   ;; `dotspacemacs-startup-lists' doesn't include `recents'. (default 5)
+   dotspacemacs-startup-recent-list-size 5
+   ;; Default major mode of the scratch buffer (default `text-mode')
+   dotspacemacs-scratch-mode 'emacs-lisp-mode
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(monokai spacemacs-dark zenburn solarized-dark)
-   ;; If non nil the cursor color matches the state color.
+   ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
+   ;; dotspacemacs-default-font '("Source Code Pro"
+   ;; dotspacemacs-default-font '("PragmataPro"
+   dotspacemacs-default-font '("Hasklig"
                                :size 11
                                :weight normal
                                :width normal
@@ -130,21 +156,41 @@ values."
    ;; Major mode leader key accessible in `emacs state' and `insert state'.
    ;; (default "C-M-m)
    dotspacemacs-major-mode-emacs-leader-key "C-M-m"
+   ;; These variables control whether separate commands are bound in the GUI to
+   ;; the key pairs C-i, TAB and C-m, RET.
+   ;; Setting it to a non-nil value, allows for separate commands under <C-i>
+   ;; and TAB or <C-m> and RET.
+   ;; In the terminal, these pairs are generally indistinguishable, so this only
+   ;; works in the GUI. (default nil)
+   dotspacemacs-distinguish-gui-tab nil
+   ;; (Not implemented) dotspacemacs-distinguish-gui-ret nil
    ;; The command key used for Evil commands (ex-commands) and
    ;; Emacs commands (M-x).
    ;; By default the command key is `:' so ex-commands are executed like in Vim
    ;; with `:' and Emacs commands are executed with `<leader> :'.
    dotspacemacs-command-key ":"
+   ;; If non nil `Y' is remapped to `y$'. (default t)
+   dotspacemacs-remap-Y-to-y$ t
+   ;; Name of the default layout (default "Default")
+   dotspacemacs-default-layout-name "Default"
+   ;; If non nil the default layout name is displayed in the mode-line.
+   ;; (default nil)
+   dotspacemacs-display-default-layout nil
+   ;; If non nil then the last auto saved layouts are resume automatically upon
+   ;; start. (default nil)
+   dotspacemacs-auto-resume-layouts nil
    ;; Location where to auto-save files. Possible values are `original' to
    ;; auto-save the file in-place, `cache' to auto-save the file to another
    ;; file stored in the cache directory and `nil' to disable auto-saving.
    ;; (default 'cache)
    dotspacemacs-auto-save-file-location 'cache
+   ;; Maximum number of rollback slots to keep in the cache. (default 5)
+   dotspacemacs-max-rollback-slots 5
    ;; If non nil then `ido' replaces `helm' for some commands. For now only
    ;; `find-files' (SPC f f), `find-spacemacs-file' (SPC f e s), and
    ;; `find-contrib-file' (SPC f e c) are replaced. (default nil)
    dotspacemacs-use-ido nil
-   ;; If non nil, `helm' will try to miminimize the space it uses. (default nil)
+   ;; If non nil, `helm' will try to minimize the space it uses. (default nil)
    dotspacemacs-helm-resize nil
    ;; if non nil, the helm header is hidden when there is only one source.
    ;; (default nil)
@@ -172,7 +218,7 @@ values."
    dotspacemacs-fullscreen-at-startup t
    ;; If non nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
    ;; Use to disable fullscreen animations in OSX. (default nil)
-   dotspacemacs-fullscreen-use-non-native nil
+   dotspacemacs-fullscreen-use-non-native t
    ;; If non nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (default nil) (Emacs 24.4+ only)
@@ -191,6 +237,10 @@ values."
    ;; scrolling overrides the default behavior of Emacs which recenters the
    ;; point when it reaches the top or bottom of the screen. (default t)
    dotspacemacs-smooth-scrolling t
+   ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
+   ;; derivatives. If set to `relative', also turns on relative line numbers.
+   ;; (default nil)
+   dotspacemacs-line-numbers nil
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
@@ -209,32 +259,40 @@ values."
    ;; specified with an installed package.
    ;; Not used for now. (default nil)
    dotspacemacs-default-package-repository nil
+   ;; Delete whitespace while saving buffer. Possible values are `all'
+   ;; to aggressively delete empty line and long sequences of whitespace,
+   ;; `trailing' to delete only the whitespace at end of lines, `changed'to
+   ;; delete only whitespace for changed lines or `nil' to disable cleanup.
+   ;; (default nil)
+   dotspacemacs-whitespace-cleanup nil
    ))
 
 (defun dotspacemacs/user-init ()
   "Initialization function for user code.
-It is called immediately after `dotspacemacs/init'.  You are free to put any
-user code."
+It is called immediately after `dotspacemacs/init'.  You are free to put almost
+any user code here.  The exception is org related code, which should be placed
+in `dotspacemacs/user-config'."
   (setq-default git-magit-status-fullscreen t)
   (setq-default git-enable-github-support t)
 
-  ;(org-babel-do-load-languages
-  ; 'org-babel-load-languages
-  ; '((haskell . t)
-  ;   (emacs-lisp . t)
-  ;   (python . t)
-  ;   ))
+  (add-to-list 'exec-path "~/.local/bin/")
+
+  (setq-default ispell-program-name "aspell")
+  ;; (setq-default ispell-dictionary "english")
   )
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
- This function is called at the very end of Spacemacs initialization after
+This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
-  (display-time-mode 1)
+
+  (setq powerline-default-separator 'arrow-fade)
+
   (eyebrowse-setup-opinionated-keys)
+
   ;; (add-hook 'doc-view-mode-hook 'auto-revert-mode)
   ;; (setq org-default-notes-file (concat org-directory "~/Dropbox/Org/org.org"))
-  (setq org/prefix-arg-directory "/Users/dustinswan/Dropbox/Org/")
+  (setq org/prefix-arg-directory "/Users/dustinswan/Sync/Org/")
 
   (setq mu4e-account-alist
         '(("FastMail"
@@ -254,6 +312,7 @@ layers configuration. You are free to put any user code."
 
   (mu4e/mail-account-reset)
 
+  (require 'mu4e-contrib)
   (setq mu4e-maildir "~/Mail"
         user-full-name "Dustin Swan"
         mu4e-user-mail-address-list '("dustin@dustinswan.com"
@@ -269,8 +328,10 @@ layers configuration. You are free to put any user code."
         mu4e-attachment-dir "~/Downloads"
         mu4e-view-show-images t
         mu4e-view-show-addresses t
-        ;; mu4e-html2text-command 'mu4e-shr2text
         mu4e-view-prefer-html t
+        mu4e-html2text-command 'mu4e-shr2text
+        mu4e-html2text-command "w3m -dump -T text/html"
+        w3m-command "/usr/bin/w3m"
 
         ;; Sending Mail
         message-send-mail-function 'message-send-mail-with-sendmail
@@ -278,6 +339,9 @@ layers configuration. You are free to put any user code."
         message-sendmail-f-is-evil 't
         sendmail-program "/usr/local/bin/msmtp"
         )
+
+  (when (fboundp 'imagemagick-register-types)
+    (imagemagick-register-types))
 
   ;;; Mail directory shortcuts
   (setq mu4e-maildir-shortcuts
@@ -297,7 +361,49 @@ layers configuration. You are free to put any user code."
                         mu4e-maildir-shortcuts) " OR ")
                     "All inboxes" ?i)))
 
-  (setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages")
+  ;; (require 'mu4e-alert)
+  ;; (mu4e-alert-set-default-style 'notifier)
+  ;; (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
+  ;; (add-hook 'after-init-hook #'mu4e-alert-enable-mode-line-display)
+
+  (setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages") ;; Needed to find offlineimap's libs
+
+  ;; (when (configuration-layer/layer-usedp 'haskell)
+  ;;   (add-hook 'haskell-interactive-mode-hook
+  ;;             (lambda ()
+  ;;               (setq-local evil-move-cursor-back nil))))
+
+  ;; Time & Date in mode-line
+  (spaceline-define-segment date-time-segment
+    (format-time-string "%a %Y/%m/%d %H:%M"))
+  (add-to-list 'spaceline-right 'date-time-segment)
+
+  (fancy-battery-mode)
+
+  ;(org-babel-do-load-languages
+  ; 'org-babel-load-languages
+  ; '((haskell . t)
+  ;   (emacs-lisp . t)
+  ;   (python . t)
+  ;   ))
+
+  (setq ranger-cleanup-on-disable t
+        ranger-cleanup-eagerly t
+        ranger-show-literal nil
+        ranger-show-dotfiles nil
+        ranger-parent-depth 4
+        ranger-max-preview-size 10)
+
+  (spacemacs|define-custom-layout "Mail"
+    :binding "m"
+    :body
+    (mu4e))
+
+  (spacemacs|define-custom-layout "Elfeed"
+    :binding "f"
+    :body
+    (elfeed))
+
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -313,11 +419,15 @@ layers configuration. You are free to put any user code."
  '(ahs-idle-interval 0.25)
  '(ahs-idle-timer 0 t)
  '(ahs-inhibit-face-list nil)
+ '(elfeed-goodies/entry-pane-position (quote bottom))
  '(erc-modules
    (quote
-    (autoaway autojoin button completion log match menu move-to-prompt netsplit notify notifications readonly ring scrolltobottom spelling track image hl-nicks networks services)))
+    (autoaway button completion list match move-to-prompt netsplit networks notify notifications readonly scrolltobottom services smiley spelling track completion autoaway autojoin button log match menu move-to-prompt netsplit notify notifications readonly ring scrolltobottom spelling track image hl-nicks networks services)))
+ '(fancy-battery-mode t)
  '(js2-basic-offset 2)
- '(org-agenda-files (quote ("~/Dropbox/Org/org.org")))
+ '(mac-auto-operator-composition-mode t)
+ '(org-agenda-files (quote ("~/Sync/Org/org.org")))
+ '(org-directory "~/Sync/Org/")
  '(paradox-github-token t)
  '(ring-bell-function (quote ignore) t))
 (custom-set-faces
