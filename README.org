@@ -12,8 +12,10 @@ Screen]], I've switched to
 
 ** Emacs
 
-If you - like Vim's modal UI - like Lisp better than Vimscript (yes, I
-know about neovim) - want a huge, ancient hacker community & ecosystem
+If you
+- like Vim's modal UI
+- like Lisp better than Vimscript (yes, I know about neovim)
+- want a huge, ancient hacker community & ecosystem
 
 then I really suggest checking out Emacs & Spacemacs. Emacs really is a
 great operating system, and now it has a great editor.
