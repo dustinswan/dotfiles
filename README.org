@@ -42,7 +42,7 @@ great operating system, and now it has a great editor.
 -  Sync: [[https://syncthing.net][Syncthing]]
 -  RSS Reader: [[https://github.com/skeeto/elfeed][Elfeed]]
 
-** TODO
+** Todo List
 
 -  [ ] Switch from [[http://github.com][GitHub]] to
    [[https://gitlab.com][GitLab]]
