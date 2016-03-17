@@ -1,0 +1,61 @@
+* Dotfiles
+
+I primarily use OS X and [[http://nixos.org][NixOS]] GNU/Linux. I'm
+trying [[https://nixos.org/nix/][nix]] on OS X for package management,
+and [[http://brew.sh/][Homebrew]] for anything that's missing or broken.
+
+After ~15 years with Vim &
+[[https://tmux.github.io/][Tmux]]/[[https://www.gnu.org/software/screen/][GNU
+Screen]], I've switched to
+[[https://www.gnu.org/software/emacs/][Emacs]] &
+[[https://github.com/syl20bnr/spacemacs][Spacemacs]].
+
+** Emacs
+
+If you - like Vim's modal UI - like Lisp better than Vimscript (yes, I
+know about neovim) - want a huge, ancient hacker community & ecosystem
+
+then I really suggest checking out Emacs & Spacemacs. Emacs really is a
+great operating system, and now it has a great editor.
+
+** Other Software
+
+-  Email: [[http://offlineimap.org][offlineimap]] &
+   [[https://github.com/djcb/mu][mu]] &
+   [[http://www.djcbsoftware.nl/code/mu/mu4e.html][mu4e]] via
+   [[https://www.fastmail.com/][Fastmail]]
+-  Terminal: [[http://www.emacswiki.org/emacs/MultiTerm][multiterm]] &
+   [[http://www.iterm2.com][iTerm 2]] (OS X) &
+   [[http://software.schmorp.de/pkg/rxvt-unicode.html][urxvt]] (Linux)
+-  Shell:
+   [[http://www.gnu.org/software/emacs/manual/html_mono/eshell.html][EShell]]
+   & [[http://www.zsh.org][Zsh]] &
+   [[https://github.com/zsh-users/antigen][Antigen]]
+-  Browser: [[http://www.emacswiki.org/emacs/eww][eww]] &
+   [[https://www.mozilla.org/en-US/firefox][Firefox]] &
+   [[http://www.vimperator.org/vimperator][Vimperator]]
+-  IRC: [[http://www.emacswiki.org/emacs/ERC][ERC]]
+-  Notes & TODO & bookmarks & spreadsheets & blog & etc.:
+   [[http://orgmode.org][Org mode]]
+-  Window Manager & Launcher: [[http://www.alfredapp.com][Alfred]] (OS
+   X) & [[http://xmonad.org][xmonad]] (Linux)
+-  Sync: [[https://syncthing.net][Syncthing]]
+-  RSS Reader: [[https://github.com/skeeto/elfeed][Elfeed]]
+
+** TODO
+
+-  [ ] Switch from [[http://github.com][GitHub]] to
+   [[https://gitlab.com][GitLab]]
+-  [ ] Switch to NixOS full time
+-  [x] +Switch from Gmail to [[http://www.fastmail.com][Fastmail]]+
+-  [X] +Switch from Dropbox to Syncthing+
+-  [x] +[[https://github.com/untitaker/vdirsyncer][vdirsyncer]] to sync
+   CardDAV and CalDAV (to be hosted on Fastmail)+
+-  +Calendar: [[https://github.com/geier/khal][khal]] (Or maybe
+   something in Emacs)+
+-  +Contacts: [[https://github.com/scheibler/khard][khard]]+
+-  [ ] Music: [[http://www.musicpd.org][mpd]] or
+   [[https://www.mopidy.com][Mopidy]] &
+   [[http://ncmpcpp.rybczak.net][ncmpcpp]] (Or
+   [[https://github.com/pft/mingus][Mingus]] in Emacs)
+
