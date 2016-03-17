@@ -48,7 +48,7 @@ great operating system, and now it has a great editor.
    [[https://gitlab.com][GitLab]]
 -  [ ] Switch to NixOS full time
 -  [x] +Switch from Gmail to [[http://www.fastmail.com][Fastmail]]+
--  [X] +Switch from Dropbox to Syncthing+
+-  [x] +Switch from Dropbox to Syncthing+
 -  [x] +[[https://github.com/untitaker/vdirsyncer][vdirsyncer]] to sync
    CardDAV and CalDAV (to be hosted on Fastmail)+
 -  +Calendar: [[https://github.com/geier/khal][khal]] (Or maybe
