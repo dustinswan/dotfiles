@@ -4,7 +4,6 @@ rm ~/.zshrc; ln -s ~/dotfiles/zshrc ~/.zshrc
 rm ~/.gemrc; ln -s ~/dotfiles/gemrc ~/.gemrc
 rm -rf ~/.ghc; mkdir ~/.ghc; ln -s ~/dotfiles/ghci.conf ~/.ghc/ghci.conf
 rm ~/.gitconfig; ln -s ~/dotfiles/gitconfig ~/.gitconfig
-rm -rf ~/.tmux; ln -s ~/dotfiles/tmux ~/.tmux
 rm ~/.tmux.conf; ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 rm -rf ~/.config/khal; mkdir -p ~/.config/khal; ln -s ~/dotfiles/khal.conf ~/.config/khal/khal.conf
 rm -rf ~/.vdirsyncer; mkdir ~/.vdirsyncer; ln -s ~/dotfiles/vdirsyncer/config ~/.vdirsyncer/config
@@ -18,7 +17,6 @@ rm ~/.msmtprc; ln -s ~/dotfiles/msmtprc ~/.msmtprc
 rm ~/.muttrc; ln -s ~/dotfiles/muttrc ~/.muttrc
 
 # mac only
-rm ~/.slate.js; ln -s ~/dotfiles/slate.js ~/.slate.js
 rm ~/Library/KeyBindings/DefaultKeyBinding.dict; cp ~/dotfiles/DefaultKeyBinding.dict ~/Library/KeyBindings/DefaultKeyBinding.dict
 
 # linux only

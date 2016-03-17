@@ -46,7 +46,81 @@ values."
      finance
      dash
      emoji
-     (elfeed :variables rmh-elfeed-org-files (list "/Users/dustinswan/dotfiles/elfeed.org"))
+     (elfeed :variables
+             elfeed-feeds '(
+                            ("http://www.autoblog.com/rss.xml" vehicles)
+                            ("http://www.bikeexif.com/feed" vehicles)
+                            ("http://silodrome.com/feed/" vehicles)
+                            ("http://prollyisnotprobably.com/atom.xml" vehicles)
+                            ("http://touringtunes.com/feed/" vehicles)
+                            ("http://www.engadget.com/rss.xml" computers)
+                            ("http://feeds.feedburner.com/arabesqueblog" computers)
+                            ("http://feeds.feedburner.com/thechangelog" computers)
+                            ("https://github.com/blog.atom" computers)
+                            ("http://www.hackerfactor.com/blog/index.php?/feeds/index.rss2" computers)
+                            ("http://www.archdaily.com/feed/" design)
+                            ("http://www.desiretoinspire.net/blog/atom.xml" design)
+                            ("http://typesetinthefuture.com/feed/" design)
+                            ("http://feeds.feedburner.com/BlessThisStuff" materialism)
+                            ("http://www.coolhunting.com/atom.xml" materialism)
+                            ("http://www.acontinuouslean.com/feed/" materialism)
+                            ("http://www.atimetoget.com/feeds/posts/default" materialism)
+                            ("http://www.carryology.com/feed/" materialism)
+                            ("http://coolmaterial.com/feed/" materialism)
+                            ("http://www.thecoolhunter.net/rss/view/latest_articles/" materialism)
+                            ("http://corkgrips.wordpress.com/feed/" materialism)
+                            ("http://everydaycarryblog.com/rss" materialism)
+                            ("http://www.everydaycommentary.com/feeds/posts/default" materialism)
+                            ("http://gearpatrol.com/blog/feed/" materialism)
+                            ("http://feeds.feedburner.com/GearCulture" materialism)
+                            ("http://www.rawrdenim.com/feed/atom/" materialism fashion)
+                            ("http://feeds.feedburner.com/selectism/rss" materialism fashion)
+                            ("http://www.hodinkee.com/blog/atom.xml" materialism fashion)
+                            ("http://feeds.feedburner.com/Huckberry" materialism fashion)
+                            ("http://www.them-thangs.com/feed/" materialism fashion)
+                            ;; ("http://feeds.feedburner.com/toolsandtoys" materialism)
+                            ("http://feeds.feedburner.com/uncrate" materialism)
+                            ("http://snyderp.tumblr.com/rss" friend blog)
+                            ("http://feeds.feedburner.com/PeterESnyder" friend blog)
+                            ("http://stumpedbymypreschooler.weebly.com/1/feed" friend blog)
+                            ("http://www.tudorsdownblog.com/feeds/posts/default" friend blog)
+                            ("http://what-if.xkcd.com/feed.atom" comic science)
+                            ("http://xkcd.com/atom.xml" comic)
+                            ("http://feeds.gawker.com/lifehacker/vip" blog)
+                            ("http://feeds.boingboing.net/boingboing/iBag" blog)
+                            ("https://medium.com/feed/editors-picks" blog)
+                            ("http://feeds.gawker.com/io9/vip" blog scifi)
+                            ("http://www.kottke.org/remainder/index.rdf" blog)
+                            ("http://feeds.laughingsquid.com/laughingsquid" blog)
+                            ("http://feeds2.feedburner.com/TheArtOfManliness" blog)
+                            ("http://feeds.feedburner.com/feedburner/oicv" blog)
+                            ("http://blag.xkcd.com/feed/" blog comic)
+                            ("http://daviddfriedman.blogspot.com/feeds/posts/default" blog politics)
+                            ("http://lesswrong.com/.rss" blog philosophy)
+                            ("http://windytan.blogspot.com/feeds/posts/default" blog)
+                            ("http://itre.cis.upenn.edu/~myl/languagelog/index.rdf" blog linguistics)
+                            ("http://robrhinehart.com/?feed=rss2" blog science)
+                            ("http://www.space.com/syn/space.xml" science space)
+                            ("http://restlesstransplant.blogspot.com/feeds/posts/default" travel fashion)
+                            ("http://feeds.feedburner.com/Departful" travel)
+                            ("http://indefinitelywild.gizmodo.com/rss" travel)
+                            ("http://feeds.feedburner.com/MagicTravelBlog" travel)
+                            ("http://marketofeden.blogspot.com/feeds/posts/default" travel)
+                            ("http://feeds.feedburner.com/MinimalStudent" travel minimalism)
+                            ("http://feeds.feedburner.com/NomadSpirit" travel)
+                            ("http://www.theanswerisalwaysyes.co/welcome?format=rss" travel)
+                            ("http://restlessglobetrotter.com/feed/" travel)
+                            ("http://feeds.feedburner.com/ThisWorldRocks" travel)
+                            ("http://touringtunes.com/feed/" travel)
+                            ("http://sailingaroundtheglobe.blogspot.com/feeds/posts/default" travel sailing)
+                            ("http://pitchfork.com/rss/reviews/best/albums/" music)
+                            ("http://pitchfork.com/rss/news/" music)
+                            ("http://www.toothpastefordinner.com/rss/rss.php" comics)
+                            ("https://groups.google.com/forum/feed/lojban/msgs/atom.xml?num=15" linguestics lojban)
+                            ("https://groups.google.com/forum/feed/lojban-beginners/msgs/atom.xml?num=15" linguestics lojban)
+                            ("http://motherboard.vice.com/rss?trk_source=motherboard" computers)
+                            ("http://feeds.feedburner.com/theatlantic/infocus" photos)
+                            ))
      ;; (geolocation :variables
      ;;              geolocation-enable-osx-location-service-support t
      ;;              geolocation-enable-weather-forecast t)
@@ -73,14 +147,16 @@ values."
      markdown
      yaml
      extra-langs
-     latex)
+     latex
+     tumblesocks
+     )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(hackernews twittering-mode el-pocket chess wttrin)
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(toxi-theme)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
@@ -394,16 +470,133 @@ layers configuration. You are free to put any user code."
         ranger-parent-depth 4
         ranger-max-preview-size 10)
 
-  (spacemacs|define-custom-layout "Mail"
-    :binding "m"
-    :body
-    (mu4e))
+  (spacemacs|define-custom-layout "Mail" :binding "m" :body (mu4e))
+  (spacemacs|define-custom-layout "Elfeed" :binding "f" :body (elfeed))
+  (spacemacs|define-custom-layout "Twitter" :binding "t" :body (twit))
 
-  (spacemacs|define-custom-layout "Elfeed"
-    :binding "f"
-    :body
-    (elfeed))
+  ;; TODO remove after Spacemacs gets twittering-mode
+  (require 'twittering-mode)
+  (setq twittering-use-master-password t)
+  (eval-after-load 'twittering-mode
+    '(progn
+       (define-key twittering-mode-map (kbd "g") nil)
+       (define-key twittering-mode-map (kbd "g g") 'twittering-goto-first-status)
+       (define-key twittering-mode-map (kbd "c") 'twittering-current-timeline)
+       (define-key twittering-mode-map (kbd "C-d") 'twittering-scroll-up)
+       (define-key twittering-mode-map (kbd "C-u") 'twittering-scroll-down)
+       (define-key twittering-mode-map (kbd "/") 'evil-search-forward)
+       (define-key twittering-mode-map (kbd "?") 'evil-search-backward)
+       (define-key twittering-mode-map (kbd "n") 'evil-search-next)
+       (define-key twittering-mode-map (kbd "N") 'evil-search-previous)
+       (define-key twittering-edit-mode-map [escape] 'twittering-edit-cancel-status)
+       (define-key twittering-mode-map (kbd "<tab>") 'twittering-goto-next-uri)
+       ;; make evil leader key work in twittering-mode
+       ;; (add-to-list 'evil-leader/no-prefix-mode-rx "twittering-mode")
+       ;; display icons 
+       (setq twittering-icon-mode t)
+       ;; the default size is 48 which I find too large
+       ;; this requires imagemagick to be installed
+       (if (executable-find "convert")
+           (setq twittering-convert-fix-size 32))
+       ;; This requires gzip. The icons are saved on ~/.twittering-mode-icons.gz,
+       ;; which can be changed by the variable twittering-icon-storage-file
+       (if (executable-find "gzip")
+           (setq twittering-use-icon-storage t))
+       ;; requires GnuPG to be installed
+       (if (executable-find "gpg")
+           (setq twittering-use-master-password t))))
 
+;;  (require 'tumblesocks)
+;;  (setq tumblesocks-blog "dustinswan.tumblr.com")
+;;  (eval-after-load 'tumblesocks-view-mode
+;;    '(progn
+;;       ;; (define-key twittering-mode-map (kbd "g") nil)
+;;       (define-key tumblesocks-view-mode-map (kbd "j") 'tumblesocks-view-next-post)
+;;       (define-key tumblesocks-view-mode-map (kbd "k") 'tumblesocks-view-prev-post)
+;;       ))
+
+  (defun better-elfeed-keys ()
+    (message "Better elfeed keys")
+    (define-key elfeed-show-mode-map (kbd "j") 'elfeed-show-next))
+
+  (add-hook 'elfeed-show-mode-hook 'better-elfeed-keys)
+
+  ;; Org Publish stuff
+  (require 'ox-html)
+  (require 'ox-rss)
+  (require 'ox-publish)
+
+  (setq web-bio
+      "<div class='bio'>
+      <img src='static/avatar.png'></img>
+      <h1>Dustin Swan</h1>
+      <p>Software Engineer at IOCOM. JavaScript, Haskell, functional programming, design, piano, motorcycles, languages, games, bikes, books, fashion, minimalism, spreadsheets, travel, etc.</p>
+      <h5>Moriarty, NM | Chicago, IL</h5>
+      <a href='mailto://dustin@dustinswan.com'><i class='fa fa-envelope'></i></a>
+      <a href='https://twitter.com/dustinswan'><i class='fa fa-twitter'></i></a>
+      <a href='http://github.com/dustinswan'><i class='fa fa-github'></i></a>
+      <a href='http://facebook.com/dustinswan'><i class='fa fa-facebook-official'></i></a>
+      <a href='http://instagram.com/dustinswan'><i class='fa fa-instagram'></i></a>
+      <a href='http://dustinswan.tumblr.com'><i class='fa fa-tumblr'></i></a>
+      <a href='http://pinterest.com/dustinswan'><i class='fa fa-pinterest'></i></a>
+      <a href='http://reddit.com/user/dustinswan'><i class='fa fa-reddit-square'></i></a>
+      <a href='https://www.coinbase.com/dustinswan'><i class='fa fa-bitcoin'></i></a>
+      <a href='https://keybase.io/dustinswan'><i class='fa fa-key'></i></a>
+      </div>"
+    )
+
+  (setq org-publish-project-alist
+        `(("web"
+           :components ("blog" "pages" "static"))
+          ("pages"
+           :base-directory "~/Sync/Web/pages/"
+           :base-extension "org"
+           :html-extension "html"
+           :publishing-directory "~/Desktop/Web"
+           :publishing-function org-html-publish-to-html
+
+           :html-head-include-default-style nil
+           :html-head-include-scripts nil
+           :with-toc nil
+           :section-numbers nil
+           :html-head "<link rel=\"stylesheet\" href=\"static/style.css\" /><link rel=\"stylesheet\" href=\"http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css\">"
+           :html-head-extra ""
+           :html-preamble ,web-bio
+           :html-postamble nil
+           )
+          ("blog"
+           :base-directory "~/Sync/Web/blog"
+           :base-extension "org"
+           :html-extension "html"
+           :publishing-directory "~/Desktop/Web/blog"
+           :publishing-function org-html-publish-to-html
+           :recursive t
+
+           :html-head-include-default-style nil
+           :html-head-include-scripts nil
+           :with-toc nil
+           :section-numbers nil
+           ;; :with-latex t         ; do use MathJax for awesome formulas!
+           :html-head "<link rel=\"stylesheet\" href=\"../static/style.css\" /><link rel=\"stylesheet\" href=\"//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css\">"
+           :html-head-extra ""
+           :html-preamble ,web-bio
+           :html-postamble nil
+
+           :auto-sitemap t
+           :sitemap-filename "archive.org"
+           :sitemap-title "Archive"
+           :sitemap-sort-files anti-chronologically
+           :sitemap-style list
+           )
+          ("static"
+           :base-directory "~/Sync/Web/static"
+           :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf\\|otf"
+           :publishing-directory "~/Desktop/Web/static"
+           :recursive t
+           :publishing-function org-publish-attachment
+          )))
+
+  (setq wttrin-default-cities '("Moriarty NM" "Albuquerque" "Chicago"))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -419,7 +612,7 @@ layers configuration. You are free to put any user code."
  '(ahs-idle-interval 0.25)
  '(ahs-idle-timer 0 t)
  '(ahs-inhibit-face-list nil)
- '(elfeed-goodies/entry-pane-position (quote bottom))
+ '(elfeed-goodies/entry-pane-position (quote right))
  '(erc-modules
    (quote
     (autoaway button completion list match move-to-prompt netsplit networks notify notifications readonly scrolltobottom services smiley spelling track completion autoaway autojoin button log match menu move-to-prompt netsplit notify notifications readonly ring scrolltobottom spelling track image hl-nicks networks services)))
