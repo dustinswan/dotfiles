@@ -14,6 +14,7 @@ ignorekeys add dswan\.insors\.net\/webclient
 ignorekeys add visitest\.iocom\.com\/webclient
 ignorekeys add visimeet\.iocom\.com\/webclient
 ignorekeys add lingvist\.io
+ignorekeys add duolingo\.com
 
 set gui=nonavigation
 
