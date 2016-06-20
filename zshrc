@@ -14,8 +14,8 @@ HISTFILE=~/.history
 
 bindkey -e
 
-alias vi=nvim
-alias vim=nvim
+# alias vi=nvim
+# alias vim=nvim
 alias l="ls -la"
 alias ta="tmux attach -d"
 alias dustinswan="ssh dustinswan@dustinswan.com"
@@ -29,9 +29,9 @@ export MOSH_TITLE_NOPREFIX=1
 export BROWSER=open
 
 # IOCOM stuff
-alias dswan="ssh root@dswan.insors.net"
+alias dswan="ssh root@dswan.iocom.com"
 export P4USER=dswan
-export P4PORT="humu.insors.net:1666"
+export P4PORT="humu.iocom.com:1666"
 export P4CONFIG=p4.cfg
 export P4EDITOR=vim
 alias er='rm -rf logs; unzip -o'
@@ -44,6 +44,11 @@ export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
 
 # nix
 if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi
+export OPENSSL_X509_CERT_FILE=${HOME}/.nix-profile/etc/ssl/certs/ca-bundle.crt
+export OPENSSL_X509_CERT_FILE=~/.ssh/cacert.pem
+export GIT_SSL_CAINFO=${OPENSSL_X509_CERT_FILE}
+export CURL_CA_BUNDLE=${OPENSSL_X509_CERT_FILE}
+export SSL_CERT_FILE=${OPENSSL_X509_CERT_FILE}
 
 # Keychain
 eval `keychain --eval id_rsa`
@@ -56,3 +61,6 @@ export PATH="/usr/local/heroku/bin:$PATH"
 
 # iTerm2
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
