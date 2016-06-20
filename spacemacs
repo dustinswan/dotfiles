@@ -44,83 +44,7 @@ values."
      xkcd
      spotify
      finance
-     dash
      emoji
-     (elfeed :variables
-             elfeed-feeds '(
-                            ("http://www.autoblog.com/rss.xml" vehicles)
-                            ("http://www.bikeexif.com/feed" vehicles)
-                            ("http://silodrome.com/feed/" vehicles)
-                            ("http://prollyisnotprobably.com/atom.xml" vehicles)
-                            ("http://touringtunes.com/feed/" vehicles)
-                            ("http://www.engadget.com/rss.xml" computers)
-                            ("http://feeds.feedburner.com/arabesqueblog" computers)
-                            ("http://feeds.feedburner.com/thechangelog" computers)
-                            ("https://github.com/blog.atom" computers)
-                            ("http://www.hackerfactor.com/blog/index.php?/feeds/index.rss2" computers)
-                            ("http://www.archdaily.com/feed/" design)
-                            ("http://www.desiretoinspire.net/blog/atom.xml" design)
-                            ("http://typesetinthefuture.com/feed/" design)
-                            ("http://feeds.feedburner.com/BlessThisStuff" materialism)
-                            ("http://www.coolhunting.com/atom.xml" materialism)
-                            ("http://www.acontinuouslean.com/feed/" materialism)
-                            ("http://www.atimetoget.com/feeds/posts/default" materialism)
-                            ("http://www.carryology.com/feed/" materialism)
-                            ("http://coolmaterial.com/feed/" materialism)
-                            ("http://www.thecoolhunter.net/rss/view/latest_articles/" materialism)
-                            ("http://corkgrips.wordpress.com/feed/" materialism)
-                            ("http://everydaycarryblog.com/rss" materialism)
-                            ("http://www.everydaycommentary.com/feeds/posts/default" materialism)
-                            ("http://gearpatrol.com/blog/feed/" materialism)
-                            ("http://feeds.feedburner.com/GearCulture" materialism)
-                            ("http://www.rawrdenim.com/feed/atom/" materialism fashion)
-                            ("http://feeds.feedburner.com/selectism/rss" materialism fashion)
-                            ("http://www.hodinkee.com/blog/atom.xml" materialism fashion)
-                            ("http://feeds.feedburner.com/Huckberry" materialism fashion)
-                            ("http://www.them-thangs.com/feed/" materialism fashion)
-                            ;; ("http://feeds.feedburner.com/toolsandtoys" materialism)
-                            ("http://feeds.feedburner.com/uncrate" materialism)
-                            ("http://snyderp.tumblr.com/rss" friend blog)
-                            ("http://feeds.feedburner.com/PeterESnyder" friend blog)
-                            ("http://stumpedbymypreschooler.weebly.com/1/feed" friend blog)
-                            ("http://www.tudorsdownblog.com/feeds/posts/default" friend blog)
-                            ("http://what-if.xkcd.com/feed.atom" comic science)
-                            ("http://xkcd.com/atom.xml" comic)
-                            ("http://feeds.gawker.com/lifehacker/vip" blog)
-                            ("http://feeds.boingboing.net/boingboing/iBag" blog)
-                            ("https://medium.com/feed/editors-picks" blog)
-                            ("http://feeds.gawker.com/io9/vip" blog scifi)
-                            ("http://www.kottke.org/remainder/index.rdf" blog)
-                            ("http://feeds.laughingsquid.com/laughingsquid" blog)
-                            ("http://feeds2.feedburner.com/TheArtOfManliness" blog)
-                            ("http://feeds.feedburner.com/feedburner/oicv" blog)
-                            ("http://blag.xkcd.com/feed/" blog comic)
-                            ("http://daviddfriedman.blogspot.com/feeds/posts/default" blog politics)
-                            ("http://lesswrong.com/.rss" blog philosophy)
-                            ("http://windytan.blogspot.com/feeds/posts/default" blog)
-                            ("http://itre.cis.upenn.edu/~myl/languagelog/index.rdf" blog linguistics)
-                            ("http://robrhinehart.com/?feed=rss2" blog science)
-                            ("http://www.space.com/syn/space.xml" science space)
-                            ("http://restlesstransplant.blogspot.com/feeds/posts/default" travel fashion)
-                            ("http://feeds.feedburner.com/Departful" travel)
-                            ("http://indefinitelywild.gizmodo.com/rss" travel)
-                            ("http://feeds.feedburner.com/MagicTravelBlog" travel)
-                            ("http://marketofeden.blogspot.com/feeds/posts/default" travel)
-                            ("http://feeds.feedburner.com/MinimalStudent" travel minimalism)
-                            ("http://feeds.feedburner.com/NomadSpirit" travel)
-                            ("http://www.theanswerisalwaysyes.co/welcome?format=rss" travel)
-                            ("http://restlessglobetrotter.com/feed/" travel)
-                            ("http://feeds.feedburner.com/ThisWorldRocks" travel)
-                            ("http://touringtunes.com/feed/" travel)
-                            ("http://sailingaroundtheglobe.blogspot.com/feeds/posts/default" travel sailing)
-                            ("http://pitchfork.com/rss/reviews/best/albums/" music)
-                            ("http://pitchfork.com/rss/news/" music)
-                            ("http://www.toothpastefordinner.com/rss/rss.php" comics)
-                            ("https://groups.google.com/forum/feed/lojban/msgs/atom.xml?num=15" linguestics lojban)
-                            ("https://groups.google.com/forum/feed/lojban-beginners/msgs/atom.xml?num=15" linguestics lojban)
-                            ("http://motherboard.vice.com/rss?trk_source=motherboard" computers)
-                            ("http://feeds.feedburner.com/theatlantic/infocus" photos)
-                            ))
      ;; (geolocation :variables
      ;;              geolocation-enable-osx-location-service-support t
      ;;              geolocation-enable-weather-forecast t)
@@ -154,7 +78,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(hackernews twittering-mode el-pocket chess wttrin)
+   dotspacemacs-additional-packages '(hackernews twittering-mode el-pocket chess wttrin mingus)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(toxi-theme)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -209,7 +133,7 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(monokai spacemacs-dark zenburn solarized-dark)
+   dotspacemacs-themes '(monokai ample alect-black spacemacs-dark zenburn darkburn solarized-dark)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
@@ -217,10 +141,10 @@ values."
    ;; dotspacemacs-default-font '("Source Code Pro"
    ;; dotspacemacs-default-font '("PragmataPro"
    dotspacemacs-default-font '("Hasklig"
-                               :size 11
+                               :size 12
                                :weight normal
                                :width normal
-                               :powerline-scale 1.2)
+                               :powerline-scale 1.0)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The leader key accessible in `emacs state' and `insert state'
@@ -355,6 +279,7 @@ in `dotspacemacs/user-config'."
 
   (setq-default ispell-program-name "aspell")
   ;; (setq-default ispell-dictionary "english")
+  (setq with-editor-emacsclient-executable "/Users/dustinswan/.nix-profile/bin/emacs")
   )
 
 (defun dotspacemacs/user-config ()
@@ -443,6 +368,10 @@ layers configuration. You are free to put any user code."
   ;; (add-hook 'after-init-hook #'mu4e-alert-enable-mode-line-display)
 
   (setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages") ;; Needed to find offlineimap's libs
+  (setenv "P4USER" "dswan")
+  (setenv "P4PORT" "humu.insors.net:1666")
+  (setenv "P4CONFIG" "p4.cfg")
+  (setq exec-path (append exec-path '("~/.nix-profile/bin")))
 
   ;; (when (configuration-layer/layer-usedp 'haskell)
   ;;   (add-hook 'haskell-interactive-mode-hook
@@ -450,11 +379,11 @@ layers configuration. You are free to put any user code."
   ;;               (setq-local evil-move-cursor-back nil))))
 
   ;; Time & Date in mode-line
-  (spaceline-define-segment date-time-segment
-    (format-time-string "%a %Y/%m/%d %H:%M"))
-  (add-to-list 'spaceline-right 'date-time-segment)
+  ;; (spaceline-define-segment date-time-segment
+  ;;   (format-time-string "%a %Y/%m/%d %H:%M"))
+  ;; (add-to-list 'spaceline-right 'date-time-segment)
 
-  (fancy-battery-mode)
+  ;; (fancy-battery-mode)
 
   ;(org-babel-do-load-languages
   ; 'org-babel-load-languages
@@ -471,7 +400,6 @@ layers configuration. You are free to put any user code."
         ranger-max-preview-size 10)
 
   (spacemacs|define-custom-layout "Mail" :binding "m" :body (mu4e))
-  (spacemacs|define-custom-layout "Elfeed" :binding "f" :body (elfeed))
   (spacemacs|define-custom-layout "Twitter" :binding "t" :body (twit))
 
   ;; TODO remove after Spacemacs gets twittering-mode
@@ -514,12 +442,6 @@ layers configuration. You are free to put any user code."
 ;;       (define-key tumblesocks-view-mode-map (kbd "j") 'tumblesocks-view-next-post)
 ;;       (define-key tumblesocks-view-mode-map (kbd "k") 'tumblesocks-view-prev-post)
 ;;       ))
-
-  (defun better-elfeed-keys ()
-    (message "Better elfeed keys")
-    (define-key elfeed-show-mode-map (kbd "j") 'elfeed-show-next))
-
-  (add-hook 'elfeed-show-mode-hook 'better-elfeed-keys)
 
   ;; Org Publish stuff
   (require 'ox-html)
@@ -597,6 +519,10 @@ layers configuration. You are free to put any user code."
           )))
 
   (setq wttrin-default-cities '("Moriarty NM" "Albuquerque" "Chicago"))
+
+  (setq tramp-default-method "ssh")
+
+  (push '("*mingus" . emacs) evil-buffer-regexps)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -612,7 +538,6 @@ layers configuration. You are free to put any user code."
  '(ahs-idle-interval 0.25)
  '(ahs-idle-timer 0 t)
  '(ahs-inhibit-face-list nil)
- '(elfeed-goodies/entry-pane-position (quote right))
  '(erc-modules
    (quote
     (autoaway button completion list match move-to-prompt netsplit networks notify notifications readonly scrolltobottom services smiley spelling track completion autoaway autojoin button log match menu move-to-prompt netsplit notify notifications readonly ring scrolltobottom spelling track image hl-nicks networks services)))
