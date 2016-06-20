@@ -66,6 +66,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'junegunn/goyo.vim'
 Plug 'EinfachToll/DidYouMean'
 Plug 'jceb/vim-orgmode'
+Plug 'raichoo/purescript-vim'
 
 call plug#end()
 
