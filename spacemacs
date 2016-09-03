@@ -22,11 +22,11 @@ values."
      github
      perforce
      syntax-checking
-     spell-checking
+     (spell-checking :variables spell-checking-enable-auto-dictionary t)
      better-defaults
      osx
-     nixos
-     (mu4e :variables mu4e-installation-path "/usr/local/share/emacs/site-lisp/mu/mu4e")
+     ;; nixos
+     (mu4e :variables mu4e-installation-path "/usr/local/share/emacs/site-lisp/mu/mu4e" mu4e-enable-notifications t mu4e-enable-mode-line t)
      (ranger :variables ranger-show-preview t)
      speed-reading
      auto-completion
@@ -34,13 +34,17 @@ values."
      restclient
      evil-snipe
      vinegar
-     unimpaired
-     eyebrowse
      search-engine
-     erc
+     (erc :variables
+          erc-server-list
+          '(("irc.freenode.net"
+             :port "6697"
+             :ssl t
+             :nick "dustinswan")))
      (org :variables org-enable-github-support t)
-     ;; (shell :variables shell-default-shell 'eshell shell-default-term-shell "/bin/bash")
-     (shell :variables shell-default-term-shell "/Users/dustinswan/.nix-profile/bin/zsh")
+     deft
+     ;; (shell :variables shell-default-term-shell "/Users/dustinswan/.nix-profile/bin/zsh")
+     (shell :variables shell-default-term-shell "/usr/local/bin/zsh" shell-default-shell 'multi-term)
      xkcd
      spotify
      finance
@@ -69,16 +73,18 @@ values."
      ruby-on-rails
      python
      markdown
+     pandoc
      yaml
      extra-langs
      latex
-     tumblesocks
+     twitter
+     games
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(hackernews twittering-mode el-pocket chess wttrin mingus)
+   dotspacemacs-additional-packages '(hackernews chess wttrin mingus tumblesocks writeroom-mode beacon org-journal vdirel)
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(toxi-theme)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -276,10 +282,7 @@ in `dotspacemacs/user-config'."
   (setq-default git-enable-github-support t)
 
   (add-to-list 'exec-path "~/.local/bin/")
-
-  (setq-default ispell-program-name "aspell")
-  ;; (setq-default ispell-dictionary "english")
-  (setq with-editor-emacsclient-executable "/Users/dustinswan/.nix-profile/bin/emacs")
+  (add-to-list 'exec-path "~/.npm-packages/bin/")
   )
 
 (defun dotspacemacs/user-config ()
@@ -287,14 +290,15 @@ in `dotspacemacs/user-config'."
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
 
+  (beacon-mode 1)
+
+  (setq ns-use-srgb-colorspace nil)
+
   (setq powerline-default-separator 'arrow-fade)
 
-  (eyebrowse-setup-opinionated-keys)
+  (setq vdirel-repository "~/Contacts/Default/")
 
-  ;; (add-hook 'doc-view-mode-hook 'auto-revert-mode)
-  ;; (setq org-default-notes-file (concat org-directory "~/Dropbox/Org/org.org"))
-  (setq org/prefix-arg-directory "/Users/dustinswan/Sync/Org/")
-
+  ;; Mail
   (setq mu4e-account-alist
         '(("FastMail"
            (mu4e-sent-messages-behavior sent)
@@ -321,18 +325,18 @@ layers configuration. You are free to put any user code."
                                       "dswan@iocom.com"
                                       "dswan@insors.com")
         mu4e-get-mail-command "offlineimap -q"
-        mu4e-update-interval 120
+        mu4e-update-interval 180
         mu4e-compose-signature-auto-include nil
 
         ;; Viewing Mail
         mu4e-headers-show-threads t
         mu4e-attachment-dir "~/Downloads"
-        mu4e-view-show-images t
         mu4e-view-show-addresses t
+        mu4e-view-show-images t
         mu4e-view-prefer-html t
-        mu4e-html2text-command 'mu4e-shr2text
+        ;; mu4e-html2text-command 'mu4e-shr2text
         mu4e-html2text-command "w3m -dump -T text/html"
-        w3m-command "/usr/bin/w3m"
+        w3m-command "/usr/local/bin/w3m"
 
         ;; Sending Mail
         message-send-mail-function 'message-send-mail-with-sendmail
@@ -362,16 +366,27 @@ layers configuration. You are free to put any user code."
                         mu4e-maildir-shortcuts) " OR ")
                     "All inboxes" ?i)))
 
-  ;; (require 'mu4e-alert)
-  ;; (mu4e-alert-set-default-style 'notifier)
-  ;; (add-hook 'after-init-hook #'mu4e-alert-enable-notifications)
-  ;; (add-hook 'after-init-hook #'mu4e-alert-enable-mode-line-display)
+  (setq message-kill-buffer-on-exit t)
 
-  (setenv "PYTHONPATH" "/usr/local/lib/python2.7/site-packages") ;; Needed to find offlineimap's libs
+  (with-eval-after-load 'mu4e-alert
+    (mu4e-alert-set-default-style 'notifier))
+
+  (setq mu4e-alert-interesting-mail-query
+        (concat
+         "flag:unread"
+         " AND NOT flag:trashed"
+         " AND (maildir:/Fastmail/INBOX"
+         " OR maildir:/IOCOM/INBOX)"
+         ))
+
   (setenv "P4USER" "dswan")
   (setenv "P4PORT" "humu.insors.net:1666")
   (setenv "P4CONFIG" "p4.cfg")
-  (setq exec-path (append exec-path '("~/.nix-profile/bin")))
+
+  (setenv "LANG" "en_US.UTF-8")
+  
+  ;; (setq exec-path (append exec-path '("~/.nix-profile/bin")))
+
 
   ;; (when (configuration-layer/layer-usedp 'haskell)
   ;;   (add-hook 'haskell-interactive-mode-hook
@@ -383,7 +398,7 @@ layers configuration. You are free to put any user code."
   ;;   (format-time-string "%a %Y/%m/%d %H:%M"))
   ;; (add-to-list 'spaceline-right 'date-time-segment)
 
-  ;; (fancy-battery-mode)
+  (fancy-battery-mode)
 
   ;(org-babel-do-load-languages
   ; 'org-babel-load-languages
@@ -399,57 +414,47 @@ layers configuration. You are free to put any user code."
         ranger-parent-depth 4
         ranger-max-preview-size 10)
 
-  (spacemacs|define-custom-layout "Mail" :binding "m" :body (mu4e))
-  (spacemacs|define-custom-layout "Twitter" :binding "t" :body (twit))
+  (require 'tumblesocks)
+  (setq tumblesocks-blog "dustinswan.tumblr.com")
+  ;;  (eval-after-load 'tumblesocks-view-mode
+  ;;    '(progn
+  ;;       ;; (define-key twittering-mode-map (kbd "g") nil)
+  ;;       (define-key tumblesocks-view-mode-map (kbd "j") 'tumblesocks-view-next-post)
+  ;;       (define-key tumblesocks-view-mode-map (kbd "k") 'tumblesocks-view-prev-post)
+  ;;       ))
 
-  ;; TODO remove after Spacemacs gets twittering-mode
-  (require 'twittering-mode)
-  (setq twittering-use-master-password t)
-  (eval-after-load 'twittering-mode
-    '(progn
-       (define-key twittering-mode-map (kbd "g") nil)
-       (define-key twittering-mode-map (kbd "g g") 'twittering-goto-first-status)
-       (define-key twittering-mode-map (kbd "c") 'twittering-current-timeline)
-       (define-key twittering-mode-map (kbd "C-d") 'twittering-scroll-up)
-       (define-key twittering-mode-map (kbd "C-u") 'twittering-scroll-down)
-       (define-key twittering-mode-map (kbd "/") 'evil-search-forward)
-       (define-key twittering-mode-map (kbd "?") 'evil-search-backward)
-       (define-key twittering-mode-map (kbd "n") 'evil-search-next)
-       (define-key twittering-mode-map (kbd "N") 'evil-search-previous)
-       (define-key twittering-edit-mode-map [escape] 'twittering-edit-cancel-status)
-       (define-key twittering-mode-map (kbd "<tab>") 'twittering-goto-next-uri)
-       ;; make evil leader key work in twittering-mode
-       ;; (add-to-list 'evil-leader/no-prefix-mode-rx "twittering-mode")
-       ;; display icons 
-       (setq twittering-icon-mode t)
-       ;; the default size is 48 which I find too large
-       ;; this requires imagemagick to be installed
-       (if (executable-find "convert")
-           (setq twittering-convert-fix-size 32))
-       ;; This requires gzip. The icons are saved on ~/.twittering-mode-icons.gz,
-       ;; which can be changed by the variable twittering-icon-storage-file
-       (if (executable-find "gzip")
-           (setq twittering-use-icon-storage t))
-       ;; requires GnuPG to be installed
-       (if (executable-find "gpg")
-           (setq twittering-use-master-password t))))
+  ;; Org
+  (with-eval-after-load 'org
 
-;;  (require 'tumblesocks)
-;;  (setq tumblesocks-blog "dustinswan.tumblr.com")
-;;  (eval-after-load 'tumblesocks-view-mode
-;;    '(progn
-;;       ;; (define-key twittering-mode-map (kbd "g") nil)
-;;       (define-key tumblesocks-view-mode-map (kbd "j") 'tumblesocks-view-next-post)
-;;       (define-key tumblesocks-view-mode-map (kbd "k") 'tumblesocks-view-prev-post)
-;;       ))
+    (setq org-agenda-files '("~/Sync/Notes"
+                             "~/Sync/org.org"
+                             "~/Sync/IOCOM/IOCOM.org"))
+    (setq org-directory "~/Sync/Notes/")
 
-  ;; Org Publish stuff
-  (require 'ox-html)
-  (require 'ox-rss)
-  (require 'ox-publish)
+    ;; Org Journal
+    (setq org-journal-dir "~/Sync/Notes/"
+          org-journal-file-format "%Y%m%d.org")
+    (evil-leader/set-key "aj" 'org-journal-new-entry)
+    (setq org-journal-date-format "%A, %B %d, %Y")
+    (setq org-journal-time-format "%R %Z")
 
-  (setq web-bio
-      "<div class='bio'>
+    (evil-leader/set-key-for-mode 'org-journal-mode
+      "mn" 'org-journal-open-next-entry
+      "mp" 'org-journal-open-previous-entry)
+
+    (add-hook 'org-journal-mode-hook 'turn-on-auto-fill)
+    (add-hook 'org-journal-mode-hook 'flyspell-mode)
+
+    ;; Deft
+    (setq deft-directory "~/Sync/Notes")
+
+    ;; Org Publish stuff
+    (require 'ox-html)
+    (require 'ox-rss)
+    (require 'ox-publish)
+
+    (setq web-bio
+          "<div class='bio'>
       <img src='static/avatar.png'></img>
       <h1>Dustin Swan</h1>
       <p>Software Engineer at IOCOM. JavaScript, Haskell, functional programming, design, piano, motorcycles, languages, games, bikes, books, fashion, minimalism, spreadsheets, travel, etc.</p>
@@ -465,64 +470,67 @@ layers configuration. You are free to put any user code."
       <a href='https://www.coinbase.com/dustinswan'><i class='fa fa-bitcoin'></i></a>
       <a href='https://keybase.io/dustinswan'><i class='fa fa-key'></i></a>
       </div>"
+          )
+
+    (setq org-publish-project-alist
+          `(("web"
+             :components ("blog" "pages" "static"))
+            ("pages"
+             :base-directory "~/Sync/Web/pages/"
+             :base-extension "org"
+             :html-extension "html"
+             :publishing-directory "~/Desktop/Web"
+             :publishing-function org-html-publish-to-html
+
+             :html-head-include-default-style nil
+             :html-head-include-scripts nil
+             :with-toc nil
+             :section-numbers nil
+             :html-head "<link rel=\"stylesheet\" href=\"static/style.css\" /><link rel=\"stylesheet\" href=\"http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css\">"
+             :html-head-extra ""
+             :html-preamble ,web-bio
+             :html-postamble nil
+             )
+            ("blog"
+             :base-directory "~/Sync/Web/blog"
+             :base-extension "org"
+             :html-extension "html"
+             :publishing-directory "~/Desktop/Web/blog"
+             :publishing-function org-html-publish-to-html
+             :recursive t
+
+             :html-head-include-default-style nil
+             :html-head-include-scripts nil
+             :with-toc nil
+             :section-numbers nil
+             ;; :with-latex t         ; do use MathJax for awesome formulas!
+             :html-head "<link rel=\"stylesheet\" href=\"../static/style.css\" /><link rel=\"stylesheet\" href=\"//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css\">"
+             :html-head-extra ""
+             :html-preamble ,web-bio
+             :html-postamble nil
+
+             :auto-sitemap t
+             :sitemap-filename "archive.org"
+             :sitemap-title "Archive"
+             :sitemap-sort-files anti-chronologically
+             :sitemap-style list
+             )
+            ("static"
+             :base-directory "~/Sync/Web/static"
+             :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf\\|otf"
+             :publishing-directory "~/Desktop/Web/static"
+             :recursive t
+             :publishing-function org-publish-attachment
+             )))
     )
-
-  (setq org-publish-project-alist
-        `(("web"
-           :components ("blog" "pages" "static"))
-          ("pages"
-           :base-directory "~/Sync/Web/pages/"
-           :base-extension "org"
-           :html-extension "html"
-           :publishing-directory "~/Desktop/Web"
-           :publishing-function org-html-publish-to-html
-
-           :html-head-include-default-style nil
-           :html-head-include-scripts nil
-           :with-toc nil
-           :section-numbers nil
-           :html-head "<link rel=\"stylesheet\" href=\"static/style.css\" /><link rel=\"stylesheet\" href=\"http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css\">"
-           :html-head-extra ""
-           :html-preamble ,web-bio
-           :html-postamble nil
-           )
-          ("blog"
-           :base-directory "~/Sync/Web/blog"
-           :base-extension "org"
-           :html-extension "html"
-           :publishing-directory "~/Desktop/Web/blog"
-           :publishing-function org-html-publish-to-html
-           :recursive t
-
-           :html-head-include-default-style nil
-           :html-head-include-scripts nil
-           :with-toc nil
-           :section-numbers nil
-           ;; :with-latex t         ; do use MathJax for awesome formulas!
-           :html-head "<link rel=\"stylesheet\" href=\"../static/style.css\" /><link rel=\"stylesheet\" href=\"//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css\">"
-           :html-head-extra ""
-           :html-preamble ,web-bio
-           :html-postamble nil
-
-           :auto-sitemap t
-           :sitemap-filename "archive.org"
-           :sitemap-title "Archive"
-           :sitemap-sort-files anti-chronologically
-           :sitemap-style list
-           )
-          ("static"
-           :base-directory "~/Sync/Web/static"
-           :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf\\|otf"
-           :publishing-directory "~/Desktop/Web/static"
-           :recursive t
-           :publishing-function org-publish-attachment
-          )))
 
   (setq wttrin-default-cities '("Moriarty NM" "Albuquerque" "Chicago"))
 
   (setq tramp-default-method "ssh")
 
   (push '("*mingus" . emacs) evil-buffer-regexps)
+
+  (setq twittering-use-master-password t)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -544,8 +552,8 @@ layers configuration. You are free to put any user code."
  '(fancy-battery-mode t)
  '(js2-basic-offset 2)
  '(mac-auto-operator-composition-mode t)
- '(org-agenda-files (quote ("~/Sync/Org/org.org")))
- '(org-directory "~/Sync/Org/")
+ '(org-journal-date-format "%A, %B %d, %Y")
+ '(org-journal-time-format "%R %Z")
  '(paradox-github-token t)
  '(ring-bell-function (quote ignore) t))
 (custom-set-faces

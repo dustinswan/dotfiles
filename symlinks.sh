@@ -10,6 +10,8 @@ rm -rf ~/.vdirsyncer; mkdir ~/.vdirsyncer; ln -s ~/dotfiles/vdirsyncer/config ~/
 rm ~/.jrnl_config; ln -s ~/dotfiles/jrnl_config ~/.jrnl_config
 rm ~/.gnupg/gpg-agent.conf; mkdir ~/.gnupg; ln -s ~/dotfiles/gpg-agent.conf ~/.gnupg/gpg-agent.conf
 mkdir -p ~/.ssh; rm ~/.ssh/config; ln -s ~/dotfiles/ssh/config ~/.ssh/config
+rm ~/Library/Application\ Support/glances/glances.conf; mkdir ~/Library/Application\ Support/glances; ln -s ~/dotfiles/glances.conf ~/Library/Application\ Support/glances/glances.conf
+rm ~/.config/khard/khard.conf; mkdir ~/.config/khard; ln -s ~/dotfiles/khard.conf ~/.config/khard/khard.conf
 
 # Mail stuff
 rm ~/.offlineimaprc; ln -s ~/dotfiles/offlineimaprc ~/.offlineimaprc

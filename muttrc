@@ -7,7 +7,7 @@ set realname='Dustin Swan'
 set sendmail="/usr/local/bin/msmtp"
 
 set edit_headers=yes
-set folder=~/Mail
+# set folder=~/Mail
 set mbox=+mbox
 set spoolfile=+inbox
 set record=+sent

@@ -18,7 +18,8 @@ remoteuser = dswan@insors.com
 remotepasseval = decrypt_password(".iocom-password.gpg")
 realdelete = no
 ssl = yes
-sslcacertfile = ~/.nix-profile/etc/ssl/certs/ca-bundle.crt
+# sslcacertfile = ~/.nix-profile/etc/ssl/certs/ca-bundle.crt
+sslcacertfile = /usr/local/etc/openssl/cert.pem
 
 [Account FastMail]
 localrepository = FastMailLocal
@@ -34,6 +35,6 @@ remotehost = mail.messagingengine.com
 remoteuser = dustinswan@fastmail.com
 remotepasseval = decrypt_password(".dustinswan@fastmail.com-password.gpg")
 realdelete = no
-# sslcacertfile=/usr/local/etc/openssl/osx_cert.pem
-sslcacertfile = ~/.nix-profile/etc/ssl/certs/ca-bundle.crt
+# sslcacertfile = ~/.nix-profile/etc/ssl/certs/ca-bundle.crt
+sslcacertfile = /usr/local/etc/openssl/cert.pem
 ssl = yes

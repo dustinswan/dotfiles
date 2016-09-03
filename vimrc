@@ -67,6 +67,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'EinfachToll/DidYouMean'
 Plug 'jceb/vim-orgmode'
 Plug 'raichoo/purescript-vim'
+Plug 'ctrlpvim/ctrlp.vim'
 
 call plug#end()
 
