@@ -20,6 +20,7 @@ rm ~/.muttrc; ln -s ~/dotfiles/muttrc ~/.muttrc
 
 # mac only
 rm ~/Library/KeyBindings/DefaultKeyBinding.dict; cp ~/dotfiles/DefaultKeyBinding.dict ~/Library/KeyBindings/DefaultKeyBinding.dict
+rm ~/.karabiner.d/configuration/karabiner.json; ln -s ~/dotfiles/karabiner.json ~/.karabiner.d/configuration/karabiner.json
 
 # linux only
 rm -rf ~/.i3; mkdir ~/.i3; ln -s ~/dotfiles/i3/config ~/.i3/config
