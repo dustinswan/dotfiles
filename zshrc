@@ -18,18 +18,13 @@ alias vi=nvim
 alias vim=nvim
 alias l="ls -la"
 alias ta="tmux attach -d"
-alias dustinswan="ssh dustinswan@dustinswan.com"
-alias kill_offlineimap="ps aux | grep offlineimap | awk '{ print $2 }' | xargs kill -9"
 alias e='emacsclient -a "" -t -nw'
 alias weather='curl http://wttr.in'
 
 export EDITOR=nvim
-export MOSH_TITLE_NOPREFIX=1
-
 export BROWSER=open
 
 # IOCOM stuff
-alias dswan="ssh root@dswan.iocom.com"
 export P4USER=dswan
 export P4PORT="humu.iocom.com:1666"
 export P4CONFIG=p4.cfg
@@ -40,7 +35,6 @@ alias er='rm -rf logs; unzip -o'
 export PATH=$HOME/.local/bin:$PATH # Stack
 export PATH=$HOME/dotfiles/bin:$PATH
 export PATH=$HOME/.npm-packages/bin:$PATH
-# export PYTHONPATH=$PYTHONPATH:/usr/local/lib/python2.7/site-packages
 
 # nix
 if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi
@@ -51,10 +45,11 @@ if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc
 # export SSL_CERT_FILE=${OPENSSL_X509_CERT_FILE}
 
 # Keychain
-eval `keychain --eval id_rsa`
+export GPG_AGENT_INFO="~/.gnupg/S.gpg-agent:$(pgrep gpg-agent):1" # Take this out when keychain fixes this bug
+eval `keychain --eval --inherit any --agents gpg,ssh --quiet id_rsa 2B3A6377`
 
 # Homebrew Github Token
-export HOMEBREW_GITHUB_API_TOKEN=`gpg -d ~/.homebrew@github-password.gpg`
+alias brew='[[ $HOMEBREW_GITHUB_API_TOKEN ]] || export HOMEBREW_GITHUB_API_TOKEN=`gpg -d ~/.homebrew@github-password.gpg`; brew'
 
 # Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"

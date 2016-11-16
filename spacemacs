@@ -72,7 +72,7 @@ values."
      emacs-lisp
      common-lisp
      scheme
-     (haskell :variables haskell-enable-hindent-style "fundamental")
+     (haskell :variables haskell-enable-hindent-style "johan-tibell" haskell-completion-backend 'intero)
      idris
      purescript
      elm
@@ -139,7 +139,10 @@ values."
    ;; with `:variables' keyword (similar to layers). Check the editing styles
    ;; section of the documentation for details on available variables.
    ;; (default 'vim)
-   dotspacemacs-editing-style 'vim
+   dotspacemacs-editing-style '(hybrid :variables
+                                hybrid-mode-enable-evilified-state t
+                                hybrid-mode-enable-hjkl-bindings t
+                                hybrid-mode-default-state 'normal)
    ;; If non nil output loading progress in `*Messages*' buffer. (default nil)
    dotspacemacs-verbose-loading nil
    ;; Specify the startup banner. Default value is `official', it displays
@@ -156,7 +159,8 @@ values."
    ;; List sizes may be nil, in which case
    ;; `spacemacs-buffer-startup-lists-length' takes effect.
    dotspacemacs-startup-lists '((recents . 5)
-                                (projects . 7))
+                                (projects . 7)
+                                (bookmarks . 5))
    ;; True if the home buffer should respond to resize events.
    dotspacemacs-startup-buffer-responsive t
    ;; Default major mode of the scratch buffer (default `text-mode')
@@ -337,6 +341,8 @@ in `dotspacemacs/user-config'."
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
 
+  (spacemacs/toggle-transparency)
+
   (spacemacs|define-custom-layout "@Mail"
     :binding "m"
     :body
@@ -390,11 +396,15 @@ layers configuration. You are free to put any user code."
         mu4e-html2text-command "w3m -dump -T text/html"
         w3m-command "/usr/local/bin/w3m"
 
+        org-mu4e-link-query-in-headers-mode nil
+
         ;; Sending Mail
         message-send-mail-function 'message-send-mail-with-sendmail
         message-sendmail-extra-arguments '("--read-envelope-from")
         message-sendmail-f-is-evil 't
         sendmail-program "/usr/local/bin/msmtp"
+
+        mu4e-hide-index-messages 't
         )
 
   (when (fboundp 'imagemagick-register-types)
@@ -478,10 +488,19 @@ layers configuration. You are free to put any user code."
   ;; Org
   (with-eval-after-load 'org
 
+    (setq org-startup-indented t)
+
     (setq org-agenda-files '("~/Sync/Notes"
                              "~/Sync/org.org"
                              "~/Sync/IOCOM/IOCOM.org"))
     (setq org-directory "~/Sync/Notes/")
+
+    ;; Capture
+    (setq org-capture-templates
+          '(("t" "TODO" entry (file+headline "~/Sync/org.org" "Inbox")
+             "* TODO [#A] %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n%a\n")
+            ("i" "IOCOM TODO" entry (file+headline "~/Sync/IOCOM/IOCOM.org" "Inbox")
+             "* TODO [#A] %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n%a\n")))
 
     ;; Org Journal
     (setq org-journal-dir "~/Sync/Notes/"
@@ -509,8 +528,8 @@ layers configuration. You are free to put any user code."
           "<div class='bio'>
       <img src='static/avatar.png'></img>
       <h1>Dustin Swan</h1>
-      <p>Software Engineer at IOCOM. JavaScript, Haskell, functional programming, design, piano, motorcycles, languages, games, bikes, books, fashion, minimalism, spreadsheets, travel, etc.</p>
-      <h5>Moriarty, NM | Chicago, IL</h5>
+      <p>Software Engineer at IOCOM. Interested in decentralization, pure functional programming, types, math, Emacs, design, piano, motorcycles, languages, games, bikes, books, fashion, spreadsheets, travel, climbing, speedcubing, etc.</p>
+      <h5>Troy NY</h5>
       <a href='mailto://dustin@dustinswan.com'><i class='fa fa-envelope'></i></a>
       <a href='https://twitter.com/dustinswan'><i class='fa fa-twitter'></i></a>
       <a href='http://github.com/dustinswan'><i class='fa fa-github'></i></a>
@@ -576,7 +595,7 @@ layers configuration. You are free to put any user code."
              )))
     )
 
-  (setq wttrin-default-cities '("Moriarty NM" "Albuquerque" "Chicago"))
+  (setq wttrin-default-cities '("Troy NY" "Albuquerque" "Chicago"))
 
   (setq tramp-default-method "ssh")
 
@@ -593,11 +612,11 @@ layers configuration. You are free to put any user code."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ac-ispell-requires 4 t)
- '(ahs-case-fold-search nil)
- '(ahs-default-range (quote ahs-range-whole-buffer))
- '(ahs-idle-interval 0.25)
+ '(ahs-case-fold-search nil t)
+ '(ahs-default-range (quote ahs-range-whole-buffer) t)
+ '(ahs-idle-interval 0.25 t)
  '(ahs-idle-timer 0 t)
- '(ahs-inhibit-face-list nil)
+ '(ahs-inhibit-face-list nil t)
  '(erc-modules
    (quote
     (autoaway button completion list match move-to-prompt netsplit networks notify notifications readonly scrolltobottom services smiley spelling track completion autoaway autojoin button log match menu move-to-prompt netsplit notify notifications readonly ring scrolltobottom spelling track image hl-nicks networks services)))
@@ -606,8 +625,11 @@ layers configuration. You are free to put any user code."
  '(mac-auto-operator-composition-mode t)
  '(org-journal-date-format "%A, %B %d, %Y")
  '(org-journal-time-format "%R %Z")
+ '(package-selected-packages
+   (quote
+    (auctex counsel smartparens go-mode haskell-mode flycheck magit with-editor yasnippet rake company ivy helm helm-core xterm-color auctex-latexmk yapfify yaml-mode xkcd wttrin ws-butler writeroom-mode wolfram-mode window-numbering which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe vdirel uuidgen use-package typit twittering-mode tumblesocks toml-mode toc-org thrift tagedit stan-mode spray spotify spacemacs-theme spaceline smex smeargle slime-company slim-mode shell-pop scss-mode scad-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder restclient restart-emacs request rbenv ranger rainbow-mode rainbow-identifiers rainbow-delimiters racer quelpa qml-mode pyvenv pytest pyenv-mode py-isort pug-mode psci psc-ide projectile-rails popwin pip-requirements phpunit phpcbf php-extras php-auto-yasnippets persp-mode pbcopy paradox pandoc-mode pacmacs p4 ox-pandoc ox-gfm osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-plus-contrib org-journal org-download org-bullets open-junk-file ob-http neotree mwim multi-term mu4e-maildirs-extension mu4e-alert move-text monokai-theme mmm-mode minitest mingus matlab-mode markdown-toc magit-gitflow magit-gh-pulls lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode ledger-mode launchctl julia-mode json-mode js2-refactor js-doc ivy-hydra intero insert-shebang info+ indent-guide idris-mode ido-vertical-mode hy-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-make haskell-snippets hackernews google-translate golden-ratio go-guru go-eldoc gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md geiser flyspell-correct-ivy flycheck-rust flycheck-pos-tip flycheck-ledger flycheck-haskell flycheck-elm flx-ido fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help erc-yt erc-view-log erc-terminal-notifier erc-social-graph erc-image erc-hl-nicks engine-mode emoji-cheat-sheet-plus emmet-mode elm-mode elisp-slime-nav dumb-jump drupal-mode disaster diff-hl deft cython-mode counsel-projectile company-web company-tern company-statistics company-shell company-go company-ghci company-ghc company-emoji company-cabal company-c-headers company-auctex company-anaconda common-lisp-snippets column-enforce-mode color-identifiers-mode coffee-mode cmm-mode cmake-mode clean-aindent-mode clang-format chruby chess cargo bundler bracketed-paste beacon auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile arduino-mode aggressive-indent adaptive-wrap ace-window ace-link ac-ispell 2048-game)))
  '(paradox-github-token t)
- '(ring-bell-function (quote ignore) t))
+ '(ring-bell-function (quote ignore)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

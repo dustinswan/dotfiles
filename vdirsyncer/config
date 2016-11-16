@@ -1,39 +1,39 @@
 [general]
-status_path = ~/.vdirsyncer/status/
+status_path = "~/.vdirsyncer/status/"
 
 [pair fastmail_contacts]
-a = fastmail_contacts_local
-b = fastmail_contacts_remote
+a = "fastmail_contacts_local"
+b = "fastmail_contacts_remote"
 collections = ["from b"]
-conflict_resolution = b wins
+conflict_resolution = "b wins"
 
 [storage fastmail_contacts_local]
-type = filesystem
-path = ~/Contacts/
-fileext = .vcf
+type = "filesystem"
+path = "~/Contacts/"
+fileext = ".vcf"
 
 [storage fastmail_contacts_remote]
-type = carddav
-url = https://carddav.messagingengine.com
-auth = basic
-username = dustinswan@fastmail.com
+type = "carddav"
+url = "https://carddav.messagingengine.com"
+auth = "basic"
+username = "dustinswan@fastmail.com"
 password.fetch = ["command", "~/dotfiles/bin/decrypt_password.sh", "dustinswan@fastmail.com"]
 
 [pair fastmail_calendar]
-a = fastmail_calendar_local
-b = fastmail_calendar_remote
+a = "fastmail_calendar_local"
+b = "fastmail_calendar_remote"
 collections = ["from b"]
-conflict_resolution = b wins
+conflict_resolution = "b wins"
 metadata = ["color", "displayname"]
 
 [storage fastmail_calendar_local]
-type = filesystem
-path = ~/Calendars/
-fileext = .ics
+type = "filesystem"
+path = "~/Calendars/"
+fileext = ".ics"
 
 [storage fastmail_calendar_remote]
-type = caldav
-url = https://caldav.messagingengine.com/
-auth = basic
-username = dustinswan@fastmail.com
+type = "caldav"
+url = "https://caldav.messagingengine.com/"
+auth = "basic"
+username = "dustinswan@fastmail.com"
 password.fetch = ["command", "~/dotfiles/bin/decrypt_password.sh", "dustinswan@fastmail.com"]

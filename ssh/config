@@ -1,3 +1,7 @@
 Host dswan
-    HostName dswan.insors.net
+    HostName dswan.iocom.com
+    User root
+
+Host dustinswan
+    HostName dustinswan.com
     User dustinswan
