@@ -14,64 +14,67 @@ HISTFILE=~/.history
 
 bindkey -e
 
-alias vi=nvim
-alias vim=nvim
 alias l="ls -la"
 alias ta="tmux attach -d"
 alias e='emacsclient -a "" -t -nw'
 alias weather='curl http://wttr.in'
 
-export EDITOR=nvim
-export BROWSER=open
+# nvim
+if [ -f "$(which nvim)" ]; then
+    alias vi=nvim
+    alias vim=nvim
+    export EDITOR=nvim
+fi
+
+# Mac only
+[ -f "$(which open)" ] && export BROWSER=open
 
 # IOCOM stuff
-export P4USER=dswan
-export P4PORT="humu.iocom.com:1666"
-export P4CONFIG=p4.cfg
-export P4EDITOR=vim
 alias er='rm -rf logs; unzip -o'
+if [ -f "$(which p4)" ]; then
+    export P4USER=dswan
+    export P4PORT="humu.iocom.com:1666"
+    export P4CONFIG=p4.cfg
+    export P4EDITOR=vim
+fi
 
 # PATH
-export PATH=$HOME/.local/bin:$PATH # Stack
-export PATH=$HOME/dotfiles/bin:$PATH
-export PATH=$HOME/.npm-packages/bin:$PATH
+[ -e ~/dotfiles/bin ] && export PATH=$HOME/dotfiles/bin:$PATH
+[ -e ~/.local/bin ] && export PATH=$HOME/.local/bin:$PATH # Stack
+[ -e ~/.npm-packages/bin ] && export PATH=$HOME/.npm-packages/bin:$PATH # NPM
+[ -e /usr/local/heroku/bin ] && export PATH=/usr/local/heroku/bin:$PATH # Heroku Toolbelt
 
-# nix
-if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi
-# export OPENSSL_X509_CERT_FILE=${HOME}/.nix-profile/etc/ssl/certs/ca-bundle.crt
-# export OPENSSL_X509_CERT_FILE=~/.ssh/cacert.pem
-# export GIT_SSL_CAINFO=${OPENSSL_X509_CERT_FILE}
-# export CURL_CA_BUNDLE=${OPENSSL_X509_CERT_FILE}
-# export SSL_CERT_FILE=${OPENSSL_X509_CERT_FILE}
+# Nix
+[ -f $HOME/.nix-profile/etc/profile.d/nix.sh ] && . $HOME/.nix-profile/etc/profile.d/nix.sh
 
 # Keychain
-export GPG_AGENT_INFO="~/.gnupg/S.gpg-agent:$(pgrep gpg-agent):1" # Take this out when keychain fixes this bug
-eval `keychain --eval --inherit any --agents gpg,ssh --quiet id_rsa 2B3A6377`
+if [ -f "$(which keychain)" ]; then
+    export GPG_AGENT_INFO="~/.gnupg/S.gpg-agent:$(pgrep gpg-agent):1" # Take this out when keychain fixes this bug
+    eval `keychain --eval --inherit any --agents gpg,ssh --quiet id_rsa 2B3A6377`
+fi
 
 # Homebrew Github Token
-alias brew='[[ $HOMEBREW_GITHUB_API_TOKEN ]] || export HOMEBREW_GITHUB_API_TOKEN=`gpg -d ~/.homebrew@github-password.gpg`; brew'
-
-# Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
+[ -f "$(which brew)" ] && alias brew='[[ $HOMEBREW_GITHUB_API_TOKEN ]] || export HOMEBREW_GITHUB_API_TOKEN=`gpg -d ~/.homebrew@github-password.gpg`; brew'
+#
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # iTerm2
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+[ -f ~/.iterm2_shell_integration.zsh ] && source ~/.iterm2_shell_integration.zsh
 
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-source /usr/local/opt/chruby/share/chruby/auto.sh
+# Chruby
+[ -e /usr/local/opt/chruby/share/chruby/chruby.sh ] && source /usr/local/opt/chruby/share/chruby/chruby.sh
+[ -e /usr/local/opt/chruby/share/chruby/auto.sh ] && source /usr/local/opt/chruby/share/chruby/auto.sh
 
-# Colored Man
+# Colored Man Pages
 man() {
-	env \
-		LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-		LESS_TERMCAP_md=$(printf "\e[1;31m") \
-		LESS_TERMCAP_me=$(printf "\e[0m") \
-		LESS_TERMCAP_se=$(printf "\e[0m") \
-		LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-		LESS_TERMCAP_ue=$(printf "\e[0m") \
-		LESS_TERMCAP_us=$(printf "\e[1;32m") \
-			man "$@"
+    env \
+        LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+        LESS_TERMCAP_md=$(printf "\e[1;31m") \
+        LESS_TERMCAP_me=$(printf "\e[0m") \
+        LESS_TERMCAP_se=$(printf "\e[0m") \
+        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+        LESS_TERMCAP_ue=$(printf "\e[0m") \
+        LESS_TERMCAP_us=$(printf "\e[1;32m") \
+        man "$@"
 }
