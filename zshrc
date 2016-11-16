@@ -20,18 +20,18 @@ alias e='emacsclient -a "" -t -nw'
 alias weather='curl http://wttr.in'
 
 # nvim
-if [ -f "$(which nvim)" ]; then
+if [ -x "$(command -v nvim)" ]; then
     alias vi=nvim
     alias vim=nvim
     export EDITOR=nvim
 fi
 
 # Mac only
-[ -f "$(which open)" ] && export BROWSER=open
+[ -x "$(command -v open)" ] && export BROWSER=open
 
 # IOCOM stuff
 alias er='rm -rf logs; unzip -o'
-if [ -f "$(which p4)" ]; then
+if [ -x "$(command -v p4)" ]; then
     export P4USER=dswan
     export P4PORT="humu.iocom.com:1666"
     export P4CONFIG=p4.cfg
@@ -48,13 +48,13 @@ fi
 [ -f $HOME/.nix-profile/etc/profile.d/nix.sh ] && . $HOME/.nix-profile/etc/profile.d/nix.sh
 
 # Keychain
-if [ -f "$(which keychain)" ]; then
+if [ -x "$(command -v keychain)" ]; then
     export GPG_AGENT_INFO="~/.gnupg/S.gpg-agent:$(pgrep gpg-agent):1" # Take this out when keychain fixes this bug
     eval `keychain --eval --inherit any --agents gpg,ssh --quiet id_rsa 2B3A6377`
 fi
 
 # Homebrew Github Token
-[ -f "$(which brew)" ] && alias brew='[[ $HOMEBREW_GITHUB_API_TOKEN ]] || export HOMEBREW_GITHUB_API_TOKEN=`gpg -d ~/.homebrew@github-password.gpg`; brew'
+[ -x "$(command -v brew)" ] && alias brew='[[ $HOMEBREW_GITHUB_API_TOKEN ]] || export HOMEBREW_GITHUB_API_TOKEN=`gpg -d ~/.homebrew@github-password.gpg`; brew'
 #
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -63,8 +63,8 @@ fi
 [ -f ~/.iterm2_shell_integration.zsh ] && source ~/.iterm2_shell_integration.zsh
 
 # Chruby
-[ -e /usr/local/opt/chruby/share/chruby/chruby.sh ] && source /usr/local/opt/chruby/share/chruby/chruby.sh
-[ -e /usr/local/opt/chruby/share/chruby/auto.sh ] && source /usr/local/opt/chruby/share/chruby/auto.sh
+[ -f /usr/local/opt/chruby/share/chruby/chruby.sh ] && source /usr/local/opt/chruby/share/chruby/chruby.sh
+[ -f /usr/local/opt/chruby/share/chruby/auto.sh ] && source /usr/local/opt/chruby/share/chruby/auto.sh
 
 # Colored Man Pages
 man() {
