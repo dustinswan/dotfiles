@@ -26,6 +26,9 @@ if [ -x "$(command -v nvim)" ]; then
     export EDITOR=nvim
 fi
 
+# typing 'emacs' should not load any config
+alias emacs='emacs -q'
+
 # Mac only
 [ -x "$(command -v open)" ] && export BROWSER=open
 
@@ -36,6 +39,7 @@ if [ -x "$(command -v p4)" ]; then
     export P4PORT="humu.iocom.com:1666"
     export P4CONFIG=p4.cfg
     export P4EDITOR=vim
+    export P4IGNORE=.ignore
 fi
 
 # PATH
@@ -55,6 +59,7 @@ fi
 
 # Homebrew Github Token
 [ -x "$(command -v brew)" ] && alias brew='[[ $HOMEBREW_GITHUB_API_TOKEN ]] || export HOMEBREW_GITHUB_API_TOKEN=`gpg -d ~/.homebrew@github-password.gpg`; brew'
+[ -x "$(command -v carthage)" ] && alias carthage='[[ $HOMEBREW_GITHUB_API_TOKEN ]] || export HOMEBREW_GITHUB_API_TOKEN=`gpg -d ~/.homebrew@github-password.gpg`; carthage'
 #
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
