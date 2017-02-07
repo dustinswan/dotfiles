@@ -29,12 +29,12 @@ rm -rf ~/.Xresources; ln -s ~/dotfiles/Xresources ~/.Xresources
 rm -rf ~/.xinitrc; ln -s ~/dotfiles/xinitrc ~/.xinitrc
 
 # Vim
-rm -rf ~/.vim; ln -s ~/dotfiles/vim ~/.vim
 rm ~/.vimrc; ln -s ~/dotfiles/vimrc ~/.vimrc
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Neovim
-rm -rf ~/.config/nvim; ln -s ~/dotfiles/vim ~/.config/nvim
-rm ~/.config/nvim/init.vim; ln -s ~/dotfiles/vimrc ~/.config/nvim/init.vim
+rm -rf ~/.config/nvim; mkdir ~/.config/nvim; ln -s ~/dotfiles/vimrc ~/.config/nvim/init.vim
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Spacemacs
 mv ~/.emacs.d ~/.emacs.bak

@@ -30,7 +30,9 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(ivy
+   '(
+     csv
+     ivy
      version-control
      git
      github
@@ -40,7 +42,7 @@ values."
      better-defaults
      osx
      ;; nixos
-     (mu4e :variables mu4e-installation-path "/usr/local/share/emacs/site-lisp/mu/mu4e" mu4e-enable-notifications t mu4e-enable-mode-line t)
+     (mu4e :variables mu4e-installation-path "/usr/local/share/emacs/site-lisp" mu4e-enable-notifications t mu4e-enable-mode-line t)
      (ranger :variables ranger-show-preview t)
      speed-reading
      auto-completion
@@ -332,6 +334,9 @@ in `dotspacemacs/user-config'."
   (setq-default git-magit-status-fullscreen t)
   (setq-default git-enable-github-support t)
 
+  (setq-default js2-basic-offset 2)
+  (setq-default js-indent-level 2)
+
   (add-to-list 'exec-path "~/.local/bin/")
   (add-to-list 'exec-path "~/.npm-packages/bin/")
   )
@@ -374,6 +379,39 @@ layers configuration. You are free to put any user code."
            (user-mail-address "dswan@iocom.com"))))
 
   (mu4e/mail-account-reset)
+
+;;   (setq mu4e-contexts
+;;         `( ,(make-mu4e-context
+;;              :name "FastMail"
+;;              :enter-func (lambda () (mu4e-message "Switch to the FastMail context"))
+;;              ;; leave-func not defined
+;;              :match-func (lambda (msg)
+;;                            (when msg 
+;;                              (mu4e-message-contact-field-matches msg 
+;;                                                                  :to "dustin@dustinswan.com")))
+;;              :vars '( ( user-mail-address	. "dustin@dustinswan.com"  )
+;;                       (mu4e-sent-messages-behavior . sent)
+;;                       (mu4e-sent-folder . "/FastMail/INBOX.Sent")
+;;                       (mu4e-drafts-folder . "/FastMail/INBOX.Drafts")
+;;                       (mu4e-refile-folder . "/FastMail/INBOX.Archive")
+;;                       (mu4e-trash-folder . "/FastMail/INBOX.Trash")
+;;                       ( user-full-name . "Dustin Swan" )))
+;; 
+;;            ,(make-mu4e-context
+;;              :name "IOCOM"
+;;              :enter-func (lambda () (mu4e-message "Switch to the IOCOM context"))
+;;              ;; leave-fun not defined
+;;              :match-func (lambda (msg)
+;;                            (when msg 
+;;                              (mu4e-message-contact-field-matches msg 
+;;                                                                  :to "dswan@iocom.com")))
+;;              :vars '(  ( user-mail-address . "dswan@iocom.com" )
+;;                        (mu4e-sent-messages-behavior . sent)
+;;                        (mu4e-sent-folder . "/IOCOM/INBOX.Sent")
+;;                        (mu4e-drafts-folder . "/IOCOM/INBOX.Drafts")
+;;                        (mu4e-refile-folder . "/IOCOM/INBOX.Archive")
+;;                        (mu4e-trash-folder . "/IOCOM/INBOX.Trash")
+;;                        ( user-full-name . "Dustin Swan" )))))
 
   (require 'mu4e-contrib)
   (setq mu4e-maildir "~/Mail"
@@ -557,7 +595,7 @@ layers configuration. You are free to put any user code."
              :html-head-include-scripts nil
              :with-toc nil
              :section-numbers nil
-             :html-head "<link rel=\"stylesheet\" href=\"static/style.css\" /><link rel=\"stylesheet\" href=\"http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css\">"
+             :html-head "<link rel=\"stylesheet\" href=\"static/style.css\" />\n<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css\">"
              :html-head-extra ""
              :html-preamble ,web-bio
              :html-postamble nil
@@ -575,7 +613,7 @@ layers configuration. You are free to put any user code."
              :with-toc nil
              :section-numbers nil
              ;; :with-latex t         ; do use MathJax for awesome formulas!
-             :html-head "<link rel=\"stylesheet\" href=\"../static/style.css\" /><link rel=\"stylesheet\" href=\"//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css\">"
+             :html-head "<link rel=\"stylesheet\" href=\"../static/style.css\" />\n<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css\">"
              :html-head-extra ""
              :html-preamble ,web-bio
              :html-postamble nil
@@ -620,15 +658,18 @@ layers configuration. You are free to put any user code."
  '(erc-modules
    (quote
     (autoaway button completion list match move-to-prompt netsplit networks notify notifications readonly scrolltobottom services smiley spelling track completion autoaway autojoin button log match menu move-to-prompt netsplit notify notifications readonly ring scrolltobottom spelling track image hl-nicks networks services)))
+ '(evil-want-Y-yank-to-eol nil)
  '(fancy-battery-mode t)
- '(js2-basic-offset 2)
+ '(js2-basic-offset 2 t)
  '(mac-auto-operator-composition-mode t)
  '(org-journal-date-format "%A, %B %d, %Y")
  '(org-journal-time-format "%R %Z")
  '(package-selected-packages
    (quote
-    (auctex counsel smartparens go-mode haskell-mode flycheck magit with-editor yasnippet rake company ivy helm helm-core xterm-color auctex-latexmk yapfify yaml-mode xkcd wttrin ws-butler writeroom-mode wolfram-mode window-numbering which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe vdirel uuidgen use-package typit twittering-mode tumblesocks toml-mode toc-org thrift tagedit stan-mode spray spotify spacemacs-theme spaceline smex smeargle slime-company slim-mode shell-pop scss-mode scad-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder restclient restart-emacs request rbenv ranger rainbow-mode rainbow-identifiers rainbow-delimiters racer quelpa qml-mode pyvenv pytest pyenv-mode py-isort pug-mode psci psc-ide projectile-rails popwin pip-requirements phpunit phpcbf php-extras php-auto-yasnippets persp-mode pbcopy paradox pandoc-mode pacmacs p4 ox-pandoc ox-gfm osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-plus-contrib org-journal org-download org-bullets open-junk-file ob-http neotree mwim multi-term mu4e-maildirs-extension mu4e-alert move-text monokai-theme mmm-mode minitest mingus matlab-mode markdown-toc magit-gitflow magit-gh-pulls lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode ledger-mode launchctl julia-mode json-mode js2-refactor js-doc ivy-hydra intero insert-shebang info+ indent-guide idris-mode ido-vertical-mode hy-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-make haskell-snippets hackernews google-translate golden-ratio go-guru go-eldoc gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md geiser flyspell-correct-ivy flycheck-rust flycheck-pos-tip flycheck-ledger flycheck-haskell flycheck-elm flx-ido fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help erc-yt erc-view-log erc-terminal-notifier erc-social-graph erc-image erc-hl-nicks engine-mode emoji-cheat-sheet-plus emmet-mode elm-mode elisp-slime-nav dumb-jump drupal-mode disaster diff-hl deft cython-mode counsel-projectile company-web company-tern company-statistics company-shell company-go company-ghci company-ghc company-emoji company-cabal company-c-headers company-auctex company-anaconda common-lisp-snippets column-enforce-mode color-identifiers-mode coffee-mode cmm-mode cmake-mode clean-aindent-mode clang-format chruby chess cargo bundler bracketed-paste beacon auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile arduino-mode aggressive-indent adaptive-wrap ace-window ace-link ac-ispell 2048-game)))
+    (helm-themes helm-swoop helm-spotify multi helm-pydoc helm-projectile helm-mode-manager helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag flyspell-correct-helm ace-jump-helm-line csv-mode inflections spinner org anaconda-mode swiper highlight projectile skewer-mode js2-mode gh magit-popup git-commit hydra inf-ruby pcre2el macrostep dash powerline auctex counsel smartparens go-mode haskell-mode flycheck magit with-editor yasnippet rake company ivy helm helm-core xterm-color auctex-latexmk yapfify yaml-mode xkcd wttrin ws-butler writeroom-mode wolfram-mode window-numbering which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe vdirel uuidgen use-package typit twittering-mode tumblesocks toml-mode toc-org thrift tagedit stan-mode spray spotify spacemacs-theme spaceline smex smeargle slime-company slim-mode shell-pop scss-mode scad-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder restclient restart-emacs request rbenv ranger rainbow-mode rainbow-identifiers rainbow-delimiters racer quelpa qml-mode pyvenv pytest pyenv-mode py-isort pug-mode psci psc-ide projectile-rails popwin pip-requirements phpunit phpcbf php-extras php-auto-yasnippets persp-mode pbcopy paradox pandoc-mode pacmacs p4 ox-pandoc ox-gfm osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-plus-contrib org-journal org-download org-bullets open-junk-file ob-http neotree mwim multi-term mu4e-maildirs-extension mu4e-alert move-text monokai-theme mmm-mode minitest mingus matlab-mode markdown-toc magit-gitflow magit-gh-pulls lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode ledger-mode launchctl julia-mode json-mode js2-refactor js-doc ivy-hydra intero insert-shebang info+ indent-guide idris-mode ido-vertical-mode hy-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-make haskell-snippets hackernews google-translate golden-ratio go-guru go-eldoc gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md geiser flyspell-correct-ivy flycheck-rust flycheck-pos-tip flycheck-ledger flycheck-haskell flycheck-elm flx-ido fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help erc-yt erc-view-log erc-terminal-notifier erc-social-graph erc-image erc-hl-nicks engine-mode emoji-cheat-sheet-plus emmet-mode elm-mode elisp-slime-nav dumb-jump drupal-mode disaster diff-hl deft cython-mode counsel-projectile company-web company-tern company-statistics company-shell company-go company-ghci company-ghc company-emoji company-cabal company-c-headers company-auctex company-anaconda common-lisp-snippets column-enforce-mode color-identifiers-mode coffee-mode cmm-mode cmake-mode clean-aindent-mode clang-format chruby chess cargo bundler bracketed-paste beacon auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile arduino-mode aggressive-indent adaptive-wrap ace-window ace-link ac-ispell 2048-game)))
  '(paradox-github-token t)
+ '(psc-ide-add-import-on-completion t t)
+ '(psc-ide-rebuild-on-save nil t)
  '(ring-bell-function (quote ignore)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
