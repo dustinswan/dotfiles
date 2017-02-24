@@ -26,7 +26,8 @@ Plug 'majutsushi/tagbar'
 Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdcommenter'
 "Plug 'w0ng/vim-hybrid'
-Plug 'sickill/vim-monokai'
+"Plug 'sickill/vim-monokai'
+Plug 'tomasr/molokai'
 "Plug 'ervandew/supertab'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
 Plug 'junegunn/fzf.vim'
@@ -50,7 +51,7 @@ Plug 'eagletmt/ghc-mod'
 Plug 'bitc/vim-hdevtools'
 Plug 'idris-hackers/idris-vim'
 Plug 'qstrahl/vim-matchmaker'
-Plug 'bling/vim-airline'
+" Plug 'bling/vim-airline'
 Plug 'matze/vim-move'
 Plug 'bruno-/vim-vertical-move'
 Plug 'itchyny/calendar.vim'
@@ -71,11 +72,6 @@ Plug 'ctrlpvim/ctrlp.vim'
 
 call plug#end()
 
-" mouse
-if has("mouse")
-endif
-    set mouse=a
-
 " general goodness
 set shell=/bin/bash " Syntastic breaks when trying to write to /var/folders
 syntax enable
@@ -85,7 +81,7 @@ set hidden " allow hidden unsaved buffers
 set history=1000 " longer history
 set noswapfile " turn off swapfiles
 set number " line numbers
-"set relativenumber " TODO make a command to toggle this. <leader>n maybe..
+" set relativenumber " TODO make a command to toggle this. <leader>n maybe..
 set showcmd " show the command as it is typed
 set showmode
 set wildmenu
@@ -105,7 +101,7 @@ set wrap
 set formatoptions=rqn1
 set textwidth=80
 if version > 702
-    set colorcolumn=80
+""    set colorcolumn=80
 endif
 
 " persistent undo
@@ -153,8 +149,16 @@ if has("gui_running")
     set go=-t
 endif
 
+" Git Gutter
+let g:gitgutter_override_sign_column_highlight = 0
+
 " Colors
-colorscheme monokai
+" colorscheme monokai
+colorscheme molokai
+highlight Normal ctermbg=NONE
+highlight SignColumn ctermbg=NONE
+highlight LineNr ctermbg=NONE ctermfg=darkgrey
+" highlight StatusLine guibg=NONE ctermfg=NONE ctermbg=red
 
 " Tagbar
 nnoremap <silent><leader>t :TagbarToggle <cr>
@@ -238,7 +242,7 @@ autocmd FileType javascript,css nnoremap <silent> ,; :call cosco#commaOrSemiColo
 autocmd FileType javascript,css inoremap <silent> ,; <ESC>:call cosco#commaOrSemiColon()"<CR>a
 
 " Browser
-:let g:netrw_browsex_viewer = "browser"
+let g:netrw_browsex_viewer = "browser"
 
 " Calendar
 let g:calendar_google_calendar = 1
@@ -268,8 +272,8 @@ function! s:AckMotion(type) abort
 endfunction
 
 " Airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline_powerline_fonts = 1
 
 " Powerline
 " python from powerline.vim import setup as powerline_setup
