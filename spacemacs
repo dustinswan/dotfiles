@@ -42,7 +42,10 @@ values."
      better-defaults
      osx
      ;; nixos
-     (mu4e :variables mu4e-installation-path "/usr/local/share/emacs/site-lisp" mu4e-enable-notifications t mu4e-enable-mode-line t)
+     (mu4e :variables
+           mu4e-installation-path "/usr/local/share/emacs/site-lisp"
+           mu4e-enable-notifications t
+           mu4e-enable-mode-line t)
      (ranger :variables ranger-show-preview t)
      speed-reading
      auto-completion
@@ -51,12 +54,13 @@ values."
      evil-snipe
      vinegar
      search-engine
+     (rcirc :variables rcirc-enable-authinfo-support t)
      (erc :variables
           erc-server-list
           '(("irc.freenode.net"
              :port "6697"
              :ssl t
-             :nick "dustinswan")))
+             :nick "sw4n")))
      (org :variables org-enable-github-support t)
      deft
      ;; (shell :variables shell-default-term-shell "/Users/dustinswan/.nix-profile/bin/zsh")
@@ -100,7 +104,9 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(hackernews chess wttrin mingus tumblesocks writeroom-mode beacon org-journal vdirel)
+   dotspacemacs-additional-packages '(hackernews chess wttrin mingus tumblesocks writeroom-mode beacon org-journal vdirel circe (vue-mode :location (recipe
+                                                                                                                                                    :fetcher github
+                                                                                                                                                    :repo "codefalling/vue-mode")))
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(toxi-theme)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -177,8 +183,8 @@ values."
    ;; size to make separators look not too crappy.
    ;; dotspacemacs-default-font '("Source Code Pro"
    ;; dotspacemacs-default-font '("PragmataPro"
-   dotspacemacs-default-font '("Hasklig"
-                               :size 12
+   dotspacemacs-default-font '("Iosevka"
+                               :size 13
                                :weight normal
                                :width normal
                                :powerline-scale 1.0)
@@ -263,7 +269,7 @@ values."
    dotspacemacs-loading-progress-bar t
    ;; If non nil the frame is fullscreen when Emacs starts up. (default nil)
    ;; (Emacs 24.4+ only)
-   dotspacemacs-fullscreen-at-startup t
+   dotspacemacs-fullscreen-at-startup nil
    ;; If non nil `spacemacs/toggle-fullscreen' will not use native fullscreen.
    ;; Use to disable fullscreen animations in OSX. (default nil)
    dotspacemacs-fullscreen-use-non-native t
@@ -278,7 +284,7 @@ values."
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's inactive or deselected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
-   dotspacemacs-inactive-transparency 90
+   dotspacemacs-inactive-transparency 80
    ;; If non nil show the titles of transient states. (default t)
    dotspacemacs-show-transient-state-title t
    ;; If non nil show the color guide hint for transient state keys. (default t)
@@ -334,9 +340,6 @@ in `dotspacemacs/user-config'."
   (setq-default git-magit-status-fullscreen t)
   (setq-default git-enable-github-support t)
 
-  (setq-default js2-basic-offset 2)
-  (setq-default js-indent-level 2)
-
   (add-to-list 'exec-path "~/.local/bin/")
   (add-to-list 'exec-path "~/.npm-packages/bin/")
   )
@@ -346,7 +349,48 @@ in `dotspacemacs/user-config'."
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
 
-  (spacemacs/toggle-transparency)
+  ;; ctrl-w when a completion dropdown is open
+  (with-eval-after-load 'company
+    (define-key company-active-map (kbd "C-w") 'evil-delete-backward-word))
+  (with-eval-after-load 'helm
+    (define-key helm-map (kbd "C-w") 'evil-delete-backward-word))
+
+  (global-set-key (kbd "M-s-h") 'ns-do-hide-others) ;; TODO Take out when Spacemacs gets this
+  (global-set-key [142607065] 'ns-do-hide-others) ;; TODO Take out when Spacemacs gets this
+
+  (setq-default js2-basic-offset 2)
+  (setq-default js-indent-level 2)
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+
+  (use-package vue-mode)
+
+  (spacemacs/toggle-transparent-frame)
+
+  (defun my-focus-new-frame (frame)
+    (spacemacs/toggle-transparent-frame))
+  (add-hook 'after-make-frame-functions 'my-focus-new-frame t)
+
+  (spacemacs|define-custom-layout "@Haskellbook"
+    :binding "H"
+    :body
+    (progn
+      ;; open up haskellbook
+      (bookmark-jump "haskellbook")
+      (split-window-right-and-focus)
+      ;; project root
+      (bookmark-jump "haskellbook-exercise")
+      (split-window-below)
+      ;; repl
+      (intero-repl-load)
+      ;; switch back to the pdf
+      (winum-select-window-1)
+      (shrink-window-horizontally 20)
+      ;; center it!
+      (image-forward-hscroll 14)
+      (doc-view-next-line-or-next-page 3)
+      ))
 
   (spacemacs|define-custom-layout "@Mail"
     :binding "m"
@@ -362,131 +406,113 @@ layers configuration. You are free to put any user code."
   (setq vdirel-repository "~/Contacts/Default/")
 
   ;; Mail
-  (setq mu4e-account-alist
-        '(("FastMail"
-           (mu4e-sent-messages-behavior sent)
-           (mu4e-sent-folder "/FastMail/INBOX.Sent")
-           (mu4e-drafts-folder "/FastMail/INBOX.Drafts")
-           (mu4e-refile-folder "/FastMail/INBOX.Archive")
-           (mu4e-trash-folder "/FastMail/INBOX.Trash")
-           (user-mail-address "dustin@dustinswan.com"))
-          ("IOCOM"
-           (mu4e-sent-messages-behavior sent)
-           (mu4e-sent-folder "/IOCOM/INBOX.Sent")
-           (mu4e-drafts-folder "/IOCOM/INBOX.Drafts")
-           (mu4e-refile-folder "/IOCOM/INBOX.Archive")
-           (mu4e-trash-folder "/IOCOM/INBOX.Trash")
-           (user-mail-address "dswan@iocom.com"))))
+  (with-eval-after-load 'mu4e
+    (setq mu4e-contexts
+          `( ,(make-mu4e-context
+               :name "FastMail"
+               :enter-func (lambda () (mu4e-message "Switch to the FastMail context"))
+               ;; leave-func not defined
+               :match-func (lambda (msg)
+                             (when msg
+                               (string-match-p (regexp-quote "FastMail") (mu4e-message-field msg :maildir))))
+               :vars '((user-mail-address	. "dustin@dustinswan.com")
+                       (mu4e-sent-messages-behavior . sent)
+                       (mu4e-sent-folder . "/FastMail/INBOX.Sent")
+                       (mu4e-drafts-folder . "/FastMail/INBOX.Drafts")
+                       (mu4e-refile-folder . "/FastMail/INBOX.Archive")
+                       (mu4e-trash-folder . "/FastMail/INBOX.Trash")
+                       (user-full-name . "Dustin Swan")))
 
-  (mu4e/mail-account-reset)
+             ,(make-mu4e-context
+               :name "IOCOM"
+               :enter-func (lambda () (mu4e-message "Switch to the IOCOM context"))
+               ;; leave-fun not defined
+               :match-func (lambda (msg)
+                             (when msg
+                               (string-match-p (regexp-quote "IOCOM") (mu4e-message-field msg :maildir))))
+               :vars '((user-mail-address . "dswan@iocom.com")
+                       (mu4e-sent-messages-behavior . sent)
+                       (mu4e-sent-folder . "/IOCOM/INBOX.Sent")
+                       (mu4e-drafts-folder . "/IOCOM/INBOX.Drafts")
+                       (mu4e-refile-folder . "/IOCOM/INBOX.Archive")
+                       (mu4e-trash-folder . "/IOCOM/INBOX.Trash")
+                       (user-full-name . "Dustin Swan")))))
 
-;;   (setq mu4e-contexts
-;;         `( ,(make-mu4e-context
-;;              :name "FastMail"
-;;              :enter-func (lambda () (mu4e-message "Switch to the FastMail context"))
-;;              ;; leave-func not defined
-;;              :match-func (lambda (msg)
-;;                            (when msg 
-;;                              (mu4e-message-contact-field-matches msg 
-;;                                                                  :to "dustin@dustinswan.com")))
-;;              :vars '( ( user-mail-address	. "dustin@dustinswan.com"  )
-;;                       (mu4e-sent-messages-behavior . sent)
-;;                       (mu4e-sent-folder . "/FastMail/INBOX.Sent")
-;;                       (mu4e-drafts-folder . "/FastMail/INBOX.Drafts")
-;;                       (mu4e-refile-folder . "/FastMail/INBOX.Archive")
-;;                       (mu4e-trash-folder . "/FastMail/INBOX.Trash")
-;;                       ( user-full-name . "Dustin Swan" )))
-;; 
-;;            ,(make-mu4e-context
-;;              :name "IOCOM"
-;;              :enter-func (lambda () (mu4e-message "Switch to the IOCOM context"))
-;;              ;; leave-fun not defined
-;;              :match-func (lambda (msg)
-;;                            (when msg 
-;;                              (mu4e-message-contact-field-matches msg 
-;;                                                                  :to "dswan@iocom.com")))
-;;              :vars '(  ( user-mail-address . "dswan@iocom.com" )
-;;                        (mu4e-sent-messages-behavior . sent)
-;;                        (mu4e-sent-folder . "/IOCOM/INBOX.Sent")
-;;                        (mu4e-drafts-folder . "/IOCOM/INBOX.Drafts")
-;;                        (mu4e-refile-folder . "/IOCOM/INBOX.Archive")
-;;                        (mu4e-trash-folder . "/IOCOM/INBOX.Trash")
-;;                        ( user-full-name . "Dustin Swan" )))))
+    (setq mu4e-context-policy 'pick-first)
 
-  (require 'mu4e-contrib)
-  (setq mu4e-maildir "~/Mail"
-        user-full-name "Dustin Swan"
-        mu4e-user-mail-address-list '("dustin@dustinswan.com"
-                                      "dustinswan@gmail.com"
-                                      "dswan@iocom.com"
-                                      "dswan@insors.com")
-        mu4e-get-mail-command "offlineimap -q"
-        mu4e-update-interval 180
-        mu4e-compose-signature-auto-include nil
+    (require 'mu4e-contrib)
+    (setq mu4e-maildir "~/Mail"
+          user-full-name "Dustin Swan"
+          mu4e-user-mail-address-list '("dustin@dustinswan.com"
+                                        "dustinswan@gmail.com"
+                                        "dswan@iocom.com"
+                                        "dswan@insors.com")
+          mu4e-get-mail-command "offlineimap -q"
+          mu4e-update-interval 180
+          mu4e-compose-signature-auto-include nil
 
-        ;; Viewing Mail
-        mu4e-headers-show-threads t
-        mu4e-attachment-dir "~/Downloads"
-        mu4e-view-show-addresses t
-        mu4e-view-show-images t
-        mu4e-view-prefer-html nil
-        ;; mu4e-html2text-command 'mu4e-shr2text
-        mu4e-html2text-command "w3m -dump -T text/html"
-        w3m-command "/usr/local/bin/w3m"
+          ;; Viewing Mail
+          mu4e-headers-show-threads t
+          mu4e-attachment-dir "~/Downloads"
+          mu4e-view-show-addresses t
+          mu4e-view-show-images t
+          mu4e-view-prefer-html nil
+          ;; mu4e-html2text-command 'mu4e-shr2text
+          mu4e-html2text-command "w3m -dump -T text/html"
+          w3m-command "/usr/local/bin/w3m"
 
-        org-mu4e-link-query-in-headers-mode nil
+          org-mu4e-link-query-in-headers-mode nil
 
-        ;; Sending Mail
-        message-send-mail-function 'message-send-mail-with-sendmail
-        message-sendmail-extra-arguments '("--read-envelope-from")
-        message-sendmail-f-is-evil 't
-        sendmail-program "/usr/local/bin/msmtp"
+          ;; Sending Mail
+          message-send-mail-function 'message-send-mail-with-sendmail
+          message-sendmail-extra-arguments '("--read-envelope-from")
+          message-sendmail-f-is-evil 't
+          sendmail-program "/usr/local/bin/msmtp"
 
-        mu4e-hide-index-messages 't
-        )
+          mu4e-hide-index-messages 't)
 
-  (when (fboundp 'imagemagick-register-types)
-    (imagemagick-register-types))
+    (when (fboundp 'imagemagick-register-types)
+      (imagemagick-register-types))
 
   ;;; Mail directory shortcuts
-  (setq mu4e-maildir-shortcuts
-        '(("/FastMail/INBOX" . ?F)
-          ("/IOCOM/INBOX" . ?I)))
+    (setq mu4e-maildir-shortcuts
+          '(("/FastMail/INBOX" . ?F)
+            ("/IOCOM/INBOX" . ?I)))
 
   ;;; Bookmarks
-  (setq mu4e-bookmarks
-        `(("flag:unread AND NOT flag:trashed" "Unread messages" ?u)
-          ("date:today..now" "Today's messages" ?t)
-          ("date:7d..now" "Last 7 days" ?w)
-          ("mime:image/*" "Messages with images" ?p)
-          (,(mapconcat 'identity
-                       (mapcar
-                        (lambda (maildir)
-                          (concat "maildir:" (car maildir)))
-                        mu4e-maildir-shortcuts) " OR ")
-                    "All inboxes" ?i)))
+    (setq mu4e-bookmarks
+          `(("flag:unread AND NOT flag:trashed" "Unread messages" ?u)
+            ("date:today..now" "Today's messages" ?t)
+            ("date:7d..now" "Last 7 days" ?w)
+            ("mime:image/*" "Messages with images" ?p)
+            (,(mapconcat 'identity
+                         (mapcar
+                          (lambda (maildir)
+                            (concat "maildir:" (car maildir)))
+                          mu4e-maildir-shortcuts) " OR ")
+             "All inboxes" ?i)))
 
-  (setq message-kill-buffer-on-exit t)
+    (setq message-kill-buffer-on-exit t)
 
-  (with-eval-after-load 'mu4e-alert
-    (mu4e-alert-set-default-style 'notifier))
+    (with-eval-after-load 'mu4e-alert
+      (mu4e-alert-set-default-style 'notifier))
 
-  (setq mu4e-alert-interesting-mail-query
-        (concat
-         "flag:unread"
-         " AND NOT flag:trashed"
-         " AND (maildir:/Fastmail/INBOX"
-         " OR maildir:/IOCOM/INBOX)"
-         ))
+    (setq mu4e-alert-interesting-mail-query
+          (concat
+           "flag:unread"
+           " AND NOT flag:trashed"
+           " AND (maildir:/Fastmail/INBOX"
+           " OR maildir:/IOCOM/INBOX)"
+           ))
+  )
 
   (setenv "P4USER" "dswan")
   (setenv "P4PORT" "humu.insors.net:1666")
   (setenv "P4CONFIG" "p4.cfg")
 
   (setenv "LANG" "en_US.UTF-8")
-  
-  ;; (setq exec-path (append exec-path '("~/.nix-profile/bin")))
 
+  ;; (setq exec-path (append exec-path '("~/.nix-profile/bin")))
 
   ;; (when (configuration-layer/layer-usedp 'haskell)
   ;;   (add-hook 'haskell-interactive-mode-hook
@@ -640,6 +666,11 @@ layers configuration. You are free to put any user code."
   (push '("*mingus" . emacs) evil-buffer-regexps)
 
   (setq twittering-use-master-password t)
+
+  (add-hook 'rcirc-mode-hook
+            (lambda ()
+              (set (make-local-variable 'scroll-conservatively))))
+
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -655,18 +686,22 @@ layers configuration. You are free to put any user code."
  '(ahs-idle-interval 0.25 t)
  '(ahs-idle-timer 0 t)
  '(ahs-inhibit-face-list nil t)
+ '(erc-interpret-mirc-color t)
  '(erc-modules
    (quote
-    (autoaway button completion list match move-to-prompt netsplit networks notify notifications readonly scrolltobottom services smiley spelling track completion autoaway autojoin button log match menu move-to-prompt netsplit notify notifications readonly ring scrolltobottom spelling track image hl-nicks networks services)))
+    (autoaway autojoin button completion fill irccontrols move-to-prompt netsplit notifications readonly ring scrolltobottom services smiley spelling youtube list match networks notify track autojoin log menu image hl-nicks)))
  '(evil-want-Y-yank-to-eol nil)
  '(fancy-battery-mode t)
- '(js2-basic-offset 2 t)
+ '(js-indent-level 2)
+ '(js2-basic-offset 2)
  '(mac-auto-operator-composition-mode t)
+ '(monokai-use-variable-pitch nil)
+ '(ns-auto-hide-menu-bar nil)
  '(org-journal-date-format "%A, %B %d, %Y")
  '(org-journal-time-format "%R %Z")
  '(package-selected-packages
    (quote
-    (helm-themes helm-swoop helm-spotify multi helm-pydoc helm-projectile helm-mode-manager helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag flyspell-correct-helm ace-jump-helm-line csv-mode inflections spinner org anaconda-mode swiper highlight projectile skewer-mode js2-mode gh magit-popup git-commit hydra inf-ruby pcre2el macrostep dash powerline auctex counsel smartparens go-mode haskell-mode flycheck magit with-editor yasnippet rake company ivy helm helm-core xterm-color auctex-latexmk yapfify yaml-mode xkcd wttrin ws-butler writeroom-mode wolfram-mode window-numbering which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe vdirel uuidgen use-package typit twittering-mode tumblesocks toml-mode toc-org thrift tagedit stan-mode spray spotify spacemacs-theme spaceline smex smeargle slime-company slim-mode shell-pop scss-mode scad-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder restclient restart-emacs request rbenv ranger rainbow-mode rainbow-identifiers rainbow-delimiters racer quelpa qml-mode pyvenv pytest pyenv-mode py-isort pug-mode psci psc-ide projectile-rails popwin pip-requirements phpunit phpcbf php-extras php-auto-yasnippets persp-mode pbcopy paradox pandoc-mode pacmacs p4 ox-pandoc ox-gfm osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-plus-contrib org-journal org-download org-bullets open-junk-file ob-http neotree mwim multi-term mu4e-maildirs-extension mu4e-alert move-text monokai-theme mmm-mode minitest mingus matlab-mode markdown-toc magit-gitflow magit-gh-pulls lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode ledger-mode launchctl julia-mode json-mode js2-refactor js-doc ivy-hydra intero insert-shebang info+ indent-guide idris-mode ido-vertical-mode hy-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-make haskell-snippets hackernews google-translate golden-ratio go-guru go-eldoc gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md geiser flyspell-correct-ivy flycheck-rust flycheck-pos-tip flycheck-ledger flycheck-haskell flycheck-elm flx-ido fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help erc-yt erc-view-log erc-terminal-notifier erc-social-graph erc-image erc-hl-nicks engine-mode emoji-cheat-sheet-plus emmet-mode elm-mode elisp-slime-nav dumb-jump drupal-mode disaster diff-hl deft cython-mode counsel-projectile company-web company-tern company-statistics company-shell company-go company-ghci company-ghc company-emoji company-cabal company-c-headers company-auctex company-anaconda common-lisp-snippets column-enforce-mode color-identifiers-mode coffee-mode cmm-mode cmake-mode clean-aindent-mode clang-format chruby chess cargo bundler bracketed-paste beacon auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile arduino-mode aggressive-indent adaptive-wrap ace-window ace-link ac-ispell 2048-game)))
+    (diminish pdf-tools tablist f winum unfill sudoku ob-restclient multiple-cursors fuzzy company-restclient know-your-http-well flyspell-correct log4e async mmt slime rust-mode bind-key packed auto-complete avy tern iedit bind-map evil simple-httpd pcache alert php-mode purescript-mode haml-mode markdown-mode htmlize vue-mode circe rcirc-notify rcirc-color helm-themes helm-swoop helm-spotify multi helm-pydoc helm-projectile helm-mode-manager helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag flyspell-correct-helm ace-jump-helm-line csv-mode inflections spinner org anaconda-mode swiper highlight projectile skewer-mode js2-mode gh magit-popup git-commit hydra inf-ruby pcre2el macrostep dash powerline auctex counsel smartparens go-mode haskell-mode flycheck magit with-editor yasnippet rake company ivy helm helm-core xterm-color auctex-latexmk yapfify yaml-mode xkcd wttrin ws-butler writeroom-mode wolfram-mode window-numbering which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe vdirel uuidgen use-package typit twittering-mode tumblesocks toml-mode toc-org thrift tagedit stan-mode spray spotify spacemacs-theme spaceline smex smeargle slime-company slim-mode shell-pop scss-mode scad-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder restclient restart-emacs request rbenv ranger rainbow-mode rainbow-identifiers rainbow-delimiters racer quelpa qml-mode pyvenv pytest pyenv-mode py-isort pug-mode psci psc-ide projectile-rails popwin pip-requirements phpunit phpcbf php-extras php-auto-yasnippets persp-mode pbcopy paradox pandoc-mode pacmacs p4 ox-pandoc ox-gfm osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-plus-contrib org-journal org-download org-bullets open-junk-file ob-http neotree mwim multi-term mu4e-maildirs-extension mu4e-alert move-text monokai-theme mmm-mode minitest mingus matlab-mode markdown-toc magit-gitflow magit-gh-pulls lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode ledger-mode launchctl julia-mode json-mode js2-refactor js-doc ivy-hydra intero insert-shebang info+ indent-guide idris-mode ido-vertical-mode hy-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-make haskell-snippets hackernews google-translate golden-ratio go-guru go-eldoc gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md geiser flyspell-correct-ivy flycheck-rust flycheck-pos-tip flycheck-ledger flycheck-haskell flycheck-elm flx-ido fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help erc-yt erc-view-log erc-terminal-notifier erc-social-graph erc-image erc-hl-nicks engine-mode emoji-cheat-sheet-plus emmet-mode elm-mode elisp-slime-nav dumb-jump drupal-mode disaster diff-hl deft cython-mode counsel-projectile company-web company-tern company-statistics company-shell company-go company-ghci company-ghc company-emoji company-cabal company-c-headers company-auctex company-anaconda common-lisp-snippets column-enforce-mode color-identifiers-mode coffee-mode cmm-mode cmake-mode clean-aindent-mode clang-format chruby chess cargo bundler bracketed-paste beacon auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile arduino-mode aggressive-indent adaptive-wrap ace-window ace-link ac-ispell 2048-game)))
  '(paradox-github-token t)
  '(psc-ide-add-import-on-completion t t)
  '(psc-ide-rebuild-on-save nil t)
