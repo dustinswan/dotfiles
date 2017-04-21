@@ -17,6 +17,7 @@ bindkey -e
 alias l="ls -la"
 alias ta="tmux attach -d"
 alias e='emacsclient -a "" -t -nw'
+alias emacs='emacs -q' # typing 'emacs' should not load any config
 alias weather='curl http://wttr.in'
 
 # nvim
@@ -28,9 +29,6 @@ else
     alias vi=vim
     export EDITOR=vim
 fi
-
-# typing 'emacs' should not load any config
-alias emacs='emacs -q'
 
 # Mac only
 [ -x "$(command -v open)" ] && export BROWSER=open
@@ -49,7 +47,6 @@ fi
 [ -e ~/dotfiles/bin ] && export PATH=$HOME/dotfiles/bin:$PATH
 [ -e ~/.local/bin ] && export PATH=$HOME/.local/bin:$PATH # Stack
 [ -e ~/.npm-packages/bin ] && export PATH=$HOME/.npm-packages/bin:$PATH # NPM
-[ -e /usr/local/heroku/bin ] && export PATH=/usr/local/heroku/bin:$PATH # Heroku Toolbelt
 
 # Nix
 [ -f $HOME/.nix-profile/etc/profile.d/nix.sh ] && . $HOME/.nix-profile/etc/profile.d/nix.sh
@@ -63,7 +60,7 @@ fi
 # Homebrew Github Token
 [ -x "$(command -v brew)" ] && alias brew='[[ $HOMEBREW_GITHUB_API_TOKEN ]] || export HOMEBREW_GITHUB_API_TOKEN=`gpg -d ~/.homebrew@github-password.gpg`; brew'
 [ -x "$(command -v carthage)" ] && alias carthage='[[ $HOMEBREW_GITHUB_API_TOKEN ]] || export HOMEBREW_GITHUB_API_TOKEN=`gpg -d ~/.homebrew@github-password.gpg`; carthage'
-#
+
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

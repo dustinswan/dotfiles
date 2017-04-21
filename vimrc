@@ -2,86 +2,79 @@ set nocompatible
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'sheerun/vim-polyglot'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'szw/vim-dict'
-Plug 'burnettk/vim-angular'
-Plug 'jQuery'
-Plug 'tpope/vim-rails'
+" Plug 'bling/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-characterize'
+" Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-jdaddy'
-Plug 'tpope/vim-eunuch'
-"Plug 'tpope/vim-unimpared'
-Plug 'mileszs/ack.vim'
-Plug 'justinmk/vim-sneak'
-Plug 'bkad/CamelCaseMotion'
-Plug 'majutsushi/tagbar'
-Plug 'scrooloose/syntastic'
-Plug 'scrooloose/nerdcommenter'
-"Plug 'w0ng/vim-hybrid'
-"Plug 'sickill/vim-monokai'
-Plug 'tomasr/molokai'
-"Plug 'ervandew/supertab'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+" Plug 'w0rp/ale' " previously 'neomake/neomake, 'scrooloose/syntastic'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " previously YouCompleteMe
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'gregsexton/MatchTag'
-"Plug 'kana/vim-smartinput'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'easymotion/vim-easymotion'
+Plug 'justinmk/vim-sneak'
+Plug 'majutsushi/tagbar'
+Plug 'scrooloose/nerdcommenter'
+Plug 'gregsexton/MatchTag' " highlight matching HTML tag
 Plug 'Raimondi/delimitMate'
 Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plug 'mbbill/undotree'
 Plug 'coderifous/textobj-word-column.vim'
-Plug 'benmills/vimux'
-Plug 'searchfold.vim'
-Plug 'godlygeek/tabular'
-Plug 'tommcdo/vim-lion'
 Plug 'kshenoy/vim-signature'
-"Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-"Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
-Plug 'eagletmt/ghc-mod'
-"Plug 'eagletmt/neco-ghc'
-"Plug 'lukerandall/haskellmode-vim'
-Plug 'bitc/vim-hdevtools'
-Plug 'idris-hackers/idris-vim'
-Plug 'qstrahl/vim-matchmaker'
-" Plug 'bling/vim-airline'
-Plug 'matze/vim-move'
+Plug 'junegunn/vim-easy-align'
+Plug 'qstrahl/vim-matchmaker' " highlight matching word under cursor
 Plug 'bruno-/vim-vertical-move'
-Plug 'itchyny/calendar.vim'
 Plug 'lfilho/cosco.vim'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'sbdchd/neoformat'
 Plug 'sdanielf/vim-stdtabs'
-Plug 'airblade/vim-gitgutter'
-Plug 'gcmt/wildfire.vim'
-Plug 'lambdatoast/elm.vim'
+Plug 'mhinz/vim-signify' " previously 'airblade/vim-gitgutter'
+Plug 'terryma/vim-expand-region' " previously 'gcmt/wildfire.vim'
+Plug 'tommcdo/vim-exchange'
+Plug 'argtextobj.vim'
+Plug 'matchit.zip' " % will match more things
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'kien/rainbow_parentheses.vim'
-Plug 'nathanaelkane/vim-indent-guides'
+Plug 'utl.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'EinfachToll/DidYouMean'
 Plug 'jceb/vim-orgmode'
-Plug 'raichoo/purescript-vim'
-Plug 'ctrlpvim/ctrlp.vim'
+
+" Languages & Syntax
+Plug 'sheerun/vim-polyglot'
+Plug 'idris-hackers/idris-vim'
+Plug 'eagletmt/ghc-mod'
+Plug 'bitc/vim-hdevtools'
+"Plug 'eagletmt/neco-ghc'
+"Plug 'lukerandall/haskellmode-vim'
+
+" Themes
+"Plug 'w0ng/vim-hybrid'
+"Plug 'sickill/vim-monokai'
+Plug 'tomasr/molokai'
 
 call plug#end()
 
 " general goodness
-set shell=/bin/bash " Syntastic breaks when trying to write to /var/folders
+"set shell=/bin/bash " Syntastic breaks when trying to write to /var/folders
 syntax enable
-let mapleader=","
+let mapleader="\<Space>"
+" let mapleader=","
 let maplocalleader="\\"
 set hidden " allow hidden unsaved buffers
 set history=1000 " longer history
 set noswapfile " turn off swapfiles
 set number " line numbers
-" set relativenumber " TODO make a command to toggle this. <leader>n maybe..
 set showcmd " show the command as it is typed
 set showmode
 set wildmenu
@@ -100,15 +93,11 @@ set scrolloff=5 " Give us a few lines before and after the cursor
 set wrap
 set formatoptions=rqn1
 set textwidth=80
-if version > 702
-""    set colorcolumn=80
-endif
+" set colorcolumn=80
 
 " persistent undo
-if v:version > 703
-    set undodir=~/.vim/undodir
-    set undofile
-endif
+set undodir=~/.vim/undodir
+set undofile
 
 " indentation
 set autoindent
@@ -123,10 +112,10 @@ set smartcase " if we include uppercase, it will be case sensitive
 set showmatch " matching brackets
 set matchtime=2 " blink brackets
 
-" turn off highlighting
-nnoremap <silent><leader><space> :noh<cr>
+" clear highlighting
+nnoremap <silent><leader>/ :noh<cr>
 
-" regex " thanks stevelosh
+" regex
 set magic
 
 " tab stops
@@ -137,20 +126,17 @@ set expandtab
 set smarttab
 
 " so we get html goodies in php files
-au BufRead *.php set ft=php.html
-au BufNewFile *.php set ft=php.html
+"au BufRead *.php set ft=php.html
+"au BufNewFile *.php set ft=php.html
 
-set thesaurus+=~/.wordlists/mthesaur.txt
+" set thesaurus+=~/.wordlists/mthesaur.txt
 set dictionary+=/usr/share/dict/words
 
-" hide toolbar in macvim, etc
+" hide toolbar, etc.
 if has("gui_running")
     set gfn=Terminus\ 8
     set go=-t
 endif
-
-" Git Gutter
-let g:gitgutter_override_sign_column_highlight = 0
 
 " Colors
 " colorscheme monokai
@@ -162,21 +148,6 @@ highlight LineNr ctermbg=NONE ctermfg=darkgrey
 
 " Tagbar
 nnoremap <silent><leader>t :TagbarToggle <cr>
-" disable tagbar in old Vim
-if v:version < 703
-    let g:loaded_tagbar=1
-endif
-
-" Syntastic
-if v:version > 700
-    let g:syntastic_enable_signs=1
-    let g:syntastic_auto_loc_list=1
-    let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute \"ng-"]
-else
-    let g:loaded_syntastic_plugin=1
-endif
-
-nnoremap <leader>S :SyntasticToggleMode<cr>
 
 " Supertab
 " let g:SuperTabDefaultCompletionType="context"
@@ -189,19 +160,9 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " open the current file for edit in Perforce
 nnoremap <silent><leader>4 :! p4 edit %<cr>
 
-" open vsplit and switch to it
+" open split and switch to it
 nnoremap <leader>v <c-w>v<c-w>l
-
-" Buffer selection
-nnoremap <leader>l :ls<cr>:b<space>
-
-" Vimux
-nnoremap <Leader>vp :VimuxPromptCommand<CR>
-nnoremap <Leader>vl :VimuxRunLastCommand<CR>
-nnoremap <Leader>vi :VimuxInspectRunner<CR>
-nnoremap <Leader>vq :VimuxCloseRunner<CR>
-nnoremap <Leader>vx :VimuxInterruptRunner<CR>
-nnoremap <Leader>vz :call VimuxZoomRunner()<CR>
+nnoremap <leader>s <c-w>s<c-w>j
 
 " Haskellmode
 "let g:ghc = "/usr/bin/ghc"
@@ -209,77 +170,82 @@ nnoremap <Leader>vz :call VimuxZoomRunner()<CR>
 "let g:haddock_browser_callformat = "%s %s"
 
 " hdevtools
-nnoremap <leader>ht :HdevtoolsType<cr>
-nnoremap <leader>hc :HdevtoolsClear<cr>
-nnoremap <leader>hi :HdevtoolsInfo<cr>
-
-autocmd BufEnter *.hs set formatprg=pointfree
-
-"let g:necoghc_enable_detailed_browse = 1
+" nnoremap <leader>ht :HdevtoolsType<cr>
+" nnoremap <leader>hc :HdevtoolsClear<cr>
+" nnoremap <leader>hi :HdevtoolsInfo<cr>
+" autocmd BufEnter *.hs set formatprg=pointfree
 
 " automatically open and close the popup menu / preview window
-au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-set completeopt=menu,preview,longest
+" au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+" set completeopt=menu,preview,longest
 
 " Undotree
 nnoremap <leader>u :UndotreeToggle<cr>
 
-" Move between splits
-map <c-l> <c-w>l<c-w>_
-map <c-h> <c-w>h<c-w>_
-
-" Vim-move
-let g:move_key_modifier = 'C'
-
-" Matchmaker on
+" Matchmaker
 let g:matchmaker_enable_startup = 1
 
-" Dict word under cursor
-nnoremap <leader>d :Dict
-
 " Cosco
-autocmd FileType javascript,css nnoremap <silent> ,; :call cosco#commaOrSemiColon()<CR>
-autocmd FileType javascript,css inoremap <silent> ,; <ESC>:call cosco#commaOrSemiColon()"<CR>a
+autocmd FileType javascript,css nmap <silent> <leader>; <Plug>(cosco-commaOrSemiColon)
+autocmd FileType javascript,css imap <silent> <leader>; <c-o><Plug>(cosco-commaOrSemiColon)
 
 " Browser
 let g:netrw_browsex_viewer = "browser"
 
-" Calendar
-let g:calendar_google_calendar = 1
+" FZF
+nnoremap <silent> <leader>a :Ag<CR>
+nnoremap <silent> <leader>f :Files<CR>
+nnoremap <silent> <leader>b :Buffers<CR>
+nnoremap <silent> <leader>w :Windows<CR>
+nnoremap <silent> <leader>c :Commands<CR>
+nnoremap <silent> <leader>hf :History<CR>
+nnoremap <silent> <leader>hc :History:<CR>
+nnoremap <silent> <leader>hs :History/<CR>
+nnoremap <silent> <leader>l :BLines<CR>
+nnoremap <silent> <leader><leader>l :Lines<CR>
+nnoremap <silent> <leader>t :BTags<CR>
+nnoremap <silent> <leader><leader>t :Tags<CR>
+nnoremap <silent> <leader>gc :BCommits<CR>
+nnoremap <silent> <leader><leader>gc :Commits<CR>
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
 
-" Ack
-"nnoremap <leader>a :Ack<space>
-" No wait, Ack motion! Thanks again sjl
-nnoremap <silent> <leader>a :set opfunc=<SID>AckMotion<CR>g@
-xnoremap <silent> <leader>a :<C-U>call <SID>AckMotion(visualmode())<CR>
+" Neoformat
+" autocmd BufWritePre *.js Neoformat
+" autocmd FileType javascript set formatprg=prettier\ --stdin
 
-function! s:CopyMotionForType(type)
-    if a:type ==# 'v'
-    silent execute "normal! `<" . a:type . "`>y"
-    elseif a:type ==# 'char'
-    silent execute "normal! `[v`]y"
-    endif
-endfunction
+" vim-easy-align
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
-function! s:AckMotion(type) abort
-    let reg_save = @@
+" EasyMotion
+let g:EasyMotion_smartcase = 1
 
-    call s:CopyMotionForType(a:type)
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
 
-    execute "normal! :Ack! --literal " . shellescape(@@) . "\<cr>"
+" vim-tmux-navigator - needed due to a bug in MacOS terminfo
+nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
 
-    let @@ = reg_save
-endfunction
+" Tabs
+nmap <leader>1 1gt
+nmap <leader>2 2gt
+nmap <leader>3 3gt
+nmap <leader>4 4gt
+nmap <leader>5 5gt
+nmap <leader>6 6gt
+nmap <leader>7 7gt
+nmap <leader>8 8gt
+nmap <leader>9 9gt
+
+" Goyo
+nmap <silent> <leader>g :Goyo<cr>
 
 " Airline
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline_powerline_fonts = 1
-
-" Powerline
-" python from powerline.vim import setup as powerline_setup
-" python powerline_setup()
-" python del powerline_setup
-
-" FZF
-nnoremap <silent> <Leader>f :Files<CR>
-nnoremap <silent> <Leader>b :Buffers<CR>
+let g:airline#extensions#tabline#enabled = 1
