@@ -1,0 +1,47 @@
+alias l="ls -la"
+alias ta="tmux attach -d"
+alias e='emacsclient -a "" -t -nw'
+alias emacs='emacs -q'
+alias weather='curl http://wttr.in'
+
+# Vim
+if command --search nvim >/dev/null
+    alias vi=nvim
+    alias vim=nvim
+    set -x EDITOR nvim
+else
+    alias vi=vim
+    set -x EDITOR vim
+end
+
+# Mac only
+if command --search open >/dev/null
+    set -x BROWSER open
+end
+
+# IOCOM stuff
+alias er='rm -rf logs; unzip -o'
+if command --search p4 >/dev/null
+    set -x P4USER dswan
+    set -x P4PORT "humu.iocom.com:1666"
+    set -x P4CONFIG p4.cfg
+    set -x P4EDITOR vim
+    set -x P4IGNORE .ignore
+end
+
+# PATH
+set -x PATH $HOME/dotfiles/bin $PATH
+set -x PATH $HOME/.local/bin $PATH
+set -x PATH $HOME/.npm-packages/bin $PATH
+
+# Nix TODO
+
+# Keychain
+if status --is-interactive
+    # TODO Take this out when keychain fixes this bug
+    set -x GPG_AGENT_INFO "~/.gnupg/S.gpg-agent:"(pgrep gpg-agent)":1"
+    eval (keychain --eval --inherit any --agents gpg,ssh --quiet id_rsa 2B3A6377)
+end
+
+# iTerm2
+test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
