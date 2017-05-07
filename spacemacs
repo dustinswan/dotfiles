@@ -64,7 +64,7 @@ values."
      (org :variables org-enable-github-support t)
      deft
      ;; (shell :variables shell-default-term-shell "/Users/dustinswan/.nix-profile/bin/zsh")
-     (shell :variables shell-default-term-shell "/usr/local/bin/zsh" shell-default-shell 'multi-term)
+     (shell :variables shell-default-term-shell "/usr/local/bin/fish" shell-default-shell 'multi-term)
      xkcd
      spotify
      finance

@@ -5,3 +5,4 @@
 # Vim
 vim/.netrwhist
 vim/plugged/*
+node_modules

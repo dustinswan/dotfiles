@@ -57,10 +57,6 @@ if [ -x "$(command -v keychain)" ]; then
     eval `keychain --eval --inherit any --agents gpg,ssh --quiet id_rsa 2B3A6377`
 fi
 
-# Homebrew Github Token
-[ -x "$(command -v brew)" ] && alias brew='[[ $HOMEBREW_GITHUB_API_TOKEN ]] || export HOMEBREW_GITHUB_API_TOKEN=`gpg -d ~/.homebrew@github-password.gpg`; brew'
-[ -x "$(command -v carthage)" ] && alias carthage='[[ $HOMEBREW_GITHUB_API_TOKEN ]] || export HOMEBREW_GITHUB_API_TOKEN=`gpg -d ~/.homebrew@github-password.gpg`; carthage'
-
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

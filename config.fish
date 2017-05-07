@@ -40,7 +40,7 @@ set -x PATH $HOME/.npm-packages/bin $PATH
 if status --is-interactive
     # TODO Take this out when keychain fixes this bug
     set -x GPG_AGENT_INFO "~/.gnupg/S.gpg-agent:"(pgrep gpg-agent)":1"
-    eval (keychain --eval --inherit any --agents gpg,ssh --quiet id_rsa 2B3A6377)
+    keychain --eval --inherit any --agents gpg,ssh --quiet id_rsa 2B3A6377 | source
 end
 
 # iTerm2
