@@ -104,9 +104,9 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(hackernews chess wttrin mingus tumblesocks writeroom-mode beacon org-journal vdirel circe (vue-mode :location (recipe
-                                                                                                                                                    :fetcher github
-                                                                                                                                                    :repo "codefalling/vue-mode")))
+   dotspacemacs-additional-packages '(hackernews chess wttrin osm-mode mingus tumblesocks writeroom-mode beacon org-journal org-crypt vdirel circe (vue-mode :location (recipe
+                                                                                                                                                               :fetcher github
+                                                                                                                                                               :repo "codefalling/vue-mode")))
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(toxi-theme)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -554,16 +554,14 @@ layers configuration. You are free to put any user code."
 
     (setq org-startup-indented t)
 
-    (setq org-agenda-files '("~/Sync/Notes"
-                             "~/Sync/org.org"
-                             "~/Sync/IOCOM/IOCOM.org"))
+    (setq org-agenda-files '("~/Sync/Notes"))
     (setq org-directory "~/Sync/Notes/")
 
     ;; Capture
     (setq org-capture-templates
-          '(("t" "TODO" entry (file+headline "~/Sync/org.org" "Inbox")
+          '(("t" "TODO" entry (file+headline "~/Sync/Notes/Main.org" "Inbox")
              "* TODO [#A] %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n%a\n")
-            ("i" "IOCOM TODO" entry (file+headline "~/Sync/IOCOM/IOCOM.org" "Inbox")
+            ("i" "IOCOM TODO" entry (file+headline "~/Sync/Notes/IOCOM.org" "Inbox")
              "* TODO [#A] %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n%a\n")))
 
     ;; Org Journal
@@ -574,11 +572,17 @@ layers configuration. You are free to put any user code."
     (setq org-journal-time-format "%R %Z")
 
     (evil-leader/set-key-for-mode 'org-journal-mode
-      "mn" 'org-journal-open-next-entry
-      "mp" 'org-journal-open-previous-entry)
+      "n" 'org-journal-open-next-entry
+      "p" 'org-journal-open-previous-entry)
 
     (add-hook 'org-journal-mode-hook 'turn-on-auto-fill)
     (add-hook 'org-journal-mode-hook 'flyspell-mode)
+
+    ;; Crypt
+    (require 'org-crypt)
+    (org-crypt-use-before-save-magic)
+    (setq org-tags-exclude-from-inheritance (quote ("crypt")))
+    ;; (setq org-crypt-key nil) ;; symmetric encryption
 
     ;; Deft
     (setq deft-directory "~/Sync/Notes")
