@@ -158,7 +158,7 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " open the current file for edit in Perforce
-nnoremap <silent><leader>4 :! p4 edit %<cr>
+nnoremap <silent><leader>p4 :! p4 edit %<cr>
 
 " open split and switch to it
 nnoremap <leader>v <c-w>v<c-w>l
