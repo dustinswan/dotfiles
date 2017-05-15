@@ -42,5 +42,3 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.g
 mv ~/.emacs.d ~/.emacs.bak
 git clone --recursive http://github.com/syl20bnr/spacemacs ~/.emacs.d
 rm ~/.spacemacs; ln -s ~/dotfiles/spacemacs ~/.spacemacs
-ln -s ~/dotfiles/spacemacs_private/twittering-mode ~/.emacs.d/private/twittering-mode
-ln -s ~/dotfiles/spacemacs_private/mu4e ~/.emacs.d/private/mu4e
