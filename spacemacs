@@ -54,6 +54,7 @@ values."
      evil-snipe
      vinegar
      search-engine
+     dash
      (rcirc :variables rcirc-enable-authinfo-support t)
      (erc :variables
           erc-server-list
@@ -100,13 +101,31 @@ values."
      twitter
      games
      )
+
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(hackernews chess wttrin osm-mode mingus tumblesocks writeroom-mode beacon org-journal org-crypt vdirel circe (vue-mode :location (recipe
-                                                                                                                                                               :fetcher github
-                                                                                                                                                               :repo "codefalling/vue-mode")))
+   dotspacemacs-additional-packages
+   '(spaceline-all-the-icons
+     hackernews
+     chess
+     wttrin
+     osm-mode
+     mingus
+     tumblesocks
+     writeroom-mode
+     beacon
+     org-journal
+     org-crypt
+     vdirel
+     circe
+     (vue-mode
+      :location
+      (recipe
+       :fetcher github
+       :repo "codefalling/vue-mode")))
+
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(toxi-theme)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -349,6 +368,11 @@ in `dotspacemacs/user-config'."
 This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
 
+;;  (use-package spaceline-all-the-icons
+;;      :after spaceline
+;;      :config
+;;      (spaceline-all-the-icons-theme))
+
   ;; ctrl-w when a completion dropdown is open
   (with-eval-after-load 'company
     (define-key company-active-map (kbd "C-w") 'evil-delete-backward-word))
@@ -555,17 +579,44 @@ layers configuration. You are free to put any user code."
     (setq org-startup-indented t)
 
     (setq org-agenda-files '("~/Sync/Notes"))
+    (setq org-agenda-start-day "-0d")
+    (setq org-agenda-span 2)
+    (setq org-agenda-sorting-strategy
+       '((agenda time-up habit-down priority-down category-keep) ;; this was originally: (agenda habit-down time-up priority-down category-keep)
+        (todo priority-down category-keep)
+        (tags priority-down category-keep)
+        (search category-keep)))
+    (setq org-archive-location "~/Sync/Notes/archive.org::* From %s")
+
     (setq org-directory "~/Sync/Notes/")
+    (setq org-refile-targets '((org-agenda-files :maxlevel . 9)))
+    (setq org-reverse-note-order t)
+    (setq org-log-into-drawer t)
+    (add-to-list 'org-modules 'org-habit)
+
+    (setq org-todo-keywords
+          '((sequence "TODO" "IN-PROGRESS(p)" "WAITING(w@/!)" "|" "DONE(d/!)" "CANCELED(c@)")))
+
+    ; Org-protocol
+    (add-to-list 'org-modules 'org-protocol)
+    (require 'org-protocol)
+
+    (setq org-agenda-custom-commands
+          '(("c" "Simple agenda view"
+             ((agenda "" )
+              (alltodo "")))))
 
     ;; Capture
     (setq org-capture-templates
           '(("t" "TODO" entry (file+headline "~/Sync/Notes/Main.org" "Inbox")
              "* TODO [#A] %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n%a\n")
             ("i" "IOCOM TODO" entry (file+headline "~/Sync/Notes/IOCOM.org" "Inbox")
-             "* TODO [#A] %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n%a\n")))
+             "* TODO [#A] %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n%a\n")
+            ("r" "Read Later" entry (file+headline "~/Sync/Notes/Main.org" "Inbox")
+             "* TODO Read: %a \n")))
 
     ;; Org Journal
-    (setq org-journal-dir "~/Sync/Notes/"
+    (setq org-journal-dir "~/Sync/Notes/Journal/"
           org-journal-file-format "%Y%m%d.org")
     (evil-leader/set-key "aj" 'org-journal-new-entry)
     (setq org-journal-date-format "%A, %B %d, %Y")
@@ -586,6 +637,7 @@ layers configuration. You are free to put any user code."
 
     ;; Deft
     (setq deft-directory "~/Sync/Notes")
+    (setq deft-recursive t)
 
     ;; Org Publish stuff
     (require 'ox-html)
@@ -685,36 +737,79 @@ layers configuration. You are free to put any user code."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ac-ispell-requires 4 t)
- '(ahs-case-fold-search nil t)
- '(ahs-default-range (quote ahs-range-whole-buffer) t)
- '(ahs-idle-interval 0.25 t)
+ '(ahs-case-fold-search nil)
+ '(ahs-default-range (quote ahs-range-whole-buffer))
+ '(ahs-idle-interval 0.25)
  '(ahs-idle-timer 0 t)
- '(ahs-inhibit-face-list nil t)
+ '(ahs-inhibit-face-list nil)
+ '(ansi-color-names-vector
+   ["#272822" "#F92672" "#A6E22E" "#E6DB74" "#66D9EF" "#FD5FF0" "#A1EFE4" "#F8F8F2"])
+ '(compilation-message-face (quote default))
  '(erc-interpret-mirc-color t)
  '(erc-modules
    (quote
     (autoaway autojoin button completion fill irccontrols move-to-prompt netsplit notifications readonly ring scrolltobottom services smiley spelling youtube list match networks notify track autojoin log menu image hl-nicks)))
  '(evil-want-Y-yank-to-eol nil)
  '(fancy-battery-mode t)
+ '(fci-rule-color "#20240E" t)
+ '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
+ '(highlight-tail-colors
+   (quote
+    (("#20240E" . 0)
+     ("#679A01" . 20)
+     ("#4BBEAE" . 30)
+     ("#1DB4D0" . 50)
+     ("#9A8F21" . 60)
+     ("#A75B00" . 70)
+     ("#F309DF" . 85)
+     ("#20240E" . 100))))
  '(js-indent-level 2)
  '(js2-basic-offset 2)
  '(mac-auto-operator-composition-mode t)
+ '(magit-diff-use-overlays nil)
  '(monokai-use-variable-pitch nil)
  '(ns-auto-hide-menu-bar nil)
  '(org-journal-date-format "%A, %B %d, %Y")
  '(org-journal-time-format "%R %Z")
  '(package-selected-packages
    (quote
-    (diminish pdf-tools tablist f winum unfill sudoku ob-restclient multiple-cursors fuzzy company-restclient know-your-http-well flyspell-correct log4e async mmt slime rust-mode bind-key packed auto-complete avy tern iedit bind-map evil simple-httpd pcache alert php-mode purescript-mode haml-mode markdown-mode htmlize vue-mode circe rcirc-notify rcirc-color helm-themes helm-swoop helm-spotify multi helm-pydoc helm-projectile helm-mode-manager helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag flyspell-correct-helm ace-jump-helm-line csv-mode inflections spinner org anaconda-mode swiper highlight projectile skewer-mode js2-mode gh magit-popup git-commit hydra inf-ruby pcre2el macrostep dash powerline auctex counsel smartparens go-mode haskell-mode flycheck magit with-editor yasnippet rake company ivy helm helm-core xterm-color auctex-latexmk yapfify yaml-mode xkcd wttrin ws-butler writeroom-mode wolfram-mode window-numbering which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe vdirel uuidgen use-package typit twittering-mode tumblesocks toml-mode toc-org thrift tagedit stan-mode spray spotify spacemacs-theme spaceline smex smeargle slime-company slim-mode shell-pop scss-mode scad-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder restclient restart-emacs request rbenv ranger rainbow-mode rainbow-identifiers rainbow-delimiters racer quelpa qml-mode pyvenv pytest pyenv-mode py-isort pug-mode psci psc-ide projectile-rails popwin pip-requirements phpunit phpcbf php-extras php-auto-yasnippets persp-mode pbcopy paradox pandoc-mode pacmacs p4 ox-pandoc ox-gfm osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-plus-contrib org-journal org-download org-bullets open-junk-file ob-http neotree mwim multi-term mu4e-maildirs-extension mu4e-alert move-text monokai-theme mmm-mode minitest mingus matlab-mode markdown-toc magit-gitflow magit-gh-pulls lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode ledger-mode launchctl julia-mode json-mode js2-refactor js-doc ivy-hydra intero insert-shebang info+ indent-guide idris-mode ido-vertical-mode hy-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-make haskell-snippets hackernews google-translate golden-ratio go-guru go-eldoc gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md geiser flyspell-correct-ivy flycheck-rust flycheck-pos-tip flycheck-ledger flycheck-haskell flycheck-elm flx-ido fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help erc-yt erc-view-log erc-terminal-notifier erc-social-graph erc-image erc-hl-nicks engine-mode emoji-cheat-sheet-plus emmet-mode elm-mode elisp-slime-nav dumb-jump drupal-mode disaster diff-hl deft cython-mode counsel-projectile company-web company-tern company-statistics company-shell company-go company-ghci company-ghc company-emoji company-cabal company-c-headers company-auctex company-anaconda common-lisp-snippets column-enforce-mode color-identifiers-mode coffee-mode cmm-mode cmake-mode clean-aindent-mode clang-format chruby chess cargo bundler bracketed-paste beacon auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile arduino-mode aggressive-indent adaptive-wrap ace-window ace-link ac-ispell 2048-game)))
+    (dash-at-point counsel-dash helm-dash visual-fill-column org-category-capture ghc undo-tree s spaceline-all-the-icons all-the-icons memoize font-lock+ diminish pdf-tools tablist f winum unfill sudoku ob-restclient multiple-cursors fuzzy company-restclient know-your-http-well flyspell-correct log4e async mmt slime rust-mode bind-key packed auto-complete avy tern iedit bind-map evil simple-httpd pcache alert php-mode purescript-mode haml-mode markdown-mode htmlize vue-mode circe rcirc-notify rcirc-color helm-themes helm-swoop helm-spotify multi helm-pydoc helm-projectile helm-mode-manager helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag flyspell-correct-helm ace-jump-helm-line csv-mode inflections spinner org anaconda-mode swiper highlight projectile skewer-mode js2-mode gh magit-popup git-commit hydra inf-ruby pcre2el macrostep dash powerline auctex counsel smartparens go-mode haskell-mode flycheck magit with-editor yasnippet rake company ivy helm helm-core xterm-color auctex-latexmk yapfify yaml-mode xkcd wttrin ws-butler writeroom-mode wolfram-mode window-numbering which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe vdirel uuidgen use-package typit twittering-mode tumblesocks toml-mode toc-org thrift tagedit stan-mode spray spotify spacemacs-theme spaceline smex smeargle slime-company slim-mode shell-pop scss-mode scad-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder restclient restart-emacs request rbenv ranger rainbow-mode rainbow-identifiers rainbow-delimiters racer quelpa qml-mode pyvenv pytest pyenv-mode py-isort pug-mode psci psc-ide projectile-rails popwin pip-requirements phpunit phpcbf php-extras php-auto-yasnippets persp-mode pbcopy paradox pandoc-mode pacmacs p4 ox-pandoc ox-gfm osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-plus-contrib org-journal org-download org-bullets open-junk-file ob-http neotree mwim multi-term mu4e-maildirs-extension mu4e-alert move-text monokai-theme mmm-mode minitest mingus matlab-mode markdown-toc magit-gitflow magit-gh-pulls lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode ledger-mode launchctl julia-mode json-mode js2-refactor js-doc ivy-hydra intero insert-shebang info+ indent-guide idris-mode ido-vertical-mode hy-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-make haskell-snippets hackernews google-translate golden-ratio go-guru go-eldoc gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md geiser flyspell-correct-ivy flycheck-rust flycheck-pos-tip flycheck-ledger flycheck-haskell flycheck-elm flx-ido fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help erc-yt erc-view-log erc-terminal-notifier erc-social-graph erc-image erc-hl-nicks engine-mode emoji-cheat-sheet-plus emmet-mode elm-mode elisp-slime-nav dumb-jump drupal-mode disaster diff-hl deft cython-mode counsel-projectile company-web company-tern company-statistics company-shell company-go company-ghci company-ghc company-emoji company-cabal company-c-headers company-auctex company-anaconda common-lisp-snippets column-enforce-mode color-identifiers-mode coffee-mode cmm-mode cmake-mode clean-aindent-mode clang-format chruby chess cargo bundler bracketed-paste beacon auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile arduino-mode aggressive-indent adaptive-wrap ace-window ace-link ac-ispell 2048-game)))
  '(paradox-github-token t)
+ '(pos-tip-background-color "#A6E22E")
+ '(pos-tip-foreground-color "#272822")
  '(psc-ide-add-import-on-completion t t)
  '(psc-ide-rebuild-on-save nil t)
- '(ring-bell-function (quote ignore)))
+ '(ring-bell-function (quote ignore))
+ '(spaceline-info-mode t)
+ '(vc-annotate-background nil)
+ '(vc-annotate-color-map
+   (quote
+    ((20 . "#F92672")
+     (40 . "#CF4F1F")
+     (60 . "#C26C0F")
+     (80 . "#E6DB74")
+     (100 . "#AB8C00")
+     (120 . "#A18F00")
+     (140 . "#989200")
+     (160 . "#8E9500")
+     (180 . "#A6E22E")
+     (200 . "#729A1E")
+     (220 . "#609C3C")
+     (240 . "#4E9D5B")
+     (260 . "#3C9F79")
+     (280 . "#A1EFE4")
+     (300 . "#299BA6")
+     (320 . "#2896B5")
+     (340 . "#2790C3")
+     (360 . "#66D9EF"))))
+ '(vc-annotate-very-old-color nil)
+ '(weechat-color-list
+   (unspecified "#272822" "#20240E" "#F70057" "#F92672" "#86C30D" "#A6E22E" "#BEB244" "#E6DB74" "#40CAE4" "#66D9EF" "#FB35EA" "#FD5FF0" "#74DBCD" "#A1EFE4" "#F8F8F2" "#F8F8F0")))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((((class color) (min-colors 257)) (:foreground "#F8F8F2" :background "#272822")) (((class color) (min-colors 89)) (:foreground "#F5F5F5" :background "#1B1E1C"))))
+ '(default ((((class color) (min-colors 257)) (:foreground "#F8F8F2" :background "#272822" :family "Iosevka" :foundry "nil" :slant normal :weight normal :height 130 :width normal)) (((class color) (min-colors 89)) (:foreground "#F5F5F5" :background "#1B1E1C" :family "Iosevka" :foundry "nil" :slant normal :weight normal :height 130 :width normal))))
  '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
  '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))

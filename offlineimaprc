@@ -14,7 +14,7 @@ localfolders = ~/Mail/IOCOM
 [Repository IOCOMRemote]
 type = IMAP
 remotehost = secure.emailsrvr.com
-remoteuser = dswan@insors.com
+remoteuser = dswan@iocom.com
 remotepasseval = decrypt_password(".iocom-password.gpg")
 realdelete = no
 ssl = yes

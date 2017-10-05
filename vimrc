@@ -2,7 +2,7 @@ set nocompatible
 
 call plug#begin('~/.vim/plugged')
 
-" Plug 'bling/vim-airline'
+Plug 'bling/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -42,10 +42,10 @@ Plug 'sdanielf/vim-stdtabs'
 Plug 'mhinz/vim-signify' " previously 'airblade/vim-gitgutter'
 Plug 'terryma/vim-expand-region' " previously 'gcmt/wildfire.vim'
 Plug 'tommcdo/vim-exchange'
-Plug 'argtextobj.vim'
-Plug 'matchit.zip' " % will match more things
+Plug 'vim-scripts/argtextobj.vim'
+Plug 'vim-scripts/matchit.zip' " % will match more things
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'utl.vim'
+Plug 'vim-scripts/utl.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'EinfachToll/DidYouMean'
 Plug 'jceb/vim-orgmode'
@@ -57,6 +57,7 @@ Plug 'eagletmt/ghc-mod'
 Plug 'bitc/vim-hdevtools'
 "Plug 'eagletmt/neco-ghc'
 "Plug 'lukerandall/haskellmode-vim'
+Plug 'ryanoasis/vim-devicons'
 
 " Themes
 "Plug 'w0ng/vim-hybrid'

@@ -25,14 +25,15 @@ if command --search p4 >/dev/null
     set -x P4USER dswan
     set -x P4PORT "humu.iocom.com:1666"
     set -x P4CONFIG p4.cfg
-    set -x P4EDITOR vim
-    set -x P4IGNORE .ignore
+    set -x P4EDITOR nvim
+    set -x P4IGNORE .p4ignore
 end
 
 # PATH
 set -x PATH $HOME/dotfiles/bin $PATH
 set -x PATH $HOME/.local/bin $PATH
 set -x PATH $HOME/.npm-packages/bin $PATH
+set -x PATH /usr/local/opt/python/libexec/bin $PATH
 
 # Nix TODO
 

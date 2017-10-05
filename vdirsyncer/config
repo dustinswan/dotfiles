@@ -14,7 +14,7 @@ fileext = ".vcf"
 
 [storage fastmail_contacts_remote]
 type = "carddav"
-url = "https://carddav.messagingengine.com"
+url = "https://carddav.messagingengine.com/"
 auth = "basic"
 username = "dustinswan@fastmail.com"
 password.fetch = ["command", "~/dotfiles/bin/decrypt_password.sh", "dustinswan@fastmail.com"]

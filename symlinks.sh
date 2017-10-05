@@ -5,7 +5,7 @@ rm ~/.gemrc; ln -s ~/dotfiles/gemrc ~/.gemrc
 rm -rf ~/.ghc; mkdir ~/.ghc; ln -s ~/dotfiles/ghci.conf ~/.ghc/ghci.conf
 rm ~/.gitconfig; ln -s ~/dotfiles/gitconfig ~/.gitconfig
 rm ~/.tmux.conf; ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
-rm -rf ~/.config/khal; mkdir -p ~/.config/khal; ln -s ~/dotfiles/khal.conf ~/.config/khal/khal.conf
+rm -rf ~/.config/khal; mkdir -p ~/.config/khal; ln -s ~/dotfiles/khal.conf ~/.config/khal/config
 rm -rf ~/.vdirsyncer; mkdir ~/.vdirsyncer; ln -s ~/dotfiles/vdirsyncer/config ~/.vdirsyncer/config
 rm ~/.jrnl_config; ln -s ~/dotfiles/jrnl_config ~/.jrnl_config
 rm ~/.gnupg/gpg-agent.conf; mkdir ~/.gnupg; ln -s ~/dotfiles/gpg-agent.conf ~/.gnupg/gpg-agent.conf
