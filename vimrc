@@ -13,7 +13,7 @@ Plug 'tpope/vim-unimpaired'
 " Plug 'tpope/vim-characterize'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-jdaddy'
-" Plug 'w0rp/ale' " previously 'neomake/neomake, 'scrooloose/syntastic'
+Plug 'w0rp/ale' " previously 'neomake/neomake, 'scrooloose/syntastic'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " previously YouCompleteMe
@@ -52,6 +52,7 @@ Plug 'jceb/vim-orgmode'
 
 " Languages & Syntax
 Plug 'sheerun/vim-polyglot'
+Plug 'dleonard0/pony-vim-syntax'
 Plug 'idris-hackers/idris-vim'
 Plug 'eagletmt/ghc-mod'
 Plug 'bitc/vim-hdevtools'
@@ -215,10 +216,6 @@ imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
-
-" Neoformat
-" autocmd BufWritePre *.js Neoformat
-" autocmd FileType javascript set formatprg=prettier\ --stdin
 
 " vim-easy-align
 xmap ga <Plug>(EasyAlign)

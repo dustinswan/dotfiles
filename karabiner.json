@@ -14,6 +14,24 @@
                     {
                         "manipulators": [
                             {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^org\\.gnu\\.Emacs$",
+                                            "^com\\.apple\\.Terminal$",
+                                            "^org\\.vim\\.",
+                                            "^com\\.vmware\\.fusion$",
+                                            "^com\\.googlecode\\.iterm2$",
+                                            "^co\\.zeit\\.hyperterm$",
+                                            "^co\\.zeit\\.hyper$",
+                                            "^com\\.microsoft\\.VSCode$",
+                                            "^org\\.x\\.X11$",
+                                            "^com\\.apple\\.x11$",
+                                            "^org\\.macosforge\\.xquartz\\.X11$"
+                                        ],
+                                        "type": "frontmost_application_unless"
+                                    }
+                                ],
                                 "description": "^w should delete a word backwards",
                                 "from": {
                                     "key_code": "comma",
