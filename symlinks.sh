@@ -1,6 +1,7 @@
 #!/bin/bash
 
 rm ~/.zshrc; ln -s ~/dotfiles/zshrc ~/.zshrc
+rm -rf ~/.config/fish; mkdir -p ~/.config/fish; ln -s ~/dotfiles/config.fish ~/.config/fish/config.fish
 rm ~/.gemrc; ln -s ~/dotfiles/gemrc ~/.gemrc
 rm -rf ~/.ghc; mkdir ~/.ghc; ln -s ~/dotfiles/ghci.conf ~/.ghc/ghci.conf
 rm ~/.gitconfig; ln -s ~/dotfiles/gitconfig ~/.gitconfig
@@ -25,9 +26,9 @@ rm -rf ~/.khdrc; ln -s ~/dotfiles/khdrc ~/.khdrc
 touch ~/.hushlogin
 
 # linux only
-rm -rf ~/.i3; mkdir ~/.i3; ln -s ~/dotfiles/i3/config ~/.i3/config
 rm -rf ~/.Xresources; ln -s ~/dotfiles/Xresources ~/.Xresources
-rm -rf ~/.xinitrc; ln -s ~/dotfiles/xinitrc ~/.xinitrc
+rm -rf ~/.xmonad; mkdir ~/.xmonad; ln -s ~/dotfiles/xmonad.hs ~/.xmonad/xmonad.hs
+rm -rf ~/.config/polybar; mkdir -p ~/.config/polybar; ln -s ~/dotfiles/polybar ~/.config/polybar/config
 
 # Vim
 rm ~/.vimrc; ln -s ~/dotfiles/vimrc ~/.vimrc
