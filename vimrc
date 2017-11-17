@@ -127,6 +127,9 @@ set shiftwidth=4
 set expandtab
 set smarttab
 
+" mouse
+set mouse=nicr
+
 " so we get html goodies in php files
 "au BufRead *.php set ft=php.html
 "au BufNewFile *.php set ft=php.html

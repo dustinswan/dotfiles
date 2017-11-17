@@ -8,6 +8,7 @@
         {
             "complex_modifications": {
                 "parameters": {
+                    "basic.to_delayed_action_delay_milliseconds": 500,
                     "basic.to_if_alone_timeout_milliseconds": 1000
                 },
                 "rules": [
@@ -88,6 +89,7 @@
                         "vendor_id": 3897
                     },
                     "ignore": false,
+                    "manipulate_caps_lock_led": false,
                     "simple_modifications": [
                         {
                             "from": {
@@ -133,6 +135,33 @@
                         "vendor_id": 1452
                     },
                     "ignore": false,
+                    "manipulate_caps_lock_led": true,
+                    "simple_modifications": []
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 49970,
+                        "vendor_id": 1133
+                    },
+                    "ignore": true,
+                    "manipulate_caps_lock_led": false,
+                    "simple_modifications": []
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": false,
+                        "is_pointing_device": true,
+                        "product_id": 49970,
+                        "vendor_id": 1133
+                    },
+                    "ignore": true,
+                    "manipulate_caps_lock_led": false,
                     "simple_modifications": []
                 }
             ],
@@ -234,7 +263,7 @@
                     }
                 }
             ],
-            "name": "",
+            "name": "Default",
             "selected": true,
             "simple_modifications": [],
             "virtual_hid_keyboard": {
