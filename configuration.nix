@@ -10,76 +10,86 @@
       ./hardware-configuration.nix
     ];
 
-  # Use the GRUB 2 boot loader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
-  # Define on which hard drive you want to install Grub.
-  boot.loader.grub.device = "/dev/sda";
+  # Use the systemd-boot EFI boot loader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "swan-nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless.
+  networking.hostName = "sw4n"; # Define your hostname.
+  networking.networkmanager.enable = true;
 
   # Select internationalisation properties.
   i18n = {
-    consoleFont = "lat9w-16";
+    consoleFont = "Lat2-Terminus16";
     consoleKeyMap = "dvorak";
     defaultLocale = "en_US.UTF-8";
   };
 
-  nixpkgs.config.allowUnfree = true;
+  # Set your time zone.
+  time.timeZone = "US/Eastern";
 
   # List packages installed in system profile. To search by name, run:
-  # -env -qaP | grep wget
+  # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    fish
-    i3
-    i3status
-    dmenu
-    wget
+    wget vim
   ];
 
-  environment.shells = [ "/run/current-system/sw/bin/zsh" ];
+  nixpkgs.config.allowUnfree = true;
 
-  # List services that you want to enable:
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.bash.enableCompletion = true;
+  # programs.mtr.enable = true;
+  programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  # services.openssh.enable = true;
 
-  time.timeZone = "America/Chicago";
-  services.ntp.enable = false;
-  services.chrony.enable = true;
+  services.udisks2.enable = true;
+
+  # Open ports in the firewall.
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.layout = "dvorak";
-  # services.xserver.xkbOptions = "eurosign:e";
+  services.xserver.videoDriver = "nvidia";
+  services.xserver.resolutions = [ { x = 2560; y = 1440; } ];
+  services.upower.enable = true;
 
-  services.xserver.desktopManager.default = "none";
-  services.xserver.desktopManager.xterm.enable = false;
+  services.xserver.displayManager.slim.defaultUser = "dustinswan";
+  services.xserver.windowManager.xmonad.enable = true;
+  services.xserver.windowManager.xmonad.enableContribAndExtras = true;
+  services.xserver.windowManager.xmonad.extraPackages = self: [ self.taffybar ];
+  services.xserver.windowManager.default = "xmonad";
 
-  services.xserver.displayManager.slim.enable = true;
-
-  services.xserver.windowManager.i3.enable = true;
-  services.xserver.windowManager.default = "i3";
-
-  services.xserver.resolutions = [ { x = 1440; y = 900; } ];
-
-  services.xserver.synaptics.enable = true;
-  services.xserver.synaptics.twoFingerScroll = true;
-
-  users.defaultUserShell = "/var/run/current-system/sw/bin/zsh";
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.extraUsers.dustinswan = {
-    name = "dustinswan";
-    group = "users";
-    extraGroups = [ "wheel" ];
-    createHome = true;
-    home = "/home/dustinswan";
-    useDefaultShell = true;
+  services.syncthing = {
+    enable = true;
+    # useInotify = true;
+    user = "dustinswan";
+    dataDir = "/home/dustinswan/";
   };
+
+  hardware.opengl.driSupport32Bit = true;
+  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.support32Bit = true;
+  sound.mediaKeys.enable = true;
+  
+  programs.fish.enable = true;
+
+  users.extraUsers.dustinswan = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "audio" "networkmanager" ];
+    uid = 1000;
+    shell = pkgs.fish;
+  };
+
+  # This value determines the NixOS release with which your system is to be
+  # compatible, in order to avoid breaking some software such as database
+  # servers. You should change this only after NixOS release notes say you
+  # should.
+  system.stateVersion = "17.09"; # Did you read the comment?
 
 }
