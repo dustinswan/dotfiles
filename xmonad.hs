@@ -30,4 +30,5 @@ main = xmonad $ docks $ ewmh $ pagerHints defaultConfig
     , ("<XF86AudioMute>", spawn "amixer set Master toggle")
     , ("<XF86AudioLowerVolume>", spawn "amixer -q sset Master 5%-")
     , ("<XF86AudioRaiseVolume>", spawn "amixer -q sset Master 5%+")
+    , ("C-M-M1-b", spawn "firefox")
     ]

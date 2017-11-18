@@ -9,11 +9,11 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #88000000
-background-alt = #444
+background = #dd000000
+background-alt = #444444
 ;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
-foreground-alt = #aaa
+foreground = #ffffff
+foreground-alt = #aaaaaa
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
@@ -36,13 +36,14 @@ line-color = #f00
 border-size = 0
 border-color = #00000000
 
-padding-left = 0
+padding-left = 2
 padding-right = 2
 
-module-margin-left = 1
-module-margin-right = 1
+module-margin-left = 2
+module-margin-right = 2
 
-font-0 = Iosevka:fontformat=truetype:size=8:antialias=false;0
+
+font-0 = Iosevka:fontformat=truetype:size=8;0
 font-1 = fixed:pixelsize=10;1
 font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-3 = siji:pixelsize=10;1
