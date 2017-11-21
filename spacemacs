@@ -69,7 +69,7 @@ values."
      xkcd
      spotify
      finance
-     emoji
+     ;; emoji ;; disable until https://github.com/syl20bnr/emacs-emoji-cheat-sheet-plus/issues/5 is fixed
      ;; (geolocation :variables
      ;;              geolocation-enable-osx-location-service-support t
      ;;              geolocation-enable-weather-forecast t)
@@ -125,7 +125,7 @@ values."
        :repo "codefalling/vue-mode")))
 
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '(toxi-theme)
+   dotspacemacs-excluded-packages '(toxi-theme wolfram-mode)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
@@ -200,8 +200,8 @@ values."
    ;; size to make separators look not too crappy.
    ;; dotspacemacs-default-font '("Source Code Pro"
    ;; dotspacemacs-default-font '("PragmataPro"
-   dotspacemacs-default-font '("Iosevka"
-                               :size 13
+   dotspacemacs-default-font '("Iosevka Nerd Font"
+                               :size 12
                                :weight normal
                                :width normal
                                :powerline-scale 1.0)

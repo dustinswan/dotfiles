@@ -1,5 +1,5 @@
 ! rofi
-rofi.font: Iosevka Regular 8
+rofi.font: Iosevka Nerd Font Regular 8
 rofi.padding: 12
 rofi.separator-style: none
 rofi.bw: 2
@@ -20,8 +20,8 @@ urxvt*cursorBlink: false
 urxvt*urgentOnBell: true
 urxvt*urlLauncher: firefox
 urxvt*termName: rxvt-unicode-256color
-urxvt*font: xft:Iosevka:Regular:size=8
-urxvt*boldFont: xft:Iosevka:Bold:size=8
+urxvt*font: xft:Iosevka Nerd Font:Regular:size=8,xft:Siji:Regular:size=8
+urxvt*boldFont: xft:Iosevka Nerd Font:Bold:size=8,xft:Siji:Regular:size=8
 
 ! Colors
 urxvt*depth: 32

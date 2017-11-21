@@ -10,7 +10,7 @@ import System.Taffybar.Hooks.PagerHints (pagerHints)
 lightBlue = "#66aaff"
 
 main = xmonad $ docks $ ewmh $ pagerHints defaultConfig
-    { terminal = "urxvt"
+    { terminal = "urxvtc"
     , modMask = mod4Mask
     , workspaces = [ "1", "2", "3" ]
     , borderWidth = 2
@@ -21,6 +21,7 @@ main = xmonad $ docks $ ewmh $ pagerHints defaultConfig
     , startupHook = do
         spawn "pkill polybar; polybar top &"
         spawn "compton"
+        spawn "~/dotfiles/logitech_linux_mouse.sh"
         spawn "xsetroot -solid black -cursor_name left_ptr"
         spawn "feh --bg-fill ~/Sync/Pictures/Wallpaper/space2.jpg"
     }

@@ -35,8 +35,6 @@ set -x PATH $HOME/.local/bin $PATH
 set -x PATH $HOME/.npm-packages/bin $PATH
 set -x PATH /usr/local/opt/python/libexec/bin $PATH
 
-# Nix TODO
-
 # Keychain
 if status --is-interactive
     # TODO Take this out when keychain fixes this bug
