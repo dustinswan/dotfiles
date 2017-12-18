@@ -31,24 +31,24 @@ great operating system, and now it has a great editor.
    [[http://software.schmorp.de/pkg/rxvt-unicode.html][urxvt]] (Linux)
 -  Shell:
    [[http://www.gnu.org/software/emacs/manual/html_mono/eshell.html][EShell]]
-   & [[http://www.zsh.org][Zsh]] &
-   [[https://github.com/zsh-users/antigen][Antigen]]
+   & [[http://www.fishshell.com][Fish]]
 -  Browser: [[http://www.emacswiki.org/emacs/eww][eww]] &
    [[https://www.mozilla.org/en-US/firefox][Firefox]] &
-   [[http://www.vimperator.org/vimperator][Vimperator]]
+   [[http://www.qutebrowser.org/][Qutebrowser]]
 -  IRC: [[http://www.emacswiki.org/emacs/ERC][ERC]]
 -  Notes & TODO & bookmarks & spreadsheets & blog & etc.:
    [[http://orgmode.org][Org mode]]
 -  Window Manager & Launcher: [[http://www.alfredapp.com][Alfred]] (OS
    X) & [[http://xmonad.org][xmonad]] (Linux)
 -  Sync: [[https://syncthing.net][Syncthing]]
--  RSS Reader: [[https://github.com/skeeto/elfeed][Elfeed]]
+-  RSS Reader: [[https://github.com/skeeto/elfeed][Elfeed]] &
+   Feedly
 
 ** Todo List
 
 -  [ ] Switch from [[http://github.com][GitHub]] to
    [[https://gitlab.com][GitLab]]
--  [ ] Switch to NixOS full time
+-  [X] +Switch to NixOS full time (on desktop)+
 -  [x] +Switch from Gmail to [[http://www.fastmail.com][Fastmail]]+
 -  [x] +Switch from Dropbox to Syncthing+
 -  [x] +[[https://github.com/untitaker/vdirsyncer][vdirsyncer]] to sync
