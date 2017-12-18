@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./vpn.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -22,6 +23,10 @@
     consoleFont = "Lat2-Terminus16";
     consoleKeyMap = "dvorak";
     defaultLocale = "en_US.UTF-8";
+    # inputMethod.enabled = "ibus";
+    inputMethod.enabled = "fcitx";
+    # inputMethod.ibus.engines = with pkgs.ibus-engines; [ anthy mozc ];
+    inputMethod.fcitx.engines = with pkgs.fcitx-engines; [ anthy mozc ];
   };
 
   # Set your time zone.
@@ -30,7 +35,7 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    wget vim
+    wget vim clipit compton emacs feh firefox fzf git gparted gucharmap htop keepassx2 keychain ncmpcpp neovim noto-fonts-cjk pandoc polybar python qutebrowser rofi rxvt_unicode silver-searcher syncthing tmux tree unzip wirelesstools xcape xclip spotify anki mopidy mopidy-soundcloud mopidy-spotify mopidy-youtube pavucontrol ranger
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -39,7 +44,11 @@
   # started in user sessions.
   # programs.bash.enableCompletion = true;
   # programs.mtr.enable = true;
-  programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
+
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
@@ -57,12 +66,22 @@
   services.xserver.layout = "dvorak";
   services.xserver.videoDriver = "nvidia";
   services.xserver.resolutions = [ { x = 2560; y = 1440; } ];
+
+  services.xserver.synaptics.enable = true;
+  services.xserver.synaptics.palmDetect = true;
+  services.xserver.synaptics.palmMinWidth = 5;
+  services.xserver.synaptics.palmMinZ = 20;
+  services.xserver.synaptics.twoFingerScroll = true;
+  services.xserver.synaptics.accelFactor = "0.005";
+  services.xserver.synaptics.buttonsMap = [ 1 3 2 ];
+
   services.upower.enable = true;
 
+  services.xserver.desktopManager.xterm.enable = false;
   services.xserver.displayManager.slim.defaultUser = "dustinswan";
+
   services.xserver.windowManager.xmonad.enable = true;
   services.xserver.windowManager.xmonad.enableContribAndExtras = true;
-  services.xserver.windowManager.xmonad.extraPackages = self: [ self.taffybar ];
   services.xserver.windowManager.default = "xmonad";
 
   services.syncthing = {
@@ -72,16 +91,35 @@
     dataDir = "/home/dustinswan/";
   };
 
+  services.urxvtd.enable = true;
+
+  services.emacs.enable = true;
+  services.emacs.defaultEditor = true;
+
   hardware.opengl.driSupport32Bit = true;
   hardware.pulseaudio.enable = true;
   hardware.pulseaudio.support32Bit = true;
+  hardware.pulseaudio.package = pkgs.pulseaudioFull;
+  hardware.pulseaudio.zeroconf.discovery.enable = true;
+  hardware.bluetooth.enable = true;
   sound.mediaKeys.enable = true;
   
   programs.fish.enable = true;
 
+  fonts = {
+    enableFontDir = true;
+    fonts = with pkgs; [
+      nerdfonts # includes Iosevka
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      siji
+    ];
+  };
+
   users.extraUsers.dustinswan = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "audio" "networkmanager" ];
+    extraGroups = [ "wheel" "sound" "pulse" "audio" "networkmanager" ];
     uid = 1000;
     shell = pkgs.fish;
   };

@@ -5,11 +5,11 @@ import XMonad.Hooks.EwmhDesktops (ewmh)
 import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Spacing
 import XMonad.Util.EZConfig
-import System.Taffybar.Hooks.PagerHints (pagerHints)
+-- import System.Taffybar.Hooks.PagerHints (pagerHints)
 
 lightBlue = "#66aaff"
 
-main = xmonad $ docks $ ewmh $ pagerHints defaultConfig
+main = xmonad $ docks $ ewmh $ defaultConfig
     { terminal = "urxvtc"
     , modMask = mod4Mask
     , workspaces = [ "1", "2", "3" ]
@@ -19,11 +19,15 @@ main = xmonad $ docks $ ewmh $ pagerHints defaultConfig
     , focusFollowsMouse = False
     , layoutHook = avoidStruts $ spacingWithEdge 6 $ layoutHook defaultConfig
     , startupHook = do
-        spawn "pkill polybar; polybar top &"
-        spawn "compton"
+        spawn "polybar top"
+        spawn "compton -cGb"
         spawn "~/dotfiles/logitech_linux_mouse.sh"
         spawn "xsetroot -solid black -cursor_name left_ptr"
         spawn "feh --bg-fill ~/Sync/Pictures/Wallpaper/space2.jpg"
+        spawn "setxkbmap -option ctrl:nocaps -option compose:ralt"
+        spawn "xcape -e 'Control_L=Escape'"
+        spawn "qsyncthingtray"
+        spawn "xscreensaver"
     }
     `additionalKeysP`
     [ ("M1-<Space>", spawn "rofi -show combi")
@@ -32,4 +36,5 @@ main = xmonad $ docks $ ewmh $ pagerHints defaultConfig
     , ("<XF86AudioLowerVolume>", spawn "amixer -q sset Master 5%-")
     , ("<XF86AudioRaiseVolume>", spawn "amixer -q sset Master 5%+")
     , ("C-M-M1-b", spawn "firefox")
+    , ("C-M-M1-e", spawn "emacsclient -c")
     ]

@@ -31,9 +31,9 @@ end
 
 # PATH
 set -x PATH $HOME/dotfiles/bin $PATH
-set -x PATH $HOME/.local/bin $PATH
-set -x PATH $HOME/.npm-packages/bin $PATH
-set -x PATH /usr/local/opt/python/libexec/bin $PATH
+# set -x PATH $HOME/.local/bin $PATH
+# set -x PATH $HOME/.npm-packages/bin $PATH
+# set -x PATH /usr/local/opt/python/libexec/bin $PATH
 
 # Keychain
 if status --is-interactive

@@ -27,6 +27,7 @@ touch ~/.hushlogin
 
 # linux only
 rm -rf ~/.Xresources; ln -s ~/dotfiles/Xresources ~/.Xresources
+rm -rf ~/.xprofile; ln -s ~/dotfiles/xprofile ~/.xprofile
 rm -rf ~/.xmonad; mkdir ~/.xmonad; ln -s ~/dotfiles/xmonad.hs ~/.xmonad/xmonad.hs
 rm -rf ~/.config/polybar; mkdir -p ~/.config/polybar; ln -s ~/dotfiles/polybar ~/.config/polybar/config
 

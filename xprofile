@@ -1,0 +1,8 @@
+# setxkbmap -option ctrl:nocaps -option compose:ralt
+# xcape -e 'Control_L=Escape'
+# compton -cGb
+# sh ~/dotfiles/logitech_linux_mouse.sh
+# xsetroot -solid black -cursor_name left_ptr
+# feh --bg-fill ~/Sync/Pictures/Wallpaper/space2.jpg
+# qsyncthingtray &
+# xscreensaver &
