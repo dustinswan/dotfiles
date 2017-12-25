@@ -44,3 +44,6 @@ end
 
 # iTerm2
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
+
+# Ledger
+set -x LEDGER_FILE ~/Sync/Ledger/2017.ledger
