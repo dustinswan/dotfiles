@@ -12,22 +12,22 @@ lightBlue = "#66aaff"
 main = xmonad $ docks $ ewmh $ defaultConfig
     { terminal = "urxvtc"
     , modMask = mod4Mask
-    , workspaces = [ "1", "2", "3" ]
+    , workspaces = [ "α", "β", "γ" ]
     , borderWidth = 2
     , normalBorderColor = "#000000"
     , focusedBorderColor = lightBlue
     , focusFollowsMouse = False
     , layoutHook = avoidStruts $ spacingWithEdge 6 $ layoutHook defaultConfig
     , startupHook = do
-        spawn "polybar top"
-        spawn "compton -cGb"
-        spawn "~/dotfiles/logitech_linux_mouse.sh"
-        spawn "xsetroot -solid black -cursor_name left_ptr"
-        spawn "feh --bg-fill ~/Sync/Pictures/Wallpaper/space2.jpg"
-        spawn "setxkbmap -option ctrl:nocaps -option compose:ralt"
-        spawn "xcape -e 'Control_L=Escape'"
-        spawn "qsyncthingtray"
-        spawn "xscreensaver"
+        spawn "pkill polybar; polybar top &"
+        -- spawn "compton -cGb"
+        -- spawn "~/dotfiles/logitech_linux_mouse.sh"
+        -- spawn "xsetroot -solid black -cursor_name left_ptr"
+        -- spawn "feh --bg-fill ~/Sync/Pictures/Wallpaper/space2.jpg"
+        -- spawn "setxkbmap -option ctrl:nocaps -option compose:ralt"
+        -- spawn "xcape -e 'Control_L=Escape'"
+        -- spawn "qsyncthingtray"
+        -- spawn "xscreensaver"
     }
     `additionalKeysP`
     [ ("M1-<Space>", spawn "rofi -show combi")
