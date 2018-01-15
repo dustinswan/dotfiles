@@ -4,6 +4,7 @@ xmodmap -e "keycode 96 = dead_greek dead_greek dead_greek dead_greek"
 compton -cGb
 sh ~/dotfiles/logitech_linux_mouse.sh
 xsetroot -solid black -cursor_name left_ptr
-feh --bg-fill ~/Sync/Pictures/Wallpaper/space2.jpg
+nitrogen --restore &
+# feh --bg-fill ~/Sync/Pictures/Wallpaper/space2.jpg
 qsyncthingtray &
 xscreensaver &

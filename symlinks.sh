@@ -13,6 +13,7 @@ rm ~/.gnupg/gpg-agent.conf; mkdir ~/.gnupg; ln -s ~/dotfiles/gpg-agent.conf ~/.g
 mkdir -p ~/.ssh; rm ~/.ssh/config; ln -s ~/dotfiles/ssh/config ~/.ssh/config
 rm ~/Library/Application\ Support/glances/glances.conf; mkdir ~/Library/Application\ Support/glances; ln -s ~/dotfiles/glances.conf ~/Library/Application\ Support/glances/glances.conf
 rm ~/.config/khard/khard.conf; mkdir ~/.config/khard; ln -s ~/dotfiles/khard.conf ~/.config/khard/khard.conf
+rm -rf ~/.config/qutebrowser; mkdir ~/.config/qutebrowser; ln -s ~/dotfiles/qutebrowser.py ~/.config/qutebrowser/config.py
 
 # Mail stuff
 rm ~/.offlineimaprc; ln -s ~/dotfiles/offlineimaprc ~/.offlineimaprc
