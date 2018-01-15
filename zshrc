@@ -48,9 +48,6 @@ fi
 [ -e ~/.local/bin ] && export PATH=$HOME/.local/bin:$PATH # Stack
 [ -e ~/.npm-packages/bin ] && export PATH=$HOME/.npm-packages/bin:$PATH # NPM
 
-# Nix
-[ -f $HOME/.nix-profile/etc/profile.d/nix.sh ] && . $HOME/.nix-profile/etc/profile.d/nix.sh
-
 # Keychain
 if [ -x "$(command -v keychain)" ]; then
     export GPG_AGENT_INFO="~/.gnupg/S.gpg-agent:$(pgrep gpg-agent):1" # Take this out when keychain fixes this bug

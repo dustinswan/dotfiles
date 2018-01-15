@@ -1,6 +1,5 @@
 set mbox_type=Maildir
-set folder=$HOME/Mail/FastMail
-set spoolfile=+/INBOX
+set folder=$HOME/Mail
 set header_cache=~/.cache/mutt
 
 set realname='Dustin Swan'
@@ -8,16 +7,19 @@ set sendmail="/usr/local/bin/msmtp"
 
 set edit_headers=yes
 # set folder=~/Mail
-set mbox=+mbox
-set spoolfile=+inbox
-set record=+sent
-set postponed=+drafts
-set mbox_type=Maildir
+# set mbox=+mbox
+# set spoolfile=+inbox
+# set record=+sent
+# set postponed=+drafts
+# set mbox_type=Maildir
 
 mailboxes +inbox
 
-source "~/.mutt/iocom"
-folder-hook $folder 'source ~/.mutt/iocom'
+source ~/.mutt/iocom
+folder-hook IOCOM/* source ~/.mutt/iocom
 
-source "~/.mutt/fastmail"
-folder-hook *user@fastmail.com/ 'source ~/.mutt/fastmail'
+source ~/.mutt/fastmail
+folder-hook FastMail/* source ~/.mutt/fastmail
+
+set spoolfile = +FastMail/INBOX
+source ~/.mutt/fastmail

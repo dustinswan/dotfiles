@@ -32,7 +32,7 @@ end
 # PATH
 set -x PATH $HOME/dotfiles/bin $PATH
 # set -x PATH $HOME/.local/bin $PATH
-# set -x PATH $HOME/.npm-packages/bin $PATH
+set -x PATH $HOME/.npm-packages/bin $PATH
 # set -x PATH /usr/local/opt/python/libexec/bin $PATH
 
 # Keychain
@@ -47,3 +47,12 @@ test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shel
 
 # Ledger
 set -x LEDGER_FILE ~/Sync/Ledger/2017.ledger
+
+# Emacs term stuff
+function fish_title
+  true
+end
+
+if test -n "$EMACS"
+  set -x TERM eterm-color
+end
