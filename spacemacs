@@ -582,6 +582,8 @@ layers configuration. You are free to put any user code."
 
     (setq org-startup-indented t)
 
+    (require 'org-drill)
+
     (setq org-agenda-files '("~/Sync/Notes"))
     (setq org-agenda-start-day "-0d")
     (setq org-agenda-span 2)

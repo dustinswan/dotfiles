@@ -34,6 +34,7 @@ set -x PATH $HOME/dotfiles/bin $PATH
 # set -x PATH $HOME/.local/bin $PATH
 set -x PATH $HOME/.npm-packages/bin $PATH
 # set -x PATH /usr/local/opt/python/libexec/bin $PATH
+set -x PATH $HOME/.cargo/bin $PATH
 
 # Keychain
 if status --is-interactive
@@ -46,7 +47,7 @@ end
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
 
 # Ledger
-set -x LEDGER_FILE ~/Sync/Ledger/2017.ledger
+set -x LEDGER_FILE ~/Sync/Ledger/ledger.ledger
 
 # Emacs term stuff
 function fish_title

@@ -1,46 +1,45 @@
 #!/bin/bash
 
-rm ~/.zshrc; ln -s ~/dotfiles/zshrc ~/.zshrc
-rm -rf ~/.config/fish; mkdir -p ~/.config/fish; ln -s ~/dotfiles/config.fish ~/.config/fish/config.fish
-rm ~/.gemrc; ln -s ~/dotfiles/gemrc ~/.gemrc
-rm -rf ~/.ghc; mkdir ~/.ghc; ln -s ~/dotfiles/ghci.conf ~/.ghc/ghci.conf
-rm ~/.gitconfig; ln -s ~/dotfiles/gitconfig ~/.gitconfig
-rm ~/.tmux.conf; ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
-rm -rf ~/.config/khal; mkdir -p ~/.config/khal; ln -s ~/dotfiles/khal.conf ~/.config/khal/config
-rm -rf ~/.vdirsyncer; mkdir ~/.vdirsyncer; ln -s ~/dotfiles/vdirsyncer/config ~/.vdirsyncer/config
-rm ~/.jrnl_config; ln -s ~/dotfiles/jrnl_config ~/.jrnl_config
-rm ~/.gnupg/gpg-agent.conf; mkdir ~/.gnupg; ln -s ~/dotfiles/gpg-agent.conf ~/.gnupg/gpg-agent.conf
-mkdir -p ~/.ssh; rm ~/.ssh/config; ln -s ~/dotfiles/ssh/config ~/.ssh/config
-rm ~/Library/Application\ Support/glances/glances.conf; mkdir ~/Library/Application\ Support/glances; ln -s ~/dotfiles/glances.conf ~/Library/Application\ Support/glances/glances.conf
-rm ~/.config/khard/khard.conf; mkdir ~/.config/khard; ln -s ~/dotfiles/khard.conf ~/.config/khard/khard.conf
-rm -rf ~/.config/qutebrowser; mkdir ~/.config/qutebrowser; ln -s ~/dotfiles/qutebrowser.py ~/.config/qutebrowser/config.py
+# ln -sf ~/dotfiles/zshrc ~/.zshrc
+mkdir -p ~/.config/fish; ln -sf ~/dotfiles/config.fish ~/.config/fish/config.fish
+curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher
+ln -s ~/dotfiles/fishfile ~/.config/fish/fishfile
+mkdir ~/.ghc; ln -sf ~/dotfiles/ghci.conf ~/.ghc/ghci.conf
+ln -sf ~/dotfiles/gitconfig ~/.gitconfig
+ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
+mkdir -p ~/.config/khal; ln -sf ~/dotfiles/khal.conf ~/.config/khal/config
+mkdir ~/.vdirsyncer; ln -sf ~/dotfiles/vdirsyncer/config ~/.vdirsyncer/config
+mkdir ~/.gnupg; ln -sf ~/dotfiles/gpg-agent.conf ~/.gnupg/gpg-agent.conf
+mkdir ~/.ssh; ln -sf ~/dotfiles/ssh/config ~/.ssh/config
+mkdir -p ~/.config/khard; ln -sf ~/dotfiles/khard.conf ~/.config/khard/khard.conf
+mkdir -p ~/.config/qutebrowser; ln -sf ~/dotfiles/qutebrowser.py ~/.config/qutebrowser/config.py
 
 # Mail stuff
-rm ~/.offlineimaprc; ln -s ~/dotfiles/offlineimaprc ~/.offlineimaprc
-rm ~/.msmtprc; ln -s ~/dotfiles/msmtprc ~/.msmtprc
-rm ~/.muttrc; ln -s ~/dotfiles/muttrc ~/.muttrc
+ln -sf ~/dotfiles/offlineimaprc ~/.offlineimaprc
+ln -sf ~/dotfiles/msmtprc ~/.msmtprc
+ln -sf ~/dotfiles/muttrc ~/.muttrc
 
-# mac only
-rm ~/.karabiner.d/configuration/karabiner.json; ln -s ~/dotfiles/karabiner.json ~/.karabiner.d/configuration/karabiner.json
-rm -rf ~/.kwm; mkdir ~/.kwm; ln -s ~/dotfiles/kwmrc ~/.kwm/kwmrc
-rm -rf ~/.khdrc; ln -s ~/dotfiles/khdrc ~/.khdrc
+# Mac only
+# rm ~/.karabiner.d/configuration/karabiner.json; ln -s ~/dotfiles/karabiner.json ~/.karabiner.d/configuration/karabiner.json
 touch ~/.hushlogin
+mkdir -p ~/Library/Application\ Support/glances; ln -sf ~/dotfiles/glances.conf ~/Library/Application\ Support/glances/glances.conf
+mkdir -p ~/.qutebrowser; ln -sf ~/dotfiles/qutebrowser.py ~/.qutebrowser/config.py
 
-# linux only
-rm -rf ~/.Xresources; ln -s ~/dotfiles/Xresources ~/.Xresources
-rm -rf ~/.xprofile; ln -s ~/dotfiles/xprofile ~/.xprofile
-rm -rf ~/.xmonad; mkdir ~/.xmonad; ln -s ~/dotfiles/xmonad.hs ~/.xmonad/xmonad.hs
-rm -rf ~/.config/polybar; mkdir -p ~/.config/polybar; ln -s ~/dotfiles/polybar ~/.config/polybar/config
+# Linux only
+ln -sf ~/dotfiles/Xresources ~/.Xresources
+ln -sf ~/dotfiles/xprofile ~/.xprofile
+mkdir ~/.xmonad; ln -sf ~/dotfiles/xmonad.hs ~/.xmonad/xmonad.hs
+mkdir -p ~/.config/polybar; ln -sf ~/dotfiles/polybar ~/.config/polybar/config
 
 # Vim
-rm ~/.vimrc; ln -s ~/dotfiles/vimrc ~/.vimrc
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+# ln -sf ~/dotfiles/vimrc ~/.vimrc
+# curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Neovim
-rm -rf ~/.config/nvim; mkdir ~/.config/nvim; ln -s ~/dotfiles/vimrc ~/.config/nvim/init.vim
+mkdir -p ~/.config/nvim; ln -sf ~/dotfiles/vimrc ~/.config/nvim/init.vim
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-# Spacemacs
+# Emacs
 mv ~/.emacs.d ~/.emacs.bak
 git clone --recursive http://github.com/syl20bnr/spacemacs ~/.emacs.d
-rm ~/.spacemacs; ln -s ~/dotfiles/spacemacs ~/.spacemacs
+ln -sf ~/dotfiles/spacemacs ~/.spacemacs

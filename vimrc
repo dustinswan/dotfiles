@@ -58,6 +58,7 @@ Plug 'eagletmt/ghc-mod'
 Plug 'bitc/vim-hdevtools'
 "Plug 'eagletmt/neco-ghc'
 "Plug 'lukerandall/haskellmode-vim'
+"Plug 'enomsg/vim-haskellConcealPlus'
 Plug 'ryanoasis/vim-devicons'
 
 " Themes
