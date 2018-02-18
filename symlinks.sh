@@ -3,7 +3,7 @@
 # ln -sf ~/dotfiles/zshrc ~/.zshrc
 mkdir -p ~/.config/fish; ln -sf ~/dotfiles/config.fish ~/.config/fish/config.fish
 curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher
-ln -s ~/dotfiles/fishfile ~/.config/fish/fishfile
+ln -sf ~/dotfiles/fishfile ~/.config/fish/fishfile
 mkdir ~/.ghc; ln -sf ~/dotfiles/ghci.conf ~/.ghc/ghci.conf
 ln -sf ~/dotfiles/gitconfig ~/.gitconfig
 ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
