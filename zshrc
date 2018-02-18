@@ -1,8 +1,10 @@
-source ~/dotfiles/antigen.zsh
+# source ~/dotfiles/antigen.zsh
+source /usr/local/share/antigen/antigen.zsh
 antigen use oh-my-zsh
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle git
-antigen theme S1cK94/minimal minimal
+# antigen theme S1cK94/minimal minimal
+antigen theme https://github.com/denysdovhan/spaceship-prompt spaceship
 antigen apply
 
 autoload -U select-word-style
