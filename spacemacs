@@ -395,7 +395,7 @@ layers configuration. You are free to put any user code."
 
   (use-package vue-mode)
 
-  (spacemacs/toggle-transparent-frame)
+  (spacemacs/enable-transparency)
 
   (defun my-focus-new-frame (frame)
     (spacemacs/toggle-transparent-frame))
