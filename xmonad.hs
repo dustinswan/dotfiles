@@ -10,7 +10,7 @@ import XMonad.Util.EZConfig
 lightBlue = "#66aaff"
 
 main = xmonad $ docks $ ewmh $ defaultConfig
-    { terminal = "urxvtc"
+    { terminal = "alacritty"
     , modMask = mod4Mask
     , workspaces = [ "α", "β", "γ" ]
     , borderWidth = 2

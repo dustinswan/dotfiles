@@ -66,7 +66,7 @@ format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-prefix-underline = ${colors.secondary}
 
-label-layout = %layout%
+label-layout = %name%
 label-layout-underline = ${colors.secondary}
 
 label-indicator-padding = 2

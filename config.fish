@@ -30,18 +30,18 @@ if command --search p4 >/dev/null
 end
 
 # PATH
-set -x PATH $HOME/dotfiles/bin $PATH
-# set -x PATH $HOME/.local/bin $PATH
-set -x PATH $HOME/.npm-packages/bin $PATH
-# set -x PATH /usr/local/opt/python/libexec/bin $PATH
-set -x PATH $HOME/.cargo/bin $PATH
+test -e $HOME/dotfiles/bin ; and set -x PATH $HOME/dotfiles/bin $PATH
+test -e $HOME/.local/bin ; and set -x PATH $HOME/.local/bin $PATH
+test -e $HOME/.npm-packeges/bin ; and set -x PATH $HOME/.npm-packages/bin $PATH
+test -e /usr/local/opt/python/libexec/bin ; and set -x PATH /usr/local/opt/python/libexec/bin $PATH
+test -e $HOME/.cargo/bin ; and set -x PATH $HOME/.cargo/bin $PATH
 
 # Keychain
-if status --is-interactive
+# if status --is-interactive
     # TODO Take this out when keychain fixes this bug
-    set -x GPG_AGENT_INFO "~/.gnupg/S.gpg-agent:"(pgrep gpg-agent)":1"
-    keychain --eval --inherit any --agents gpg,ssh --quiet id_rsa 2B3A6377 | source
-end
+    # set -x GPG_AGENT_INFO "~/.gnupg/S.gpg-agent:"(pgrep gpg-agent)":1"
+    # keychain --eval --inherit any --agents gpg,ssh --quiet id_rsa 2B3A6377 | source
+    # end
 
 # iTerm2
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
@@ -57,3 +57,5 @@ end
 if test -n "$EMACS"
   set -x TERM eterm-color
 end
+
+set fish_greeting ""
