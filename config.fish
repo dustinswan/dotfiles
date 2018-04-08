@@ -31,6 +31,7 @@ end
 
 # PATH
 test -e $HOME/dotfiles/bin ; and set -x PATH $HOME/dotfiles/bin $PATH
+test -e $HOME/flutter/bin ; and set -x PATH $HOME/flutter/bin $PATH
 test -e $HOME/.local/bin ; and set -x PATH $HOME/.local/bin $PATH
 test -e $HOME/.npm-packeges/bin ; and set -x PATH $HOME/.npm-packages/bin $PATH
 test -e /usr/local/opt/python/libexec/bin ; and set -x PATH /usr/local/opt/python/libexec/bin $PATH
@@ -59,3 +60,6 @@ if test -n "$EMACS"
 end
 
 set fish_greeting ""
+
+# Autojump
+[ -f /usr/local/share/autojump/autojump.fish ]; and source /usr/local/share/autojump/autojump.fish

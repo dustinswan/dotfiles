@@ -105,28 +105,25 @@ values."
              rmh-elfeed-org-files (list "~/Sync/Notes/rss.org")
              elfeed-enable-web-interface t)
      )
-
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages
-   '(spaceline-all-the-icons
+   '(
+     all-the-icons
+     spaceline-all-the-icons
      hackernews
      chess
      wttrin
      mingus
-     tumblesocks
      writeroom-mode
      beacon
      org-journal
      vdirel
      circe
-     (vue-mode
-      :location
-      (recipe
-       :fetcher github
-       :repo "codefalling/vue-mode")))
+     (vue-mode :location (recipe :fetcher github
+                                 :repo "codefalling/vue-mode")))
 
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(toxi-theme wolfram-mode)
@@ -211,6 +208,11 @@ values."
                                :powerline-scale 1.0)
    ;; The leader key
    dotspacemacs-leader-key "SPC"
+   ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
+   ;; (default "SPC")
+   dotspacemacs-emacs-command-key "SPC"
+   ;; The key used for Vim Ex commands (default ":")
+   dotspacemacs-ex-command-key ":"
    ;; The leader key accessible in `emacs state' and `insert state'
    ;; (default "M-m")
    dotspacemacs-emacs-leader-key "M-m"
@@ -218,11 +220,8 @@ values."
    ;; pressing `<leader> m`. Set it to `nil` to disable it. (default ",")
    dotspacemacs-major-mode-leader-key ","
    ;; Major mode leader key accessible in `emacs state' and `insert state'.
-   ;; (default "C-M-m)
+   ;; (default "C-M-m")
    dotspacemacs-major-mode-emacs-leader-key "C-M-m"
-   ;; The key used for Emacs commands (M-x) (after pressing on the leader key).
-   ;; (default "SPC")
-   dotspacemacs-emacs-command-key "SPC"
    ;; These variables control whether separate commands are bound in the GUI to
    ;; the key pairs C-i, TAB and C-m, RET.
    ;; Setting it to a non-nil value, allows for separate commands under <C-i>
@@ -316,8 +315,18 @@ values."
    ;; scrolling overrides the default behavior of Emacs which recenters point
    ;; when it reaches the top or bottom of the screen. (default t)
    dotspacemacs-smooth-scrolling t
-   ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
-   ;; derivatives. If set to `relative', also turns on relative line numbers.
+   ;; Control line numbers activation.
+   ;; If set to `t' or `relative' line numbers are turned on in all `prog-mode' and
+   ;; `text-mode' derivatives. If set to `relative', line numbers are relative.
+   ;; This variable can also be set to a property list for finer control:
+   ;; '(:relative nil
+   ;;   :disabled-for-modes dired-mode
+   ;;                       doc-view-mode
+   ;;                       markdown-mode
+   ;;                       org-mode
+   ;;                       pdf-view-mode
+   ;;                       text-mode
+   ;;   :size-limit-kb 1000)
    ;; (default nil)
    dotspacemacs-line-numbers nil
    ;; Code folding method. Possible values are `evil' and `origami'.
@@ -355,9 +364,12 @@ values."
 
 (defun dotspacemacs/user-init ()
   "Initialization function for user code.
-It is called immediately after `dotspacemacs/init'.  You are free to put almost
-any user code here.  The exception is org related code, which should be placed
-in `dotspacemacs/user-config'."
+It is called immediately after `dotspacemacs/init', before layer configuration
+executes.
+ This function is mostly useful for variables that need to be set
+before packages are loaded. If you are unsure, you should try in setting them in
+`dotspacemacs/user-config' first."
+
   (setq-default git-magit-status-fullscreen t)
   (setq-default git-enable-github-support t)
 
@@ -368,12 +380,18 @@ in `dotspacemacs/user-config'."
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
-layers configuration. You are free to put any user code."
+layers configuration.
+This is the place where most of your configurations should be done. Unless it is
+explicitly specified that a variable should be set before a package is loaded,
+you should place your code here."
 
-;;  (use-package spaceline-all-the-icons
-;;      :after spaceline
-;;      :config
-;;      (spaceline-all-the-icons-theme))
+  (use-package spaceline-all-the-icons
+      :after spaceline
+      :config
+      (spaceline-all-the-icons-theme))
+  (setq neo-theme 'icons)
+
+  (setq monokai-background "#000000")
 
   ;; fix Fish prompts
   (add-hook 'term-mode-hook 'spacemacs/toggle-truncate-lines-on)
@@ -541,27 +559,6 @@ layers configuration. You are free to put any user code."
 
   (setenv "LANG" "en_US.UTF-8")
 
-  ;; (setq exec-path (append exec-path '("~/.nix-profile/bin")))
-
-  ;; (when (configuration-layer/layer-usedp 'haskell)
-  ;;   (add-hook 'haskell-interactive-mode-hook
-  ;;             (lambda ()
-  ;;               (setq-local evil-move-cursor-back nil))))
-
-  ;; Time & Date in mode-line
-  ;; (spaceline-define-segment date-time-segment
-  ;;   (format-time-string "%a %Y/%m/%d %H:%M"))
-  ;; (add-to-list 'spaceline-right 'date-time-segment)
-
-  (fancy-battery-mode)
-
-  ;(org-babel-do-load-languages
-  ; 'org-babel-load-languages
-  ; '((haskell . t)
-  ;   (emacs-lisp . t)
-  ;   (python . t)
-  ;   ))
-
   (setq ranger-cleanup-on-disable t
         ranger-cleanup-eagerly t
         ranger-show-literal nil
@@ -569,8 +566,8 @@ layers configuration. You are free to put any user code."
         ranger-parent-depth 4
         ranger-max-preview-size 10)
 
-  (require 'tumblesocks)
-  (setq tumblesocks-blog "dustinswan.tumblr.com")
+  ;;(require 'tumblesocks)
+  ;;(setq tumblesocks-blog "dustinswan.tumblr.com")
   ;;  (eval-after-load 'tumblesocks-view-mode
   ;;    '(progn
   ;;       ;; (define-key twittering-mode-map (kbd "g") nil)
@@ -598,7 +595,7 @@ layers configuration. You are free to put any user code."
 
     (add-hook 'org-mode-hook 'my/org-mode-hook)
 
-    ;; (setq org-agenda-files '("~/Sync/Notes"))
+    ;; (setq org-agenda-files '("~/Sync/Notes")) ;; This is very slow
     (setq org-agenda-files '("~/Sync/Notes/Main.org" "~/Sync/Notes/Schedule.org" "~/Sync/Notes/IOCOM.org" "~/Sync/Notes/Computers.org"))
     (setq org-agenda-start-day "-0d")
     (setq org-agenda-span 2)
@@ -665,78 +662,10 @@ layers configuration. You are free to put any user code."
     (require 'ox-rss)
     (require 'ox-publish)
 
-    (setq web-bio
-          "<div class='bio'>
-      <img src='static/avatar.png'></img>
-      <h1>Dustin Swan</h1>
-      <p>Software Engineer at IOCOM. Interested in decentralization, pure functional programming, types, math, Emacs, design, piano, motorcycles, languages, games, bikes, books, fashion, spreadsheets, travel, climbing, speedcubing, etc.</p>
-      <h5>Troy NY</h5>
-      <a href='mailto://dustin@dustinswan.com'><i class='fa fa-envelope'></i></a>
-      <a href='https://twitter.com/dustinswan'><i class='fa fa-twitter'></i></a>
-      <a href='http://github.com/dustinswan'><i class='fa fa-github'></i></a>
-      <a href='http://facebook.com/dustinswan'><i class='fa fa-facebook-official'></i></a>
-      <a href='http://instagram.com/dustinswan'><i class='fa fa-instagram'></i></a>
-      <a href='http://dustinswan.tumblr.com'><i class='fa fa-tumblr'></i></a>
-      <a href='http://pinterest.com/dustinswan'><i class='fa fa-pinterest'></i></a>
-      <a href='http://reddit.com/user/dustinswan'><i class='fa fa-reddit-square'></i></a>
-      <a href='https://www.coinbase.com/dustinswan'><i class='fa fa-bitcoin'></i></a>
-      <a href='https://keybase.io/dustinswan'><i class='fa fa-key'></i></a>
-      </div>"
-          )
-
-    (setq org-publish-project-alist
-          `(("web"
-             :components ("blog" "pages" "static"))
-            ("pages"
-             :base-directory "~/Sync/Web/pages/"
-             :base-extension "org"
-             :html-extension "html"
-             :publishing-directory "~/Desktop/Web"
-             :publishing-function org-html-publish-to-html
-
-             :html-head-include-default-style nil
-             :html-head-include-scripts nil
-             :with-toc nil
-             :section-numbers nil
-             :html-head "<link rel=\"stylesheet\" href=\"static/style.css\" />\n<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css\">"
-             :html-head-extra ""
-             :html-preamble ,web-bio
-             :html-postamble nil
-             )
-            ("blog"
-             :base-directory "~/Sync/Web/blog"
-             :base-extension "org"
-             :html-extension "html"
-             :publishing-directory "~/Desktop/Web/blog"
-             :publishing-function org-html-publish-to-html
-             :recursive t
-
-             :html-head-include-default-style nil
-             :html-head-include-scripts nil
-             :with-toc nil
-             :section-numbers nil
-             ;; :with-latex t         ; do use MathJax for awesome formulas!
-             :html-head "<link rel=\"stylesheet\" href=\"../static/style.css\" />\n<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css\">"
-             :html-head-extra ""
-             :html-preamble ,web-bio
-             :html-postamble nil
-
-             :auto-sitemap t
-             :sitemap-filename "archive.org"
-             :sitemap-title "Archive"
-             :sitemap-sort-files anti-chronologically
-             :sitemap-style list
-             )
-            ("static"
-             :base-directory "~/Sync/Web/static"
-             :base-extension "css\\|js\\|png\\|jpg\\|gif\\|pdf\\|mp3\\|ogg\\|swf\\|otf"
-             :publishing-directory "~/Desktop/Web/static"
-             :recursive t
-             :publishing-function org-publish-attachment
-             )))
     )
 
   (setq wttrin-default-cities '("Troy NY" "Albuquerque" "Chicago"))
+  (setq wttrin-default-accept-language '("Accept-Language" . "en-US"))
 
   (setq tramp-default-method "ssh")
 
@@ -783,11 +712,11 @@ layers configuration. You are free to put any user code."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ac-ispell-requires 4 t)
- '(ahs-case-fold-search nil t)
- '(ahs-default-range (quote ahs-range-whole-buffer) t)
- '(ahs-idle-interval 0.25 t)
+ '(ahs-case-fold-search nil)
+ '(ahs-default-range (quote ahs-range-whole-buffer))
+ '(ahs-idle-interval 0.25)
  '(ahs-idle-timer 0 t)
- '(ahs-inhibit-face-list nil t)
+ '(ahs-inhibit-face-list nil)
  '(ansi-color-names-vector
    ["#272822" "#F92672" "#A6E22E" "#E6DB74" "#66D9EF" "#FD5FF0" "#A1EFE4" "#F8F8F2"])
  '(compilation-message-face (quote default))
@@ -826,6 +755,7 @@ layers configuration. You are free to put any user code."
  '(psc-ide-add-import-on-completion t t)
  '(psc-ide-rebuild-on-save nil t)
  '(ring-bell-function (quote ignore))
+ '(spaceline-all-the-icons-separator-type (quote arrow))
  '(spaceline-info-mode t)
  '(vc-annotate-background nil)
  '(vc-annotate-color-map

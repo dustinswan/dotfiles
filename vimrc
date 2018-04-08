@@ -60,6 +60,7 @@ Plug 'bitc/vim-hdevtools'
 "Plug 'lukerandall/haskellmode-vim'
 "Plug 'enomsg/vim-haskellConcealPlus'
 Plug 'ryanoasis/vim-devicons'
+Plug 'dart-lang/dart-vim-plugin'
 
 " Themes
 "Plug 'w0ng/vim-hybrid'
@@ -252,3 +253,6 @@ nmap <silent> <leader>g :Goyo<cr>
 " Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+
+" Dart
+let dart_style_guide = 2

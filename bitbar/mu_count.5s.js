@@ -11,7 +11,7 @@ exec(cmd, function(error, stdout, stderr) {
     : stdout.trim().split("\n").map(parseMailString);
 
   bitbar([
-    ':envelope:' + mails.length || "",
+    ':envelope: ' + mails.length || "",
     bitbar.sep,
     ...mails
   ]);
