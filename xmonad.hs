@@ -16,7 +16,6 @@ main = xmonad $ docks $ ewmh $ defaultConfig
     , borderWidth = 2
     , normalBorderColor = "#000000"
     , focusedBorderColor = lightBlue
-    , focusFollowsMouse = False
     , layoutHook = avoidStruts $ spacingWithEdge 6 $ layoutHook defaultConfig
     , startupHook = do
         spawn "pkill polybar; polybar top &"
