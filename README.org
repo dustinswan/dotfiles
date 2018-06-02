@@ -1,8 +1,6 @@
 * Dotfiles
 
-I primarily use OS X and [[http://nixos.org][NixOS]] GNU/Linux. I'm
-trying [[https://nixos.org/nix/][nix]] on OS X for package management,
-and [[http://brew.sh/][Homebrew]] for anything that's missing or broken.
+I primarily use OS X and [[http://nixos.org][NixOS]] GNU/Linux.
 
 After ~15 years with Vim &
 [[https://tmux.github.io/][Tmux]]/[[https://www.gnu.org/software/screen/][GNU
@@ -17,8 +15,8 @@ If you
 - like Lisp better than Vimscript (yes, I know about neovim)
 - want a huge, ancient hacker community & ecosystem
 
-then I really suggest checking out Emacs & Spacemacs. Emacs really is a
-great operating system, and now it has a great editor.
+then I suggest checking out Emacs & Spacemacs. Emacs really is a
+great operating system, and now it has a great editor!
 
 ** Other Software
 
@@ -28,21 +26,20 @@ great operating system, and now it has a great editor.
    [[https://www.fastmail.com/][Fastmail]]
 -  Terminal: [[http://www.emacswiki.org/emacs/MultiTerm][multiterm]] &
    [[http://www.iterm2.com][iTerm 2]] (OS X) &
-   [[http://software.schmorp.de/pkg/rxvt-unicode.html][urxvt]] (Linux)
+   [[https://github.com/jwilm/alacritty][alacritty]] (Linux)
 -  Shell:
    [[http://www.gnu.org/software/emacs/manual/html_mono/eshell.html][EShell]]
    & [[http://www.fishshell.com][Fish]]
 -  Browser: [[http://www.emacswiki.org/emacs/eww][eww]] &
    [[https://www.mozilla.org/en-US/firefox][Firefox]] &
    [[http://www.qutebrowser.org/][qutebrowser]]
--  IRC: [[http://www.emacswiki.org/emacs/ERC][ERC]]
--  Notes & TODO & bookmarks & spreadsheets & blog & etc.:
+-  IRC & IM & chat: [[https://weechat.org/][WeeChat]] & [[https://bitlbee.org/][Bitlbee]]
+-  Notes & To-Do & bookmarks & spreadsheets & journal & everything really..:
    [[http://orgmode.org][Org mode]]
--  Window Manager & Launcher: [[http://www.alfredapp.com][Alfred]] (OS
-   X) & [[http://xmonad.org][xmonad]] (Linux)
+-  Window Manager: [[http://www.alfredapp.com][Alfred]] (OS
+   X) & [[https://i3wm.org/][i3]] (although I try [[http://xmonad.org][xmonad]] every so often) (Linux)
 -  Sync: [[https://syncthing.net][Syncthing]]
--  RSS Reader: [[https://github.com/skeeto/elfeed][Elfeed]] &
-   Feedly
+-  RSS Reader: Feedly & [[https://github.com/skeeto/elfeed][Elfeed]]
 
 ** Todo List
 
