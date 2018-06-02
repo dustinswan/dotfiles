@@ -1,10 +1,10 @@
 * Dotfiles
 
-I primarily use OS X and [[http://nixos.org][NixOS]] GNU/Linux.
+I run OS X on my laptop and [[http://nixos.org][NixOS]] GNU/Linux on my desktop.
 
 After ~15 years with Vim &
 [[https://tmux.github.io/][Tmux]]/[[https://www.gnu.org/software/screen/][GNU
-Screen]], I've switched to
+Screen]], I've mostly switched to
 [[https://www.gnu.org/software/emacs/][Emacs]] &
 [[https://github.com/syl20bnr/spacemacs][Spacemacs]].
 
@@ -33,13 +33,13 @@ great operating system, and now it has a great editor!
 -  Browser: [[http://www.emacswiki.org/emacs/eww][eww]] &
    [[https://www.mozilla.org/en-US/firefox][Firefox]] &
    [[http://www.qutebrowser.org/][qutebrowser]]
--  IRC & IM & chat: [[https://weechat.org/][WeeChat]] & [[https://bitlbee.org/][Bitlbee]]
--  Notes & To-Do & bookmarks & spreadsheets & journal & everything really..:
+-  IRC & IM & chat: [[https://weechat.org/][WeeChat]] & [[https://bitlbee.org/][Bitlbee]] & [[https://github.com/the-kenny/weechat.el][weechat.el]]
+-  Notes & to-do lists & bookmarks & spreadsheets & journal & everything, really:
    [[http://orgmode.org][Org mode]]
 -  Window Manager: [[http://www.alfredapp.com][Alfred]] (OS
-   X) & [[https://i3wm.org/][i3]] (although I try [[http://xmonad.org][xmonad]] every so often) (Linux)
+   X) & [[https://i3wm.org/][i3]] (or [[http://xmonad.org][xmonad]], depending on the month..) (Linux)
 -  Sync: [[https://syncthing.net][Syncthing]]
--  RSS Reader: Feedly & [[https://github.com/skeeto/elfeed][Elfeed]]
+-  RSS Reader: [[https://feedly.com/][Feedly]] & [[https://github.com/skeeto/elfeed][Elfeed]]
 
 ** Todo List
 
