@@ -199,7 +199,7 @@ values."
    ;; dotspacemacs-default-font '("Source Code Pro"
    ;; dotspacemacs-default-font '("PragmataPro"
    dotspacemacs-default-font '("Iosevka Nerd Font"
-                               :size 12
+                               :size 11
                                :weight normal
                                :width normal
                                :powerline-scale 1.0)
