@@ -8,11 +8,11 @@
 ;=====================================================
 
 [colors]
-background = ${xrdb:color0:#222}
+background = ${xrdb:color0:#000}
 ;background = #88000000
 background-alt = #444444
-foreground = ${xrdb:color7:#222}
-;foreground = #ffffff
+;foreground = ${xrdb:color7:#222}
+foreground = #ffffff
 foreground-alt = #aaaaaa
 primary = #0a6cf5
 secondary = #e60053

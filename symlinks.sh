@@ -6,6 +6,7 @@ curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fishe
 ln -sf ~/dotfiles/fishfile ~/.config/fish/fishfile
 mkdir ~/.ghc; ln -sf ~/dotfiles/ghci.conf ~/.ghc/ghci.conf
 ln -sf ~/dotfiles/gitconfig ~/.gitconfig
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
 mkdir -p ~/.config/khal; ln -sf ~/dotfiles/khal.conf ~/.config/khal/config
 mkdir ~/.vdirsyncer; ln -sf ~/dotfiles/vdirsyncer/config ~/.vdirsyncer/config
@@ -14,6 +15,7 @@ mkdir ~/.ssh; ln -sf ~/dotfiles/ssh/config ~/.ssh/config
 mkdir -p ~/.config/khard; ln -sf ~/dotfiles/khard.conf ~/.config/khard/khard.conf
 mkdir -p ~/.config/qutebrowser; ln -sf ~/dotfiles/qutebrowser.py ~/.config/qutebrowser/config.py
 mkdir -p ~/.config/alacritty; ln -sf ~/dotfiles/alacritty.yml ~/.config/alacritty/alacritty.py
+mkdir -p ~/.config/rtv; ln -sf ~/dotfiles/rtv.cfg ~/.config/rtv.cfg
 
 # Mail stuff
 ln -sf ~/dotfiles/offlineimaprc ~/.offlineimaprc
