@@ -21,7 +21,7 @@ ln -sf ~/dotfiles/msmtprc ~/.msmtprc
 ln -sf ~/dotfiles/muttrc ~/.muttrc
 
 # Mac only
-# rm ~/.karabiner.d/configuration/karabiner.json; ln -s ~/dotfiles/karabiner.json ~/.karabiner.d/configuration/karabiner.json
+mkdir -p ~/.config/karabiner; ln -sf ~/dotfiles/karabiner.json ~/.config/karabiner/karabiner.json
 touch ~/.hushlogin
 mkdir -p ~/Library/Application\ Support/glances; ln -sf ~/dotfiles/glances.conf ~/Library/Application\ Support/glances/glances.conf
 mkdir -p ~/.qutebrowser; ln -sf ~/dotfiles/qutebrowser.py ~/.qutebrowser/config.py
