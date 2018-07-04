@@ -16,6 +16,7 @@ mkdir -p ~/.config/khard; ln -sf ~/dotfiles/khard.conf ~/.config/khard/khard.con
 mkdir -p ~/.config/qutebrowser; ln -sf ~/dotfiles/qutebrowser.py ~/.config/qutebrowser/config.py
 mkdir -p ~/.config/alacritty; ln -sf ~/dotfiles/alacritty.yml ~/.config/alacritty/alacritty.py
 mkdir -p ~/.config/rtv; ln -sf ~/dotfiles/rtv.cfg ~/.config/rtv.cfg
+ln -sf ~/dotfiles/mailcap ~/.mailcap
 
 # Mail stuff
 ln -sf ~/dotfiles/offlineimaprc ~/.offlineimaprc
