@@ -26,7 +26,7 @@ if command --search p4 >/dev/null
     set -x P4PORT "humu.iocom.com:1666"
     set -x P4CONFIG p4.cfg
     set -x P4EDITOR nvim
-    set -x P4IGNORE .p4ignore
+    set -x P4IGNORE .ignore
 end
 
 # PATH
@@ -38,11 +38,11 @@ test -e /usr/local/opt/python/libexec/bin ; and set -x PATH /usr/local/opt/pytho
 test -e $HOME/.cargo/bin ; and set -x PATH $HOME/.cargo/bin $PATH
 
 # Keychain
-# if status --is-interactive
+if status --is-interactive
     # TODO Take this out when keychain fixes this bug
-    # set -x GPG_AGENT_INFO "~/.gnupg/S.gpg-agent:"(pgrep gpg-agent)":1"
-    # keychain --eval --inherit any --agents gpg,ssh --quiet id_rsa 2B3A6377 | source
-    # end
+    set -x GPG_AGENT_INFO "~/.gnupg/S.gpg-agent:"(pgrep gpg-agent)":1"
+    keychain --eval --inherit any --agents gpg,ssh --quiet id_rsa 2B3A6377 | source
+end
 
 # iTerm2
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish

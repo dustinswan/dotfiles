@@ -8,7 +8,7 @@ mkdir ~/.ghc; ln -sf ~/dotfiles/ghci.conf ~/.ghc/ghci.conf
 ln -sf ~/dotfiles/gitconfig ~/.gitconfig
 ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
 mkdir -p ~/.config/khal; ln -sf ~/dotfiles/khal.conf ~/.config/khal/config
-mkdir ~/.vdirsyncer; ln -sf ~/dotfiles/vdirsyncer/config ~/.vdirsyncer/config
+mkdir ~/.config/vdirsyncer; ln -sf ~/dotfiles/vdirsyncer/config ~/.config/vdirsyncer/config
 mkdir ~/.gnupg; ln -sf ~/dotfiles/gpg-agent.conf ~/.gnupg/gpg-agent.conf
 mkdir ~/.ssh; ln -sf ~/dotfiles/ssh/config ~/.ssh/config
 mkdir -p ~/.config/khard; ln -sf ~/dotfiles/khard.conf ~/.config/khard/khard.conf
