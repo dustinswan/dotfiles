@@ -393,7 +393,7 @@ you should place your code here."
       (spaceline-all-the-icons-theme))
   (setq neo-theme 'icons)
 
-  (setq monokai-background "#000000")
+  ;; (setq monokai-background "#000000")
 
   ;; fix Fish prompts
   (add-hook 'term-mode-hook 'spacemacs/toggle-truncate-lines-on)
@@ -415,7 +415,7 @@ you should place your code here."
 
   (use-package vue-mode)
 
-  (spacemacs/enable-transparency)
+  ;; (spacemacs/enable-transparency)
 
   (defun my-focus-new-frame (frame)
     (spacemacs/toggle-transparent-frame))

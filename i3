@@ -7,6 +7,14 @@ smart_borders on
 for_window [class="^.*"] border pixel 0
 new_window pixel 1
 
+for_window [class="mpv"] floating enable
+for_window [class="mpv"] resize set 1500px 1000px
+for_window [class="mpv"] move absolute position center
+
+for_window [class="feh"] floating enable
+for_window [class="feh"] resize set 1500px 1000px
+for_window [class="feh"] move absolute position center
+
 font pango:Iosevka Nerd Font Regular 8
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -131,16 +139,16 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 5 px or 5 ppt
-        bindsym k resize grow height 5 px or 5 ppt
-        bindsym j resize shrink height 5 px or 5 ppt
-        bindsym l resize grow width 5 px or 5 ppt
+        bindsym h resize shrink width 2 px or 2 ppt
+        bindsym k resize grow height 2 px or 2 ppt
+        bindsym j resize shrink height 2 px or 2 ppt
+        bindsym l resize grow width 2 px or 2 ppt
 
         # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 2 px or 2 ppt
+        bindsym Down resize grow height 2 px or 2 ppt
+        bindsym Up resize shrink height 2 px or 2 ppt
+        bindsym Right resize grow width 2 px or 2 ppt
 
         # back to normal: Enter or Escape or $mod+r
         bindsym Return mode "default"

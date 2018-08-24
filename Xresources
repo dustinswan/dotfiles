@@ -13,6 +13,7 @@ rofi.run-command: fish -c '{cmd}'
 
 ! urxvt
 urxvt*internalBorder: 12
+urxvt*borderColor: #00000000
 urxvt*loginShell: true
 urxvt*scrollBar: false
 urxvt*secondaryScroll: true
@@ -27,4 +28,5 @@ urxvt*boldFont: xft:Iosevka Nerd Font:Bold:size=8,xft:Siji:Regular:size=8
 ! Colors
 urxvt*depth: 32
 urxvt*foreground: #ffffff
-urxvt*background: rgba:0000/0000/0000/dddd
+urxvt*transparent: true
+urxvt*shading: 10
