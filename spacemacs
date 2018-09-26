@@ -108,7 +108,6 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages
    '(
-     ;; weechat
      all-the-icons
      spaceline-all-the-icons
      hackernews
@@ -383,7 +382,10 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
-  ;; (require 'weechat)
+  (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
+  (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
+  (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
+  (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
 
   (use-package spaceline-all-the-icons
       :after spaceline
@@ -651,7 +653,8 @@ you should place your code here."
     (require 'org-crypt)
     (org-crypt-use-before-save-magic)
     (setq org-tags-exclude-from-inheritance (quote ("crypt")))
-    ;; (setq org-crypt-key nil) ;; symmetric encryption
+    (setq org-crypt-key nil) ;; symmetric encryption
+    (setq epg-gpg-program "/usr/local/bin/gpg")
 
     ;; Deft
     (setq deft-directory "~/Sync/Notes")
