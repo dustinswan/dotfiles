@@ -69,6 +69,7 @@ values."
      (shell :variables shell-default-term-shell "/usr/local/bin/fish" shell-default-shell 'eshell)
      xkcd
      spotify
+     elfeed
      finance
      ;; emoji ;; disable until https://github.com/syl20bnr/emacs-emoji-cheat-sheet-plus/issues/5 is fixed
      ;; (geolocation :variables
@@ -108,6 +109,7 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages
    '(
+     elfeed-protocol
      all-the-icons
      spaceline-all-the-icons
      hackernews
@@ -392,6 +394,10 @@ you should place your code here."
       :config
       (spaceline-all-the-icons-theme))
   (setq neo-theme 'icons)
+  (spaceline-all-the-icons--setup-package-updates)
+  (spaceline-all-the-icons--setup-git-ahead)
+  (spaceline-all-the-icons--setup-paradox)
+  (spaceline-all-the-icons--setup-neotree)
 
   ;; (setq monokai-background "#000000")
 
@@ -421,26 +427,6 @@ you should place your code here."
     (spacemacs/toggle-transparent-frame))
   (add-hook 'after-make-frame-functions 'my-focus-new-frame t)
 
-  (spacemacs|define-custom-layout "@Haskellbook"
-    :binding "H"
-    :body
-    (progn
-      ;; open up haskellbook
-      (bookmark-jump "haskellbook")
-      (split-window-right-and-focus)
-      ;; project root
-      (bookmark-jump "haskellbook-exercise")
-      (split-window-below)
-      ;; repl
-      (intero-repl-load)
-      ;; switch back to the pdf
-      (winum-select-window-1)
-      (shrink-window-horizontally 20)
-      ;; center it!
-      (image-forward-hscroll 14)
-      (doc-view-next-line-or-next-page 3)
-      ))
-
   (spacemacs|define-custom-layout "@Mail"
     :binding "m"
     :body
@@ -448,9 +434,9 @@ you should place your code here."
 
   (beacon-mode 1)
 
-  (setq ns-use-srgb-colorspace nil)
+  ;; (setq ns-use-srgb-colorspace nil)
 
-  (setq powerline-default-separator 'arrow-fade)
+  ;  (setq powerline-default-separator 'arrow-fade)
 
   (setq vdirel-repository "~/Contacts/Default/")
 
@@ -568,15 +554,6 @@ you should place your code here."
         ranger-parent-depth 4
         ranger-max-preview-size 10)
 
-  ;;(require 'tumblesocks)
-  ;;(setq tumblesocks-blog "dustinswan.tumblr.com")
-  ;;  (eval-after-load 'tumblesocks-view-mode
-  ;;    '(progn
-  ;;       ;; (define-key twittering-mode-map (kbd "g") nil)
-  ;;       (define-key tumblesocks-view-mode-map (kbd "j") 'tumblesocks-view-next-post)
-  ;;       (define-key tumblesocks-view-mode-map (kbd "k") 'tumblesocks-view-prev-post)
-  ;;       ))
-
   ;; Org
   (with-eval-after-load 'org
 
@@ -667,7 +644,7 @@ you should place your code here."
 
     )
 
-  (setq wttrin-default-cities '("Troy NY" "Albuquerque" "Chicago"))
+  (setq wttrin-default-cities '("Castleton on Hudson, NY" "Troy, NY" "Albuquerque, NM" "Chicago, IL"))
   (setq wttrin-default-accept-language '("Accept-Language" . "en-US"))
 
   (setq tramp-default-method "ssh")
@@ -682,29 +659,13 @@ you should place your code here."
 
   ;; Elfeed
 
-  ;; makes sure elfeed reads index from disk before launching
-  (defun bjm/elfeed-load-db-and-open ()
-    "Wrapper to load the elfeed db from disk before opening"
-    (interactive)
-    (elfeed-db-load)
-    (elfeed)
-    (elfeed-search-update--force))
-
-  ;; write to disk when quitting
-  (defun bjm/elfeed-save-db-and-bury ()
-    "Wrapper to save the elfeed db to disk before burying buffer"
-    (interactive)
-    (elfeed-db-save)
-    (quit-window))
-
-  ;; override quitting
-  (evilified-state-evilify-map elfeed-search-mode-map
-    :mode elfeed-search-mode
-    :eval-after-load elfeed-search
-    :bindings
-    "q"  'bjm/elfeed-save-db-and-bury)
-
-  (spacemacs/set-leader-keys "af" 'bjm/elfeed-load-db-and-open)
+  (setq elfeed-use-curl t)
+  ;; (elfeed-set-timeout 36000)
+  ;; (setq elfeed-curl-extra-arguments '("--insecure")) ;necessary for https without a trust certificate
+  (require 'elfeed-protocol)
+  (setq elfeed-feeds (list (list "ttrss+https://dustinswan@tt-rss.dustinswan.com"
+                                 :password "")))
+  (elfeed-protocol-enable)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -728,18 +689,18 @@ you should place your code here."
    (quote
     (autoaway autojoin button completion fill irccontrols move-to-prompt netsplit notifications readonly ring scrolltobottom services smiley spelling youtube list match networks notify track autojoin log menu image hl-nicks)))
  '(evil-want-Y-yank-to-eol nil)
- '(fci-rule-color "#20240E" t)
+ '(fci-rule-color "#3C3D37" t)
  '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
  '(highlight-tail-colors
    (quote
-    (("#20240E" . 0)
+    (("#3C3D37" . 0)
      ("#679A01" . 20)
      ("#4BBEAE" . 30)
      ("#1DB4D0" . 50)
      ("#9A8F21" . 60)
      ("#A75B00" . 70)
      ("#F309DF" . 85)
-     ("#20240E" . 100))))
+     ("#3C3D37" . 100))))
  '(js-indent-level 2 t)
  '(js2-basic-offset 2 t)
  '(mac-auto-operator-composition-mode t)
@@ -750,9 +711,9 @@ you should place your code here."
  '(org-journal-time-format "%R %Z")
  '(package-selected-packages
    (quote
-    (weechat restclient-helm helm-spotify-plus tracking symon org-mime elfeed-web elfeed-org elfeed-goodies ace-jump-mode noflet elfeed hledger-mode let-alist ghub zeal-at-point edit-indirect ssass-mode vue-html-mode org-vcard oauth gntp libmpdee json-snatcher json-reformat prop-menu parent-mode fringe-helper git-gutter+ git-gutter marshal logito ht pos-tip flx anzu goto-chg pkg-info epl web-completion-data dash-functional seq pythonic popup dash-at-point counsel-dash helm-dash visual-fill-column org-category-capture ghc undo-tree s spaceline-all-the-icons all-the-icons memoize font-lock+ diminish pdf-tools tablist f winum unfill sudoku ob-restclient multiple-cursors fuzzy company-restclient know-your-http-well flyspell-correct log4e async mmt slime rust-mode bind-key packed auto-complete avy tern iedit bind-map evil simple-httpd pcache alert php-mode purescript-mode haml-mode markdown-mode htmlize vue-mode circe rcirc-notify rcirc-color helm-themes helm-swoop helm-spotify multi helm-pydoc helm-projectile helm-mode-manager helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag flyspell-correct-helm ace-jump-helm-line csv-mode inflections spinner org anaconda-mode swiper highlight projectile skewer-mode js2-mode gh magit-popup git-commit hydra inf-ruby pcre2el macrostep dash powerline auctex counsel smartparens go-mode haskell-mode flycheck magit with-editor yasnippet rake company ivy helm helm-core xterm-color auctex-latexmk yapfify yaml-mode xkcd wttrin ws-butler writeroom-mode wolfram-mode window-numbering which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe vdirel uuidgen use-package typit twittering-mode tumblesocks toml-mode toc-org thrift tagedit stan-mode spray spotify spacemacs-theme spaceline smex smeargle slime-company slim-mode shell-pop scss-mode scad-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder restclient restart-emacs request rbenv ranger rainbow-mode rainbow-identifiers rainbow-delimiters racer quelpa qml-mode pyvenv pytest pyenv-mode py-isort pug-mode psci psc-ide projectile-rails popwin pip-requirements phpunit phpcbf php-extras php-auto-yasnippets persp-mode pbcopy paradox pandoc-mode pacmacs p4 ox-pandoc ox-gfm osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-plus-contrib org-journal org-download org-bullets open-junk-file ob-http neotree mwim multi-term mu4e-maildirs-extension mu4e-alert move-text monokai-theme mmm-mode minitest mingus matlab-mode markdown-toc magit-gitflow magit-gh-pulls lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode ledger-mode launchctl julia-mode json-mode js2-refactor js-doc ivy-hydra intero insert-shebang info+ indent-guide idris-mode ido-vertical-mode hy-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-make haskell-snippets hackernews google-translate golden-ratio go-guru go-eldoc gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md geiser flyspell-correct-ivy flycheck-rust flycheck-pos-tip flycheck-ledger flycheck-haskell flycheck-elm flx-ido fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help erc-yt erc-view-log erc-terminal-notifier erc-social-graph erc-image erc-hl-nicks engine-mode emoji-cheat-sheet-plus emmet-mode elm-mode elisp-slime-nav dumb-jump drupal-mode disaster diff-hl deft cython-mode counsel-projectile company-web company-tern company-statistics company-shell company-go company-ghci company-ghc company-emoji company-cabal company-c-headers company-auctex company-anaconda common-lisp-snippets column-enforce-mode color-identifiers-mode coffee-mode cmm-mode cmake-mode clean-aindent-mode clang-format chruby chess cargo bundler bracketed-paste beacon auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile arduino-mode aggressive-indent adaptive-wrap ace-window ace-link ac-ispell 2048-game)))
+    (elfeed-protocol treepy graphql weechat restclient-helm helm-spotify-plus tracking symon org-mime elfeed-web elfeed-org elfeed-goodies ace-jump-mode noflet elfeed hledger-mode let-alist ghub zeal-at-point edit-indirect ssass-mode vue-html-mode org-vcard oauth gntp libmpdee json-snatcher json-reformat prop-menu parent-mode fringe-helper git-gutter+ git-gutter marshal logito ht pos-tip flx anzu goto-chg pkg-info epl web-completion-data dash-functional seq pythonic popup dash-at-point counsel-dash helm-dash visual-fill-column org-category-capture ghc undo-tree s spaceline-all-the-icons all-the-icons memoize font-lock+ diminish pdf-tools tablist f winum unfill sudoku ob-restclient multiple-cursors fuzzy company-restclient know-your-http-well flyspell-correct log4e async mmt slime rust-mode bind-key packed auto-complete avy tern iedit bind-map evil simple-httpd pcache alert php-mode purescript-mode haml-mode markdown-mode htmlize vue-mode circe rcirc-notify rcirc-color helm-themes helm-swoop helm-spotify multi helm-pydoc helm-projectile helm-mode-manager helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag flyspell-correct-helm ace-jump-helm-line csv-mode inflections spinner org anaconda-mode swiper highlight projectile skewer-mode js2-mode gh magit-popup git-commit hydra inf-ruby pcre2el macrostep dash powerline auctex counsel smartparens go-mode haskell-mode flycheck magit with-editor yasnippet rake company ivy helm helm-core xterm-color auctex-latexmk yapfify yaml-mode xkcd wttrin ws-butler writeroom-mode wolfram-mode window-numbering which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe vdirel uuidgen use-package typit twittering-mode tumblesocks toml-mode toc-org thrift tagedit stan-mode spray spotify spacemacs-theme spaceline smex smeargle slime-company slim-mode shell-pop scss-mode scad-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder restclient restart-emacs request rbenv ranger rainbow-mode rainbow-identifiers rainbow-delimiters racer quelpa qml-mode pyvenv pytest pyenv-mode py-isort pug-mode psci psc-ide projectile-rails popwin pip-requirements phpunit phpcbf php-extras php-auto-yasnippets persp-mode pbcopy paradox pandoc-mode pacmacs p4 ox-pandoc ox-gfm osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-journal org-download org-bullets open-junk-file ob-http neotree mwim multi-term mu4e-maildirs-extension mu4e-alert move-text monokai-theme mmm-mode minitest mingus matlab-mode markdown-toc magit-gitflow magit-gh-pulls lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode ledger-mode launchctl julia-mode json-mode js2-refactor js-doc ivy-hydra intero insert-shebang info+ indent-guide idris-mode ido-vertical-mode hy-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-make haskell-snippets hackernews google-translate golden-ratio go-guru go-eldoc gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md geiser flyspell-correct-ivy flycheck-rust flycheck-pos-tip flycheck-ledger flycheck-haskell flycheck-elm flx-ido fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help erc-yt erc-view-log erc-terminal-notifier erc-social-graph erc-image erc-hl-nicks engine-mode emoji-cheat-sheet-plus emmet-mode elm-mode elisp-slime-nav dumb-jump drupal-mode disaster diff-hl deft cython-mode counsel-projectile company-web company-tern company-statistics company-shell company-go company-ghci company-ghc company-emoji company-cabal company-c-headers company-auctex company-anaconda common-lisp-snippets column-enforce-mode color-identifiers-mode coffee-mode cmm-mode cmake-mode clean-aindent-mode clang-format chruby chess cargo bundler bracketed-paste beacon auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile arduino-mode aggressive-indent adaptive-wrap ace-window ace-link ac-ispell 2048-game)))
  '(paradox-github-token t)
- '(pos-tip-background-color "#A6E22E")
+ '(pos-tip-background-color "#FFFACE")
  '(pos-tip-foreground-color "#272822")
  '(psc-ide-add-import-on-completion t t)
  '(psc-ide-rebuild-on-save nil t)
@@ -782,7 +743,8 @@ you should place your code here."
      (360 . "#66D9EF"))))
  '(vc-annotate-very-old-color nil)
  '(weechat-color-list
-   (unspecified "#272822" "#20240E" "#F70057" "#F92672" "#86C30D" "#A6E22E" "#BEB244" "#E6DB74" "#40CAE4" "#66D9EF" "#FB35EA" "#FD5FF0" "#74DBCD" "#A1EFE4" "#F8F8F2" "#F8F8F0")))
+   (quote
+    (unspecified "#272822" "#3C3D37" "#F70057" "#F92672" "#86C30D" "#A6E22E" "#BEB244" "#E6DB74" "#40CAE4" "#66D9EF" "#FB35EA" "#FD5FF0" "#74DBCD" "#A1EFE4" "#F8F8F2" "#F8F8F0"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
