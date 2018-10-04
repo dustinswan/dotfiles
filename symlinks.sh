@@ -15,7 +15,8 @@ mkdir ~/.ssh; ln -sf ~/dotfiles/ssh/config ~/.ssh/config
 mkdir -p ~/.config/khard; ln -sf ~/dotfiles/khard.conf ~/.config/khard/khard.conf
 mkdir -p ~/.config/qutebrowser; ln -sf ~/dotfiles/qutebrowser.py ~/.config/qutebrowser/config.py
 mkdir -p ~/.config/alacritty; ln -sf ~/dotfiles/alacritty.yml ~/.config/alacritty/alacritty.py
-mkdir -p ~/.config/rtv; ln -sf ~/dotfiles/rtv.cfg ~/.config/rtv.cfg
+mkdir -p ~/.config/rtv; ln -sf ~/dotfiles/rtv.cfg ~/.config/rtv/rtv.cfg
+mkdir -p ~/.newsboat; ln -sf ~/dotfiles/newsboat ~/.newsboat/config
 ln -sf ~/dotfiles/mailcap ~/.mailcap
 
 # Mail stuff
