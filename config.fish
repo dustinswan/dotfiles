@@ -21,18 +21,17 @@ end
 
 # IOCOM stuff
 alias er='rm -rf logs; unzip -o'
-if command --search p4 >/dev/null
-    set -x P4USER dswan
-    set -x P4PORT "humu.iocom.com:1666"
-    set -x P4CONFIG p4.cfg
-    set -x P4EDITOR nvim
-    set -x P4IGNORE .ignore
-end
+set -x P4USER dswan
+set -x P4PORT "humu.iocom.com:1666"
+set -x P4CONFIG p4.cfg
+set -x P4EDITOR nvim
+set -x P4IGNORE .ignore
 
 # PATH
 test -e $HOME/dotfiles/bin ; and set -x PATH $HOME/dotfiles/bin $PATH
 test -e $HOME/flutter/bin ; and set -x PATH $HOME/flutter/bin $PATH
 test -e $HOME/.local/bin ; and set -x PATH $HOME/.local/bin $PATH
+test -e $HOME/.cargo ; and set -x PATH $HOME/.cargo $PATH
 test -e $HOME/.npm-packeges/bin ; and set -x PATH $HOME/.npm-packages/bin $PATH
 test -e /usr/local/opt/python/libexec/bin ; and set -x PATH /usr/local/opt/python/libexec/bin $PATH
 test -e $HOME/.cargo/bin ; and set -x PATH $HOME/.cargo/bin $PATH

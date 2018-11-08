@@ -1,3 +1,4 @@
+# xrandr --output DP-4 --rotate right
 setxkbmap -option ctrl:nocaps -option compose:ralt
 xcape -e 'Control_L=Escape'
 xmodmap -e "keycode 96 = dead_greek dead_greek dead_greek dead_greek"
@@ -6,5 +7,5 @@ sh ~/dotfiles/logitech_linux_mouse.sh
 xsetroot -solid black -cursor_name left_ptr
 nitrogen --restore &
 # feh --bg-fill ~/Sync/Pictures/Wallpaper/space2.jpg
-qsyncthingtray &
-xscreensaver &
+# qsyncthingtray &
+# xscreensaver &

@@ -29,9 +29,9 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+e exec dmenu_run
-bindsym Mod1+space exec "rofi -show combi"
-bindsym Mod1+Mod4+Ctrl+e exec "emacsclient -c"
-bindsym Mod1+Mod4+Ctrl+b exec "qutebrowser"
+bindsym $mod+space exec "rofi -show combi"
+bindsym $mod+Shift+e exec "emacsclient -c"
+bindsym $mod+Shift+b exec "firefox"
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
@@ -79,7 +79,7 @@ bindsym $mod+period layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+bindsym $mod+Ctrl+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -197,4 +197,4 @@ mode "$mode_gaps_outer" {
 }
 
 exec "polybar top"
-
+exec --no-startup-id xautolock -time 10 -locker 'i3lock-pixeled'
