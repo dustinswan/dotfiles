@@ -1,4 +1,0 @@
-#!/bin/sh
-export IGVERBOSE=3
-[ -s /opt/visimeet/visimeet ] && /opt/visimeet/visimeet --nologin &
-[ -s /Applications/Visimeet\ Old.app/Contents/MacOS/visimeet ] && /Applications/Visimeet\ Old\.app/Contents/MacOS/visimeet --nologin --remote-debugging-port=1234 &

@@ -1,6 +1,6 @@
 * Dotfiles
 
-I run OS X on my laptop and [[http://nixos.org][NixOS]] GNU/Linux on my desktop.
+I run macOS on my laptop and [[http://nixos.org][NixOS]] GNU/Linux on my desktop.
 
 After ~15 years with Vim &
 [[https://tmux.github.io/][Tmux]]/[[https://www.gnu.org/software/screen/][GNU
@@ -12,7 +12,7 @@ Screen]], I've mostly switched to
 
 If you
 - like Vim's modal UI
-- like Lisp better than Vimscript (yes, I know about neovim)
+- like Lisp better than Vimscript
 - want a huge, ancient hacker community & ecosystem
 
 then I suggest checking out Emacs & Spacemacs. Emacs really is a
@@ -25,8 +25,7 @@ great operating system, and now it has a great editor!
    [[http://www.djcbsoftware.nl/code/mu/mu4e.html][mu4e]] via
    [[https://www.fastmail.com/][Fastmail]]
 -  Terminal: [[http://www.emacswiki.org/emacs/MultiTerm][multiterm]] &
-   [[http://www.iterm2.com][iTerm 2]] (OS X) &
-   [[https://github.com/jwilm/alacritty][alacritty]] (Linux)
+   [[https://github.com/jwilm/alacritty][alacritty]] (Linux & macOS)
 -  Shell:
    [[http://www.gnu.org/software/emacs/manual/html_mono/eshell.html][EShell]]
    & [[http://www.fishshell.com][Fish]]
@@ -36,8 +35,7 @@ great operating system, and now it has a great editor!
 -  IRC & IM & chat: [[https://weechat.org/][WeeChat]] & [[https://bitlbee.org/][Bitlbee]] & [[https://github.com/the-kenny/weechat.el][weechat.el]]
 -  Notes & to-do lists & bookmarks & spreadsheets & journal & everything, really:
    [[http://orgmode.org][Org mode]]
--  Window Manager: [[http://www.alfredapp.com][Alfred]] (OS
-   X) & [[https://i3wm.org/][i3]] (or [[http://xmonad.org][xmonad]], depending on the month..) (Linux)
+-  Window Manager: [[http://www.alfredapp.com][Alfred]] (macOS) & [[https://i3wm.org/][i3]] (or [[http://xmonad.org][xmonad]], depending on the month..) (Linux)
 -  Sync: [[https://syncthing.net][Syncthing]]
 -  RSS Reader: [[https://feedly.com/][Feedly]] & [[https://github.com/skeeto/elfeed][Elfeed]]
 
