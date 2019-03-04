@@ -23,6 +23,7 @@ ln -sf ~/dotfiles/mailcap ~/.mailcap
 ln -sf ~/dotfiles/offlineimaprc ~/.offlineimaprc
 ln -sf ~/dotfiles/msmtprc ~/.msmtprc
 ln -sf ~/dotfiles/muttrc ~/.muttrc
+ln -sf ~/dotfiles/mutt ~/.mutt
 
 # Mac only
 mkdir -p ~/.config/karabiner; ln -sf ~/dotfiles/karabiner.json ~/.config/karabiner/karabiner.json
@@ -48,3 +49,6 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.g
 mv ~/.emacs.d ~/.emacs.bak
 git clone --recursive http://github.com/syl20bnr/spacemacs ~/.emacs.d
 ln -sf ~/dotfiles/spacemacs ~/.spacemacs
+
+# NixOS Home Manager
+ln -sf ~/dotfiles/home.nix ~/.config/nixpkgs/home.nix
