@@ -2,7 +2,7 @@
 setxkbmap -option ctrl:nocaps -option compose:ralt
 xcape -e 'Control_L=Escape'
 xmodmap -e "keycode 96 = dead_greek dead_greek dead_greek dead_greek"
-compton -b --inactive-opacity 0.90
+# compton -b --inactive-opacity 0.90
 sh ~/dotfiles/logitech_linux_mouse.sh
 xsetroot -solid black -cursor_name left_ptr
 nitrogen --restore &

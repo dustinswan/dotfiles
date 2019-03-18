@@ -20,18 +20,18 @@ font pango:Iosevka Nerd Font Regular 8
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
-# bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec alacritty
-
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
+# bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec alacritty
 bindsym $mod+e exec dmenu_run
 bindsym $mod+space exec "rofi -show combi"
 bindsym $mod+Shift+e exec "emacsclient -c"
 bindsym $mod+Shift+b exec "firefox"
+bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 1+ unmute"
+bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 1- unmute"
+bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
@@ -196,5 +196,4 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
-exec "polybar top"
-exec --no-startup-id xautolock -time 10 -locker 'i3lock-pixeled'
+# exec --no-startup-id xautolock -time 10 -locker 'i3lock-pixeled'

@@ -61,6 +61,7 @@ Plug 'bitc/vim-hdevtools'
 "Plug 'enomsg/vim-haskellConcealPlus'
 Plug 'ryanoasis/vim-devicons'
 Plug 'dart-lang/dart-vim-plugin'
+Plug 'TaDaa/vimade'
 
 " Themes
 "Plug 'w0ng/vim-hybrid'

@@ -19,7 +19,8 @@ remotepasseval = decrypt_password(".iocom-password.gpg")
 realdelete = no
 ssl = yes
 # sslcacertfile = ~/.nix-profile/etc/ssl/certs/ca-bundle.crt
-sslcacertfile = /usr/local/etc/openssl/cert.pem
+# sslcacertfile = /usr/local/etc/openssl/cert.pem
+sslcacertfile =  /etc/ssl/certs/ca-bundle.crt
 
 [Account FastMail]
 localrepository = FastMailLocal
@@ -36,5 +37,6 @@ remoteuser = dustinswan@fastmail.com
 remotepasseval = decrypt_password(".dustinswan@fastmail.com-password.gpg")
 realdelete = no
 # sslcacertfile = ~/.nix-profile/etc/ssl/certs/ca-bundle.crt
-sslcacertfile = /usr/local/etc/openssl/cert.pem
+# sslcacertfile = /usr/local/etc/openssl/cert.pem
+sslcacertfile =  /etc/ssl/certs/ca-bundle.crt
 ssl = yes

@@ -12,6 +12,7 @@ set edit_headers=yes
 # set record=+sent
 # set postponed=+drafts
 # set mbox_type=Maildir
+set sidebar_visible
 
 mailboxes +inbox
 
