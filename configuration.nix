@@ -8,7 +8,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./vpn.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
@@ -36,25 +35,17 @@
 
     inputMethod = {
       enabled = "fcitx";
-      fcitx.engines = with pkgs.fcitx-engines; [ anthy mozc ];
+      fcitx.engines = with pkgs.fcitx-engines; [ anthy mozc libpinyin ];
     };
   };
 
-  time.timeZone = "US/Eastern";
+  time.timeZone = "America/New_York";
 
-  environment.systemPackages = with pkgs; [
-    wget vim clipit compton feh firefox fzf git gparted gucharmap htop keepass keepassx2 keychain ncmpcpp neovim pandoc polybar qutebrowser rofi silver-searcher tmux tree unzip wirelesstools xcape xclip anki pavucontrol ranger blueman gifsicle networkmanager paprefs steam xscreensaver hledger hledger-web ledger mpv nnn nodejs pinentry vlc gnupg nitrogen alacritty wine tldr yarn spotify signal-desktop mu mosh ispell google-chrome emacs-all-the-icons-fonts gnupg python udiskie veracrypt bashmount exfat exfat-utils neofetch w3m toot rtv newsboat neomutt dunst
-  ];
+  # environment.systemPackages = with pkgs; [
+  # ];
 
   nixpkgs.config = {
     allowUnfree = true;
-
-    packageOverrides = pkgs: rec {
-      polybar = pkgs.polybar.override {
-        i3Support = true;
-        mpdSupport = true;
-      };
-    };
   };
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -62,12 +53,12 @@
   # programs.bash.enableCompletion = true;
   # programs.mtr.enable = true;
 
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
-
   services = {
+    zerotierone = {
+      enable = true;
+      joinNetworks = [ "1d719394045bb17d" ];
+    };
+
     # Enable the OpenSSH daemon.
     # services.openssh.enable = true;
 
@@ -75,36 +66,14 @@
       enable = true;
     };
 
-    mopidy = {
-      enable = true;
-      extensionPackages = [ pkgs.mopidy-spotify pkgs.mopidy-youtube pkgs.mopidy-iris ];
-      configuration = ''
-        [audio]
-        output = pulsesink server=127.0.0.1
-
-        [local]
-        enabled = true
-        media_dir = /home/dustinswan/Music
-
-        [spotify]
-        enabled = true
-        username =
-        password =
-        client_id =
-        client_secret =
-        bitrate = 320
-
-        [scrobbler]
-        enabled = true
-        username = dustinswan
-      '';
-    };
-
     locate.enable = true;
 
     udisks2.enable = true;
 
-    printing.enable = true;
+    printing = {
+      enable = true;
+      drivers = [ pkgs.gutenprint pkgs.brlaser ];
+    };
 
     upower.enable = true;
 
@@ -128,57 +97,33 @@
       displayManager = {
         lightdm.enable = true;
         lightdm.background = "/home/dustinswan/Sync/Pictures/Wallpaper/green_squares.png";
-        lightdm.autoLogin.user = "dustinswan";
-        sessionCommands = ''
-          setxkbmap -option ctrl:nocaps -option compose:ralt
-          xcape -e 'Control_L=Escape'
-          xmodmap -e "keycode 96 = dead_greek dead_greek dead_greek dead_greek"
-          compton -b --inactive-opacity 0.90
-          sh ~/dotfiles/logitech_linux_mouse.sh
-          xsetroot -solid black -cursor_name left_ptr
-          nitrogen --restore &
-          qsyncthingtray &
-          pasystray &
-        '';
+        # sessionCommands = ''
+        #   setxkbmap -option ctrl:nocaps -option compose:ralt
+        #   xcape -e 'Control_L=Escape'
+        #   xmodmap -e "keycode 96 = dead_greek dead_greek dead_greek dead_greek"
+        #   compton -b --inactive-opacity 0.90
+        #   sh ~/dotfiles/logitech_linux_mouse.sh
+        #   xsetroot -solid black -cursor_name left_ptr
+        #   nitrogen --restore &
+        #   qsyncthingtray &
+        #   pasystray &
+        # '';
       };
 
       windowManager = {
         i3 = {
           enable = true;
           package = pkgs.i3-gaps;
-          extraPackages = with pkgs; [
-            dmenu
-            i3status
-            i3lock
-          ];
         };
 
         default = "i3";
       };
     };
 
-    syncthing = {
-      enable = true;
-      dataDir = "/home/dustinswan";
-      user = "dustinswan";
-    };
-
-    urxvtd.enable = true;
-
-    emacs = {
-      enable = true;
-      defaultEditor = true;
-    };
-
-    ipfs = {
-      enable = true;
-    };
-
     synergy.server = {
       enable = true;
       screenName = "pc";
     };
-
   };
 
   hardware = {
@@ -199,8 +144,6 @@
   sound.enable = true;
   sound.mediaKeys.enable = true;
 
-  programs.fish.enable = true;
-
   fonts = {
     enableFontDir = true;
     fonts = with pkgs; [
@@ -213,13 +156,15 @@
 
   virtualisation.virtualbox.host.enable = true;
 
+  virtualisation.docker.enable = true;
+
   users.users.dustinswan = {
     createHome = true;
     description = "Dustin Swan";
     isNormalUser = true;
-    extraGroups = [ "wheel" "sound" "pulse" "audio" "networkmanager" "vboxusers" ];
+    extraGroups = [ "wheel" "sound" "pulse" "audio" "networkmanager" "vboxusers" "docker" ];
     uid = 1000;
-    shell = pkgs.fish;
+    shell = pkgs.zsh;
   };
 
   environment.etc."synergy-server.conf" = { text = ''
@@ -228,16 +173,18 @@
       mac:
     end
 
-    section: aliases
+    section: links
       mac:
-        192.168.1.2
+        left = pc
+      pc:
+        right = mac
     end
 
-    section: links
-      pc:
-        left = mac
-      mac:
-        right = pc
+    section: options
+      keystroke(super+tilde) = switchInDirection(left)
+      keystroke(super+backspace) = switchInDirection(right)
+      mousebutton(6) = keystroke(WWWBack)
+      mousebutton(7) = keystroke(WWWForward)
     end
   ''; };
 

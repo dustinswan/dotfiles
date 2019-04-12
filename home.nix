@@ -132,7 +132,7 @@
     enableAutosuggestions = true;
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "sudo" ];
+      plugins = [ "git" ];
       theme = "refined";
     };
     shellAliases = {
