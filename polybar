@@ -138,7 +138,7 @@ ramp-coreload-7-foreground = #ff5555
 
 [module/date]
 type = internal/date
-date =   %%{F#99}%Y-%m-%d%%{F-} %%{F#fff}%H:%M%%{F-}
+date =   %%{F#99}%m-%d%%{F-} %%{F#fff}%H:%M%%{F-}
 date-alt =   %%{F#fff}%A, %d %B %Y %%{F#fff}%H:%M%%{F#666}:%%{F#fba922}%S%%{F-}
 
 [module/memory]
@@ -146,7 +146,7 @@ type = internal/memory
 format = <label> <bar-used>
 label = RAM %percentage_used%%
 
-bar-used-width = 12
+bar-used-width = 8
 bar-used-foreground-0 = #aaff77
 bar-used-foreground-1 = #aaff77
 bar-used-foreground-2 = #fba922
@@ -173,7 +173,7 @@ icon-repeat = 
 toggle-on-foreground =
 toggle-off-foreground = #55
 
-bar-progress-width = 45
+bar-progress-width = 25
 bar-progress-format = %{A4:mpdseek+2: A5:mpdseek-2:}%fill%%indicator%%empty%%{A A}
 bar-progress-indicator = ┼
 bar-progress-indicator-foreground = #ff
@@ -188,9 +188,9 @@ interface = wlp5s0
 interval = 3.0
 ping-interval = 10
 
-format-connected = <ramp-signal> <label-connected>
+format-connected = <ramp-signal>
 label-connected = %essid%
-label-disconnected = %{T2}睊 %{T-} not connected
+label-disconnected = %{T2}睊 %{T-}
 label-disconnected-foreground = #66
 
 ramp-signal-font = 2
@@ -211,7 +211,7 @@ type = internal/network
 interface = enp0s31f6
 interval = 3.0
 
-label-connected = %{T2}ﯱ %{T-} %local_ip%
+label-connected = %{T2}ﯱ %{T-}
 label-disconnected-foreground = #66
 
 [module/volume]
@@ -229,7 +229,7 @@ ramp-volume-0 = 奄
 ramp-volume-1 = 奔
 ramp-volume-2 = 墳
 
-bar-volume-width = 12
+bar-volume-width = 8
 bar-volume-foreground-0 = #aaff77
 bar-volume-foreground-1 = #aaff77
 bar-volume-foreground-2 = #fba922
