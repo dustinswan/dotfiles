@@ -1,13 +1,9 @@
 #!/bin/bash
 
-# ln -sf ~/dotfiles/zshrc ~/.zshrc
-mkdir -p ~/.config/fish; ln -sf ~/dotfiles/config.fish ~/.config/fish/config.fish
-curl -Lo ~/.config/fish/functions/fisher.fish --create-dirs https://git.io/fisher
-ln -sf ~/dotfiles/fishfile ~/.config/fish/fishfile
 mkdir ~/.ghc; ln -sf ~/dotfiles/ghci.conf ~/.ghc/ghci.conf
 ln -sf ~/dotfiles/gitconfig ~/.gitconfig
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
+# git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+# ln -sf ~/dotfiles/tmux.conf ~/.tmux.conf
 mkdir -p ~/.config/khal; ln -sf ~/dotfiles/khal.conf ~/.config/khal/config
 mkdir ~/.config/vdirsyncer; ln -sf ~/dotfiles/vdirsyncer/config ~/.config/vdirsyncer/config
 mkdir ~/.gnupg; ln -sf ~/dotfiles/gpg-agent.conf ~/.gnupg/gpg-agent.conf
