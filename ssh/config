@@ -1,3 +1,7 @@
+Host visionable
+    HostName dswan.visionable.com
+    User ec2-user
+
 Host dswan
     HostName dswan.iocom.com
     User root
