@@ -117,9 +117,24 @@
   programs.htop.enable = true;
   programs.jq.enable = true;
   programs.vscode.enable = true;
-  programs.fish = {
+  # programs.fish = {
+  #   enable = true;
+  #   shellAliases = {
+  #     l = "ls -la";
+  #     ta = "tmux attach -d";
+  #     e = "emacsclient -a \"\" -t -nw";
+  #     weather = "curl http://wttr.in";
+  #     er = "rm -rf logs; unzip -o";
+  #   };
+  # };
+  programs.zsh = {
     enable = true;
-    # interactiveShellInit = builtins.readFile ~/dotfiles/config.fish;
+    enableAutosuggestions = true;
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "git" "sudo" ];
+      theme = "refined";
+    };
     shellAliases = {
       l = "ls -la";
       ta = "tmux attach -d";
@@ -129,7 +144,10 @@
     };
   };
   programs.firefox.enable = true;
-  programs.fzf.enable = true;
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
   programs.feh.enable = true;
   programs.git = {
     enable = true;
@@ -149,9 +167,11 @@
   };
   programs.keychain = {
     enable = true;
+    enableZshIntegration = true;
     inheritType = "any";
     agents = ["gpg" "ssh"];
     keys = ["id_rsa" "2B3A6377"];
+    # extraFlags = "--quiet";
   };
   programs.rofi = {
     enable = true;

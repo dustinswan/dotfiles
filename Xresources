@@ -9,7 +9,7 @@ rofi.color-normal: #00000000, #ffffff, #22000000, #88ffffff, #000000
 rofi.color-active: #44000000, #ffffff, #66000000, #44000000, #ffffff
 rofi.hide-scrollbar: true
 rofi.combi-modi: window,run,ssh
-rofi.run-command: fish -c '{cmd}'
+! rofi.run-command: fish -c '{cmd}'
 
 ! urxvt
 urxvt*internalBorder: 12
