@@ -109,9 +109,11 @@ values."
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages
    '(
+     emms
+     w3m
      elfeed-protocol
-     all-the-icons
-     spaceline-all-the-icons
+     ;; all-the-icons
+     ;; spaceline-all-the-icons
      hackernews
      chess
      wttrin
@@ -121,6 +123,7 @@ values."
      org-journal
      vdirel
      circe
+     nix-mode
      (vue-mode :location (recipe :fetcher github
                                  :repo "codefalling/vue-mode")))
 
@@ -384,20 +387,23 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
+  (setq prettify-symbols-unprettify-at-point t)
+  (global-prettify-symbols-mode +1)
+
   (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
   (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
   (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
   (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
 
-  (use-package spaceline-all-the-icons
-      :after spaceline
-      :config
-      (spaceline-all-the-icons-theme))
-  (setq neo-theme 'icons)
-  (spaceline-all-the-icons--setup-package-updates)
-  (spaceline-all-the-icons--setup-git-ahead)
-  (spaceline-all-the-icons--setup-paradox)
-  (spaceline-all-the-icons--setup-neotree)
+  ;; (use-package spaceline-all-the-icons
+  ;;     :after spaceline
+  ;;     :config
+  ;;     (spaceline-all-the-icons-theme))
+  ;; (setq neo-theme 'icons)
+  ;; (spaceline-all-the-icons--setup-package-updates)
+  ;; (spaceline-all-the-icons--setup-git-ahead)
+  ;; (spaceline-all-the-icons--setup-paradox)
+  ;; (spaceline-all-the-icons--setup-neotree)
 
   ;; (setq monokai-background "#000000")
 
@@ -421,7 +427,7 @@ you should place your code here."
 
   (use-package vue-mode)
 
-  ;; (spacemacs/enable-transparency)
+  (spacemacs/enable-transparency)
 
   (defun my-focus-new-frame (frame)
     (spacemacs/toggle-transparent-frame))
@@ -455,8 +461,7 @@ you should place your code here."
                        (mu4e-sent-folder . "/FastMail/INBOX.Sent")
                        (mu4e-drafts-folder . "/FastMail/INBOX.Drafts")
                        (mu4e-refile-folder . "/FastMail/INBOX.Archive")
-                       (mu4e-trash-folder . "/FastMail/INBOX.Trash")
-                       (user-full-name . "Dustin Swan")))
+                       (mu4e-trash-folder . "/FastMail/INBOX.Trash")))
 
              ,(make-mu4e-context
                :name "IOCOM"
@@ -467,15 +472,15 @@ you should place your code here."
                                (string-match-p (regexp-quote "IOCOM") (mu4e-message-field msg :maildir))))
                :vars '((user-mail-address . "dswan@iocom.com")
                        (mu4e-sent-messages-behavior . sent)
-                       (mu4e-sent-folder . "/IOCOM/INBOX.Sent")
-                       (mu4e-drafts-folder . "/IOCOM/INBOX.Drafts")
-                       (mu4e-refile-folder . "/IOCOM/INBOX.Archive")
-                       (mu4e-trash-folder . "/IOCOM/INBOX.Trash")
-                       (user-full-name . "Dustin Swan")))))
+                       (mu4e-sent-folder . "/IOCOM/Sent Items")
+                       (mu4e-drafts-folder . "/IOCOM/Drafts")
+                       (mu4e-refile-folder . "/IOCOM/INBOX.Archive") ;; Exchange is broken I think.. I can't move this
+                       (mu4e-trash-folder . "/IOCOM/Deleted Items")))))
 
     (setq mu4e-context-policy 'pick-first)
 
     (require 'mu4e-contrib)
+
     (setq mu4e-maildir "~/Mail"
           user-full-name "Dustin Swan"
           mu4e-user-mail-address-list '("dustin@dustinswan.com"
@@ -492,19 +497,21 @@ you should place your code here."
           mu4e-view-show-addresses t
           mu4e-view-show-images t
           mu4e-view-prefer-html nil
-          ;; mu4e-html2text-command 'mu4e-shr2text
-          mu4e-html2text-command "w3m -dump -T text/html"
-          w3m-command "/usr/local/bin/w3m"
+          ;; mu4e-use-fancy-chars t
+          mu4e-html2text-command 'mu4e-shr2text
+          ;; mu4e-html2text-command "w3m -dump -T text/html"
+          ;; w3m-command "/usr/local/bin/w3m"
 
           org-mu4e-link-query-in-headers-mode nil
 
           ;; Sending Mail
+          mu4e-sent-messages-behavior 'sent
           message-send-mail-function 'message-send-mail-with-sendmail
           message-sendmail-extra-arguments '("--read-envelope-from")
-          message-sendmail-f-is-evil 't
-          sendmail-program "/usr/local/bin/msmtp"
+          message-sendmail-f-is-evil t
+          sendmail-program "~/.nix-profile/bin/msmtp"
 
-          mu4e-hide-index-messages 't)
+          mu4e-hide-index-messages t)
 
     (when (fboundp 'imagemagick-register-types)
       (imagemagick-register-types))
@@ -529,8 +536,13 @@ you should place your code here."
 
     (setq message-kill-buffer-on-exit t)
 
-    (with-eval-after-load 'mu4e-alert
-      (mu4e-alert-set-default-style 'notifier))
+    (when (spacemacs/system-is-mac)
+      (with-eval-after-load 'mu4e-alert
+        (mu4e-alert-set-default-style 'notifier)))
+
+    (when (spacemacs/system-is-linux)
+      (with-eval-after-load 'mu4e-alert
+        (mu4e-alert-set-default-style 'notifications)))
 
     (setq mu4e-alert-interesting-mail-query
           (concat
@@ -539,6 +551,29 @@ you should place your code here."
            " AND (maildir:/Fastmail/INBOX"
            " OR maildir:/IOCOM/INBOX)"
            ))
+
+    ;; mu4e toggle html images
+    (defvar killdash9/mu4e~view-html-images nil
+      "Whether to show images in html messages")
+
+    (defun killdash9/mu4e-view-toggle-html-images ()
+      "Toggle image-display of html message."
+      (interactive)
+      (setq-local killdash9/mu4e~view-html-images (not killdash9/mu4e~view-html-images))
+      (message "Images are %s" (if killdash9/mu4e~view-html-images "on" "off"))
+      (mu4e-view-refresh))
+
+    (defun mu4e-shr2text (msg)
+      "Convert html in MSG to text using the shr engine; this can be
+used in `mu4e-html2text-command' in a new enough emacs. Based on
+code by Titus von der Malsburg."
+      (lexical-let ((view-images killdash9/mu4e~view-html-images))
+        (mu4e~html2text-wrapper
+         (lambda ()
+           (let ((shr-inhibit-images (not view-images)))
+             (shr-render-region (point-min) (point-max)))) msg)))
+
+    (define-key mu4e-view-mode-map "I" 'killdash9/mu4e-view-toggle-html-images)
   )
 
   (setenv "P4USER" "dswan")
@@ -588,7 +623,7 @@ you should place your code here."
     (setq org-directory "~/Sync/Notes/")
     (setq org-refile-targets '((org-agenda-files :maxlevel . 9)))
     (setq org-reverse-note-order t)
-    (setq org-log-into-drawer t)
+    ;; (setq org-log-into-drawer t) ;; this just grows forever..
     (add-to-list 'org-modules 'org-habit)
 
     (setq org-todo-keywords
@@ -701,17 +736,18 @@ you should place your code here."
      ("#A75B00" . 70)
      ("#F309DF" . 85)
      ("#3C3D37" . 100))))
- '(js-indent-level 2 t)
- '(js2-basic-offset 2 t)
+ '(js-indent-level 2)
+ '(js2-basic-offset 2)
  '(mac-auto-operator-composition-mode t)
  '(magit-diff-use-overlays nil)
  '(monokai-use-variable-pitch nil)
+ '(mu4e-use-fancy-chars nil)
  '(ns-auto-hide-menu-bar nil)
  '(org-journal-date-format "%A, %B %d, %Y")
  '(org-journal-time-format "%R %Z")
  '(package-selected-packages
    (quote
-    (elfeed-protocol treepy graphql weechat restclient-helm helm-spotify-plus tracking symon org-mime elfeed-web elfeed-org elfeed-goodies ace-jump-mode noflet elfeed hledger-mode let-alist ghub zeal-at-point edit-indirect ssass-mode vue-html-mode org-vcard oauth gntp libmpdee json-snatcher json-reformat prop-menu parent-mode fringe-helper git-gutter+ git-gutter marshal logito ht pos-tip flx anzu goto-chg pkg-info epl web-completion-data dash-functional seq pythonic popup dash-at-point counsel-dash helm-dash visual-fill-column org-category-capture ghc undo-tree s spaceline-all-the-icons all-the-icons memoize font-lock+ diminish pdf-tools tablist f winum unfill sudoku ob-restclient multiple-cursors fuzzy company-restclient know-your-http-well flyspell-correct log4e async mmt slime rust-mode bind-key packed auto-complete avy tern iedit bind-map evil simple-httpd pcache alert php-mode purescript-mode haml-mode markdown-mode htmlize vue-mode circe rcirc-notify rcirc-color helm-themes helm-swoop helm-spotify multi helm-pydoc helm-projectile helm-mode-manager helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag flyspell-correct-helm ace-jump-helm-line csv-mode inflections spinner org anaconda-mode swiper highlight projectile skewer-mode js2-mode gh magit-popup git-commit hydra inf-ruby pcre2el macrostep dash powerline auctex counsel smartparens go-mode haskell-mode flycheck magit with-editor yasnippet rake company ivy helm helm-core xterm-color auctex-latexmk yapfify yaml-mode xkcd wttrin ws-butler writeroom-mode wolfram-mode window-numbering which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe vdirel uuidgen use-package typit twittering-mode tumblesocks toml-mode toc-org thrift tagedit stan-mode spray spotify spacemacs-theme spaceline smex smeargle slime-company slim-mode shell-pop scss-mode scad-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder restclient restart-emacs request rbenv ranger rainbow-mode rainbow-identifiers rainbow-delimiters racer quelpa qml-mode pyvenv pytest pyenv-mode py-isort pug-mode psci psc-ide projectile-rails popwin pip-requirements phpunit phpcbf php-extras php-auto-yasnippets persp-mode pbcopy paradox pandoc-mode pacmacs p4 ox-pandoc ox-gfm osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-journal org-download org-bullets open-junk-file ob-http neotree mwim multi-term mu4e-maildirs-extension mu4e-alert move-text monokai-theme mmm-mode minitest mingus matlab-mode markdown-toc magit-gitflow magit-gh-pulls lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode ledger-mode launchctl julia-mode json-mode js2-refactor js-doc ivy-hydra intero insert-shebang info+ indent-guide idris-mode ido-vertical-mode hy-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-make haskell-snippets hackernews google-translate golden-ratio go-guru go-eldoc gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md geiser flyspell-correct-ivy flycheck-rust flycheck-pos-tip flycheck-ledger flycheck-haskell flycheck-elm flx-ido fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help erc-yt erc-view-log erc-terminal-notifier erc-social-graph erc-image erc-hl-nicks engine-mode emoji-cheat-sheet-plus emmet-mode elm-mode elisp-slime-nav dumb-jump drupal-mode disaster diff-hl deft cython-mode counsel-projectile company-web company-tern company-statistics company-shell company-go company-ghci company-ghc company-emoji company-cabal company-c-headers company-auctex company-anaconda common-lisp-snippets column-enforce-mode color-identifiers-mode coffee-mode cmm-mode cmake-mode clean-aindent-mode clang-format chruby chess cargo bundler bracketed-paste beacon auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile arduino-mode aggressive-indent adaptive-wrap ace-window ace-link ac-ispell 2048-game)))
+    (reformatter transient lv nix-mode org-plus-contrib emms w3m elfeed-protocol treepy graphql weechat restclient-helm helm-spotify-plus tracking symon org-mime elfeed-web elfeed-org elfeed-goodies ace-jump-mode noflet elfeed hledger-mode let-alist ghub zeal-at-point edit-indirect ssass-mode vue-html-mode org-vcard oauth gntp libmpdee json-snatcher json-reformat prop-menu parent-mode fringe-helper git-gutter+ git-gutter marshal logito ht pos-tip flx anzu goto-chg pkg-info epl web-completion-data dash-functional seq pythonic popup dash-at-point counsel-dash helm-dash visual-fill-column org-category-capture ghc undo-tree s spaceline-all-the-icons all-the-icons memoize font-lock+ diminish pdf-tools tablist f winum unfill sudoku ob-restclient multiple-cursors fuzzy company-restclient know-your-http-well flyspell-correct log4e async mmt slime rust-mode bind-key packed auto-complete avy tern iedit bind-map evil simple-httpd pcache alert php-mode purescript-mode haml-mode markdown-mode htmlize vue-mode circe rcirc-notify rcirc-color helm-themes helm-swoop helm-spotify multi helm-pydoc helm-projectile helm-mode-manager helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag flyspell-correct-helm ace-jump-helm-line csv-mode inflections spinner org anaconda-mode swiper highlight projectile skewer-mode js2-mode gh magit-popup git-commit hydra inf-ruby pcre2el macrostep dash powerline auctex counsel smartparens go-mode haskell-mode flycheck magit with-editor yasnippet rake company ivy helm helm-core xterm-color auctex-latexmk yapfify yaml-mode xkcd wttrin ws-butler writeroom-mode wolfram-mode window-numbering which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe vdirel uuidgen use-package typit twittering-mode tumblesocks toml-mode toc-org thrift tagedit stan-mode spray spotify spacemacs-theme spaceline smex smeargle slime-company slim-mode shell-pop scss-mode scad-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder restclient restart-emacs request rbenv ranger rainbow-mode rainbow-identifiers rainbow-delimiters racer quelpa qml-mode pyvenv pytest pyenv-mode py-isort pug-mode psci psc-ide projectile-rails popwin pip-requirements phpunit phpcbf php-extras php-auto-yasnippets persp-mode pbcopy paradox pandoc-mode pacmacs p4 ox-pandoc ox-gfm osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-journal org-download org-bullets open-junk-file ob-http neotree mwim multi-term mu4e-maildirs-extension mu4e-alert move-text monokai-theme mmm-mode minitest mingus matlab-mode markdown-toc magit-gitflow magit-gh-pulls lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode ledger-mode launchctl julia-mode json-mode js2-refactor js-doc ivy-hydra intero insert-shebang info+ indent-guide idris-mode ido-vertical-mode hy-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-make haskell-snippets hackernews google-translate golden-ratio go-guru go-eldoc gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md geiser flyspell-correct-ivy flycheck-rust flycheck-pos-tip flycheck-ledger flycheck-haskell flycheck-elm flx-ido fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help erc-yt erc-view-log erc-terminal-notifier erc-social-graph erc-image erc-hl-nicks engine-mode emoji-cheat-sheet-plus emmet-mode elm-mode elisp-slime-nav dumb-jump drupal-mode disaster diff-hl deft cython-mode counsel-projectile company-web company-tern company-statistics company-shell company-go company-ghci company-ghc company-emoji company-cabal company-c-headers company-auctex company-anaconda common-lisp-snippets column-enforce-mode color-identifiers-mode coffee-mode cmm-mode cmake-mode clean-aindent-mode clang-format chruby chess cargo bundler bracketed-paste beacon auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile arduino-mode aggressive-indent adaptive-wrap ace-window ace-link ac-ispell 2048-game)))
  '(paradox-github-token t)
  '(pos-tip-background-color "#FFFACE")
  '(pos-tip-foreground-color "#272822")

@@ -1,10 +1,14 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
-  home.packages = with pkgs; [ bat beets wget clipit keychain ncmpcpp pandoc silver-searcher tmux tree unzip wirelesstools xcape xclip anki pavucontrol ranger blueman gifsicle networkmanager paprefs steam mpv nnn nodejs pinentry vlc gnupg nitrogen alacritty wine tldr yarn spotify signal-desktop mu mosh ispell google-chrome emacs-all-the-icons-fonts gnupg python3 veracrypt bashmount exfat exfat-utils neofetch toot rtv newsboat neomutt i3lock-pixeled nmap p4v killall calc cargo cava diceware magic-wormhole msmtp xorg.xmodmap zip youtube-dl cacert dropbox-cli keepassx2 w3m wireshark-qt khard khal vdirsyncer slack riot-web retroarch ipfs gimp blender
+  home.packages = with pkgs; [ bat wget clipit ncmpcpp pandoc silver-searcher tmux tree unzip wirelesstools xcape xsel anki pavucontrol ranger blueman gifsicle networkmanager paprefs steam mpv nnn nodejs pinentry vlc gnupg nitrogen alacritty wine tldr yarn spotify signal-desktop mu mosh ispell google-chrome emacs-all-the-icons-fonts gnupg python3 python37Packages.pip veracrypt bashmount exfat exfat-utils neofetch toot rtv newsboat neomutt i3lock-pixeled nmap p4v killall calc cargo cava diceware magic-wormhole msmtp xorg.xmodmap zip youtube-dl cacert dropbox-cli keepassx2 w3m wireshark-qt khard khal vdirsyncer slack riot-web retroarch ipfs gimp blender urlview
   ];
 
   home.sessionVariables = {
+    EDITOR = "vim";
+    BROWSER = "firefox";
+    LEDGER_FILE = ~/Sync/Ledger/ledger.ledger;
+
     P4USER = "dswan";
     P4PORT = "humu.iocom.com:1666";
     P4CONFIG = "p4.cfg";
@@ -35,6 +39,9 @@
     maxCacheTtl = 86400;
     defaultCacheTtlSsh = 86400;
     maxCacheTtlSsh = 86400;
+    extraConfig = ''
+      pinentry-program /home/dustinswan/.nix-profile/bin/pinentry
+    '';
   };
 
   services.polybar = {
@@ -50,6 +57,7 @@
 
   services.screen-locker = {
     enable = true;
+    inactiveInterval = 30;
     lockCmd = "${pkgs.i3lock-pixeled}/bin/i3lock-pixeled";
   };
 
@@ -117,6 +125,7 @@
       ta = "tmux attach -d";
       e = "emacsclient -a \"\" -t -nw";
       weather = "curl http://wttr.in";
+      er = "rm -rf logs; unzip -o";
     };
   };
   programs.firefox.enable = true;
@@ -147,6 +156,24 @@
   programs.rofi = {
     enable = true;
   };
+  programs.beets = {
+    enable = true;
+    settings = {
+      directory = "~/Music";
+      library = "~/Music/musiclibrary.db";
+      import = {
+        copy = true;
+      };
+      plugins = [ "lastgenre" "fetchart" "embedart" "lyrics" "scrub" "mpdupdate" ]; # TODO bandcamp
+      lastfm = {
+        user = "dustinswan";
+      };
+      bandcamp = {
+        lyrics = true;
+        art = true;
+      };
+    };
+  };
 
   xsession = {
     enable = true;
@@ -155,14 +182,57 @@
       enable = true;
       package = pkgs.i3-gaps;
       config = {
+        modifier = "Mod4";
+        gaps = {
+          inner = 10;
+          outer = 0;
+          smartBorders = "on";
+        };
+        window = {
+          border = 0;
+          commands = [
+            { criteria = { class = "mpv"; }; command = "floating enable, move absolute position center"; }
+            { criteria = { class = "feh"; }; command = "floating enable, move absolute position center"; }
+          ];
+        };
         bars = [];
         startup = [{
           command = "systemctl --user restart polybar";
           always = true;
           notification = false;
         }];
+        keybindings = let mod = "Mod4"; in lib.mkOptionDefault {
+          "${mod}+space" = "exec \"rofi -show combi\"";
+          "${mod}+Return" = "exec alacritty";
+          "${mod}+Ctrl+Mod1+t" = "exec alacritty";
+          "${mod}+Ctrl+Mod1+e" = "exec \"emacsclient -c\"";
+          "${mod}+Ctrl+Mod1+b" = "exec firefox";
+          "${mod}+h" = "focus left";
+          "${mod}+j" = "focus down";
+          "${mod}+k" = "focus up";
+          "${mod}+l" = "focus right";
+
+          "${mod}+Shift+h" = "move left";
+          "${mod}+Shift+j" = "move down";
+          "${mod}+Shift+k" = "move up";
+          "${mod}+Shift+l" = "move right";
+
+          "${mod}+s" = "layout stacking";
+          "${mod}+comma" = "layout tabbed";
+          "${mod}+period" = "layout toggle split";
+
+          "${mod}+apostrophe" = "split h";
+          "${mod}+minus" = "split v";
+
+          "${mod}+Shift+space" = "floating toggle";
+          "${mod}+Ctrl+space" = "focus mode_toggle";
+
+          "${mod}+p" = "focus parent";
+          "${mod}+c" = "focus child";
+          "${mod}+r" = "mode resize";
+        };
       };
-      extraConfig = builtins.readFile ~/dotfiles/i3;
+      # extraConfig = builtins.readFile ~/dotfiles/i3;
     };
   };
 }
