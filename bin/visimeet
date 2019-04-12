@@ -1,5 +1,0 @@
-#!/bin/sh
-export IGVERBOSE=3
-rm -rf ~/Library/Application\ Support/IOCOM/visimeet/dswan.iocom.com
-[ -s /opt/visimeet/visimeet ] && /opt/visimeet/visimeet --nologin &
-[ -s /Applications/Visimeet.app/Contents/MacOS/visimeet ] && /Applications/Visimeet.app/Contents/MacOS/visimeet --nologin --remote-debugging-port=1234 &

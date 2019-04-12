@@ -16,7 +16,8 @@ Plug 'tpope/vim-jdaddy'
 Plug 'w0rp/ale' " previously 'neomake/neomake, 'scrooloose/syntastic'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " previously YouCompleteMe
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -24,7 +25,6 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'easymotion/vim-easymotion'
 Plug 'justinmk/vim-sneak'
-Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdcommenter'
 Plug 'gregsexton/MatchTag' " highlight matching HTML tag
 Plug 'Raimondi/delimitMate'
@@ -154,12 +154,6 @@ highlight SignColumn ctermbg=NONE
 highlight LineNr ctermbg=NONE ctermfg=darkgrey
 " highlight StatusLine guibg=NONE ctermfg=NONE ctermbg=red
 
-" Tagbar
-nnoremap <silent><leader>t :TagbarToggle <cr>
-
-" Supertab
-" let g:SuperTabDefaultCompletionType="context"
-
 " UltiSnips
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -232,10 +226,10 @@ let g:EasyMotion_smartcase = 1
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_smart_case = 1
+" let g:deoplete#enable_smart_case = 1
 
 " vim-tmux-navigator - needed due to a bug in MacOS terminfo
-nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
+"nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
 
 " Tabs
 nmap <leader>1 1gt

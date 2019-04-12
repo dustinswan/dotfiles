@@ -1,0 +1,6 @@
+#!/bin/sh
+export IGVERBOSE=3
+rm -rf ~/Library/Application\ Support/IOCOM/visionable/dswan.iocom.com
+rm -rf ~/Library/Application\ Support/IOCOM/visionable/dswan.visionable.com
+[ -s /opt/visimeet/visimeet ] && /opt/visimeet/visimeet --nologin &
+[ -s /Applications/Visionable.app/Contents/MacOS/visionable ] && /Applications/Visionable.app/Contents/MacOS/visionable --nologin --remote-debugging-port=1234 --enable-experimental-web-platform-features --disable-pinch &
