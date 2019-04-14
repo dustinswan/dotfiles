@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
 {
+  home.packages = with pkgs; [
+    bat
+  ];
+
   home.sessionVariables = {
     EDITOR = "vim";
     BROWSER = "firefox";
@@ -128,5 +132,16 @@
     configure = {
       customRC = builtins.readFile ~/dotfiles/vimrc;
     };
+  };
+
+  programs.htop.enable = true;
+  programs.jq.enable = true;
+  programs.emacs.enable = true;
+  programs.keychain = {
+    enable = true;
+    enableZshIntegration = true;
+    inheritType = "any";
+    agents = ["gpg" "ssh"];
+    keys = ["id_rsa" "2B3A6377"];
   };
 }

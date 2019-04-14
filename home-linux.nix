@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 
 {
-  home.packages = with pkgs; [ bat wget clipit ncmpcpp pandoc silver-searcher tree unzip wirelesstools xcape xsel anki pavucontrol ranger blueman gifsicle networkmanager paprefs steam mpv nnn nodejs pinentry vlc gnupg nitrogen alacritty wine tldr yarn spotify signal-desktop mu mosh ispell google-chrome emacs-all-the-icons-fonts gnupg python3 python37Packages.pip veracrypt bashmount exfat exfat-utils neofetch toot rtv newsboat neomutt i3lock-pixeled nmap p4v killall calc cargo cava diceware magic-wormhole msmtp xorg.xmodmap zip youtube-dl cacert dropbox-cli keepassx2 w3m wireshark-qt khard khal vdirsyncer slack riot-web retroarch ipfs gimp blender urlview
+  home.packages = with pkgs; [ wget clipit ncmpcpp pandoc silver-searcher tree unzip wirelesstools xcape xsel anki pavucontrol ranger blueman gifsicle networkmanager paprefs steam mpv nnn nodejs pinentry vlc gnupg nitrogen alacritty wine tldr yarn spotify signal-desktop mu mosh ispell google-chrome emacs-all-the-icons-fonts gnupg python3 python37Packages.pip veracrypt bashmount exfat exfat-utils neofetch toot rtv newsboat neomutt i3lock-pixeled nmap p4v killall calc cargo cava diceware magic-wormhole msmtp xorg.xmodmap zip youtube-dl cacert dropbox-cli keepassx2 w3m wireshark-qt khard khal vdirsyncer slack riot-web retroarch ipfs gimp blender urlview
   ];
 
   services.mpd = {
@@ -101,20 +101,20 @@
   services.blueman-applet.enable = true;
   services.emacs.enable = true;
 
-  programs.htop.enable = true;
-  programs.jq.enable = true;
+  programs.feh.enable = true;
+
+  # programs.htop.enable = true;
+  # programs.jq.enable = true;
   programs.vscode.enable = true;
   programs.firefox.enable = true;
-  programs.feh.enable = true;
-  programs.emacs.enable = true;
-  programs.keychain = {
-    enable = true;
-    enableZshIntegration = true;
-    inheritType = "any";
-    agents = ["gpg" "ssh"];
-    keys = ["id_rsa" "2B3A6377"];
-    # extraFlags = "--quiet";
-  };
+  # programs.emacs.enable = true;
+  # programs.keychain = {
+  #   enable = true;
+  #   enableZshIntegration = true;
+  #   inheritType = "any";
+  #   agents = ["gpg" "ssh"];
+  #   keys = ["id_rsa" "2B3A6377"];
+  # };
   programs.rofi = {
     enable = true;
   };
