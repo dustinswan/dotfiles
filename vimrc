@@ -5,30 +5,27 @@ call plug#begin('~/.vim/plugged')
 Plug 'tomasr/molokai'
 Plug 'vim-airline/vim-airline'
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#ale#enabled = 1
 let g:airline_powerline_fonts = 1
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-repeat' " repeats plugin maps
 Plug 'tpope/vim-surround' " cs[{ -> change surrounding [ to {, cst -> change surrounding tag, ysiw] -> surround inner word with ], etc.
-Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive' " Gdiff, Gblame, Gstatus - to add/reset, Gcommit
 Plug 'tpope/vim-endwise' " automatically add end block keyword or symbol
-" Plug 'tpope/vim-vinegar' " - -> open better netrw
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-speeddating' " ctrl-a & ctrl-x on dates works
 Plug 'tpope/vim-jdaddy' " cij: change inner json. gqaj: pretty print json
-Plug 'w0rp/ale' " previously 'neomake/neomake, 'scrooloose/syntastic'
-" Plug 'SirVer/ultisnips'
+Plug 'w0rp/ale'
 Plug 'honza/vim-snippets'
-Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+" Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'christoomey/vim-tmux-navigator' " ctrl-l -> right in vim splits then tmux panes, etc.
-Plug 'terryma/vim-multiple-cursors'
-Plug 'easymotion/vim-easymotion'
+Plug 'terryma/vim-multiple-cursors' " ctrl-n -> start & next, ctrl-p -> prev, ctrl-x -> skip
+Plug 'easymotion/vim-easymotion' " <leader><leader> w -> word, <leader><leader>fx -> find x
 let g:EasyMotion_smartcase = 1
-Plug 'justinmk/vim-sneak'
+Plug 'justinmk/vim-sneak' " stp -> jump to next occurance of 'tp'. ; -> next. , -> go back, `` -> back home
 Plug 'scrooloose/nerdcommenter' " toggle: <leader>c<space>, comment: <leader>cc
 Plug 'scrooloose/nerdtree'
 nnoremap <leader>t :NERDTreeToggle<cr>
@@ -40,7 +37,6 @@ Plug 'kshenoy/vim-signature' " mx -> mark x, dmx delete mark x, m, -> place next
 Plug 'junegunn/vim-easy-align' " gaip= -> align inner paragraph on =
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
-" Plug 'Raimondi/delimitMate' " auto closing of quotes, parens, etc.
 Plug 'gregsexton/MatchTag' " highlight matching HTML tag
 Plug 'qstrahl/vim-matchmaker' " highlight matching word under cursor
 let g:matchmaker_enable_startup = 1
@@ -58,8 +54,6 @@ Plug 'junegunn/goyo.vim' " distraction free mode
 nmap <silent> <leader>g :Goyo<cr>
 Plug 'jceb/vim-orgmode'
 Plug 'sheerun/vim-polyglot' " syntax and indentation for many languages
-" Plug 'eagletmt/ghc-mod'
-" Plug 'bitc/vim-hdevtools'
 Plug 'ryanoasis/vim-devicons' " icons in airline, NERDTree, etc.
 Plug 'TaDaa/vimade' " fade inactive buffer
 Plug 'mhinz/vim-startify' " fancy start page
@@ -67,10 +61,8 @@ Plug 'mhinz/vim-startify' " fancy start page
 call plug#end()
 
 " general goodness
-"set shell=/bin/bash " Syntastic breaks when trying to write to /var/folders
 syntax enable
 let mapleader="\<Space>"
-" let mapleader=","
 let maplocalleader="\\"
 set hidden " allow hidden unsaved buffers
 set history=1000 " longer history
@@ -119,11 +111,11 @@ nnoremap <silent><leader>/ :noh<cr>
 set magic
 
 " tab stops
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-set smarttab
+" set tabstop=4
+" set softtabstop=4
+" set shiftwidth=4
+" set expandtab
+" set smarttab
 
 " mouse
 set mouse=a " a = all modes: nvic
@@ -141,11 +133,6 @@ highlight Normal ctermbg=NONE
 highlight SignColumn ctermbg=NONE
 highlight LineNr ctermbg=NONE ctermfg=darkgrey
 " highlight StatusLine guibg=NONE ctermfg=NONE ctermbg=red
-
-" UltiSnips
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<tab>"
-" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " open the current file for edit in Perforce
 nnoremap <silent><leader>p4 :! p4 edit %<cr>
@@ -190,3 +177,18 @@ nmap <leader>6 6gt
 nmap <leader>7 7gt
 nmap <leader>8 8gt
 nmap <leader>9 9gt
+
+" Coc
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? coc#rpc#request('doKeymap', ['snippets-expand-jump','']) :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+let g:coc_snippet_prev = '<S-Tab>'
