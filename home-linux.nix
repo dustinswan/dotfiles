@@ -194,7 +194,6 @@
           "${mod}+r" = "mode resize";
         };
       };
-      # extraConfig = builtins.readFile ~/dotfiles/i3;
     };
   };
 

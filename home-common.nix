@@ -21,25 +21,8 @@
     keyMode = "vi";
     baseIndex = 1;
     newSession = true;
-    plugins = with pkgs.tmuxPlugins; [
-      sensible resurrect pain-control continuum copycat open urlview
-      {
-        plugin = yank;
-        extraConfig = "set -g @yank_selection_mouse 'primary'";
-      }
-    ];
+    plugins = with pkgs.tmuxPlugins; [ sensible resurrect pain-control continuum copycat open urlview yank ];
     extraConfig = ''
-      bind-key -n C-0 select-window -t :0
-      bind-key -n C-1 select-window -t :1
-      bind-key -n C-2 select-window -t :2
-      bind-key -n C-3 select-window -t :3
-      bind-key -n C-4 select-window -t :4
-      bind-key -n C-5 select-window -t :5
-      bind-key -n C-6 select-window -t :6
-      bind-key -n C-7 select-window -t :7
-      bind-key -n C-8 select-window -t :8
-      bind-key -n C-9 select-window -t :9
-
       set -g set-titles on
       set -g set-titles-string "#H (#S)"
       set -g status-right ""
@@ -81,16 +64,6 @@
     '';
   };
 
-  # programs.fish = {
-  #   enable = true;
-  #   shellAliases = {
-  #     l = "ls -la";
-  #     ta = "tmux attach -d";
-  #     e = "emacsclient -a \"\" -t -nw";
-  #     weather = "curl http://wttr.in";
-  #     er = "rm -rf logs; unzip -o";
-  #   };
-  # };
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
