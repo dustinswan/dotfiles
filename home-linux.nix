@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 
 {
-  home.packages = with pkgs; [ wget clipit ncmpcpp pandoc silver-searcher tree unzip wirelesstools xcape xsel anki pavucontrol ranger blueman gifsicle networkmanager paprefs steam mpv nnn nodejs pinentry vlc gnupg nitrogen alacritty wine tldr yarn spotify signal-desktop mu mosh ispell google-chrome emacs-all-the-icons-fonts gnupg python3 python37Packages.pip veracrypt bashmount exfat exfat-utils neofetch toot rtv newsboat neomutt i3lock-pixeled nmap p4v killall calc cargo cava diceware magic-wormhole msmtp xorg.xmodmap zip youtube-dl cacert dropbox-cli keepassx2 w3m wireshark-qt khard khal vdirsyncer slack riot-web retroarch ipfs gimp blender urlview
+  home.packages = with pkgs; [ clipit ncmpcpp pandoc unzip wirelesstools xcape xsel anki pavucontrol blueman gifsicle networkmanager paprefs steam pinentry vlc nitrogen wine yarn spotify signal-desktop ispell google-chrome emacs-all-the-icons-fonts python3 python37Packages.pip veracrypt bashmount exfat exfat-utils neomutt i3lock-pixeled p4v killall calc cargo cava diceware magic-wormhole xorg.xmodmap zip cacert dropbox-cli keepassx2 wireshark-qt vdirsyncer slack riot-web retroarch gimp blender khal khard
   ];
 
   services.mpd = {

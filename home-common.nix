@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    bat
+    bat wget silver-searcher tree ranger nodejs yarn mu mosh newsboat msmtp w3m urlview nmap rtv gnupg youtube-dl mpv alacritty
   ];
 
   home.sessionVariables = {
@@ -83,6 +83,10 @@
       weather = "curl http://wttr.in";
       er = "rm -rf logs; unzip -o";
     };
+    # for MacOS
+    initExtra = ''
+      source ~/.nix-profile/etc/profile.d/nix.sh
+    '';
   };
 
   programs.fzf = {
@@ -116,9 +120,11 @@
     userEmail = "dustin@dustinswan.com";
     signing = {
       signByDefault = true;
-      key = "2B3A6377";
+      key = "AD11750151C10881970BD943AB49BD6B2B3A6377";
     };
     aliases = {
+      s = "status";
+      a = "add";
       lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit";
     };
   };
