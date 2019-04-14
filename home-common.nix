@@ -117,6 +117,13 @@
     enable = true;
     userName = "Dustin Swan";
     userEmail = "dustin@dustinswan.com";
+    signing = {
+      signByDefault = true;
+      key = "2B3A6377";
+    };
+    aliases = {
+      lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit";
+    };
   };
 
   programs.neovim = {
