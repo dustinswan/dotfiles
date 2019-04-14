@@ -1,72 +1,68 @@
-set nocompatible
+" set nocompatible " not necessary with neovim
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'bling/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
+Plug 'tomasr/molokai'
+Plug 'vim-airline/vim-airline'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-repeat' " repeats plugin maps
+Plug 'tpope/vim-surround' " cs[{ -> change surrounding [ to {, cst -> change surrounding tag, ysiw] -> surround inner word with ], etc.
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-endwise' " automatically add end block keyword or symbol
+" Plug 'tpope/vim-vinegar' " - -> open better netrw
 Plug 'tpope/vim-unimpaired'
-" Plug 'tpope/vim-characterize'
-Plug 'tpope/vim-speeddating'
-Plug 'tpope/vim-jdaddy'
+Plug 'tpope/vim-speeddating' " ctrl-a & ctrl-x on dates works
+Plug 'tpope/vim-jdaddy' " cij: change inner json. gqaj: pretty print json
 Plug 'w0rp/ale' " previously 'neomake/neomake, 'scrooloose/syntastic'
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-navigator' " ctrl-l -> right in vim splits then tmux panes, etc.
 Plug 'terryma/vim-multiple-cursors'
 Plug 'easymotion/vim-easymotion'
+let g:EasyMotion_smartcase = 1
 Plug 'justinmk/vim-sneak'
-Plug 'scrooloose/nerdcommenter'
-Plug 'gregsexton/MatchTag' " highlight matching HTML tag
-Plug 'Raimondi/delimitMate'
-Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plug 'scrooloose/nerdcommenter' " toggle: <leader>c<space>, comment: <leader>cc
+Plug 'scrooloose/nerdtree'
+nnoremap <leader>t :NERDTreeToggle<cr>
+Plug 'mattn/emmet-vim' " ctrl-y,. formely sparkup
 Plug 'mbbill/undotree'
-Plug 'coderifous/textobj-word-column.vim'
-Plug 'kshenoy/vim-signature'
-Plug 'junegunn/vim-easy-align'
+nnoremap <leader>u :UndotreeToggle<cr>
+Plug 'coderifous/textobj-word-column.vim' " cic -> change inner column
+Plug 'kshenoy/vim-signature' " mx -> mark x, dmx delete mark x, m, -> place next mark, m. -> place next or toggle, m- -> delete, m<space> -> delete all, ]` jump, etc.
+Plug 'junegunn/vim-easy-align' " gaip= -> align inner paragraph on =
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+" Plug 'Raimondi/delimitMate' " auto closing of quotes, parens, etc.
+Plug 'gregsexton/MatchTag' " highlight matching HTML tag
 Plug 'qstrahl/vim-matchmaker' " highlight matching word under cursor
-Plug 'bruno-/vim-vertical-move'
-Plug 'lfilho/cosco.vim'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'sbdchd/neoformat'
-Plug 'sdanielf/vim-stdtabs'
-Plug 'mhinz/vim-signify' " previously 'airblade/vim-gitgutter'
-Plug 'terryma/vim-expand-region' " previously 'gcmt/wildfire.vim'
-Plug 'tommcdo/vim-exchange'
-Plug 'vim-scripts/argtextobj.vim'
+let g:matchmaker_enable_startup = 1
+let g:matchmaker_ignore_single_match = 1
+Plug 'bruno-/vim-vertical-move' " move vertically without changing column: [v, ]v
+Plug 'ntpeters/vim-better-whitespace' " highlights trailing whitespace, provides :StripWhiteSpace  
+Plug 'sdanielf/vim-stdtabs' " standard indentiation per language
+Plug 'mhinz/vim-signify' " vcs in gutter. previously 'airblade/vim-gitgutter'
+Plug 'terryma/vim-expand-region' " + to expand, _ to shrink. previously 'gcmt/wildfire.vim'
+Plug 'tommcdo/vim-exchange' " e.g. swap words: cxiw, move to other word, cxiw. swap lines: cxx, etc.
+Plug 'vim-scripts/argtextobj.vim' " e.g. cia -> change inner argument
 Plug 'vim-scripts/matchit.zip' " % will match more things
-Plug 'AndrewRadev/splitjoin.vim'
-Plug 'vim-scripts/utl.vim'
-Plug 'junegunn/goyo.vim'
-Plug 'EinfachToll/DidYouMean'
+Plug 'AndrewRadev/splitjoin.vim' " gS, gJ
+Plug 'junegunn/goyo.vim' " distraction free mode
+nmap <silent> <leader>g :Goyo<cr>
 Plug 'jceb/vim-orgmode'
-
-" Languages & Syntax
-Plug 'sheerun/vim-polyglot'
-Plug 'dleonard0/pony-vim-syntax'
-Plug 'idris-hackers/idris-vim'
-Plug 'eagletmt/ghc-mod'
-Plug 'bitc/vim-hdevtools'
-"Plug 'eagletmt/neco-ghc'
-"Plug 'lukerandall/haskellmode-vim'
-"Plug 'enomsg/vim-haskellConcealPlus'
-Plug 'ryanoasis/vim-devicons'
-Plug 'dart-lang/dart-vim-plugin'
-Plug 'TaDaa/vimade'
-
-" Themes
-"Plug 'w0ng/vim-hybrid'
-"Plug 'sickill/vim-monokai'
-Plug 'tomasr/molokai'
+Plug 'sheerun/vim-polyglot' " syntax and indentation for many languages
+" Plug 'eagletmt/ghc-mod'
+" Plug 'bitc/vim-hdevtools'
+Plug 'ryanoasis/vim-devicons' " icons in airline, NERDTree, etc.
+Plug 'TaDaa/vimade' " fade inactive buffer
+Plug 'mhinz/vim-startify' " fancy start page
 
 call plug#end()
 
@@ -90,7 +86,6 @@ set wildmode=list:longest " try this on for a while
 set autoread " when a file is changed externally
 set ruler
 set cursorline " Highlight current line
-set encoding=utf-8 " Necessary to show unicode glyphs
 set laststatus=2 " Always show the statusline
 set scrolloff=5 " Give us a few lines before and after the cursor
 
@@ -105,17 +100,17 @@ set undodir=~/.vim/undodir
 set undofile
 
 " indentation
-set autoindent
-set smartindent
+" set autoindent
+" set smartindent
 
 " search
-set hlsearch
-set incsearch
-set ignorecase
-set gdefault " now substitutions assume /g
+" set hlsearch
+" set incsearch
+" set ignorecase
+" set gdefault " now substitutions assume /g
 set smartcase " if we include uppercase, it will be case sensitive
-set showmatch " matching brackets
-set matchtime=2 " blink brackets
+" set showmatch " matching brackets
+" set matchtime=2 " blink brackets
 
 " clear highlighting
 nnoremap <silent><leader>/ :noh<cr>
@@ -131,20 +126,13 @@ set expandtab
 set smarttab
 
 " mouse
-set mouse=nicr
-
-" so we get html goodies in php files
-"au BufRead *.php set ft=php.html
-"au BufNewFile *.php set ft=php.html
-
-" set thesaurus+=~/.wordlists/mthesaur.txt
-set dictionary+=/usr/share/dict/words
+set mouse=a " a = all modes: nvic
 
 " hide toolbar, etc.
-if has("gui_running")
-    set gfn=Terminus\ 8
-    set go=-t
-endif
+" if has("gui_running")
+"     set gfn=Terminus\ 8
+"     set go=-t
+" endif
 
 " Colors
 " colorscheme monokai
@@ -155,9 +143,9 @@ highlight LineNr ctermbg=NONE ctermfg=darkgrey
 " highlight StatusLine guibg=NONE ctermfg=NONE ctermbg=red
 
 " UltiSnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<tab>"
+" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " open the current file for edit in Perforce
 nnoremap <silent><leader>p4 :! p4 edit %<cr>
@@ -165,31 +153,6 @@ nnoremap <silent><leader>p4 :! p4 edit %<cr>
 " open split and switch to it
 nnoremap <leader>v <c-w>v<c-w>l
 nnoremap <leader>s <c-w>s<c-w>j
-
-" Haskellmode
-"let g:ghc = "/usr/bin/ghc"
-"let g:haddock_browser = "open"
-"let g:haddock_browser_callformat = "%s %s"
-
-" hdevtools
-" nnoremap <leader>ht :HdevtoolsType<cr>
-" nnoremap <leader>hc :HdevtoolsClear<cr>
-" nnoremap <leader>hi :HdevtoolsInfo<cr>
-" autocmd BufEnter *.hs set formatprg=pointfree
-
-" automatically open and close the popup menu / preview window
-" au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-" set completeopt=menu,preview,longest
-
-" Undotree
-nnoremap <leader>u :UndotreeToggle<cr>
-
-" Matchmaker
-let g:matchmaker_enable_startup = 1
-
-" Cosco
-autocmd FileType javascript,css nmap <silent> <leader>; <Plug>(cosco-commaOrSemiColon)
-autocmd FileType javascript,css imap <silent> <leader>; <c-o><Plug>(cosco-commaOrSemiColon)
 
 " Browser
 let g:netrw_browsex_viewer = "browser"
@@ -205,7 +168,7 @@ nnoremap <silent> <leader>hc :History:<CR>
 nnoremap <silent> <leader>hs :History/<CR>
 nnoremap <silent> <leader>l :BLines<CR>
 nnoremap <silent> <leader><leader>l :Lines<CR>
-nnoremap <silent> <leader>t :BTags<CR>
+" nnoremap <silent> <leader>t :BTags<CR>
 nnoremap <silent> <leader><leader>t :Tags<CR>
 nnoremap <silent> <leader>gc :BCommits<CR>
 nnoremap <silent> <leader><leader>gc :Commits<CR>
@@ -217,20 +180,6 @@ imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
-" vim-easy-align
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
-
-" EasyMotion
-let g:EasyMotion_smartcase = 1
-
-" Deoplete
-let g:deoplete#enable_at_startup = 1
-" let g:deoplete#enable_smart_case = 1
-
-" vim-tmux-navigator - needed due to a bug in MacOS terminfo
-"nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
-
 " Tabs
 nmap <leader>1 1gt
 nmap <leader>2 2gt
@@ -241,13 +190,3 @@ nmap <leader>6 6gt
 nmap <leader>7 7gt
 nmap <leader>8 8gt
 nmap <leader>9 9gt
-
-" Goyo
-nmap <silent> <leader>g :Goyo<cr>
-
-" Airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-
-" Dart
-let dart_style_guide = 2
