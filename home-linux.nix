@@ -197,4 +197,6 @@
       # extraConfig = builtins.readFile ~/dotfiles/i3;
     };
   };
+
+  imports = [ ./home-common.nix ];
 }

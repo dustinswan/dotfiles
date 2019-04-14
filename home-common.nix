@@ -113,6 +113,26 @@
     enableZshIntegration = true;
   };
 
+  programs.ssh = {
+    enable = true;
+    matchBlocks = {
+      visionable = {
+        hostname = "dswan.visionable.com";
+        user = "ec2-user";
+      };
+
+      dswan = {
+        hostname = "dswan.iocom.com";
+        user = "root";
+      };
+
+      dustinswan = {
+        hostname = "dustinswan.com";
+        user = "dustinswan";
+      };
+    };
+  };
+
   programs.git = {
     enable = true;
     userName = "Dustin Swan";
@@ -136,6 +156,4 @@
       customRC = builtins.readFile ~/dotfiles/vimrc;
     };
   };
-
-  imports = [ ./linux.nix ];
 }
