@@ -4,7 +4,7 @@
   home.sessionVariables = {
     EDITOR = "vim";
     BROWSER = "firefox";
-    LEDGER_FILE = ~/Sync/Ledger/ledger.ledger;
+    LEDGER_FILE = "~/Sync/Ledger/ledger.ledger";
 
     P4USER = "dswan";
     P4PORT = "humu.iocom.com:1666";
