@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    bat wget silver-searcher tree ranger nodejs yarn mu mosh newsboat msmtp w3m urlview nmap rtv gnupg youtube-dl mpv alacritty
+    bat wget silver-searcher tree ranger nodejs yarn mu mosh newsboat msmtp w3m urlview nmap rtv gnupg youtube-dl
   ];
 
   home.sessionVariables = {
@@ -19,6 +19,36 @@
 
   programs.home-manager.enable = true;
 
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      window = {
+        padding = {
+          x = 12;
+          y = 12;
+        };
+        dimentions = {
+          columns = 0;
+          lines = 0;
+        };
+      };
+      font = {
+        normal.family = "Iosevka Nerd Font";
+        bold.family = "Iosevka Nerd Font";
+        italic.family = "Iosevka Nerd Font";
+        size = 16.0;
+      };
+      key_bindings = [
+        {
+          key = "N";
+          mods = "Control|Shift";
+          action = "SpawnNewInstance";
+        }
+      ];
+      background_opacity = 0.95;
+    };
+  };
+
   programs.tmux = {
     enable = true;
     shortcut = "a";
@@ -27,44 +57,44 @@
     newSession = true;
     plugins = with pkgs.tmuxPlugins; [ sensible resurrect pain-control continuum copycat open urlview yank ];
     extraConfig = ''
-      set -g set-titles on
-      set -g set-titles-string "#H (#S)"
-      set -g status-right ""
-      set -g status-left ""
+     set -g set-titles on
+     set -g set-titles-string "#H (#S)"
+     set -g status-right ""
+     set -g status-left ""
 
-      set-option -g mouse on
-      set-option -g status-bg default
-      set-option -g status-fg "#666666"
-      set-option -g status-attr default
-      set-option -g pane-border-fg "#666666"
-      set-option -g pane-active-border-fg "#666666"
-      set-option -g message-bg black
-      set-option -g message-fg white
-      set-option -g display-panes-active-colour white
-      set-option -g display-panes-colour white
+     set-option -g mouse on
+     set-option -g status-bg default
+     set-option -g status-fg "#666666"
+     set-option -g status-attr default
+     set-option -g pane-border-fg "#666666"
+     set-option -g pane-active-border-fg "#666666"
+     set-option -g message-bg black
+     set-option -g message-fg white
+     set-option -g display-panes-active-colour white
+     set-option -g display-panes-colour white
 
-      set-window-option -g window-status-fg "#666666"
-      set-window-option -g window-status-bg default
-      set-window-option -g window-status-current-fg white
-      set-window-option -g window-status-current-bg default
-      set-window-option -g window-status-format " #W"
-      set-window-option -g window-status-current-format " #W"
-      set-window-option -g window-status-separator "  "
-      set-window-option -g clock-mode-colour white
+     set-window-option -g window-status-fg "#666666"
+     set-window-option -g window-status-bg default
+     set-window-option -g window-status-current-fg white
+     set-window-option -g window-status-current-bg default
+     set-window-option -g window-status-format " #W"
+     set-window-option -g window-status-current-format " #W"
+     set-window-option -g window-status-separator "  "
+     set-window-option -g clock-mode-colour white
 
-      # remove when tmux-plugin-navigator plugin is added
-      is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
-        | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
-      tmux bind-key -n C-h if-shell "$is_vim" "send-keys C-h"  "select-pane -L"
-      tmux bind-key -n C-j if-shell "$is_vim" "send-keys C-j"  "select-pane -D"
-      tmux bind-key -n C-k if-shell "$is_vim" "send-keys C-k"  "select-pane -U"
-      tmux bind-key -n C-l if-shell "$is_vim" "send-keys C-l"  "select-pane -R"
-      tmux bind-key -n C-\\ if-shell "$is_vim" "send-keys C-\\" "select-pane -l"
-      tmux bind-key -T copy-mode-vi C-h select-pane -L
-      tmux bind-key -T copy-mode-vi C-j select-pane -D
-      tmux bind-key -T copy-mode-vi C-k select-pane -U
-      tmux bind-key -T copy-mode-vi C-l select-pane -R
-      tmux bind-key -T copy-mode-vi C-\\ select-pane -l
+     # remove when tmux-plugin-navigator plugin is added
+     is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+       | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'"
+     tmux bind-key -n C-h if-shell "$is_vim" "send-keys C-h"  "select-pane -L"
+     tmux bind-key -n C-j if-shell "$is_vim" "send-keys C-j"  "select-pane -D"
+     tmux bind-key -n C-k if-shell "$is_vim" "send-keys C-k"  "select-pane -U"
+     tmux bind-key -n C-l if-shell "$is_vim" "send-keys C-l"  "select-pane -R"
+     tmux bind-key -n C-\\ if-shell "$is_vim" "send-keys C-\\" "select-pane -l"
+     tmux bind-key -T copy-mode-vi C-h select-pane -L
+     tmux bind-key -T copy-mode-vi C-j select-pane -D
+     tmux bind-key -T copy-mode-vi C-k select-pane -U
+     tmux bind-key -T copy-mode-vi C-l select-pane -R
+     tmux bind-key -T copy-mode-vi C-\\ select-pane -l
     '';
   };
 
@@ -78,6 +108,7 @@
     };
     shellAliases = {
       l = "ls -la";
+      n = "nnn -isl";
       ta = "tmux attach -d";
       e = "emacsclient -a \"\" -t -nw";
       weather = "curl http://wttr.in";
