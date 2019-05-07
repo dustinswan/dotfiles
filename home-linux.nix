@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 
 {
-  home.packages = with pkgs; [ clipit ncmpcpp pandoc unzip wirelesstools xcape xsel anki pavucontrol blueman gifsicle networkmanager paprefs steam pinentry vlc nitrogen wine yarn spotify signal-desktop ispell google-chrome emacs-all-the-icons-fonts python3 python37Packages.pip veracrypt bashmount exfat exfat-utils neomutt i3lock-pixeled p4v killall calc cargo cava diceware magic-wormhole xorg.xmodmap zip cacert dropbox-cli keepassx2 wireshark-qt vdirsyncer slack riot-web retroarch gimp blender khal khard
+  home.packages = with pkgs; [ clipit ncmpcpp pandoc unzip wirelesstools xcape xsel anki pavucontrol blueman gifsicle networkmanager paprefs steam pinentry vlc nitrogen wine yarn spotify signal-desktop ispell google-chrome emacs-all-the-icons-fonts python3 python37Packages.pip veracrypt bashmount exfat exfat-utils neomutt i3lock-pixeled p4v killall calc cargo cava diceware magic-wormhole xorg.xmodmap zip cacert dropbox-cli keepassx2 wireshark-qt vdirsyncer slack riot-web retroarch gimp blender khal khard mpv
   ];
 
   services.mpd = {
@@ -198,4 +198,6 @@
   };
 
   imports = [ ./home-common.nix ];
+
+  programs.alacritty.settings.font.size = 10.0;
 }
