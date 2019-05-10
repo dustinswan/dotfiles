@@ -2,7 +2,8 @@
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'tomasr/molokai'
+" Plug 'tomasr/molokai'
+Plug 'arcticicestudio/nord-vim'
 Plug 'vim-airline/vim-airline'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#ale#enabled = 1
@@ -98,8 +99,8 @@ set undofile
 " search
 " set hlsearch
 " set incsearch
-" set ignorecase
 " set gdefault " now substitutions assume /g
+set ignorecase
 set smartcase " if we include uppercase, it will be case sensitive
 " set showmatch " matching brackets
 " set matchtime=2 " blink brackets
@@ -120,19 +121,11 @@ set magic
 " mouse
 set mouse=a " a = all modes: nvic
 
-" hide toolbar, etc.
-" if has("gui_running")
-"     set gfn=Terminus\ 8
-"     set go=-t
-" endif
-
 " Colors
-" colorscheme monokai
-colorscheme molokai
-highlight Normal ctermbg=NONE
-highlight SignColumn ctermbg=NONE
-highlight LineNr ctermbg=NONE ctermfg=darkgrey
-" highlight StatusLine guibg=NONE ctermfg=NONE ctermbg=red
+let g:nord_italic = 1
+let g:nord_italic_comments = 1
+let g:nord_underline = 1
+colorscheme nord
 
 " open the current file for edit in Perforce
 nnoremap <silent><leader>p4 :! p4 edit %<cr>
