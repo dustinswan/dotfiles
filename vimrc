@@ -2,6 +2,9 @@
 
 call plug#begin('~/.vim/plugged')
 
+let mapleader="\<Space>"
+let maplocalleader="\\"
+
 " Plug 'tomasr/molokai'
 Plug 'arcticicestudio/nord-vim'
 Plug 'vim-airline/vim-airline'
@@ -63,8 +66,6 @@ call plug#end()
 
 " general goodness
 syntax enable
-let mapleader="\<Space>"
-let maplocalleader="\\"
 set hidden " allow hidden unsaved buffers
 set history=1000 " longer history
 set noswapfile " turn off swapfiles
