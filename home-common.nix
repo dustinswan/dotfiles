@@ -113,6 +113,7 @@
       e = "emacsclient -a \"\" -t -nw";
       weather = "curl http://wttr.in";
       er = "rm -rf logs; unzip -o";
+      srsync = "rsync --rsync-path='sudo rsync'";
     };
     # for MacOS
     initExtra = ''
