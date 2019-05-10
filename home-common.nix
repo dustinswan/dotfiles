@@ -36,7 +36,7 @@
         normal.family = "Iosevka Nerd Font";
         bold.family = "Iosevka Nerd Font";
         italic.family = "Iosevka Nerd Font";
-        size = 16.0;
+        size = 18.0;
       };
       key_bindings = [
         {
@@ -128,19 +128,19 @@
   programs.ssh = {
     enable = true;
     matchBlocks = {
-      visionable = {
+      dustinswan = {
+        hostname = "dustinswan.com";
+        user = "dustinswan";
+      };
+
+      dswan = {
         hostname = "dswan.visionable.com";
         user = "ec2-user";
       };
 
-      dswan = {
-        hostname = "dswan.iocom.com";
+      visitest = {
+        hostname = "visitest.iocom.com";
         user = "root";
-      };
-
-      dustinswan = {
-        hostname = "dustinswan.com";
-        user = "dustinswan";
       };
     };
   };
