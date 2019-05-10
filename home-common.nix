@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    bat wget silver-searcher tree ranger nodejs yarn mu mosh newsboat msmtp w3m urlview nmap rtv gnupg youtube-dl
+    bat wget silver-searcher tree ranger nodejs yarn mu mosh newsboat msmtp w3m urlview nmap rtv gnupg youtube-dl nodePackages.tern nodePackages.eslint nodePackages.javascript-typescript-langserver nodePackages.js-beautify nodePackages.prettier nodePackages.dat
   ];
 
   home.sessionVariables = {
@@ -85,7 +85,8 @@
     keyMode = "vi";
     baseIndex = 1;
     newSession = true;
-    plugins = with pkgs.tmuxPlugins; [ sensible resurrect pain-control continuum copycat open urlview yank ];
+    plugins = with pkgs.tmuxPlugins; [ sensible resurrect pain-control continuum copycat open fzf-tmux-url maildir-counter yank ];
+    # urlview
     extraConfig = ''
      set -g set-titles on
      set -g set-titles-string "#H (#S)"
@@ -111,6 +112,10 @@
      set-window-option -g window-status-current-format " #W"
      set-window-option -g window-status-separator "  "
      set-window-option -g clock-mode-colour white
+
+     set -g status-right 'FastMail: #{maildir_counter_1}, IOCOM: #{maildir_counter_2} | %a %Y-%m-%d %H:%M'
+
+     set -g @maildir_counters '~/Mail/FastMail/INBOX/new|~/Mail/IOCOM/INBOX/new'
 
      # remove when tmux-plugin-navigator plugin is added
      is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
@@ -146,9 +151,9 @@
       srsync = "rsync --rsync-path='sudo rsync'";
     };
     # for MacOS
-    initExtra = ''
-      source ~/.nix-profile/etc/profile.d/nix.sh
-    '';
+    # initExtra = ''
+    #   source ~/.nix-profile/etc/profile.d/nix.sh
+    # '';
   };
 
   programs.fzf = {
