@@ -41,26 +41,41 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      ivy
      csv
-     version-control
+     (version-control :variables
+                      version-control-diff-side 'left
+                      version-control-global-margin t)
      git
      github
      perforce
      syntax-checking
-     (spell-checking :variables spell-checking-enable-auto-dictionary t)
+     (spell-checking :variables
+                     spell-checking-enable-auto-dictionary t)
      better-defaults
+     ibuffer
      osx
      nixos
      (mu4e :variables
            mu4e-installation-path "/usr/local/share/emacs/site-lisp"
            mu4e-enable-notifications t
+           mu4e-use-maildirs-extension t
+           mu4e-enable-async-operations t
            mu4e-enable-mode-line t)
-     (ranger :variables ranger-show-preview t)
-     speed-reading
-     auto-completion
+     (ranger :variables
+             ranger-enter-with-minus t
+             ranger-cleanup-eagerly t
+             ranger-parent-depth 4
+             ranger-max-preview-size 10
+             ranger-show-literal t
+             ranger-show-preview t)
+     (auto-completion :variables
+                      auto-completion-enable-help-tooltip t
+                      auto-completion-enable-snippets-in-popup t)
      colors
+     unicode-fonts
      restclient
      evil-snipe
      vinegar
+     pdf
      search-engine
      dash
      ; (rcirc :variables rcirc-enable-authinfo-support t)
@@ -70,7 +85,19 @@ This function should only modify configuration layer settings."
              :port "6697"
              :ssl t
              :nick "sw4n")))
-     (org :variables org-enable-github-support t)
+     (org :variables
+          org-startup-indented t
+          org-hide-emphasis-markers t
+          org-bullets-bullet-list '(" ")
+          org-want-todo-bindings t
+          org-enable-github-support t
+          org-enable-org-journal-support t
+          org-journal-enable-encryption t
+          org-journal-encrypt-journal t
+          org-journal-dir "~/Sync/Notes/Journal/"
+          org-journal-file-format "%Y%m%d.org"
+          org-journal-date-format "%A, %B %d, %Y"
+          org-journal-time-format "%R %Z")
      deft
      shell
      elfeed
@@ -87,7 +114,9 @@ This function should only modify configuration layer settings."
      idris
      purescript
      elm
-     javascript
+     (javascript :variables
+                 js2-basic-offset 2
+                 js-indent-level 2)
      typescript
      json
      react
@@ -111,6 +140,7 @@ This function should only modify configuration layer settings."
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
    '(
+     mixed-pitch
      emms
      w3m
      elfeed-protocol
@@ -122,7 +152,6 @@ This function should only modify configuration layer settings."
      mingus
      writeroom-mode
      beacon
-     org-journal
      vdirel
      circe
      nix-mode
@@ -255,7 +284,7 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(monokai spacemacs-dark ample alect-black zenburn darkburn solarized-dark)
+   dotspacemacs-themes '(poet monokai spacemacs-dark spacemacs-light ample alect-black zenburn darkburn solarized-dark)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
@@ -273,6 +302,7 @@ It should only modify the values of Spacemacs settings."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Iosevka Nerd Font"
+   ; dotspacemacs-default-font '("Libre Baskerville"
                                :size 13
                                :weight normal
                                :width normal)
@@ -525,6 +555,15 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
+  (set-face-attribute 'default nil :family "Iosevka Nerd Font" :height 130)
+  (set-face-attribute 'fixed-pitch nil :family "Iosevka Nerd Font")
+  (set-face-attribute 'variable-pitch nil :family "Libre Baskerville")
+
+  (lambda () (progn
+               (setq left-margin-width 2)
+               (setq right-margin-width 2)
+               (set-window-buffer nil (current-buffer))))
+
   (setq prettify-symbols-unprettify-at-point t)
   (global-prettify-symbols-mode +1)
 
@@ -533,54 +572,18 @@ before packages are loaded."
   (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
   (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
 
-  ;; (use-package spaceline-all-the-icons
-  ;;     :after spaceline
-  ;;     :config
-  ;;     (spaceline-all-the-icons-theme))
-  ;; (setq neo-theme 'icons)
-  ;; (spaceline-all-the-icons--setup-package-updates)
-  ;; (spaceline-all-the-icons--setup-git-ahead)
-  ;; (spaceline-all-the-icons--setup-paradox)
-  ;; (spaceline-all-the-icons--setup-neotree)
-
-  ;; (setq monokai-background "#000000")
-
-  ;; fix Fish prompts
-  (add-hook 'term-mode-hook 'spacemacs/toggle-truncate-lines-on)
-
   ;; ctrl-w when a completion dropdown is open
-  (with-eval-after-load 'company
-    (define-key company-active-map (kbd "C-w") 'evil-delete-backward-word))
-  (with-eval-after-load 'helm
-    (define-key helm-map (kbd "C-w") 'evil-delete-backward-word))
-
-  (global-set-key (kbd "M-s-h") 'ns-do-hide-others) ;; TODO Take out when Spacemacs gets this
-  (global-set-key [142607065] 'ns-do-hide-others) ;; TODO Take out when Spacemacs gets this
-
-  (setq-default js2-basic-offset 2)
-  (setq-default js-indent-level 2)
-  (setq web-mode-markup-indent-offset 2)
-  (setq web-mode-css-indent-offset 2)
-  (setq web-mode-code-indent-offset 2)
-
-  (use-package vue-mode)
+  ;(with-eval-after-load 'company
+  ;  (define-key company-active-map (kbd "C-w") 'evil-delete-backward-word))
+  ;(with-eval-after-load 'helm
+  ;  (define-key helm-map (kbd "C-w") 'evil-delete-backward-word))
 
   (spacemacs/enable-transparency)
-
   (defun my-focus-new-frame (frame)
     (spacemacs/toggle-transparent-frame))
   (add-hook 'after-make-frame-functions 'my-focus-new-frame t)
 
-  (spacemacs|define-custom-layout "@Mail"
-    :binding "m"
-    :body
-      (call-interactively 'mu4e))
-
   (beacon-mode 1)
-
-  ;; (setq ns-use-srgb-colorspace nil)
-
-  ;  (setq powerline-default-separator 'arrow-fade)
 
   (setq vdirel-repository "~/Contacts/Default/")
 
@@ -608,7 +611,7 @@ before packages are loaded."
                :match-func (lambda (msg)
                              (when msg
                                (string-match-p (regexp-quote "IOCOM") (mu4e-message-field msg :maildir))))
-               :vars '((user-mail-address . "dswan@iocom.com")
+               :vars '((user-mail-address . "dswan@visionable.com")
                        (mu4e-sent-messages-behavior . sent)
                        (mu4e-sent-folder . "/IOCOM/Sent Items")
                        (mu4e-drafts-folder . "/IOCOM/Drafts")
@@ -617,12 +620,11 @@ before packages are loaded."
 
     (setq mu4e-context-policy 'pick-first)
 
-    (require 'mu4e-contrib)
-
     (setq mu4e-maildir "~/Mail"
           user-full-name "Dustin Swan"
           mu4e-user-mail-address-list '("dustin@dustinswan.com"
                                         "dustinswan@gmail.com"
+                                        "dswan@visionable.com"
                                         "dswan@iocom.com"
                                         "dswan@insors.com")
           mu4e-get-mail-command "offlineimap -q"
@@ -631,11 +633,10 @@ before packages are loaded."
 
           ;; Viewing Mail
           mu4e-headers-show-threads t
-          mu4e-attachment-dir "~/Downloads"
           mu4e-view-show-addresses t
           mu4e-view-show-images t
           mu4e-view-prefer-html nil
-          ;; mu4e-use-fancy-chars t
+          mu4e-use-fancy-chars t
           mu4e-html2text-command 'mu4e-shr2text
           ;; mu4e-html2text-command "w3m -dump -T text/html"
           ;; w3m-command "/usr/local/bin/w3m"
@@ -654,12 +655,12 @@ before packages are loaded."
     (when (fboundp 'imagemagick-register-types)
       (imagemagick-register-types))
 
-  ;;; Mail directory shortcuts
+    ;; Mail directory shortcuts
     (setq mu4e-maildir-shortcuts
           '(("/FastMail/INBOX" . ?F)
             ("/IOCOM/INBOX" . ?I)))
 
-  ;;; Bookmarks
+    ;; Bookmarks
     (setq mu4e-bookmarks
           `(("flag:unread AND NOT flag:trashed" "Unread messages" ?u)
             ("date:today..now" "Today's messages" ?t)
@@ -689,65 +690,31 @@ before packages are loaded."
            " AND (maildir:/Fastmail/INBOX"
            " OR maildir:/IOCOM/INBOX)"
            ))
-
-    ;; mu4e toggle html images
-    (defvar killdash9/mu4e~view-html-images nil
-      "Whether to show images in html messages")
-
-    (defun killdash9/mu4e-view-toggle-html-images ()
-      "Toggle image-display of html message."
-      (interactive)
-      (setq-local killdash9/mu4e~view-html-images (not killdash9/mu4e~view-html-images))
-      (message "Images are %s" (if killdash9/mu4e~view-html-images "on" "off"))
-      (mu4e-view-refresh))
-
-    (defun mu4e-shr2text (msg)
-      "Convert html in MSG to text using the shr engine; this can be
-used in `mu4e-html2text-command' in a new enough emacs. Based on
-code by Titus von der Malsburg."
-      (lexical-let ((view-images killdash9/mu4e~view-html-images))
-        (mu4e~html2text-wrapper
-         (lambda ()
-           (let ((shr-inhibit-images (not view-images)))
-             (shr-render-region (point-min) (point-max)))) msg)))
-
-    (define-key mu4e-view-mode-map "I" 'killdash9/mu4e-view-toggle-html-images)
   )
 
   (setenv "P4USER" "dswan")
   (setenv "P4PORT" "humu.insors.net:1666")
   (setenv "P4CONFIG" "p4.cfg")
-
   (setenv "LANG" "en_US.UTF-8")
-
-  (setq ranger-cleanup-on-disable t
-        ranger-cleanup-eagerly t
-        ranger-show-literal nil
-        ranger-show-dotfiles nil
-        ranger-parent-depth 4
-        ranger-max-preview-size 10)
 
   ;; Org
   (with-eval-after-load 'org
-
     (package-initialize)
 
-    (setq org-startup-indented t)
+    ;(defun my/org-mode-hook ()
+    ;  "Stop the org-level headers from increasing in height relative to the other text."
+    ;  (dolist (face '(org-level-1
+    ;                  org-level-2
+    ;                  org-level-3
+    ;                  org-level-4
+    ;                  org-level-5))
+    ;    (set-face-attribute face nil :weight 'semi-bold :height 1.0)))
 
-    (require 'org-drill)
-
-    (defun my/org-mode-hook ()
-      "Stop the org-level headers from increasing in height relative to the other text."
-      (dolist (face '(org-level-1
-                      org-level-2
-                      org-level-3
-                      org-level-4
-                      org-level-5))
-        (set-face-attribute face nil :weight 'semi-bold :height 1.0)))
-
-    (add-hook 'org-mode-hook 'my/org-mode-hook)
+    ;(add-hook 'org-mode-hook 'my/org-mode-hook)
 
     ;; (setq org-agenda-files '("~/Sync/Notes")) ;; This is very slow
+    (setq org-directory "~/Sync/Notes/")
+    (setq org-archive-location "~/Sync/Notes/archive.org::* From %s")
     (setq org-agenda-files '("~/Sync/Notes/Main.org" "~/Sync/Notes/Schedule.org" "~/Sync/Notes/IOCOM.org" "~/Sync/Notes/Computers.org"))
     (setq org-agenda-start-day "-0d")
     (setq org-agenda-span 2)
@@ -756,14 +723,10 @@ code by Titus von der Malsburg."
         (todo priority-down category-keep)
         (tags priority-down category-keep)
         (search category-keep)))
-    (setq org-archive-location "~/Sync/Notes/archive.org::* From %s")
-
-    (setq org-directory "~/Sync/Notes/")
     (setq org-refile-targets '((org-agenda-files :maxlevel . 9)))
     (setq org-reverse-note-order t)
-    ;; (setq org-log-into-drawer t) ;; this just grows forever..
+    ; (setq org-log-into-drawer t) ;; this just grows forever..
     (add-to-list 'org-modules 'org-habit)
-
     (setq org-todo-keywords
           '((sequence "TODO" "IN-PROGRESS(p)" "WAITING(w@/!)" "|" "DONE(d/!)" "CANCELED(c@)")))
 
@@ -785,20 +748,6 @@ code by Titus von der Malsburg."
             ("r" "Read Later" entry (file+headline "~/Sync/Notes/Main.org" "Inbox")
              "* TODO Read: %a \n")))
 
-    ;; Org Journal
-    (setq org-journal-dir "~/Sync/Notes/Journal/"
-          org-journal-file-format "%Y%m%d.org")
-    (evil-leader/set-key "aj" 'org-journal-new-entry)
-    (setq org-journal-date-format "%A, %B %d, %Y")
-    (setq org-journal-time-format "%R %Z")
-
-    (evil-leader/set-key-for-mode 'org-journal-mode
-      "n" 'org-journal-open-next-entry
-      "p" 'org-journal-open-previous-entry)
-
-    (add-hook 'org-journal-mode-hook 'turn-on-auto-fill)
-    (add-hook 'org-journal-mode-hook 'flyspell-mode)
-
     ;; Crypt
     (require 'org-crypt)
     (org-crypt-use-before-save-magic)
@@ -814,7 +763,6 @@ code by Titus von der Malsburg."
     (require 'ox-html)
     (require 'ox-rss)
     (require 'ox-publish)
-
     )
 
   (setq wttrin-default-cities '("Castleton on Hudson, NY" "Troy, NY" "Albuquerque, NM" "Chicago, IL"))
@@ -824,7 +772,7 @@ code by Titus von der Malsburg."
 
   (push '("*mingus" . emacs) evil-buffer-regexps)
 
-  (setq twittering-use-master-password t)
+  ; (setq twittering-use-master-password t)
 
   (add-hook 'rcirc-mode-hook
             (lambda ()
@@ -833,187 +781,9 @@ code by Titus von der Malsburg."
   ;; Elfeed
 
   (setq elfeed-use-curl t)
-  ;; (elfeed-set-timeout 36000)
+  ; (elfeed-set-timeout 36000)
   ;; (setq elfeed-curl-extra-arguments '("--insecure")) ;necessary for https without a trust certificate
   (require 'elfeed-protocol)
-  (setq elfeed-feeds (list (list "ttrss+https://dustinswan@tt-rss.dustinswan.com"
-                                 :password "")))
+  (setq elfeed-feeds (list (list "ttrss+https://dustinswan@tt-rss.dustinswan.com" :password "")))
   (elfeed-protocol-enable)
-)
-
-;; Do not write anything past this comment. This is where Emacs will
-;; auto-generate custom variable definitions.
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ac-ispell-requires 4 t)
- '(ahs-case-fold-search nil t)
- '(ahs-default-range (quote ahs-range-whole-buffer) t)
- '(ahs-idle-interval 0.25 t)
- '(ahs-idle-timer 0 t)
- '(ahs-inhibit-face-list nil t)
- '(ansi-color-names-vector
-   ["#272822" "#F92672" "#A6E22E" "#E6DB74" "#66D9EF" "#FD5FF0" "#A1EFE4" "#F8F8F2"])
- '(compilation-message-face (quote default))
- '(erc-interpret-mirc-color t)
- '(erc-modules
-   (quote
-    (autoaway autojoin button completion fill irccontrols move-to-prompt netsplit notifications readonly ring scrolltobottom services smiley spelling youtube list match networks notify track autojoin log menu image hl-nicks)))
- '(evil-want-Y-yank-to-eol nil)
- '(fci-rule-color "#3C3D37" t)
- '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
- '(highlight-tail-colors
-   (quote
-    (("#3C3D37" . 0)
-     ("#679A01" . 20)
-     ("#4BBEAE" . 30)
-     ("#1DB4D0" . 50)
-     ("#9A8F21" . 60)
-     ("#A75B00" . 70)
-     ("#F309DF" . 85)
-     ("#3C3D37" . 100))))
- '(js-indent-level 2)
- '(js2-basic-offset 2)
- '(mac-auto-operator-composition-mode t)
- '(magit-diff-use-overlays nil)
- '(monokai-use-variable-pitch nil)
- '(mu4e-use-fancy-chars nil)
- '(ns-auto-hide-menu-bar nil)
- '(org-journal-date-format "%A, %B %d, %Y")
- '(org-journal-time-format "%R %Z")
- '(package-selected-packages
-   (quote
-    (reformatter transient lv nix-mode org-plus-contrib emms w3m elfeed-protocol treepy graphql weechat restclient-helm helm-spotify-plus tracking symon org-mime elfeed-web elfeed-org elfeed-goodies ace-jump-mode noflet elfeed hledger-mode let-alist ghub zeal-at-point edit-indirect ssass-mode vue-html-mode org-vcard oauth gntp libmpdee json-snatcher json-reformat prop-menu parent-mode fringe-helper git-gutter+ git-gutter marshal logito ht pos-tip flx anzu goto-chg pkg-info epl web-completion-data dash-functional seq pythonic popup dash-at-point counsel-dash helm-dash visual-fill-column org-category-capture ghc undo-tree s spaceline-all-the-icons all-the-icons memoize font-lock+ diminish pdf-tools tablist f winum unfill sudoku ob-restclient multiple-cursors fuzzy company-restclient know-your-http-well flyspell-correct log4e async mmt slime rust-mode bind-key packed auto-complete avy tern iedit bind-map evil simple-httpd pcache alert php-mode purescript-mode haml-mode markdown-mode htmlize vue-mode circe rcirc-notify rcirc-color helm-themes helm-swoop helm-spotify multi helm-pydoc helm-projectile helm-mode-manager helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag flyspell-correct-helm ace-jump-helm-line csv-mode inflections spinner org anaconda-mode swiper highlight projectile skewer-mode js2-mode gh magit-popup git-commit hydra inf-ruby pcre2el macrostep dash powerline auctex counsel smartparens go-mode haskell-mode flycheck magit with-editor yasnippet rake company ivy helm helm-core xterm-color auctex-latexmk yapfify yaml-mode xkcd wttrin ws-butler writeroom-mode wolfram-mode window-numbering which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe vdirel uuidgen use-package typit twittering-mode tumblesocks toml-mode toc-org thrift tagedit stan-mode spray spotify spacemacs-theme spaceline smex smeargle slime-company slim-mode shell-pop scss-mode scad-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder restclient restart-emacs request rbenv ranger rainbow-mode rainbow-identifiers rainbow-delimiters racer quelpa qml-mode pyvenv pytest pyenv-mode py-isort pug-mode psci psc-ide projectile-rails popwin pip-requirements phpunit phpcbf php-extras php-auto-yasnippets persp-mode pbcopy paradox pandoc-mode pacmacs p4 ox-pandoc ox-gfm osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-journal org-download org-bullets open-junk-file ob-http neotree mwim multi-term mu4e-maildirs-extension mu4e-alert move-text monokai-theme mmm-mode minitest mingus matlab-mode markdown-toc magit-gitflow magit-gh-pulls lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode ledger-mode launchctl julia-mode json-mode js2-refactor js-doc ivy-hydra intero insert-shebang info+ indent-guide idris-mode ido-vertical-mode hy-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-make haskell-snippets hackernews google-translate golden-ratio go-guru go-eldoc gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md geiser flyspell-correct-ivy flycheck-rust flycheck-pos-tip flycheck-ledger flycheck-haskell flycheck-elm flx-ido fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help erc-yt erc-view-log erc-terminal-notifier erc-social-graph erc-image erc-hl-nicks engine-mode emoji-cheat-sheet-plus emmet-mode elm-mode elisp-slime-nav dumb-jump drupal-mode disaster diff-hl deft cython-mode counsel-projectile company-web company-tern company-statistics company-shell company-go company-ghci company-ghc company-emoji company-cabal company-c-headers company-auctex company-anaconda common-lisp-snippets column-enforce-mode color-identifiers-mode coffee-mode cmm-mode cmake-mode clean-aindent-mode clang-format chruby chess cargo bundler bracketed-paste beacon auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile arduino-mode aggressive-indent adaptive-wrap ace-window ace-link ac-ispell 2048-game)))
- '(paradox-github-token t)
- '(pos-tip-background-color "#FFFACE")
- '(pos-tip-foreground-color "#272822")
- '(psc-ide-add-import-on-completion t t)
- '(psc-ide-rebuild-on-save nil t)
- '(ring-bell-function (quote ignore))
- '(spaceline-all-the-icons-separator-type (quote arrow))
- '(spaceline-info-mode t)
- '(vc-annotate-background nil)
- '(vc-annotate-color-map
-   (quote
-    ((20 . "#F92672")
-     (40 . "#CF4F1F")
-     (60 . "#C26C0F")
-     (80 . "#E6DB74")
-     (100 . "#AB8C00")
-     (120 . "#A18F00")
-     (140 . "#989200")
-     (160 . "#8E9500")
-     (180 . "#A6E22E")
-     (200 . "#729A1E")
-     (220 . "#609C3C")
-     (240 . "#4E9D5B")
-     (260 . "#3C9F79")
-     (280 . "#A1EFE4")
-     (300 . "#299BA6")
-     (320 . "#2896B5")
-     (340 . "#2790C3")
-     (360 . "#66D9EF"))))
- '(vc-annotate-very-old-color nil)
- '(weechat-color-list
-   (quote
-    (unspecified "#272822" "#3C3D37" "#F70057" "#F92672" "#86C30D" "#A6E22E" "#BEB244" "#E6DB74" "#40CAE4" "#66D9EF" "#FB35EA" "#FD5FF0" "#74DBCD" "#A1EFE4" "#F8F8F2" "#F8F8F0"))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((((class color) (min-colors 257)) (:foreground "#F8F8F2" :background "#272822" :family "Iosevka" :foundry "nil" :slant normal :weight normal :height 130 :width normal)) (((class color) (min-colors 89)) (:foreground "#F5F5F5" :background "#1B1E1C" :family "Iosevka" :foundry "nil" :slant normal :weight normal :height 130 :width normal))))
- '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
-(defun dotspacemacs/emacs-custom-settings ()
-  "Emacs custom settings.
-This is an auto-generated function, do not modify its content directly, use
-Emacs customize menu instead.
-This function is called at the very end of Spacemacs initialization."
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ac-ispell-requires 4 t)
- '(ahs-case-fold-search nil)
- '(ahs-default-range (quote ahs-range-whole-buffer))
- '(ahs-idle-interval 0.25)
- '(ahs-idle-timer 0 t)
- '(ahs-inhibit-face-list nil)
- '(ansi-color-names-vector
-   ["#272822" "#F92672" "#A6E22E" "#E6DB74" "#66D9EF" "#FD5FF0" "#A1EFE4" "#F8F8F2"])
- '(compilation-message-face (quote default))
- '(erc-interpret-mirc-color t)
- '(erc-modules
-   (quote
-    (autoaway autojoin button completion fill irccontrols move-to-prompt netsplit notifications readonly ring scrolltobottom services smiley spelling youtube list match networks notify track autojoin log menu image hl-nicks)))
- '(evil-want-Y-yank-to-eol nil)
- '(fci-rule-color "#3C3D37" t)
- '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
- '(highlight-tail-colors
-   (quote
-    (("#3C3D37" . 0)
-     ("#679A01" . 20)
-     ("#4BBEAE" . 30)
-     ("#1DB4D0" . 50)
-     ("#9A8F21" . 60)
-     ("#A75B00" . 70)
-     ("#F309DF" . 85)
-     ("#3C3D37" . 100))))
- '(js-indent-level 2 t)
- '(js2-basic-offset 2 t)
- '(mac-auto-operator-composition-mode t)
- '(magit-diff-use-overlays nil)
- '(monokai-use-variable-pitch nil)
- '(mu4e-use-fancy-chars nil t)
- '(ns-auto-hide-menu-bar nil)
- '(org-journal-date-format "%A, %B %d, %Y" t)
- '(org-journal-time-format "%R %Z" t)
- '(package-selected-packages
-   (quote
-    (sql-indent reformatter transient lv nix-mode org-plus-contrib emms w3m elfeed-protocol treepy graphql weechat restclient-helm helm-spotify-plus tracking symon org-mime elfeed-web elfeed-org elfeed-goodies ace-jump-mode noflet elfeed hledger-mode let-alist ghub zeal-at-point edit-indirect ssass-mode vue-html-mode org-vcard oauth gntp libmpdee json-snatcher json-reformat prop-menu parent-mode fringe-helper git-gutter+ git-gutter marshal logito ht pos-tip flx anzu goto-chg pkg-info epl web-completion-data dash-functional seq pythonic popup dash-at-point counsel-dash helm-dash visual-fill-column org-category-capture ghc undo-tree s spaceline-all-the-icons all-the-icons memoize font-lock+ diminish pdf-tools tablist f winum unfill sudoku ob-restclient multiple-cursors fuzzy company-restclient know-your-http-well flyspell-correct log4e async mmt slime rust-mode bind-key packed auto-complete avy tern iedit bind-map evil simple-httpd pcache alert php-mode purescript-mode haml-mode markdown-mode htmlize vue-mode circe rcirc-notify rcirc-color helm-themes helm-swoop helm-spotify multi helm-pydoc helm-projectile helm-mode-manager helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag flyspell-correct-helm ace-jump-helm-line csv-mode inflections spinner org anaconda-mode swiper highlight projectile skewer-mode js2-mode gh magit-popup git-commit hydra inf-ruby pcre2el macrostep dash powerline auctex counsel smartparens go-mode haskell-mode flycheck magit with-editor yasnippet rake company ivy helm helm-core xterm-color auctex-latexmk yapfify yaml-mode xkcd wttrin ws-butler writeroom-mode wolfram-mode window-numbering which-key wgrep web-mode web-beautify volatile-highlights vi-tilde-fringe vdirel uuidgen use-package typit twittering-mode tumblesocks toml-mode toc-org thrift tagedit stan-mode spray spotify spacemacs-theme spaceline smex smeargle slime-company slim-mode shell-pop scss-mode scad-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reveal-in-osx-finder restclient restart-emacs request rbenv ranger rainbow-mode rainbow-identifiers rainbow-delimiters racer quelpa qml-mode pyvenv pytest pyenv-mode py-isort pug-mode psci psc-ide projectile-rails popwin pip-requirements phpunit phpcbf php-extras php-auto-yasnippets persp-mode pbcopy paradox pandoc-mode pacmacs p4 ox-pandoc ox-gfm osx-trash osx-dictionary orgit org-projectile org-present org-pomodoro org-journal org-download org-bullets open-junk-file ob-http neotree mwim multi-term mu4e-maildirs-extension mu4e-alert move-text monokai-theme mmm-mode minitest mingus matlab-mode markdown-toc magit-gitflow magit-gh-pulls lorem-ipsum livid-mode live-py-mode linum-relative link-hint less-css-mode ledger-mode launchctl julia-mode json-mode js2-refactor js-doc ivy-hydra intero insert-shebang info+ indent-guide idris-mode ido-vertical-mode hy-mode hungry-delete hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-make haskell-snippets hackernews google-translate golden-ratio go-guru go-eldoc gnuplot gitignore-mode github-search github-clone github-browse-file gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md geiser flyspell-correct-ivy flycheck-rust flycheck-pos-tip flycheck-ledger flycheck-haskell flycheck-elm flx-ido fish-mode fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-snipe evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help erc-yt erc-view-log erc-terminal-notifier erc-social-graph erc-image erc-hl-nicks engine-mode emoji-cheat-sheet-plus emmet-mode elm-mode elisp-slime-nav dumb-jump drupal-mode disaster diff-hl deft cython-mode counsel-projectile company-web company-tern company-statistics company-shell company-go company-ghci company-ghc company-emoji company-cabal company-c-headers company-auctex company-anaconda common-lisp-snippets column-enforce-mode color-identifiers-mode coffee-mode cmm-mode cmake-mode clean-aindent-mode clang-format chruby chess cargo bundler bracketed-paste beacon auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile arduino-mode aggressive-indent adaptive-wrap ace-window ace-link ac-ispell 2048-game)))
- '(paradox-github-token t)
- '(pos-tip-background-color "#FFFACE")
- '(pos-tip-foreground-color "#272822")
- '(psc-ide-add-import-on-completion t t)
- '(psc-ide-rebuild-on-save nil t)
- '(ring-bell-function (quote ignore))
- '(spaceline-all-the-icons-separator-type (quote arrow) t)
- '(spaceline-info-mode t)
- '(vc-annotate-background nil)
- '(vc-annotate-color-map
-   (quote
-    ((20 . "#F92672")
-     (40 . "#CF4F1F")
-     (60 . "#C26C0F")
-     (80 . "#E6DB74")
-     (100 . "#AB8C00")
-     (120 . "#A18F00")
-     (140 . "#989200")
-     (160 . "#8E9500")
-     (180 . "#A6E22E")
-     (200 . "#729A1E")
-     (220 . "#609C3C")
-     (240 . "#4E9D5B")
-     (260 . "#3C9F79")
-     (280 . "#A1EFE4")
-     (300 . "#299BA6")
-     (320 . "#2896B5")
-     (340 . "#2790C3")
-     (360 . "#66D9EF"))))
- '(vc-annotate-very-old-color nil)
- '(weechat-color-list
-   (quote
-    (unspecified "#272822" "#3C3D37" "#F70057" "#F92672" "#86C30D" "#A6E22E" "#BEB244" "#E6DB74" "#40CAE4" "#66D9EF" "#FB35EA" "#FD5FF0" "#74DBCD" "#A1EFE4" "#F8F8F2" "#F8F8F0"))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((((class color) (min-colors 257)) (:foreground "#F8F8F2" :background "#272822" :family "Iosevka" :foundry "nil" :slant normal :weight normal :height 130 :width normal)) (((class color) (min-colors 89)) (:foreground "#F5F5F5" :background "#1B1E1C" :family "Iosevka" :foundry "nil" :slant normal :weight normal :height 130 :width normal))))
- '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))
 )
