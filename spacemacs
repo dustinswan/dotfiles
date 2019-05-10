@@ -52,6 +52,9 @@ This function should only modify configuration layer settings."
                      spell-checking-enable-auto-dictionary t)
      better-defaults
      ibuffer
+     (neotree :variables
+              neo-theme 'icons)
+
      osx
      nixos
      (mu4e :variables
@@ -88,7 +91,7 @@ This function should only modify configuration layer settings."
      (org :variables
           org-startup-indented t
           org-hide-emphasis-markers t
-          org-bullets-bullet-list '(" ")
+          ; org-bullets-bullet-list '(" ")
           org-want-todo-bindings t
           org-enable-github-support t
           org-enable-org-journal-support t
@@ -284,7 +287,7 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(poet monokai spacemacs-dark spacemacs-light ample alect-black zenburn darkburn solarized-dark)
+   dotspacemacs-themes '(nord monokai spacemacs-dark spacemacs-light)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
@@ -293,7 +296,7 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(spacemacs :separator alternate :separator-scale 1.8)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -302,11 +305,10 @@ It should only modify the values of Spacemacs settings."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Iosevka Nerd Font"
-   ; dotspacemacs-default-font '("Libre Baskerville"
-                               :size 13
+                               :size 16
                                :weight normal
-                               :width normal)
-                               ;; :powerline-scale 1.2)
+                               :width normal
+                               :powerline-scale 1.5)
 
    ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
@@ -410,7 +412,7 @@ It should only modify the values of Spacemacs settings."
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's active or selected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
-   dotspacemacs-active-transparency 90
+   dotspacemacs-active-transparency 95
 
    ;; A value from the range (0..100), in increasing opacity, which describes
    ;; the transparency level of a frame when it's inactive or deselected.
@@ -555,15 +557,6 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
-  (set-face-attribute 'default nil :family "Iosevka Nerd Font" :height 130)
-  (set-face-attribute 'fixed-pitch nil :family "Iosevka Nerd Font")
-  (set-face-attribute 'variable-pitch nil :family "Libre Baskerville")
-
-  (lambda () (progn
-               (setq left-margin-width 2)
-               (setq right-margin-width 2)
-               (set-window-buffer nil (current-buffer))))
-
   (setq prettify-symbols-unprettify-at-point t)
   (global-prettify-symbols-mode +1)
 
@@ -583,7 +576,7 @@ before packages are loaded."
     (spacemacs/toggle-transparent-frame))
   (add-hook 'after-make-frame-functions 'my-focus-new-frame t)
 
-  (beacon-mode 1)
+  ; (beacon-mode 1)
 
   (setq vdirel-repository "~/Contacts/Default/")
 
@@ -636,7 +629,7 @@ before packages are loaded."
           mu4e-view-show-addresses t
           mu4e-view-show-images t
           mu4e-view-prefer-html nil
-          mu4e-use-fancy-chars t
+          ; mu4e-use-fancy-chars t
           mu4e-html2text-command 'mu4e-shr2text
           ;; mu4e-html2text-command "w3m -dump -T text/html"
           ;; w3m-command "/usr/local/bin/w3m"
