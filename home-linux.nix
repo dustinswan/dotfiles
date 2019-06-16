@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 
 {
-  home.packages = with pkgs; [ clipit ncmpcpp pandoc unzip wirelesstools xcape xsel anki pavucontrol blueman gifsicle networkmanager paprefs steam pinentry vlc nitrogen wine yarn spotify signal-desktop ispell google-chrome emacs-all-the-icons-fonts python3 python37Packages.pip veracrypt bashmount exfat exfat-utils neomutt i3lock-pixeled p4v killall calc cargo cava diceware magic-wormhole xorg.xmodmap zip cacert dropbox-cli keepassx2 wireshark-qt vdirsyncer slack riot-web retroarch gimp blender khal khard mpv
+  home.packages = with pkgs; [ clipit ncmpcpp pandoc unzip wirelesstools xcape xsel anki pavucontrol blueman gifsicle networkmanager paprefs steam pinentry vlc nitrogen wine yarn spotify signal-desktop ispell google-chrome emacs-all-the-icons-fonts python3 python37Packages.pip veracrypt bashmount exfat exfat-utils neomutt i3lock-pixeled p4v killall calc cargo cava diceware magic-wormhole xorg.xmodmap zip cacert dropbox-cli keepassx2 wireshark-qt vdirsyncer slack riot-web retroarch gimp blender khal khard
   ];
 
   services.mpd = {
@@ -101,8 +101,9 @@
   services.blueman-applet.enable = true;
   services.emacs.enable = true;
 
+  programs.gpg.enable = true;
   programs.feh.enable = true;
-
+  programs.mpv.enable = true;
   # programs.htop.enable = true;
   # programs.jq.enable = true;
   programs.vscode.enable = true;
@@ -153,8 +154,8 @@
         window = {
           border = 0;
           commands = [
-            { criteria = { class = "mpv"; }; command = "floating enable, move absolute position center"; }
-            { criteria = { class = "feh"; }; command = "floating enable, move absolute position center"; }
+            # { criteria = { class = "mpv"; }; command = "floating enable, move absolute position center"; }
+            # { criteria = { class = "feh"; }; command = "floating enable, move absolute position center"; }
           ];
         };
         bars = [];
@@ -169,6 +170,10 @@
           "${mod}+Ctrl+Mod1+t" = "exec alacritty";
           "${mod}+Ctrl+Mod1+e" = "exec \"emacsclient -c\"";
           "${mod}+Ctrl+Mod1+b" = "exec firefox";
+          "${mod}+Ctrl+Mod1+1" = "exec \"cvlc rtsp://viewer:rockwall1@192.168.1.30/stream0\"";
+          "${mod}+Ctrl+Mod1+2" = "exec \"cvlc rtsp://viewer:rockwall1@192.168.1.31/stream0\"";
+          "${mod}+Ctrl+Mod1+3" = "exec \"cvlc rtsp://viewer:rockwall1@192.168.1.32/stream0\"";
+
           "${mod}+h" = "focus left";
           "${mod}+j" = "focus down";
           "${mod}+k" = "focus up";

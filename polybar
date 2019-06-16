@@ -115,7 +115,7 @@ label-visible-padding = 2
 
 [module/cpu]
 type = internal/cpu
-interval = 0.5
+;interval = 1.0
 format = <label> <ramp-coreload>
 label = CPU %percentage%%
 
@@ -143,20 +143,25 @@ date-alt =   %%{F#fff}%A, %d %B %Y %%{F#fff}%H:%M%%{F#666}:%%{F#fba922}%S%%{F
 
 [module/memory]
 type = internal/memory
-format = <label> <bar-used>
+format = <label> <ramp-used>
 label = RAM %percentage_used%%
 
-bar-used-width = 8
-bar-used-foreground-0 = #aaff77
-bar-used-foreground-1 = #aaff77
-bar-used-foreground-2 = #fba922
-bar-used-foreground-3 = #ff5555
-;bar-used-indicator = ┼
-bar-used-indicator = ┤
-bar-used-indicator-foreground = #ff
-bar-used-fill = ─
-bar-used-empty = ─
-bar-used-empty-foreground = #444444
+ramp-used-0 = ▁
+ramp-used-0-foreground = #aaff77
+ramp-used-1 = ▂
+ramp-used-1-foreground = #aaff77
+ramp-used-2 = ▃
+ramp-used-2-foreground = #aaff77
+ramp-used-3 = ▄
+ramp-used-3-foreground = #aaff77
+ramp-used-4 = ▅
+ramp-used-4-foreground = #fba922
+ramp-used-5 = ▆
+ramp-used-5-foreground = #fba922
+ramp-used-6 = ▇
+ramp-used-6-foreground = #ff5555
+ramp-used-7 = █
+ramp-used-7-foreground = #ff5555
 
 [module/mpd]
 type = internal/mpd
@@ -173,7 +178,7 @@ icon-repeat = 
 toggle-on-foreground =
 toggle-off-foreground = #55
 
-bar-progress-width = 25
+bar-progress-width = 15
 bar-progress-format = %{A4:mpdseek+2: A5:mpdseek-2:}%fill%%indicator%%empty%%{A A}
 bar-progress-indicator = ┼
 bar-progress-indicator-foreground = #ff
