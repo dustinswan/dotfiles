@@ -170,13 +170,8 @@
       };
 
       dswan = {
-        hostname = "dswan.visionable.com";
+        hostname = "dswan.iocom.com";
         user = "ec2-user";
-      };
-
-      visitest = {
-        hostname = "visitest.iocom.com";
-        user = "root";
       };
     };
   };
