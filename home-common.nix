@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    bat wget silver-searcher tree ranger nodejs yarn mu mosh newsboat msmtp w3m urlview nmap rtv gnupg youtube-dl nodePackages.tern nodePackages.eslint nodePackages.javascript-typescript-langserver nodePackages.js-beautify nodePackages.prettier nodePackages.dat
+    bat wget silver-searcher tree ranger nodejs yarn mosh newsboat msmtp w3m urlview nmap rtv gnupg youtube-dl nodePackages.tern nodePackages.eslint nodePackages.javascript-typescript-langserver nodePackages.js-beautify nodePackages.prettier nodePackages.dat
   ];
 
   home.sessionVariables = {
@@ -157,6 +157,11 @@
   };
 
   programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.broot = {
     enable = true;
     enableZshIntegration = true;
   };
