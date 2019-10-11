@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 
 {
-  home.packages = with pkgs; [ clipit ncmpcpp pandoc unzip wirelesstools xcape xsel anki pavucontrol blueman gifsicle networkmanager paprefs steam pinentry vlc nitrogen wine yarn spotify signal-desktop ispell google-chrome emacs-all-the-icons-fonts python3 python37Packages.pip veracrypt bashmount exfat exfat-utils neomutt i3lock-pixeled p4v killall calc cargo cava diceware magic-wormhole xorg.xmodmap zip cacert dropbox-cli keepassx2 wireshark-qt vdirsyncer slack riot-web retroarch gimp blender khal khard mu
+  home.packages = with pkgs; [ clipit ncmpcpp pandoc unzip wirelesstools xcape xsel anki pavucontrol blueman gifsicle networkmanager paprefs steam pinentry vlc nitrogen wine yarn spotify signal-desktop google-chrome emacs-all-the-icons-fonts python3 python37Packages.pip veracrypt bashmount exfat exfat-utils neomutt i3lock-pixeled p4v killall calc cargo cava diceware magic-wormhole xorg.xmodmap zip cacert dropbox-cli keepassx2 wireshark-qt vdirsyncer slack riot-web retroarch gimp blender khal khard mu
   ];
 
   services.mpd = {
@@ -101,21 +101,8 @@
   services.blueman-applet.enable = true;
   services.emacs.enable = true;
 
-  programs.gpg.enable = true;
   programs.feh.enable = true;
-  programs.mpv.enable = true;
-  # programs.htop.enable = true;
-  # programs.jq.enable = true;
-  programs.vscode.enable = true;
   programs.firefox.enable = true;
-  # programs.emacs.enable = true;
-  # programs.keychain = {
-  #   enable = true;
-  #   enableZshIntegration = true;
-  #   inheritType = "any";
-  #   agents = ["gpg" "ssh"];
-  #   keys = ["id_rsa" "2B3A6377"];
-  # };
   programs.rofi = {
     enable = true;
   };
