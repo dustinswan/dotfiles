@@ -152,14 +152,14 @@
 
   # programs.offlineimap.enable = true;
 
-  # programs.neovim = {
-  #   enable = true;
-  #   viAlias = true;
-  #   vimAlias = true;
-  #   withNodeJs = true;
-  #   withPython3 = true;
-  #   extraConfig = builtins.readFile ~/dotfiles/vimrc;
-  # };
+  programs.neovim = {
+    enable = true;
+    viAlias = true;
+    vimAlias = true;
+    withNodeJs = true;
+    withPython3 = true;
+    extraConfig = builtins.readFile ~/dotfiles/vimrc;
+  };
 
   programs.gpg.enable = true;
   programs.htop.enable = true;
