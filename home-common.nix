@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    ripgrep fd bat wget silver-searcher tree ranger nodejs yarn mosh newsboat msmtp w3m urlview nmap rtv gnupg youtube-dl nodePackages.tern nodePackages.eslint nodePackages.javascript-typescript-langserver nodePackages.js-beautify nodePackages.prettier ffmpeg ispell aspell hexyl nnn entr
+    ripgrep fd bat wget silver-searcher tree ranger nodejs yarn mosh newsboat msmtp w3m urlview nmap rtv gnupg youtube-dl nodePackages.tern nodePackages.eslint nodePackages.javascript-typescript-langserver nodePackages.js-beautify nodePackages.prettier ffmpeg ispell aspell hexyl nnn entr httpie cacert
   ];
 
   home.sessionVariables = {
@@ -19,7 +19,63 @@
   programs.home-manager.enable = true;
 
   programs.alacritty = {
-    enable = true; # TODO
+    enable = true;
+    settings = {
+      window = {
+        padding = {
+          x = 12;
+          y = 12;
+        };
+        dimentions = {
+          columns = 0;
+          lines = 0;
+        };
+      };
+      font = {
+        normal.family = "Iosevka Nerd Font";
+        bold.family = "Iosevka Nerd Font";
+        italic.family = "Iosevka Nerd Font";
+        size = 18.0;
+      };
+      key_bindings = [
+        {
+          key = "N";
+          mods = "Control|Shift";
+          action = "SpawnNewInstance";
+        }
+      ];
+      background_opacity = 0.95;
+      colors = {
+        primary = {
+          background = "0x2E3440";
+          foreground = "0xD8DEE9";
+        };
+        cursor = {
+          text = "0x2E3440";
+          cursor = "0xD8DEE9";
+        };
+        normal = {
+          black = "0x3B4252";
+          red = "0xBF616A";
+          green = "0xA3BE8C";
+          yellow = "0xEBCB8B";
+          blue = "0x81A1C1";
+          magenta = "0xB48EAD";
+          cyan = "0x88C0D0";
+          white = "0xE5E9F0";
+        };
+        bright = {
+          black = "0x4C566A";
+          red = "0xBF616A";
+          green = "0xA3BE8C";
+          yellow = "0xEBCB8B";
+          blue = "0x81A1C1";
+          magenta = "0xB48EAD";
+          cyan = "0x8FBCBB";
+          white = "0xECEFF4";
+        };
+      };
+    };
   };
 
   programs.tmux = {
@@ -28,35 +84,17 @@
     keyMode = "vi";
     baseIndex = 1;
     clock24 = true;
-    escapeTime = 0;
-    newSession = true;
     secureSocket = false;
     plugins = with pkgs.tmuxPlugins; [ sensible resurrect pain-control continuum copycat open urlview fzf-tmux-url yank vim-tmux-navigator ];
     extraConfig = ''
      set -g set-titles on
      set -g set-titles-string "#H (#S)"
+     set -g mouse on
      set -g status-right ""
      set -g status-left ""
-
-     set-option -g mouse on
-     set-option -g status-bg default
-     set-option -g status-fg "#666666"
-     set-option -g status-attr default
-     set-option -g pane-border-fg "#666666"
-     set-option -g pane-active-border-fg "#666666"
-     set-option -g message-bg black
-     set-option -g message-fg white
-     set-option -g display-panes-active-colour white
-     set-option -g display-panes-colour white
-
-     set-window-option -g window-status-fg "#666666"
-     set-window-option -g window-status-bg default
-     set-window-option -g window-status-current-fg white
-     set-window-option -g window-status-current-bg default
-     set-window-option -g window-status-format " #W"
-     set-window-option -g window-status-current-format " #W"
-     set-window-option -g window-status-separator "  "
-     # set-window-option -g clock-mode-colour white
+     set -g status-bg default
+     set -g window-status-format '#[fg=black,bright,nodim]#I #[fg=white,bright,dim]#W '
+     set -g window-status-current-format '#[fg=black,bright,nodim]#I #[fg=white,bright,nodim]#W '
     '';
   };
 
@@ -77,8 +115,7 @@
       er = "rm -rf logs; unzip -o";
       srsync = "rsync --rsync-path='sudo rsync'";
     };
-    # for MacOS
-    initExtra = ''
+    initExtra = '' # for MacOS
       source ~/.nix-profile/etc/profile.d/nix.sh
     '';
   };
@@ -124,33 +161,48 @@
   };
 
   accounts.email = {
+    maildirBasePath = "Mail";
+    certificatesFile = "/Users/dustinswan/.nix-profile/etc/ssl/certs/ca-bundle.crt"; # TODO NIX_SSL_CERT_FILE
+
     accounts = {
       FastMail = {
-        # name = "FastMail";
         address = "dustin@dustinswan.com";
         aliases = "dustinswan@gmail.com";
-        primary = true;
         realName = "Dustin Swan";
+        primary = true;
         folders = {
           inbox = "INBOX";
           drafts = "INBOX.Drafts";
           sent = "INBOX.Sent";
           trash = "INBOX.Trash";
         };
-        offlineimap = {
-          enable = true;
-          extraConfig.remote = {
-            remotehost = "mail.messagingengine.com";
-            remoteuser = "dustinswan@fastmail.com";
-          };
+        userName = "dustinswan@fastmail.com";
+        imap.host = "mail.messagingengine.com";
+        smtp.host = "mail.messagingengine.com";
+        passwordCommand = "gpg -dq ~/.dustinswan@fastmail.com-password.gpg";
+        offlineimap.enable = true;
+      };
+
+      IOCOM = {
+        address = "dswan@iocom.com";
+        aliases = "dswan@visionable.com";
+        realName = "Dustin Swan";
+        folders = {
+          inbox = "INBOX";
+          drafts = "Drafts";
+          sent = "Sent Items";
+          trash = "Deleted Items";
         };
+        userName = "dswan@iocom.com";
+        imap.host = "secure.emailsrvr.com";
+        smtp.host = "secure.emailsrvr.com";
+        passwordCommand = "gpg -dq ~/.iocom-password.gpg";
+        offlineimap.enable = true;
       };
     };
-
-    maildirBasePath = "\$HOME/Mail";
   };
 
-  # programs.offlineimap.enable = true;
+  programs.offlineimap.enable = true;
 
   programs.neovim = {
     enable = true;
