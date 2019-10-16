@@ -1,5 +1,0 @@
-urls-source "ttrss"
-ttrss-url "https://tt-rss.dustinswan.com/"
-ttrss-login "dustinswan"
-ttrss-passwordeval "gpg -dq ~/.dustinswan@tt-rss.dustinswan.com.gpg"
-browser "open"

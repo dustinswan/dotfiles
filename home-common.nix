@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    ripgrep fd bat wget silver-searcher tree ranger nodejs yarn mosh newsboat msmtp w3m urlview nmap rtv gnupg youtube-dl nodePackages.tern nodePackages.eslint nodePackages.javascript-typescript-langserver nodePackages.js-beautify nodePackages.prettier ffmpeg ispell aspell hexyl nnn entr httpie cacert
+    ripgrep fd bat wget silver-searcher tree ranger nodejs yarn mosh msmtp w3m urlview nmap rtv gnupg youtube-dl nodePackages.tern nodePackages.eslint nodePackages.javascript-typescript-langserver nodePackages.js-beautify nodePackages.prettier ffmpeg ispell aspell hexyl nnn entr httpie cacert
   ];
 
   home.sessionVariables = {
@@ -202,6 +202,7 @@
     };
   };
 
+  programs.msmtp.enable = true;
   programs.offlineimap.enable = true;
 
   programs.neovim = {
@@ -211,6 +212,16 @@
     withNodeJs = true;
     withPython3 = true;
     extraConfig = builtins.readFile ~/dotfiles/vimrc;
+  };
+
+  programs.newsboat = {
+    enable = true;
+    extraConfig = ''
+      urls-source "ttrss"
+      ttrss-url "https://tt-rss.dustinswan.com/"
+      ttrss-login "dustinswan"
+      ttrss-passwordeval "gpg -dq ~/.dustinswan@tt-rss.dustinswan.com.gpg"
+    '';
   };
 
   programs.gpg.enable = true;
