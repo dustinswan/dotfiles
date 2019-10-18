@@ -2,12 +2,11 @@
 
 {
   home.packages = with pkgs; [
-    ripgrep fd bat wget silver-searcher tree ranger nodejs yarn mosh msmtp w3m urlview nmap rtv gnupg youtube-dl nodePackages.tern nodePackages.eslint nodePackages.javascript-typescript-langserver nodePackages.js-beautify nodePackages.prettier ffmpeg ispell aspell hexyl nnn entr httpie cacert
+    ripgrep fd wget silver-searcher tree ranger nodejs yarn mosh msmtp w3m urlview nmap rtv gnupg youtube-dl nodePackages.tern nodePackages.eslint nodePackages.javascript-typescript-langserver nodePackages.js-beautify nodePackages.prettier ffmpeg ispell aspell hexyl nnn entr httpie cacert pinentry
   ];
 
   home.sessionVariables = {
     EDITOR = "vim";
-    BROWSER = "firefox";
 
     P4USER = "dswan";
     P4PORT = "humu.iocom.com:1666";
@@ -179,8 +178,16 @@
         userName = "dustinswan@fastmail.com";
         imap.host = "mail.messagingengine.com";
         smtp.host = "mail.messagingengine.com";
-        passwordCommand = "gpg -dq ~/.dustinswan@fastmail.com-password.gpg";
+        passwordCommand = "gpg -dq /Users/dustinswan/.dustinswan@fastmail.com-password.gpg";
         offlineimap.enable = true;
+        msmtp.enable = true;
+        signature = {
+          text = ''
+            Dustin Swan
+            dustinswan.com
+          '';
+          showSignature = "append";
+        };
       };
 
       IOCOM = {
@@ -196,8 +203,17 @@
         userName = "dswan@iocom.com";
         imap.host = "secure.emailsrvr.com";
         smtp.host = "secure.emailsrvr.com";
-        passwordCommand = "gpg -dq ~/.iocom-password.gpg";
+        passwordCommand = "gpg -dq /Users/dustinswan/.iocom-password.gpg";
         offlineimap.enable = true;
+        msmtp.enable = true;
+        signature = {
+          text = ''
+            Dustin Swan, Software Developer
+            Visionable Ltd | https://visionable.com
+            dswan@visionable.com
+          '';
+          showSignature = "append";
+        };
       };
     };
   };
@@ -211,7 +227,70 @@
     vimAlias = true;
     withNodeJs = true;
     withPython3 = true;
-    extraConfig = builtins.readFile ~/dotfiles/vimrc;
+    # unimpaired endwise textobj-word-column MatchTag vim-matchmaker vim-vertical-move stdtabs matchit splitjoin vimade floaterm
+    plugins = with pkgs.vimPlugins; [ nord-vim vim-airline vim-airline-themes vim-sensible vim-repeat vim-surround vim-fugitive vim-speeddating jdaddy-vim ale vim-snippets coc-nvim fzf-vim vim-tmux-navigator vim-multiple-cursors vim-easymotion vim-sneak nerdcommenter nerdtree emmet-vim undotree vim-signature vim-easy-align vim-better-whitespace vim-signify vim-expand-region vim-exchange argtextobj-vim goyo vim-orgmode vim-polyglot vim-devicons vim-startify ];
+    extraConfig = ''
+      " TODO get stdtabs back
+      set expandtab
+      set tabstop=2
+      set softtabstop=2
+      set shiftwidth=2
+
+      set hidden
+      set number
+      set ignorecase
+      set smartcase
+      set magic
+      set mouse=a
+
+      let mapleader="\<Space>"
+      let maplocalleader="\\"
+
+      let g:EasyMotion_smartcase = 1
+
+      let g:coc_snippet_next = '<tab>'
+      let g:coc_snippet_prev = '<S-Tab>'
+
+      let g:airline#extensions#tabline#enabled = 1
+      let g:airline#extensions#ale#enabled = 1
+      let g:airline_powerline_fonts = 1
+
+      let g:nord_italic = 1
+      " let g:nord_italic_comments = 1
+      let g:nord_underline = 1
+      colorscheme nord
+
+      nnoremap <silent><leader>p4 :! p4 edit %<cr>
+      nnoremap <silent><leader>/ :noh<cr>
+      nnoremap <leader>v <c-w>v<c-w>l
+      nnoremap <leader>s <c-w>s<c-w>j
+      nnoremap <leader>t :NERDTreeToggle<cr>
+      nnoremap <leader>u :UndotreeToggle<cr>
+      xmap ga <Plug>(EasyAlign)
+      nmap ga <Plug>(EasyAlign)
+
+      nnoremap <silent> <leader>a :Ag<CR>
+      nnoremap <silent> <leader>f :Files<CR>
+      nnoremap <silent> <leader>b :Buffers<CR>
+      nnoremap <silent> <leader>w :Windows<CR>
+      nnoremap <silent> <leader>c :Commands<CR>
+      nnoremap <silent> <leader>hf :History<CR>
+      nnoremap <silent> <leader>hc :History:<CR>
+      nnoremap <silent> <leader>hs :History/<CR>
+      nnoremap <silent> <leader>l :BLines<CR>
+      nnoremap <silent> <leader><leader>l :Lines<CR>
+      " nnoremap <silent> <leader>t :BTags<CR>
+      nnoremap <silent> <leader><leader>t :Tags<CR>
+      nnoremap <silent> <leader>gc :BCommits<CR>
+      nnoremap <silent> <leader><leader>gc :Commits<CR>
+      nmap <leader><tab> <plug>(fzf-maps-n)
+      xmap <leader><tab> <plug>(fzf-maps-x)
+      omap <leader><tab> <plug>(fzf-maps-o)
+      imap <c-x><c-k> <plug>(fzf-complete-word)
+      imap <c-x><c-f> <plug>(fzf-complete-path)
+      imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+      imap <c-x><c-l> <plug>(fzf-complete-line)
+    '';
   };
 
   programs.newsboat = {
@@ -224,6 +303,7 @@
     '';
   };
 
+  programs.bat.enable = true;
   programs.gpg.enable = true;
   programs.htop.enable = true;
   programs.mpv.enable = true;
