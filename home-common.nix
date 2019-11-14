@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    ripgrep fd wget silver-searcher tree ranger nodejs yarn mosh msmtp w3m urlview nmap rtv gnupg youtube-dl nodePackages.tern nodePackages.eslint nodePackages.javascript-typescript-langserver nodePackages.js-beautify nodePackages.prettier ffmpeg ispell aspell hexyl nnn entr httpie cacert pinentry
+    ripgrep fd wget silver-searcher tree ranger nodejs yarn mosh w3m urlview nmap rtv gnupg youtube-dl nodePackages.tern nodePackages.eslint nodePackages.javascript-typescript-langserver nodePackages.js-beautify nodePackages.prettier ffmpeg ispell aspell hexyl nnn entr httpie cacert
   ];
 
   home.sessionVariables = {
@@ -141,6 +141,11 @@
         hostname = "dswan.iocom.com";
         user = "ec2-user";
       };
+
+      kmcglynn = {
+        hostname = "kmcglynn.iocom.com";
+        user = "centos";
+      };
     };
   };
 
@@ -190,9 +195,9 @@
         };
       };
 
-      IOCOM = {
-        address = "dswan@iocom.com";
-        aliases = "dswan@visionable.com";
+      Visionable = {
+        address = "dswan@visionable.com";
+        aliases= "dswan@iocom.com";
         realName = "Dustin Swan";
         folders = {
           inbox = "INBOX";
@@ -200,11 +205,40 @@
           sent = "Sent Items";
           trash = "Deleted Items";
         };
-        userName = "dswan@iocom.com";
-        imap.host = "secure.emailsrvr.com";
-        smtp.host = "secure.emailsrvr.com";
-        passwordCommand = "gpg -dq /Users/dustinswan/.iocom-password.gpg";
-        offlineimap.enable = true;
+        userName = "dswan@visionable.com";
+        imap.host = "outlook.office365.com";
+        smtp.host = "smtp.office365.com";
+        passwordCommand = "gpg -dq /Users/dustinswan/.dswan@visionable.com-password.gpg";
+        offlineimap = {
+          enable = true;
+          extraConfig.remote = {
+            folderfilter = ''lambda folder: folder not in [
+              'Calendar',
+              'Calendar/Birthdays',
+              'Calendar/IOCOM Holidays',
+              'Calendar/United States holidays',
+              'Contacts',
+              'Contacts/Sub Folder 1',
+              'Contacts/Sub Folder 2',
+              'Contacts/Skype for Business Contacts',
+              'Deleted Items',
+              'Drafts',
+              'Journal',
+              'Junk Email',
+              'Notes',
+              'Outbox',
+              'Sync Issues',
+              'Sync Issues/Conflicts',
+              'Sync Issues/Local Failures',
+              'Sync Issues/Server Failures',
+              'Tasks',
+              'Tasks/Sub Folder 1',
+              'Tasks/Sub Folder 2'
+              ]
+            '';
+          };
+        };
+
         msmtp.enable = true;
         signature = {
           text = ''
@@ -227,10 +261,9 @@
     vimAlias = true;
     withNodeJs = true;
     withPython3 = true;
-    # unimpaired endwise textobj-word-column MatchTag vim-matchmaker vim-vertical-move stdtabs matchit splitjoin vimade floaterm
-    plugins = with pkgs.vimPlugins; [ nord-vim vim-airline vim-airline-themes vim-sensible vim-repeat vim-surround vim-fugitive vim-speeddating jdaddy-vim ale vim-snippets coc-nvim fzf-vim vim-tmux-navigator vim-multiple-cursors vim-easymotion vim-sneak nerdcommenter nerdtree emmet-vim undotree vim-signature vim-easy-align vim-better-whitespace vim-signify vim-expand-region vim-exchange argtextobj-vim goyo vim-orgmode vim-polyglot vim-devicons vim-startify ];
+    # unimpaired endwise textobj-word-column MatchTag vim-matchmaker vim-vertical-move stdtabs matchit splitjoin vimade floaterm coc-nvim
+    plugins = with pkgs.vimPlugins; [ nord-vim vim-airline vim-airline-themes vim-sensible vim-repeat vim-surround vim-fugitive vim-speeddating jdaddy-vim ale vim-snippets fzf-vim vim-tmux-navigator vim-multiple-cursors vim-easymotion vim-sneak nerdcommenter nerdtree emmet-vim undotree vim-signature vim-easy-align vim-better-whitespace vim-signify vim-expand-region vim-exchange argtextobj-vim goyo vim-orgmode vim-polyglot vim-devicons vim-startify ];
     extraConfig = ''
-      " TODO get stdtabs back
       set expandtab
       set tabstop=2
       set softtabstop=2
