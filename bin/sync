@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if command -v offlineimap &> /dev/null; then
+  offlineimap
+fi
+
+if command -v vdirsyncer &> /dev/null; then
+  vdirsyncer sync
+fi
