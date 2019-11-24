@@ -96,8 +96,8 @@ This function should only modify configuration layer settings."
           org-want-todo-bindings t
           org-enable-github-support t
           org-enable-org-journal-support t
-          org-journal-enable-encryption t
-          org-journal-encrypt-journal t
+          ; org-journal-enable-encryption t
+          ; org-journal-encrypt-journal t
           org-journal-dir "~/Sync/Notes/Journal/"
           org-journal-file-format "%Y%m%d.org"
           org-journal-date-format "%A, %B %d, %Y"
@@ -306,7 +306,7 @@ It should only modify the values of Spacemacs settings."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Iosevka Nerd Font"
-                               :size 16
+                               :size 18
                                :weight normal
                                :width normal
                                :powerline-scale 1.5)
@@ -561,6 +561,8 @@ before packages are loaded."
   (setq prettify-symbols-unprettify-at-point t)
   (global-prettify-symbols-mode +1)
 
+  (global-set-key (kbd "H-h") 'ns-do-hide-emacs)
+
   (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
   (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
   (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
@@ -687,9 +689,9 @@ before packages are loaded."
   )
 
   (setenv "P4USER" "dswan")
-  (setenv "P4PORT" "humu.insors.net:1666")
+  (setenv "P4PORT" "humu.iocom.com:1666")
   (setenv "P4CONFIG" "p4.cfg")
-  (setenv "LANG" "en_US.UTF-8")
+  ; (setenv "LANG" "en_US.UTF-8")
 
   ;; Org
   (with-eval-after-load 'org
@@ -747,7 +749,7 @@ before packages are loaded."
     (org-crypt-use-before-save-magic)
     (setq org-tags-exclude-from-inheritance (quote ("crypt")))
     (setq org-crypt-key nil) ;; symmetric encryption
-    (setq epg-gpg-program "/usr/local/bin/gpg")
+    (setq epg-gpg-program "~/.nix-profile/bin/gpg")
 
     ;; Deft
     (setq deft-directory "~/Sync/Notes")

@@ -1,17 +1,15 @@
-" set nocompatible " not necessary with neovim
-
 call plug#begin('~/.vim/plugged')
 
 let mapleader="\<Space>"
 let maplocalleader="\\"
 
-" Plug 'tomasr/molokai'
 Plug 'arcticicestudio/nord-vim'
 Plug 'vim-airline/vim-airline'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline_powerline_fonts = 1
 Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-repeat' " repeats plugin maps
 Plug 'tpope/vim-surround' " cs[{ -> change surrounding [ to {, cst -> change surrounding tag, ysiw] -> surround inner word with ], etc.
 Plug 'tpope/vim-fugitive' " Gdiff, Gblame, Gstatus - to add/reset, Gcommit
@@ -61,50 +59,23 @@ Plug 'sheerun/vim-polyglot' " syntax and indentation for many languages
 Plug 'ryanoasis/vim-devicons' " icons in airline, NERDTree, etc.
 Plug 'TaDaa/vimade' " fade inactive buffer
 Plug 'mhinz/vim-startify' " fancy start page
+Plug 'voldikss/vim-floaterm' " floating terminal
+noremap <leader>T :FloatermToggle<CR>i
+autocmd User Startified setlocal buflisted " fixing floaterm on Startify
 
 call plug#end()
 
-" general goodness
-syntax enable
-set hidden " allow hidden unsaved buffers
-set history=1000 " longer history
-set noswapfile " turn off swapfiles
+" set hidden " allow hidden unsaved buffers
+" set noswapfile " turn off swapfiles
 set number " line numbers
-set showcmd " show the command as it is typed
-set showmode
-set wildmenu
-set backspace=indent,eol,start
-set ttyfast
-"set wildmode=longest:full
-set wildmode=list:longest " try this on for a while
-set autoread " when a file is changed externally
-set ruler
-set cursorline " Highlight current line
-set laststatus=2 " Always show the statusline
-set scrolloff=5 " Give us a few lines before and after the cursor
 
-" long lines
-set wrap
-set formatoptions=rqn1
-set textwidth=80
-" set colorcolumn=80
+" set wrap
+" set formatoptions=rqn1
 
-" persistent undo
-set undodir=~/.vim/undodir
-set undofile
-
-" indentation
-" set autoindent
 " set smartindent
 
-" search
-" set hlsearch
-" set incsearch
-" set gdefault " now substitutions assume /g
 set ignorecase
 set smartcase " if we include uppercase, it will be case sensitive
-" set showmatch " matching brackets
-" set matchtime=2 " blink brackets
 
 " clear highlighting
 nnoremap <silent><leader>/ :noh<cr>
@@ -112,19 +83,10 @@ nnoremap <silent><leader>/ :noh<cr>
 " regex
 set magic
 
-" tab stops
-" set tabstop=4
-" set softtabstop=4
-" set shiftwidth=4
-" set expandtab
-" set smarttab
-
-" mouse
 set mouse=a " a = all modes: nvic
 
-" Colors
 let g:nord_italic = 1
-let g:nord_italic_comments = 1
+" let g:nord_italic_comments = 1
 let g:nord_underline = 1
 colorscheme nord
 
@@ -160,17 +122,6 @@ imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
-
-" Tabs
-nmap <leader>1 1gt
-nmap <leader>2 2gt
-nmap <leader>3 3gt
-nmap <leader>4 4gt
-nmap <leader>5 5gt
-nmap <leader>6 6gt
-nmap <leader>7 7gt
-nmap <leader>8 8gt
-nmap <leader>9 9gt
 
 " Coc
 inoremap <silent><expr> <TAB>
