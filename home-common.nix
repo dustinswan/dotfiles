@@ -164,7 +164,7 @@
 
   accounts.email = {
     maildirBasePath = "Mail";
-    certificatesFile = "/Users/dustinswan/.nix-profile/etc/ssl/certs/ca-bundle.crt"; # TODO NIX_SSL_CERT_FILE
+    certificatesFile = "${builtins.getEnv "HOME"}/.nix-profile/etc/ssl/certs/ca-bundle.crt";
 
     accounts = {
       FastMail = {
@@ -181,7 +181,7 @@
         userName = "dustinswan@fastmail.com";
         imap.host = "mail.messagingengine.com";
         smtp.host = "mail.messagingengine.com";
-        passwordCommand = "gpg -dq /Users/dustinswan/.dustinswan@fastmail.com-password.gpg";
+        passwordCommand = "gpg -dq ${builtins.getEnv "HOME"}/.dustinswan@fastmail.com-password.gpg";
         offlineimap.enable = true;
         msmtp.enable = true;
         signature = {
@@ -206,7 +206,7 @@
         userName = "dswan@visionable.com";
         imap.host = "outlook.office365.com";
         smtp.host = "smtp.office365.com";
-        passwordCommand = "gpg -dq /Users/dustinswan/.dswan@visionable.com-password.gpg";
+        passwordCommand = "gpg -dq ${builtins.getEnv "HOME"}/.dswan@visionable.com-password.gpg";
         offlineimap = {
           enable = true;
           extraConfig.remote = {
