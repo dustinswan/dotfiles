@@ -189,7 +189,7 @@
     };
   };
 
-  imports = [ ./home-common.nix ];
+  imports = [ ./home-common.nix ./home-mail.nix ];
 
   programs.alacritty.settings.font.size = 10.0;
 }

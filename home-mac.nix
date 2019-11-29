@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 
 {
-  home.packages = with pkgs; [ pinentry_mac ];
+  home.packages = with pkgs; [ pinentry_mac terminal-notifier ];
 
   home.file.gpg-agent = {
     target = ".gnupg/gpg-agent.conf";
@@ -14,5 +14,5 @@
 
   programs.zsh.initExtra = "source ~/.nix-profile/etc/profile.d/nix.sh";
 
-  imports = [ ./home-common.nix ];
+  imports = [ ./home-common.nix ./home-mail.nix ];
 }
