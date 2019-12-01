@@ -1,15 +1,17 @@
-{ pkgs, lib, ... }:
+{pkgs, lib, ... }:
 
 {
-  home.packages = with pkgs; [ clipit ncmpcpp pandoc unzip wirelesstools xsel anki pavucontrol blueman gifsicle networkmanager paprefs steam pinentry vlc nitrogen wine yarn spotify signal-desktop google-chrome emacs-all-the-icons-fonts python3 python37Packages.pip veracrypt bashmount exfat exfat-utils neomutt i3lock-pixeled p4v killall calc cargo cava diceware magic-wormhole xorg.xmodmap zip cacert dropbox-cli keepassx2 wireshark-qt vdirsyncer slack riot-web retroarch gimp blender khal khard mu
+  home.packages = with pkgs; [ clipit ncmpcpp pandoc unzip wirelesstools xsel anki pavucontrol blueman gifsicle networkmanager paprefs steam pinentry vlc nitrogen wine yarn spotify signal-desktop google-chrome emacs-all-the-icons-fonts python3 python37Packages.pip veracrypt bashmount exfat exfat-utils neomutt i3lock-pixeled p4v killall calc cargo cava diceware magic-wormhole xorg.xmodmap zip cacert dropbox-cli keepassx2 wireshark-qt vdirsyncer slack riot-web retroarch gimp blender khal khard mu xcape
   ];
 
-  services.xcape = {
-    enable = true;
-    mapExpression = {
-      Control_L = "Escape";
-    };
-  };
+  home.keyboard.options = [ "ctrl:nocaps" "compose:ralt" ];
+
+  # services.xcape = {
+  #   enable = true;
+  #   mapExpression = {
+  #     Control_L = "Escape";
+  #   };
+  # };
 
   services.mpd = {
     enable = true;
@@ -134,7 +136,16 @@
 
   xsession = {
     enable = true;
-    profileExtra = builtins.readFile ~/dotfiles/xprofile;
+    initExtra = ''
+xmodmap -e "keycode 96 = dead_greek dead_greek dead_greek dead_greek"
+xcape -e 'Control_L=Escape'
+    '';
+    profileExtra = ''
+xrandr --output DP-0 --rotate left
+sh ~/dotfiles/logitech_linux_mouse.sh
+nitrogen --restore &
+xsetroot -solid black -cursor_name left_ptr
+    '';
     windowManager.i3 = {
       enable = true;
       package = pkgs.i3-gaps;
