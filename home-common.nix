@@ -99,12 +99,12 @@
   };
 
   programs.zsh = {
+  # programs.fish = {
     enable = true;
     enableAutosuggestions = true;
     oh-my-zsh = {
       enable = true;
       plugins = [ "git" ];
-      theme = "refined";
     };
     shellAliases = {
       l = "ls -la";
@@ -117,14 +117,22 @@
     };
   };
 
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+    # enableFishIntegration = true;
+  };
+
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
+    # enableFishIntegration = true; # uhoh, this doesn't exist yet
   };
 
   programs.broot = {
     enable = true;
     enableZshIntegration = true;
+    # enableFishIntegration = true;
   };
 
   programs.ssh = {
@@ -255,6 +263,7 @@
   programs.keychain = {
     enable = true;
     enableZshIntegration = true;
+    # enableFishIntegration = true; # uhoh, this doesn't exist yet either
     inheritType = "any";
     agents = ["gpg" "ssh"];
     keys = ["id_rsa" "2B3A6377"];
