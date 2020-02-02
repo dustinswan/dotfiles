@@ -1,7 +1,7 @@
 {pkgs, lib, ... }:
 
 {
-  home.packages = with pkgs; [ clipit ncmpcpp pandoc unzip wirelesstools xsel anki pavucontrol blueman gifsicle networkmanager paprefs steam pinentry vlc nitrogen wine yarn spotify signal-desktop google-chrome emacs-all-the-icons-fonts python3 python37Packages.pip veracrypt bashmount exfat exfat-utils neomutt i3lock-pixeled p4v killall calc cargo cava diceware magic-wormhole xorg.xmodmap zip cacert dropbox-cli keepassx2 wireshark-qt vdirsyncer slack riot-web retroarch gimp blender khal khard mu xcape
+  home.packages = with pkgs; [ clipit ncmpcpp pandoc unzip wirelesstools xsel anki pavucontrol blueman gifsicle networkmanager paprefs steam pinentry vlc nitrogen wine yarn spotify signal-desktop google-chrome emacs-all-the-icons-fonts python3 python37Packages.pip veracrypt bashmount exfat exfat-utils i3lock-pixeled p4v killall calc cargo cava diceware magic-wormhole xorg.xmodmap zip cacert dropbox-cli keepassx2 wireshark-qt vdirsyncer slack riot-web retroarch gimp blender khal khard mu xcape
   ];
 
   home.keyboard.options = [ "ctrl:nocaps" "compose:ralt" ];

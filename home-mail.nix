@@ -38,6 +38,7 @@ outgoing = ${builtins.getEnv "HOME"}/.nix-profile/bin/msmtp --read-envelope-from
         passwordCommand = "gpg -dq ${builtins.getEnv "HOME"}/.dustinswan@fastmail.com-password.gpg";
         offlineimap.enable = true;
         msmtp.enable = true;
+        neomutt.enable = true;
         signature = {
           text = ''
             Dustin Swan
@@ -92,6 +93,7 @@ outgoing = ${builtins.getEnv "HOME"}/.nix-profile/bin/msmtp --read-envelope-from
         };
 
         msmtp.enable = true;
+        neomutt.enable = true;
         signature = {
           text = ''
             Dustin Swan, Software Developer
