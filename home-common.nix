@@ -1,9 +1,9 @@
 { pkgs, ... }:
 
 {
-  # nodePackages.eslint
+  # nodePackages.eslint aerc
   home.packages = with pkgs; [
-    ripgrep fd wget silver-searcher tree ranger nodejs-12_x yarn mosh w3m urlview nmap rtv gnupg youtube-dl nodePackages.tern nodePackages.javascript-typescript-langserver nodePackages.js-beautify nodePackages.prettier ffmpeg ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es hexyl nnn entr httpie cacert catimg tldr aerc ffsend magic-wormhole
+    ripgrep fd wget silver-searcher tree ranger nodejs-12_x yarn mosh w3m urlview nmap rtv gnupg youtube-dl nodePackages.tern nodePackages.javascript-typescript-langserver nodePackages.js-beautify nodePackages.prettier ffmpeg ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es hexyl nnn entr httpie cacert catimg tldr ffsend
   ];
 
   home.sessionVariables = {
@@ -85,7 +85,8 @@
     baseIndex = 1;
     clock24 = true;
     secureSocket = false;
-    plugins = with pkgs.tmuxPlugins; [ sensible resurrect pain-control continuum copycat open urlview fzf-tmux-url yank vim-tmux-navigator ];
+    plugins = with pkgs.tmuxPlugins; [ sensible resurrect pain-control continuum open urlview fzf-tmux-url yank vim-tmux-navigator ];
+    # copycat
     extraConfig = ''
      set -g set-titles on
      set -g set-titles-string "#H (#S)"
@@ -126,6 +127,10 @@
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
+    defaultCommand = "fd --type file --color=always";
+    defaultOptions = [ "--height 40%" "--border" "--ansi" ];
+    fileWidgetCommand = "fd --type file --color=always";
+    fileWidgetOptions = [ "--min-height 30 --preview-window noborder --preview '(bat --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}) 2> /dev/null'" ];
     # enableFishIntegration = true; # uhoh, this doesn't exist yet
   };
 
@@ -173,12 +178,13 @@
   programs.msmtp.enable = true;
   programs.offlineimap.enable = true;
 
-  programs.neovim = {
+  # programs.neovim = {
+  programs.vim = {
     enable = true;
-    viAlias = true;
-    vimAlias = true;
-    withNodeJs = true;
-    withPython3 = true;
+    # viAlias = true;
+    # vimAlias = true;
+    # withNodeJs = true;
+    # withPython3 = true;
     # unimpaired endwise textobj-word-column MatchTag vim-matchmaker vim-vertical-move stdtabs matchit splitjoin vimade floaterm coc-nvim
     plugins = with pkgs.vimPlugins; [ nord-vim vim-airline vim-airline-themes vim-sensible vim-repeat vim-surround vim-fugitive vim-speeddating jdaddy-vim ale vim-snippets fzf-vim vim-tmux-navigator vim-multiple-cursors vim-easymotion vim-sneak nerdcommenter nerdtree emmet-vim undotree vim-signature vim-easy-align vim-better-whitespace vim-signify vim-expand-region vim-exchange argtextobj-vim goyo vim-orgmode vim-polyglot vim-devicons vim-startify vim-abolish ];
     extraConfig = ''
