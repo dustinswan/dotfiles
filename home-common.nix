@@ -3,7 +3,7 @@
 {
   # nodePackages.eslint aerc
   home.packages = with pkgs; [
-    ripgrep fd wget silver-searcher tree ranger nodejs-12_x yarn mosh w3m urlview nmap rtv gnupg youtube-dl nodePackages.tern nodePackages.javascript-typescript-langserver nodePackages.js-beautify nodePackages.prettier ffmpeg ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es hexyl nnn entr httpie cacert catimg tldr ffsend
+    ripgrep fd wget silver-searcher tree ranger nodejs-12_x yarn mosh w3m urlview nmap rtv gnupg youtube-dl nodePackages.tern nodePackages.javascript-typescript-langserver ffmpeg ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es hexyl nnn entr httpie cacert catimg tldr ffsend
   ];
 
   home.sessionVariables = {
@@ -12,7 +12,7 @@
     P4USER = "dswan";
     P4PORT = "humu.iocom.com:1666";
     P4CONFIG = "p4.cfg";
-    P4EDITOR = "nvim";
+    P4EDITOR = "vim";
     P4IGNORE = ".ignore";
   };
 
@@ -45,7 +45,7 @@
         }
       ];
       background_opacity = 0.95;
-      colors = {
+      colors = { # Nord
         primary = {
           background = "0x2E3440";
           foreground = "0xD8DEE9";
@@ -85,8 +85,17 @@
     baseIndex = 1;
     clock24 = true;
     secureSocket = false;
-    plugins = with pkgs.tmuxPlugins; [ sensible resurrect pain-control continuum open urlview fzf-tmux-url yank vim-tmux-navigator ];
-    # copycat
+    plugins = with pkgs.tmuxPlugins; [
+      sensible
+      continuum
+      resurrect # prefix ctrl-s -> save; prefix ctrl-r -> restore
+      pain-control # prefix |, -, \, _ to split; prefix h, j, k, l to switch; prefix H, J, K, L to resize; prefix <, > to move
+      fzf-tmux-url # prefix u -> fzf urls
+      yank # prefix y -> copy command line to clipboard; prefix Y -> copy pwd to clipboard; search + y -> copy to clipboard
+      open # highlight: o -> open; ctrl-o -> $EDITOR; S -> web search
+      vim-tmux-navigator # ctrl-h, -j, -k, -l -> move between tmux and vim splits
+      copycat # prefix ctrl-/ -> regex search; ctrl-f -> file search; ctrl-u -> url search; etc.
+    ];
     extraConfig = ''
      set -g set-titles on
      set -g set-titles-string "#H (#S)"
@@ -100,7 +109,7 @@
   };
 
   programs.zsh = {
-  # programs.fish = {
+  # programs.fish = { # fish and home-manager don't work yet
     enable = true;
     enableAutosuggestions = true;
     oh-my-zsh = {
@@ -131,7 +140,7 @@
     defaultOptions = [ "--height 40%" "--border" "--ansi" ];
     fileWidgetCommand = "fd --type file --color=always";
     fileWidgetOptions = [ "--min-height 30 --preview-window noborder --preview '(bat --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}) 2> /dev/null'" ];
-    # enableFishIntegration = true; # uhoh, this doesn't exist yet
+    # enableFishIntegration = true;
   };
 
   programs.broot = {
@@ -150,11 +159,6 @@
 
       dswan = {
         hostname = "dswan.iocom.com";
-        user = "ec2-user";
-      };
-
-      kmcglynn = {
-        hostname = "kmcglynn.iocom.com";
         user = "centos";
       };
     };
@@ -178,13 +182,13 @@
   programs.msmtp.enable = true;
   programs.offlineimap.enable = true;
 
-  # programs.neovim = {
-  programs.vim = {
+  programs.neovim = { # neovim build broken on Mac
+  # programs.vim = {
     enable = true;
-    # viAlias = true;
-    # vimAlias = true;
-    # withNodeJs = true;
-    # withPython3 = true;
+    viAlias = true;
+    vimAlias = true;
+    withNodeJs = true;
+    withPython3 = true;
     # unimpaired endwise textobj-word-column MatchTag vim-matchmaker vim-vertical-move stdtabs matchit splitjoin vimade floaterm coc-nvim
     plugins = with pkgs.vimPlugins; [ nord-vim vim-airline vim-airline-themes vim-sensible vim-repeat vim-surround vim-fugitive vim-speeddating jdaddy-vim ale vim-snippets fzf-vim vim-tmux-navigator vim-multiple-cursors vim-easymotion vim-sneak nerdcommenter nerdtree emmet-vim undotree vim-signature vim-easy-align vim-better-whitespace vim-signify vim-expand-region vim-exchange argtextobj-vim goyo vim-orgmode vim-polyglot vim-devicons vim-startify vim-abolish ];
     extraConfig = ''
@@ -274,4 +278,7 @@
     agents = ["gpg" "ssh"];
     keys = ["id_rsa" "2B3A6377"];
   };
+  # programs.qutebrowser = {
+  #   enable = true;
+  # };
 }
