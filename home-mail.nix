@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 {
+  programs.offlineimap.enable = true;
+  programs.msmtp.enable = true;
   programs.neomutt = {
     enable = true;
     sidebar.enable = true;

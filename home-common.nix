@@ -178,8 +178,6 @@
     };
   };
 
-  programs.msmtp.enable = true;
-  programs.offlineimap.enable = true;
   programs.emacs.enable = true;
   programs.neovim = {
     enable = true;
@@ -254,16 +252,6 @@
     '';
   };
 
-  # programs.newsboat = {
-  #   enable = true;
-  #   extraConfig = ''
-  #     urls-source "ttrss"
-  #     ttrss-url "https://tt-rss.dustinswan.com/"
-  #     ttrss-login "dustinswan"
-  #     ttrss-passwordeval "gpg -dq ~/.dustinswan@tt-rss.dustinswan.com.gpg"
-  #   '';
-  # };
-
   programs.bat.enable = true;
   programs.gpg.enable = true;
   programs.htop.enable = true;
@@ -277,6 +265,17 @@
     agents = ["gpg" "ssh"];
     keys = ["id_rsa" "2B3A6377"];
   };
+
+  # programs.newsboat = {
+  #   enable = true;
+  #   extraConfig = ''
+  #     urls-source "ttrss"
+  #     ttrss-url "https://tt-rss.dustinswan.com/"
+  #     ttrss-login "dustinswan"
+  #     ttrss-passwordeval "gpg -dq ~/.dustinswan@tt-rss.dustinswan.com.gpg"
+  #   '';
+  # };
+
   # programs.qutebrowser = {
   #   enable = true;
   # };
