@@ -97,9 +97,6 @@ nnoremap <silent><leader>p4 :! p4 edit %<cr>
 nnoremap <leader>v <c-w>v<c-w>l
 nnoremap <leader>s <c-w>s<c-w>j
 
-" Browser
-let g:netrw_browsex_viewer = "browser"
-
 " FZF
 nnoremap <silent> <leader>a :Ag<CR>
 nnoremap <silent> <leader>f :Files<CR>
