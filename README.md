@@ -1,3 +1,3 @@
-* Simplify
+# Simplify
 
 I'm going all in on home-manager. Wish me luck.
