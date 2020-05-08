@@ -600,29 +600,14 @@ before packages are loaded."
                        (mu4e-refile-folder . "/FastMail/INBOX.Archive")
                        (mu4e-trash-folder . "/FastMail/INBOX.Trash")))
 
-             ,(make-mu4e-context
-               :name "IOCOM"
-               :enter-func (lambda () (mu4e-message "Switch to the IOCOM context"))
-               ;; leave-fun not defined
-               :match-func (lambda (msg)
-                             (when msg
-                               (string-match-p (regexp-quote "IOCOM") (mu4e-message-field msg :maildir))))
-               :vars '((user-mail-address . "dswan@visionable.com")
-                       (mu4e-sent-messages-behavior . sent)
-                       (mu4e-sent-folder . "/IOCOM/Sent Items")
-                       (mu4e-drafts-folder . "/IOCOM/Drafts")
-                       (mu4e-refile-folder . "/IOCOM/INBOX.Archive") ;; Exchange is broken I think.. I can't move this
-                       (mu4e-trash-folder . "/IOCOM/Deleted Items")))))
+             ))
 
     (setq mu4e-context-policy 'pick-first)
 
     (setq mu4e-maildir "~/Mail"
           user-full-name "Dustin Swan"
           mu4e-user-mail-address-list '("dustin@dustinswan.com"
-                                        "dustinswan@gmail.com"
-                                        "dswan@visionable.com"
-                                        "dswan@iocom.com"
-                                        "dswan@insors.com")
+                                        "dustinswan@gmail.com")
           mu4e-get-mail-command "offlineimap -q"
           mu4e-update-interval 180
           mu4e-compose-signature-auto-include nil

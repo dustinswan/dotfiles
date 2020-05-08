@@ -8,6 +8,7 @@
 
   home.sessionVariables = {
     EDITOR = "vim";
+    MANPAGER = "sh -c 'col -bx | bat -l man -p'";
 
     P4USER = "dswan";
     P4PORT = "humu.iocom.com:1666";
@@ -118,10 +119,8 @@
     };
     shellAliases = {
       l = "ls -la";
-      n = "nnn -isl";
+      n = "nnn";
       ta = "tmux attach -d";
-      e = "emacsclient -a \"\" -t -nw";
-      weather = "curl http://wttr.in";
       er = "rm -rf logs; unzip -o";
       srsync = "rsync --rsync-path='sudo rsync'";
     };
@@ -181,16 +180,15 @@
 
   programs.msmtp.enable = true;
   programs.offlineimap.enable = true;
-
-  programs.neovim = { # neovim build broken on Mac
-  # programs.vim = {
+  programs.emacs.enable = true;
+  programs.neovim = {
     enable = true;
     viAlias = true;
     vimAlias = true;
     withNodeJs = true;
     withPython3 = true;
     # unimpaired endwise textobj-word-column MatchTag vim-matchmaker vim-vertical-move stdtabs matchit splitjoin vimade floaterm coc-nvim
-    plugins = with pkgs.vimPlugins; [ nord-vim vim-airline vim-airline-themes vim-sensible vim-repeat vim-surround vim-fugitive vim-speeddating jdaddy-vim ale vim-snippets fzf-vim vim-tmux-navigator vim-multiple-cursors vim-easymotion vim-sneak nerdcommenter nerdtree emmet-vim undotree vim-signature vim-easy-align vim-better-whitespace vim-signify vim-expand-region vim-exchange argtextobj-vim goyo vim-orgmode vim-polyglot vim-devicons vim-startify vim-abolish vim-peekaboo ];
+    plugins = with pkgs.vimPlugins; [ nord-vim vim-airline vim-airline-themes vim-sensible vim-repeat vim-surround vim-fugitive vim-speeddating jdaddy-vim ale vim-snippets fzf-vim vim-tmux-navigator vim-multiple-cursors vim-easymotion vim-sneak nerdcommenter emmet-vim undotree vim-signature vim-easy-align vim-better-whitespace vim-signify vim-expand-region vim-exchange argtextobj-vim goyo vim-orgmode vim-polyglot vim-devicons vim-startify vim-abolish vim-peekaboo vim-table-mode tabular vim-markdown ];
     extraConfig = ''
       set expandtab
       set tabstop=2
@@ -220,12 +218,14 @@
       " let g:nord_italic_comments = 1
       let g:nord_underline = 1
       colorscheme nord
+      highlight Folded cterm=italic,bold ctermbg=0 ctermfg=12 guibg=#3B4252 guifg=#81A1C1
+
+      let g:org_indent = 1
 
       nnoremap <silent><leader>p4 :! p4 edit %<cr>
       nnoremap <silent><leader>/ :noh<cr>
       nnoremap <leader>v <c-w>v<c-w>l
       nnoremap <leader>s <c-w>s<c-w>j
-      nnoremap <leader>t :NERDTreeToggle<cr>
       nnoremap <leader>u :UndotreeToggle<cr>
       xmap ga <Plug>(EasyAlign)
       nmap ga <Plug>(EasyAlign)
@@ -269,7 +269,6 @@
   programs.htop.enable = true;
   programs.mpv.enable = true;
   programs.jq.enable = true;
-  programs.emacs.enable = true;
   programs.keychain = {
     enable = true;
     enableZshIntegration = true;
