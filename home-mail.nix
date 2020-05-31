@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
 {
+  home.packages = with pkgs; [ aerc vdirsyncer ];
   programs.offlineimap.enable = true;
   programs.msmtp.enable = true;
   programs.neomutt = {

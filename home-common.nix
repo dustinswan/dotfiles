@@ -1,9 +1,8 @@
 { pkgs, ... }:
 
 {
-  # nodePackages.eslint aerc
   home.packages = with pkgs; [
-    ripgrep fd wget silver-searcher tree ranger nodejs-13_x yarn mosh w3m urlview nmap rtv gnupg youtube-dl nodePackages.tern nodePackages.javascript-typescript-langserver ffmpeg ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es hexyl nnn entr httpie cacert catimg tldr ffsend
+    ripgrep fd wget silver-searcher tree ranger nodejs-13_x yarn mosh w3m urlview nmap rtv gnupg youtube-dl nodePackages.tern nodePackages.eslint nodePackages.javascript-typescript-langserver ffmpeg ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es hexyl nnn entr httpie cacert catimg tldr ffsend du-dust duplicati python3
   ];
 
   home.sessionVariables = {
