@@ -2,12 +2,13 @@
 
 {
   home.packages = with pkgs; [
-    ripgrep fd wget silver-searcher tree ranger nodejs-13_x yarn mosh w3m urlview nmap rtv gnupg youtube-dl nodePackages.tern nodePackages.eslint nodePackages.javascript-typescript-langserver ffmpeg ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es hexyl nnn entr httpie cacert catimg tldr ffsend du-dust duplicati python3
+    ripgrep fd wget silver-searcher tree ranger nodejs-13_x yarn mosh w3m urlview nmap tuir gnupg youtube-dl nodePackages.tern nodePackages.eslint nodePackages.javascript-typescript-langserver ffmpeg ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es hexyl nnn entr httpie cacert catimg tldr ffsend du-dust duplicati python3
   ];
 
   home.sessionVariables = {
     EDITOR = "vim";
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+    PATH = "$PATH:~/.composer/vendor/bin:";
 
     P4USER = "dswan";
     P4PORT = "humu.iocom.com:1666";
@@ -18,65 +19,65 @@
 
   programs.home-manager.enable = true;
 
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      window = {
-        padding = {
-          x = 12;
-          y = 12;
-        };
-        dimentions = {
-          columns = 0;
-          lines = 0;
-        };
-      };
-      font = {
-        normal.family = "Iosevka Nerd Font";
-        bold.family = "Iosevka Nerd Font";
-        italic.family = "Iosevka Nerd Font";
-        size = 16.0;
-      };
-      key_bindings = [
-        {
-          key = "N";
-          mods = "Control|Shift";
-          action = "SpawnNewInstance";
-        }
-      ];
-      background_opacity = 0.95;
-      colors = { # Nord
-        primary = {
-          background = "0x2E3440";
-          foreground = "0xD8DEE9";
-        };
-        cursor = {
-          text = "0x2E3440";
-          cursor = "0xD8DEE9";
-        };
-        normal = {
-          black = "0x3B4252";
-          red = "0xBF616A";
-          green = "0xA3BE8C";
-          yellow = "0xEBCB8B";
-          blue = "0x81A1C1";
-          magenta = "0xB48EAD";
-          cyan = "0x88C0D0";
-          white = "0xE5E9F0";
-        };
-        bright = {
-          black = "0x4C566A";
-          red = "0xBF616A";
-          green = "0xA3BE8C";
-          yellow = "0xEBCB8B";
-          blue = "0x81A1C1";
-          magenta = "0xB48EAD";
-          cyan = "0x8FBCBB";
-          white = "0xECEFF4";
-        };
-      };
-    };
-  };
+  # programs.alacritty = {
+  #   enable = true;
+  #   settings = {
+  #     window = {
+  #       padding = {
+  #         x = 12;
+  #         y = 12;
+  #       };
+  #       dimentions = {
+  #         columns = 0;
+  #         lines = 0;
+  #       };
+  #     };
+  #     font = {
+  #       normal.family = "Iosevka Nerd Font";
+  #       bold.family = "Iosevka Nerd Font";
+  #       italic.family = "Iosevka Nerd Font";
+  #       size = 16.0;
+  #     };
+  #     key_bindings = [
+  #       {
+  #         key = "N";
+  #         mods = "Control|Shift";
+  #         action = "SpawnNewInstance";
+  #       }
+  #     ];
+  #     background_opacity = 0.95;
+  #     colors = { # Nord
+  #       primary = {
+  #         background = "0x2E3440";
+  #         foreground = "0xD8DEE9";
+  #       };
+  #       cursor = {
+  #         text = "0x2E3440";
+  #         cursor = "0xD8DEE9";
+  #       };
+  #       normal = {
+  #         black = "0x3B4252";
+  #         red = "0xBF616A";
+  #         green = "0xA3BE8C";
+  #         yellow = "0xEBCB8B";
+  #         blue = "0x81A1C1";
+  #         magenta = "0xB48EAD";
+  #         cyan = "0x88C0D0";
+  #         white = "0xE5E9F0";
+  #       };
+  #       bright = {
+  #         black = "0x4C566A";
+  #         red = "0xBF616A";
+  #         green = "0xA3BE8C";
+  #         yellow = "0xEBCB8B";
+  #         blue = "0x81A1C1";
+  #         magenta = "0xB48EAD";
+  #         cyan = "0x8FBCBB";
+  #         white = "0xECEFF4";
+  #       };
+  #     };
+  #   };
+  # };
 
   programs.tmux = {
     enable = true;
@@ -194,8 +195,8 @@
     vimAlias = true;
     withNodeJs = true;
     withPython3 = true;
-    # unimpaired endwise textobj-word-column MatchTag vim-matchmaker vim-vertical-move stdtabs matchit splitjoin vimade floaterm fuzzymenu
-    plugins = with pkgs.vimPlugins; [ nord-vim vim-airline vim-airline-themes vim-sensible vim-repeat vim-surround vim-fugitive vim-speeddating jdaddy-vim ale vim-snippets fzf-vim vim-tmux-navigator vim-multiple-cursors vim-easymotion vim-sneak nerdcommenter emmet-vim undotree vim-signature vim-easy-align vim-better-whitespace vim-signify vim-expand-region vim-exchange argtextobj-vim goyo vim-orgmode vim-polyglot vim-devicons vim-startify vim-abolish vim-peekaboo vim-table-mode tabular vim-markdown coc-nvim coc-css coc-html coc-eslint coc-tsserver coc-json coc-fzf coc-snippets vim-highlightedyank ];
+    # unimpaired endwise textobj-word-column MatchTag vim-matchmaker vim-vertical-move stdtabs matchit splitjoin vimade floaterm fuzzymenu vim-markdown
+    plugins = with pkgs.vimPlugins; [ nord-vim vim-airline vim-airline-themes vim-sensible vim-repeat vim-surround vim-fugitive vim-speeddating jdaddy-vim ale vim-snippets fzf-vim vim-tmux-navigator vim-multiple-cursors vim-easymotion vim-sneak nerdcommenter emmet-vim undotree vim-signature vim-easy-align vim-better-whitespace vim-signify vim-expand-region vim-exchange argtextobj-vim goyo vim-orgmode vim-polyglot vim-devicons vim-startify vim-abolish vim-peekaboo vim-table-mode tabular coc-nvim coc-css coc-html coc-eslint coc-tsserver coc-json coc-fzf coc-snippets vim-highlightedyank vim-which-key];
     extraConfig = ''
       set expandtab
       set tabstop=2
@@ -211,6 +212,7 @@
 
       let mapleader="\<Space>"
       let maplocalleader="\\"
+      nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
       let g:EasyMotion_smartcase = 1
 
