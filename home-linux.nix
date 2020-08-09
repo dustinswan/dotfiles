@@ -207,7 +207,7 @@ xsetroot -solid black -cursor_name left_ptr
     };
   };
 
-  imports = [ ./home-common.nix ./home-mail.nix ];
+  imports = [ ./home-cli.nix ./home-gui.nix ./home-mail.nix ];
 
   programs.alacritty.settings.font.size = 10.0;
 }

@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    ripgrep fd wget silver-searcher tree ranger nodejs-13_x yarn mosh w3m urlview nmap tuir gnupg youtube-dl nodePackages.tern nodePackages.eslint nodePackages.javascript-typescript-langserver ffmpeg ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es hexyl nnn entr httpie cacert catimg tldr ffsend du-dust duplicati python3
+    ripgrep fd wget silver-searcher tree ranger nodejs yarn mosh w3m urlview nmap tuir gnupg youtube-dl nodePackages.tern nodePackages.eslint nodePackages.javascript-typescript-langserver ffmpeg ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es hexyl nnn entr httpie cacert catimg tldr ffsend du-dust duplicati python3 bitwarden-cli
   ];
 
   home.sessionVariables = {
@@ -18,66 +18,6 @@
   };
 
   programs.home-manager.enable = true;
-
-  # programs.alacritty = {
-  #   enable = true;
-  #   settings = {
-  #     window = {
-  #       padding = {
-  #         x = 12;
-  #         y = 12;
-  #       };
-  #       dimentions = {
-  #         columns = 0;
-  #         lines = 0;
-  #       };
-  #     };
-  #     font = {
-  #       normal.family = "Iosevka Nerd Font";
-  #       bold.family = "Iosevka Nerd Font";
-  #       italic.family = "Iosevka Nerd Font";
-  #       size = 16.0;
-  #     };
-  #     key_bindings = [
-  #       {
-  #         key = "N";
-  #         mods = "Control|Shift";
-  #         action = "SpawnNewInstance";
-  #       }
-  #     ];
-  #     background_opacity = 0.95;
-  #     colors = { # Nord
-  #       primary = {
-  #         background = "0x2E3440";
-  #         foreground = "0xD8DEE9";
-  #       };
-  #       cursor = {
-  #         text = "0x2E3440";
-  #         cursor = "0xD8DEE9";
-  #       };
-  #       normal = {
-  #         black = "0x3B4252";
-  #         red = "0xBF616A";
-  #         green = "0xA3BE8C";
-  #         yellow = "0xEBCB8B";
-  #         blue = "0x81A1C1";
-  #         magenta = "0xB48EAD";
-  #         cyan = "0x88C0D0";
-  #         white = "0xE5E9F0";
-  #       };
-  #       bright = {
-  #         black = "0x4C566A";
-  #         red = "0xBF616A";
-  #         green = "0xA3BE8C";
-  #         yellow = "0xEBCB8B";
-  #         blue = "0x81A1C1";
-  #         magenta = "0xB48EAD";
-  #         cyan = "0x8FBCBB";
-  #         white = "0xECEFF4";
-  #       };
-  #     };
-  #   };
-  # };
 
   programs.tmux = {
     enable = true;
@@ -110,7 +50,6 @@
   };
 
   programs.zsh = {
-  # programs.fish = { # fish and home-manager don't work yet
     enable = true;
     enableAutosuggestions = true;
     oh-my-zsh = {
@@ -139,7 +78,6 @@
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
-    # enableFishIntegration = true;
   };
 
   programs.fzf = {
@@ -149,13 +87,11 @@
     defaultOptions = [ "--height 40%" "--border" "--ansi" ];
     fileWidgetCommand = "fd --type file --color=always";
     fileWidgetOptions = [ "--min-height 30 --preview-window noborder --preview '(bat --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}) 2> /dev/null'" ];
-    # enableFishIntegration = true;
   };
 
   programs.broot = {
     enable = true;
     enableZshIntegration = true;
-    # enableFishIntegration = true;
   };
 
   programs.ssh = {
@@ -189,6 +125,7 @@
   };
 
   programs.emacs.enable = true;
+
   programs.neovim = {
     enable = true;
     viAlias = true;
@@ -268,10 +205,10 @@
   programs.htop.enable = true;
   programs.mpv.enable = true;
   programs.jq.enable = true;
+
   programs.keychain = {
     enable = true;
     enableZshIntegration = true;
-    # enableFishIntegration = true; # uhoh, this doesn't exist yet either
     inheritType = "any";
     agents = ["gpg" "ssh"];
     keys = ["id_rsa" "2B3A6377"];
@@ -285,9 +222,5 @@
   #     ttrss-login "dustinswan"
   #     ttrss-passwordeval "gpg -dq ~/.dustinswan@tt-rss.dustinswan.com.gpg"
   #   '';
-  # };
-
-  # programs.qutebrowser = {
-  #   enable = true;
   # };
 }
