@@ -1,4 +1,8 @@
+{ pkgs, ... }:
+
 {
+  home.packages = with pkgs; [ iosevka-bin ]; # syncthing ];
+
   programs.alacritty = {
     enable = true;
     settings = {
