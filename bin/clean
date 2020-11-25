@@ -7,3 +7,7 @@ fi
 if command -v nix &> /dev/null; then
   nix-collect-garbage -d
 fi
+
+if command -v doom &> /dev/null; then
+  doom purge
+fi
