@@ -19,11 +19,7 @@
         size = 16.0;
       };
       key_bindings = [
-        {
-          key = "N";
-          mods = "Control|Shift";
-          action = "SpawnNewInstance";
-        }
+        { key = "N"; mods = "Control|Shift"; action = "SpawnNewInstance"; }
       ];
       background_opacity = 0.95;
       colors = { # Nord

@@ -8,7 +8,7 @@
   home.sessionVariables = {
     EDITOR = "vim";
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";
-    PATH = "$PATH:~/.composer/vendor/bin:";
+    PATH = "$PATH:${builtins.getEnv "HOME"}/.emacs.d/bin";
 
     P4USER = "dswan";
     P4PORT = "humu.iocom.com:1666";
