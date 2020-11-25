@@ -114,7 +114,7 @@
     userName = "Dustin Swan";
     userEmail = "dustin@dustinswan.com";
     signing = {
-      signByDefault = true;
+      # signByDefault = true;
       key = "AD11750151C10881970BD943AB49BD6B2B3A6377";
     };
     aliases = {
