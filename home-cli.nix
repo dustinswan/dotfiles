@@ -8,7 +8,7 @@
   home.sessionVariables = {
     EDITOR = "vim";
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";
-    PATH = "$PATH:${builtins.getEnv "HOME"}/.emacs.d/bin";
+    PATH = "$PATH:${builtins.getEnv "HOME"}/.emacs.d/bin:${builtins.getEnv "HOME"}/.radicle/bin";
 
     P4USER = "dswan";
     P4PORT = "humu.iocom.com:1666";
@@ -25,6 +25,7 @@
     keyMode = "vi";
     baseIndex = 1;
     clock24 = true;
+    newSession = true;
     secureSocket = false;
     plugins = with pkgs.tmuxPlugins; [
       sensible
@@ -49,6 +50,11 @@
     '';
   };
 
+  programs.lsd = {
+    enable = true;
+    enableAliases = true;
+  };
+
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
@@ -57,18 +63,18 @@
       plugins = [ "git" ];
     };
     shellAliases = {
-      l = "ls -la";
+      # l = "ls -la";
       n = "nnn";
-      ta = "tmux attach -d";
+      t = "tmux attach -d";
       er = "rm -rf logs; unzip -o";
       srsync = "rsync --rsync-path='sudo rsync'";
     };
   };
 
-  programs.dircolors = {
-    enable = true;
-    enableZshIntegration = true;
-  };
+  # programs.dircolors = {
+  #   enable = true;
+  #   enableZshIntegration = true;
+  # };
 
   programs.direnv = {
     enable = true;
@@ -132,8 +138,8 @@
     vimAlias = true;
     withNodeJs = true;
     withPython3 = true;
-    # unimpaired endwise textobj-word-column MatchTag vim-matchmaker vim-vertical-move stdtabs matchit splitjoin vimade floaterm fuzzymenu vim-markdown
-    plugins = with pkgs.vimPlugins; [ nord-vim vim-airline vim-airline-themes vim-sensible vim-repeat vim-surround vim-fugitive vim-speeddating jdaddy-vim ale vim-snippets fzf-vim vim-tmux-navigator vim-multiple-cursors vim-easymotion vim-sneak nerdcommenter emmet-vim undotree vim-signature vim-easy-align vim-better-whitespace vim-signify vim-expand-region vim-exchange argtextobj-vim goyo vim-orgmode vim-polyglot vim-devicons vim-startify vim-abolish vim-peekaboo vim-table-mode tabular coc-nvim coc-css coc-html coc-eslint coc-tsserver coc-json coc-fzf coc-snippets vim-highlightedyank vim-which-key];
+    # unimpaired endwise textobj-word-column MatchTag vim-matchmaker vim-vertical-move stdtabs matchit splitjoin vimade fuzzymenu vim-markdown
+    plugins = with pkgs.vimPlugins; [ nord-vim vim-airline vim-airline-themes vim-sensible vim-repeat vim-surround vim-fugitive vim-speeddating jdaddy-vim ale vim-snippets fzf-vim vim-tmux-navigator vim-multiple-cursors vim-easymotion vim-sneak nerdcommenter emmet-vim undotree vim-signature vim-easy-align vim-better-whitespace vim-signify vim-expand-region vim-exchange argtextobj-vim goyo vim-orgmode vim-polyglot vim-devicons vim-startify vim-abolish vim-peekaboo vim-table-mode tabular coc-nvim coc-css coc-html coc-eslint coc-tsserver coc-json coc-fzf coc-snippets vim-highlightedyank vim-which-key vim-floaterm];
     extraConfig = ''
       set expandtab
       set tabstop=2
@@ -152,6 +158,8 @@
       nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
       let g:EasyMotion_smartcase = 1
+
+      let g:NERDSpaceDelims = 1
 
       let g:coc_snippet_next = '<tab>'
       let g:coc_snippet_prev = '<S-Tab>'
@@ -180,7 +188,7 @@
       nnoremap <silent> <leader>f :Files<CR>
       nnoremap <silent> <leader>b :Buffers<CR>
       nnoremap <silent> <leader>w :Windows<CR>
-      nnoremap <silent> <leader>c :Commands<CR>
+      nnoremap <silent> <leader>C :Commands<CR>
       nnoremap <silent> <leader>hf :History<CR>
       nnoremap <silent> <leader>hc :History:<CR>
       nnoremap <silent> <leader>hs :History/<CR>
@@ -197,6 +205,9 @@
       imap <c-x><c-f> <plug>(fzf-complete-path)
       imap <c-x><c-j> <plug>(fzf-complete-file-ag)
       imap <c-x><c-l> <plug>(fzf-complete-line)
+
+      nnoremap <silent> <leader>n :FloatermNew nnn<CR>
+      nnoremap <silent> <leader>T :FloatermNew<CR>
     '';
   };
 
