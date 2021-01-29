@@ -2,7 +2,7 @@
 
 {
   home.packages = with pkgs; [
-    ripgrep fd wget silver-searcher tree ranger nodejs yarn mosh w3m urlview nmap tuir gnupg youtube-dl nodePackages.tern nodePackages.eslint nodePackages.javascript-typescript-langserver ffmpeg ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es hexyl nnn entr httpie cacert catimg tldr ffsend du-dust duplicati python3 bitwarden-cli
+    ripgrep fd wget silver-searcher tree ranger nodejs yarn mosh w3m urlview nmap tuir gnupg youtube-dl nodePackages.tern nodePackages.eslint nodePackages.javascript-typescript-langserver ffmpeg ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es hexyl nnn entr httpie cacert catimg tldr ffsend du-dust duplicati python3 bitwarden-cli rage
   ];
 
   home.sessionVariables = {
@@ -130,7 +130,10 @@
     };
   };
 
-  programs.emacs.enable = true;
+  programs.emacs = {
+    enable = true;
+    package = ((pkgs.emacsPackagesNgGen pkgs.emacs).emacsWithPackages (epkgs: [ epkgs.vterm ]));
+  };
 
   programs.neovim = {
     enable = true;

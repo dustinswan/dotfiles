@@ -14,5 +14,5 @@
   programs.zsh.initExtra = "source ~/.nix-profile/etc/profile.d/nix.sh";
   # programs.fish.interactiveShellInit = "source ~/.nix-profile/etc/profile.d/nix.sh";
 
-  imports = [ ./home-cli.nix ./home-gui.nix ]; # ./home-mail.nix ];
+  imports = [ ./home-cli.nix ./home-gui.nix ./home-mail.nix ];
 }
