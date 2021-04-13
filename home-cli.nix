@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
+let
+  secrets = import ./secrets.nix;
+in
 {
+
   home.packages = with pkgs; [
     ripgrep fd wget silver-searcher tree ranger nodejs yarn mosh w3m urlview nmap tuir gnupg youtube-dl nodePackages.tern nodePackages.eslint nodePackages.javascript-typescript-langserver ffmpeg ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es hexyl nnn entr httpie cacert catimg tldr ffsend du-dust duplicati python3 bitwarden-cli rage
   ];
@@ -8,7 +12,7 @@
   home.sessionVariables = {
     EDITOR = "vim";
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";
-    PATH = "$PATH:${builtins.getEnv "HOME"}/.emacs.d/bin:${builtins.getEnv "HOME"}/.radicle/bin";
+    PATH = "$PATH:${builtins.getEnv "HOME"}/.emacs.d/bin:${builtins.getEnv "HOME"}/.radicle/bin:${builtins.getEnv "HOME"}/.cargo/bin";
 
     P4USER = "dswan";
     P4PORT = "humu.iocom.com:1666";
@@ -104,13 +108,19 @@
     enable = true;
     matchBlocks = {
       dustinswan = {
-        hostname = "dustinswan.com";
-        user = "dustinswan";
+        inherit (secrets.dustinswan) user;
+        inherit (secrets.dustinswan) hostname;
       };
 
       dswan = {
-        hostname = "dswan.iocom.com";
-        user = "centos";
+        inherit (secrets.dswan) user;
+        inherit (secrets.dswan) hostname;
+      };
+
+      aws = {
+        inherit (secrets.visionable-aws) user;
+        inherit (secrets.visionable-aws) hostname;
+        identityFile = "/Users/dustinswan/.ssh/id_rsa";
       };
     };
   };
@@ -124,8 +134,6 @@
       key = "AD11750151C10881970BD943AB49BD6B2B3A6377";
     };
     aliases = {
-      s = "status";
-      a = "add";
       lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit";
     };
   };
@@ -142,7 +150,7 @@
     withNodeJs = true;
     withPython3 = true;
     # unimpaired endwise textobj-word-column MatchTag vim-matchmaker vim-vertical-move stdtabs matchit splitjoin vimade fuzzymenu vim-markdown
-    plugins = with pkgs.vimPlugins; [ nord-vim vim-airline vim-airline-themes vim-sensible vim-repeat vim-surround vim-fugitive vim-speeddating jdaddy-vim ale vim-snippets fzf-vim vim-tmux-navigator vim-multiple-cursors vim-easymotion vim-sneak nerdcommenter emmet-vim undotree vim-signature vim-easy-align vim-better-whitespace vim-signify vim-expand-region vim-exchange argtextobj-vim goyo vim-orgmode vim-polyglot vim-devicons vim-startify vim-abolish vim-peekaboo vim-table-mode tabular coc-nvim coc-css coc-html coc-eslint coc-tsserver coc-json coc-fzf coc-snippets vim-highlightedyank vim-which-key vim-floaterm];
+    plugins = with pkgs.vimPlugins; [ nord-vim vim-airline vim-airline-themes vim-sensible vim-repeat vim-surround vim-fugitive vim-speeddating jdaddy-vim ale vim-snippets fzf-vim vim-tmux-navigator vim-multiple-cursors vim-easymotion vim-sneak nerdcommenter emmet-vim undotree vim-signature vim-easy-align vim-better-whitespace vim-signify vim-expand-region vim-exchange argtextobj-vim goyo vim-orgmode vim-polyglot vim-devicons vim-startify vim-abolish vim-peekaboo vim-table-mode tabular coc-nvim coc-css coc-html coc-eslint coc-tsserver coc-json coc-fzf coc-snippets vim-highlightedyank vim-which-key vim-floaterm ];
     extraConfig = ''
       set expandtab
       set tabstop=2
@@ -170,6 +178,8 @@
       let g:airline#extensions#tabline#enabled = 1
       let g:airline#extensions#ale#enabled = 1
       let g:airline_powerline_fonts = 1
+
+      " let g:ale_fixers = {'php': ['php-cs-fixer']}
 
       let g:nord_italic = 1
       " let g:nord_italic_comments = 1
