@@ -6,7 +6,7 @@ in
 {
 
   home.packages = with pkgs; [
-    ripgrep fd wget silver-searcher tree ranger nodejs yarn mosh w3m urlview nmap gnupg youtube-dl nodePackages.tern nodePackages.eslint nodePackages.javascript-typescript-langserver ffmpeg ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es hexyl nnn entr httpie cacert catimg tldr ffsend du-dust duplicati python3 bitwarden-cli rage
+    ripgrep fd wget nodejs yarn mosh w3m urlview nmap gnupg youtube-dl ffmpeg ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es hexyl nnn entr httpie cacert catimg tealdeer ffsend du-dust duplicati python3 bitwarden-cli rage sd bottom magic-wormhole
   ];
 
   home.sessionVariables = {
@@ -67,11 +67,11 @@ in
       plugins = [ "git" ];
     };
     shellAliases = {
-      # l = "ls -la";
       n = "nnn";
       t = "tmux attach -d";
       er = "rm -rf logs; unzip -o";
       srsync = "rsync --rsync-path='sudo rsync'";
+      tree = "lsd --tree";
     };
   };
 
@@ -227,7 +227,6 @@ in
 
   programs.bat.enable = true;
   programs.gpg.enable = true;
-  programs.htop.enable = true;
   programs.mpv.enable = true;
   programs.jq.enable = true;
 
