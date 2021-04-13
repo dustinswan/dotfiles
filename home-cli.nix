@@ -6,7 +6,7 @@ in
 {
 
   home.packages = with pkgs; [
-    ripgrep fd wget silver-searcher tree ranger nodejs yarn mosh w3m urlview nmap tuir gnupg youtube-dl nodePackages.tern nodePackages.eslint nodePackages.javascript-typescript-langserver ffmpeg ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es hexyl nnn entr httpie cacert catimg tldr ffsend du-dust duplicati python3 bitwarden-cli rage
+    ripgrep fd wget silver-searcher tree ranger nodejs yarn mosh w3m urlview nmap gnupg youtube-dl nodePackages.tern nodePackages.eslint nodePackages.javascript-typescript-langserver ffmpeg ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es hexyl nnn entr httpie cacert catimg tldr ffsend du-dust duplicati python3 bitwarden-cli rage
   ];
 
   home.sessionVariables = {
@@ -134,6 +134,7 @@ in
       key = "AD11750151C10881970BD943AB49BD6B2B3A6377";
     };
     aliases = {
+      # https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh
       lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit";
     };
   };
