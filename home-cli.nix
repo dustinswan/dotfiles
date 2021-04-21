@@ -14,11 +14,7 @@ in
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";
     PATH = "$PATH:${builtins.getEnv "HOME"}/.emacs.d/bin:${builtins.getEnv "HOME"}/.radicle/bin:${builtins.getEnv "HOME"}/.cargo/bin";
 
-    P4USER = "dswan";
-    P4PORT = "humu.iocom.com:1666";
-    P4CONFIG = "p4.cfg";
-    P4EDITOR = "vim";
-    P4IGNORE = ".ignore";
+    EXA_ICON_SPACING = 2;
   };
 
   programs.home-manager.enable = true;
@@ -54,7 +50,7 @@ in
     '';
   };
 
-  programs.lsd = {
+  programs.exa = {
     enable = true;
     enableAliases = true;
   };
@@ -64,21 +60,15 @@ in
     enableAutosuggestions = true;
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" ];
+      plugins = [ "git" "httpie" "aws" "emacs" "fd" "fzf" "mosh" "npm" "ripgrep" "rsync" "sudo" "yarn" ];
     };
     shellAliases = {
+      l = "exa -lah --icons --git";
       n = "nnn";
-      t = "tmux attach -d";
       er = "rm -rf logs; unzip -o";
       srsync = "rsync --rsync-path='sudo rsync'";
-      tree = "lsd --tree";
     };
   };
-
-  # programs.dircolors = {
-  #   enable = true;
-  #   enableZshIntegration = true;
-  # };
 
   programs.direnv = {
     enable = true;
@@ -133,8 +123,7 @@ in
       # signByDefault = true;
       key = "AD11750151C10881970BD943AB49BD6B2B3A6377";
     };
-    aliases = {
-      # https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh
+    aliases = { # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
       lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit";
     };
   };
@@ -238,13 +227,13 @@ in
     keys = ["id_rsa" "2B3A6377"];
   };
 
-  # programs.newsboat = {
-  #   enable = true;
-  #   extraConfig = ''
-  #     urls-source "ttrss"
-  #     ttrss-url "https://tt-rss.dustinswan.com/"
-  #     ttrss-login "dustinswan"
-  #     ttrss-passwordeval "gpg -dq ~/.dustinswan@tt-rss.dustinswan.com.gpg"
-  #   '';
-  # };
+  programs.newsboat = {
+    enable = true;
+    extraConfig = ''
+      urls-source "ttrss"
+      ttrss-url "https://tt-rss.dustinswan.com/"
+      ttrss-login "dustinswan"
+      ttrss-passwordeval "gpg -dq ~/.dustinswan@tt-rss.dustinswan.com.gpg"
+    '';
+  };
 }
