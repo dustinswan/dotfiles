@@ -5,8 +5,8 @@ let
 in
 {
 
-  home.packages = with pkgs; [
-    ripgrep fd wget nodejs yarn mosh w3m urlview nmap gnupg youtube-dl ffmpeg ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es hexyl nnn entr httpie cacert catimg tealdeer ffsend du-dust duplicati python3 bitwarden-cli rage sd bottom magic-wormhole
+  home.packages = with pkgs; [ # nnn
+    ripgrep fd wget nodejs yarn mosh w3m urlview nmap gnupg youtube-dl ffmpeg ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es hexyl entr httpie cacert catimg tealdeer ffsend du-dust duplicati python3 bitwarden-cli rage sd bottom magic-wormhole
   ];
 
   home.sessionVariables = {
