@@ -3,17 +3,16 @@
 let
   secrets = import ./secrets.nix;
 in
-{
-
-  home.packages = with pkgs; [ # nnn
-    ripgrep fd wget nodejs yarn mosh w3m urlview nmap gnupg youtube-dl ffmpeg ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es hexyl entr httpie cacert catimg tealdeer ffsend du-dust duplicati python3 bitwarden-cli rage sd bottom magic-wormhole
-  ];
+  {
+    home.packages = with pkgs; [
+    ripgrep fd wget nodejs deno yarn cargo mosh w3m bombadillo nnn urlview gnupg hexyl httpie cacert catimg tealdeer du-dust duplicati bitwarden-cli rage sd bottom magic-wormhole eva glow restic tig gitui pastel spotify-tui manix
+    ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es
+];
 
   home.sessionVariables = {
     EDITOR = "vim";
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";
-    PATH = "$PATH:${builtins.getEnv "HOME"}/.emacs.d/bin:${builtins.getEnv "HOME"}/.radicle/bin:${builtins.getEnv "HOME"}/.cargo/bin";
-
+    PATH = "$PATH:${builtins.getEnv "HOME"}/.emacs.d/bin:${builtins.getEnv "HOME"}/.cargo/bin";
     EXA_ICON_SPACING = 2;
   };
 
@@ -55,6 +54,10 @@ in
     enableAliases = true;
   };
 
+  programs.zoxide = {
+    enableZshIntegration = true;
+  };
+
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
@@ -89,11 +92,6 @@ in
     fileWidgetOptions = [ "--min-height 30 --preview-window noborder --preview '(bat --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}) 2> /dev/null'" ];
   };
 
-  programs.broot = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
   programs.ssh = {
     enable = true;
     matchBlocks = {
@@ -120,11 +118,17 @@ in
     userName = "Dustin Swan";
     userEmail = "dustin@dustinswan.com";
     signing = {
-      # signByDefault = true;
+      signByDefault = true;
       key = "AD11750151C10881970BD943AB49BD6B2B3A6377";
     };
     aliases = { # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
       lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit";
+    };
+    delta = {
+      enable = true;
+      options = {
+        syntax-theme = "Nord";
+      };
     };
   };
 
@@ -137,15 +141,88 @@ in
     enable = true;
     viAlias = true;
     vimAlias = true;
+    vimdiffAlias = true;
     withNodeJs = true;
     withPython3 = true;
-    # unimpaired endwise textobj-word-column MatchTag vim-matchmaker vim-vertical-move stdtabs matchit splitjoin vimade fuzzymenu vim-markdown
-    plugins = with pkgs.vimPlugins; [ nord-vim vim-airline vim-airline-themes vim-sensible vim-repeat vim-surround vim-fugitive vim-speeddating jdaddy-vim ale vim-snippets fzf-vim vim-tmux-navigator vim-multiple-cursors vim-easymotion vim-sneak nerdcommenter emmet-vim undotree vim-signature vim-easy-align vim-better-whitespace vim-signify vim-expand-region vim-exchange argtextobj-vim goyo vim-orgmode vim-polyglot vim-devicons vim-startify vim-abolish vim-peekaboo vim-table-mode tabular coc-nvim coc-css coc-html coc-eslint coc-tsserver coc-json coc-fzf coc-snippets vim-highlightedyank vim-which-key vim-floaterm ];
+    plugins = with pkgs.vimPlugins; [
+      vim-repeat ale vim-snippets vim-signify vim-orgmode vim-devicons vim-startify vim-highlightedyank
+      emmet-vim # <ctrl-y>,
+      vim-signature # marks in the gutter; mx (add), dmx (delete), m, (place next available), m. (next available if empty), m- (delete all on line), m<space> (delete all)
+      vim-expand-region # + / - to select increasingly larger / smaller regions∑
+      vim-better-whitespace # :StripWhitespace
+      vim-peekaboo # see registers when doing " @ and ctrl-r
+      vim-abolish # Substitution: :Subvert/child{,ren}/adult{,s}/g Coercios: crs (coerce to snake-case), crm (mixed), crc (camel), cru (upper), cr- (dash), cr., cr<space>, crt (title-case)
+      vim-polyglot # includes sensible, dups vim-sleuth
+      argtextobj-vim # daa => delete an argument
+      splitjoin-vim # gS / gJ to turn single-line code into multi, etc.
+      MatchTagAlways # highlights the matching & surrounding tags
+      vim-visual-multi # ctrl-n on word, n/N to select next/prev, [/] to switch cursors, q to skip, Q to remove current
+      vim-endwise # automatically add end block keyword or symbol
+      vim-fugitive # Git, Gdiff, Gblame, Gstatus, Gcommit
+      vim-speeddating # ctrl-a & ctrl-x on dates
+      jdaddy-vim # cij: change inner json. gqaj: pretty print json
+      vim-surround # cs[{ -> change surrounding [ to {, cst -> change surrounding tag, ysiw] -> surround inner word with ], etc.
+      vim-tmux-navigator # ctrl-l -> right in vim splits then tmux panes, etc.
+      vim-sneak # stp -> jump to next occurance of 'tp'. ; -> next. , -> go back, `` -> back home
+      fzf-vim
+      vim-table-mode # <space>tm, || for rule, <space>tt -> tableize csv
+      tabular # :Tabularize /, :Tabu (shortcut & guess the right thing)
+      vim-markdown # zr, zR, zm, zM, za, zA, zc, zC for folding
+      coc-nvim coc-css coc-html coc-eslint coc-tsserver coc-json coc-fzf coc-snippets
+      {
+        plugin = vim-easy-align; # gaip= -> align inner paragraph on first =, gaip*= -> align aroud all =
+        config = ''
+          xmap ga <Plug>(EasyAlign)
+          nmap ga <Plug>(EasyAlign)
+        '';
+      }
+      {
+        plugin = vim-easymotion; # <leader><leader> w, <leader><leader>fx -> find x
+        config = "let g:EasyMotion_smartcase = 1";
+      }
+      {
+        plugin = nerdcommenter; # toggle: <leader>c<space>, comment: <leader>cc
+        config = "let g:NERDSpaceDelims = 1";
+      }
+      {
+        plugin = vim-floaterm;
+        config = "nnoremap <silent> <leader>T :FloatermNew<CR>";
+      }
+      {
+        plugin = vim-which-key;
+        config = "nnoremap <silent> <leader> :WhichKey '<Space>'<CR>";
+      }
+      {
+        plugin = goyo;
+        config = "nmap <silent> <leader>G :Goyo<cr>";
+      }
+      {
+        plugin = vim-airline;
+        config = ''
+          let g:airline#extensions#tabline#enabled = 1
+          let g:airline#extensions#ale#enabled = 1
+          let g:airline_powerline_fonts = 1
+        '';
+      }
+      vim-airline-themes
+      {
+        plugin = nord-vim;
+        config = ''
+          colorscheme nord
+          let g:nord_italic = 1
+          let g:nord_underline = 1
+        '';
+      }
+      {
+        plugin = undotree;
+        config = "nnoremap <leader>u :UndotreeToggle<cr>";
+      }
+    ];
     extraConfig = ''
-      set expandtab
-      set tabstop=2
-      set softtabstop=2
-      set shiftwidth=2
+      " set expandtab " insert spaces when tab is pressed
+      " set tabstop=2
+      " set softtabstop=2
+      " set shiftwidth=2
 
       set hidden
       set number
@@ -156,38 +233,17 @@ in
 
       let mapleader="\<Space>"
       let maplocalleader="\\"
-      nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
-
-      let g:EasyMotion_smartcase = 1
-
-      let g:NERDSpaceDelims = 1
 
       let g:coc_snippet_next = '<tab>'
       let g:coc_snippet_prev = '<S-Tab>'
 
-      let g:airline#extensions#tabline#enabled = 1
-      let g:airline#extensions#ale#enabled = 1
-      let g:airline_powerline_fonts = 1
-
-      " let g:ale_fixers = {'php': ['php-cs-fixer']}
-
-      let g:nord_italic = 1
-      " let g:nord_italic_comments = 1
-      let g:nord_underline = 1
-      colorscheme nord
-      highlight Folded cterm=italic,bold ctermbg=0 ctermfg=12 guibg=#3B4252 guifg=#81A1C1
-
       let g:org_indent = 1
 
-      nnoremap <silent><leader>p4 :! p4 edit %<cr>
       nnoremap <silent><leader>/ :noh<cr>
       nnoremap <leader>v <c-w>v<c-w>l
       nnoremap <leader>s <c-w>s<c-w>j
-      nnoremap <leader>u :UndotreeToggle<cr>
-      xmap ga <Plug>(EasyAlign)
-      nmap ga <Plug>(EasyAlign)
 
-      nnoremap <silent> <leader>a :Ag<CR>
+      nnoremap <silent> <leader>a :Rg<CR>
       nnoremap <silent> <leader>f :Files<CR>
       nnoremap <silent> <leader>b :Buffers<CR>
       nnoremap <silent> <leader>w :Windows<CR>
@@ -208,13 +264,16 @@ in
       imap <c-x><c-f> <plug>(fzf-complete-path)
       imap <c-x><c-j> <plug>(fzf-complete-file-ag)
       imap <c-x><c-l> <plug>(fzf-complete-line)
-
-      nnoremap <silent> <leader>n :FloatermNew nnn<CR>
-      nnoremap <silent> <leader>T :FloatermNew<CR>
     '';
   };
 
-  programs.bat.enable = true;
+  programs.bat = {
+    enable = true;
+    config = {
+      theme = "Nord";
+    };
+  };
+
   programs.gpg.enable = true;
   programs.mpv.enable = true;
   programs.jq.enable = true;
