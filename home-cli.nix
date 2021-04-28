@@ -55,6 +55,7 @@ in
   };
 
   programs.zoxide = {
+    enable = true;
     enableZshIntegration = true;
   };
 
