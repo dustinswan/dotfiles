@@ -5,7 +5,7 @@ let
 in
   {
     home.packages = with pkgs; [
-    ripgrep fd wget nodejs deno yarn cargo mosh w3m bombadillo nnn urlview gnupg hexyl httpie cacert catimg tealdeer du-dust duplicati bitwarden-cli rage sd bottom magic-wormhole eva glow restic tig gitui pastel spotify-tui manix
+    ripgrep fd wget nodejs deno yarn cargo mosh w3m bombadillo nnn urlview gnupg hexyl httpie cacert catimg tealdeer du-dust duplicati bitwarden-cli rage sd bottom magic-wormhole eva glow restic tig gitui pastel spotify-tui manix weechat
     ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es
 ];
 
@@ -169,6 +169,7 @@ in
       vim-table-mode # <space>tm, || for rule, <space>tt -> tableize csv
       tabular # :Tabularize /, :Tabu (shortcut & guess the right thing)
       vim-markdown # zr, zR, zm, zM, za, zA, zc, zC for folding
+      vim-gnupg
       coc-nvim coc-css coc-html coc-eslint coc-tsserver coc-json coc-fzf coc-snippets
       {
         plugin = vim-easy-align; # gaip= -> align inner paragraph on first =, gaip*= -> align aroud all =

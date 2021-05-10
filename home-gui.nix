@@ -24,6 +24,9 @@
       };
       key_bindings = [
         { key = "N"; mods = "Control|Shift"; action = "SpawnNewInstance"; }
+        { key = "F"; mods = "Alt"; chars = "\\x1bf"; }
+        { key = "B"; mods = "Alt"; chars = "\\x1bb"; }
+        # - { key: B,  mods: Alt,           chars: "\x1bb"                       }
       ];
       background_opacity = 0.95;
       colors = { # Nord

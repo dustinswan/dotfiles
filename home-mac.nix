@@ -11,6 +11,11 @@
     '';
   };
 
+  home.file.gitignore = {
+    target = ".gitignore";
+    text = ''Library'';
+  };
+
   programs.zsh.initExtra = "source ~/.nix-profile/etc/profile.d/nix.sh";
   # programs.fish.interactiveShellInit = "source ~/.nix-profile/etc/profile.d/nix.sh";
 
