@@ -4,8 +4,8 @@ let
   secrets = import ./secrets.nix;
 in
   {
-    home.packages = with pkgs; [
-    ripgrep fd wget nodejs deno yarn cargo mosh w3m bombadillo nnn urlview gnupg hexyl httpie cacert catimg tealdeer du-dust duplicati bitwarden-cli rage sd bottom magic-wormhole eva glow restic tig gitui pastel spotify-tui manix weechat
+    home.packages = with pkgs; [ # deno
+    ripgrep fd wget nodejs yarn cargo mosh w3m bombadillo nnn urlview gnupg hexyl httpie cacert catimg tealdeer du-dust duplicati bitwarden-cli rage sd bottom magic-wormhole eva glow restic tig gitui pastel spotify-tui manix weechat
     ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es
 ];
 
@@ -193,10 +193,6 @@ in
       {
         plugin = vim-which-key;
         config = "nnoremap <silent> <leader> :WhichKey '<Space>'<CR>";
-      }
-      {
-        plugin = goyo;
-        config = "nmap <silent> <leader>G :Goyo<cr>";
       }
       {
         plugin = vim-airline;
