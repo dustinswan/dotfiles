@@ -5,7 +5,7 @@ let
 in
   {
     home.packages = with pkgs; [ # deno
-    ripgrep fd wget nodejs yarn cargo mosh w3m bombadillo nnn urlview gnupg hexyl httpie cacert catimg tealdeer du-dust duplicati bitwarden-cli rage sd bottom magic-wormhole eva glow restic tig gitui pastel spotify-tui manix weechat
+    ripgrep fd wget nodejs yarn cargo mosh w3m nnn urlview gnupg hexyl httpie cacert catimg tealdeer du-dust duplicati bitwarden-cli rage sd bottom magic-wormhole eva glow restic tig gitui pastel spotify-tui manix weechat amfora ghc ocaml
     ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es
 ];
 
@@ -275,6 +275,7 @@ in
   programs.gpg.enable = true;
   programs.mpv.enable = true;
   programs.jq.enable = true;
+  programs.noti.enable = true;
 
   programs.keychain = {
     enable = true;
