@@ -7,6 +7,7 @@
     enable = true;
     settings = {
       window = {
+        decorations = "buttonless";
         padding = {
           x = 12;
           y = 12;

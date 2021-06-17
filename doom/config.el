@@ -35,6 +35,8 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
 
+(setq calendar-week-start-day 1)
+(setq calendar-day-header-array ["日" "月" "火" "水" "木" "金" "土"])
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
