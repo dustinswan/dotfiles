@@ -4,8 +4,8 @@ let
   secrets = import ./secrets.nix;
 in
   {
-    home.packages = with pkgs; [ # deno
-    ripgrep fd wget nodejs yarn cargo mosh w3m nnn urlview gnupg hexyl httpie cacert catimg tealdeer du-dust duplicati bitwarden-cli rage sd bottom magic-wormhole eva glow restic tig gitui pastel spotify-tui manix weechat amfora ghc ocaml
+    home.packages = with pkgs; [ # pastel magic-wormhole
+    ripgrep fd wget nodejs yarn cargo mosh w3m nnn urlview gnupg hexyl httpie cacert catimg tealdeer du-dust duplicati bitwarden-cli rage sd eva glow restic tig gitui spotify-tui manix amfora ghc ocaml weechat deno duf procs
     ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es
 ];
 
@@ -58,6 +58,11 @@ in
     enable = true;
     enableZshIntegration = true;
   };
+
+  # programs.atuin = {
+  #   enable = true;
+  #   enableZshIntegration = true;
+  # };
 
   programs.zsh = {
     enable = true;
@@ -145,8 +150,17 @@ in
     vimdiffAlias = true;
     withNodeJs = true;
     withPython3 = true;
-    plugins = with pkgs.vimPlugins; [
-      vim-repeat ale vim-snippets vim-signify vim-orgmode vim-devicons vim-startify vim-highlightedyank
+    coc = {
+      enable = true;
+      settings = ''
+        {
+          "tsserver.formatOnType": true,
+          "coc.preferences.formatOnType": true
+        }
+      '';
+    };
+    plugins = with pkgs.vimPlugins; [ # ale
+      vim-repeat vim-snippets vim-signify vim-orgmode vim-devicons vim-startify vim-highlightedyank
       emmet-vim # <ctrl-y>,
       vim-signature # marks in the gutter; mx (add), dmx (delete), m, (place next available), m. (next available if empty), m- (delete all on line), m<space> (delete all)
       vim-expand-region # + / - to select increasingly larger / smaller regions∑
@@ -158,7 +172,7 @@ in
       splitjoin-vim # gS / gJ to turn single-line code into multi, etc.
       MatchTagAlways # highlights the matching & surrounding tags
       vim-visual-multi # ctrl-n on word, n/N to select next/prev, [/] to switch cursors, q to skip, Q to remove current
-      vim-endwise # automatically add end block keyword or symbol
+      # vim-endwise # automatically add end block keyword or symbol
       vim-fugitive # Git, Gdiff, Gblame, Gstatus, Gcommit
       vim-speeddating # ctrl-a & ctrl-x on dates
       jdaddy-vim # cij: change inner json. gqaj: pretty print json
@@ -170,7 +184,14 @@ in
       tabular # :Tabularize /, :Tabu (shortcut & guess the right thing)
       vim-markdown # zr, zR, zm, zM, za, zA, zc, zC for folding
       vim-gnupg
+      vim-floaterm # <leader>T
+      undotree # <leader>u
+      vim-which-key
       coc-nvim coc-css coc-html coc-eslint coc-tsserver coc-json coc-fzf coc-snippets
+      {
+        plugin = chadtree; # nvim-tree-lua
+        config = "let g:chadtree_settings = { 'xdg': v:true }";
+      }
       {
         plugin = vim-easy-align; # gaip= -> align inner paragraph on first =, gaip*= -> align aroud all =
         config = ''
@@ -185,14 +206,6 @@ in
       {
         plugin = nerdcommenter; # toggle: <leader>c<space>, comment: <leader>cc
         config = "let g:NERDSpaceDelims = 1";
-      }
-      {
-        plugin = vim-floaterm;
-        config = "nnoremap <silent> <leader>T :FloatermNew<CR>";
-      }
-      {
-        plugin = vim-which-key;
-        config = "nnoremap <silent> <leader> :WhichKey '<Space>'<CR>";
       }
       {
         plugin = vim-airline;
@@ -211,10 +224,6 @@ in
           let g:nord_underline = 1
         '';
       }
-      {
-        plugin = undotree;
-        config = "nnoremap <leader>u :UndotreeToggle<cr>";
-      }
     ];
     extraConfig = ''
       " set expandtab " insert spaces when tab is pressed
@@ -232,10 +241,51 @@ in
       let mapleader="\<Space>"
       let maplocalleader="\\"
 
-      let g:coc_snippet_next = '<tab>'
-      let g:coc_snippet_prev = '<S-Tab>'
-
       let g:org_indent = 1
+
+      nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+      nnoremap <silent> <leader>t :CHADopen<CR>
+      nnoremap <silent> <leader>T :FloatermNew<CR>
+      nnoremap <silent> <leader>u :UndotreeToggle<cr>
+
+      " let g:coc_snippet_next = '<tab>'
+      " let g:coc_snippet_prev = '<S-Tab>'
+
+      " CoC
+      " Use tab for trigger completion with characters ahead and navigate.
+      inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
+      inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+      " Make <CR> auto-select the first completion item and notify coc.nvim to
+      " format on enter, <cr> could be remapped by other vim plugin
+      inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+      function! s:check_back_space() abort
+        let col = col('.') - 1
+        return !col || getline('.')[col - 1]  =~# '\s'
+      endfunction
+
+      " GoTo code navigation.
+      nmap <silent> gd <Plug>(coc-definition)
+      nmap <silent> gy <Plug>(coc-type-definition)
+      nmap <silent> gi <Plug>(coc-implementation)
+      nmap <silent> gr <Plug>(coc-references)
+
+      " Use K to show documentation in preview window.
+      nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+      function! s:show_documentation()
+        if (index(['vim','help'], &filetype) >= 0)
+          execute 'h '.expand('<cword>')
+        elseif (coc#rpc#ready())
+          call CocActionAsync('doHover')
+        else
+          execute '!' . &keywordprg . " " . expand('<cword>')
+        endif
+      endfunction
+
+      " Highlight the symbol and its references when holding the cursor.
+      autocmd CursorHold * silent call CocActionAsync('highlight')
 
       nnoremap <silent><leader>/ :noh<cr>
       nnoremap <leader>v <c-w>v<c-w>l
@@ -276,6 +326,7 @@ in
   programs.mpv.enable = true;
   programs.jq.enable = true;
   programs.noti.enable = true;
+  programs.bottom.enable = true;
 
   programs.keychain = {
     enable = true;
@@ -287,11 +338,18 @@ in
 
   programs.newsboat = {
     enable = true;
+    # extraConfig = ''
+    #   urls-source "ttrss"
+    #   ttrss-url "https://tt-rss.dustinswan.com/"
+    #   ttrss-login "dustinswan"
+    #   ttrss-passwordeval "gpg -dq ~/.dustinswan@tt-rss.dustinswan.com.gpg"
+    # '';
     extraConfig = ''
-      urls-source "ttrss"
-      ttrss-url "https://tt-rss.dustinswan.com/"
-      ttrss-login "dustinswan"
-      ttrss-passwordeval "gpg -dq ~/.dustinswan@tt-rss.dustinswan.com.gpg"
+      urls-source "inoreader"
+      inoreader-app-id "999997602"
+      inoreader-app-key "INSERT_KEY_HERE"
+      inoreader-login "dustin@dustinswan.com"
+      inoreader-passwordeval "gpg --decrypt ~/.inoreader-password.gpg"
     '';
   };
 }
