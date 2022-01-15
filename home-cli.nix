@@ -338,18 +338,57 @@ in
 
   programs.newsboat = {
     enable = true;
-    # extraConfig = ''
-    #   urls-source "ttrss"
-    #   ttrss-url "https://tt-rss.dustinswan.com/"
-    #   ttrss-login "dustinswan"
-    #   ttrss-passwordeval "gpg -dq ~/.dustinswan@tt-rss.dustinswan.com.gpg"
-    # '';
     extraConfig = ''
       urls-source "inoreader"
-      inoreader-app-id "999997602"
-      inoreader-app-key "INSERT_KEY_HERE"
+      inoreader-app-id "${secrets.inoreader.id}"
+      inoreader-app-key "${secrets.inoreader.key}"
       inoreader-login "dustin@dustinswan.com"
       inoreader-passwordeval "gpg --decrypt ~/.inoreader-password.gpg"
+      inoreader-min-items 100
+
+      unbind-key j
+      unbind-key k
+      bind-key j down
+      bind-key k up
     '';
+  };
+
+  home.file.gitui = {
+    target = ".config/gitui/key_bindings.ron";
+    text = ''(
+    focus_right: Some(( code: Char('l'), modifiers: ( bits: 0,),)),
+    focus_left: Some(( code: Char('h'), modifiers: ( bits: 0,),)),
+    focus_above: Some(( code: Char('k'), modifiers: ( bits: 0,),)),
+    focus_below: Some(( code: Char('j'), modifiers: ( bits: 0,),)),
+
+    open_help: Some(( code: F(1), modifiers: ( bits: 0,),)),
+
+    move_left: Some(( code: Char('h'), modifiers: ( bits: 0,),)),
+    move_right: Some(( code: Char('l'), modifiers: ( bits: 0,),)),
+    move_up: Some(( code: Char('k'), modifiers: ( bits: 0,),)),
+    move_down: Some(( code: Char('j'), modifiers: ( bits: 0,),)),
+    popup_up: Some(( code: Char('p'), modifiers: ( bits: 2,),)),
+    popup_down: Some(( code: Char('n'), modifiers: ( bits: 2,),)),
+    page_up: Some(( code: Char('b'), modifiers: ( bits: 2,),)),
+    page_down: Some(( code: Char('f'), modifiers: ( bits: 2,),)),
+    home: Some(( code: Char('g'), modifiers: ( bits: 0,),)),
+    end: Some(( code: Char('G'), modifiers: ( bits: 1,),)),
+    shift_up: Some(( code: Char('K'), modifiers: ( bits: 1,),)),
+    shift_down: Some(( code: Char('J'), modifiers: ( bits: 1,),)),
+
+    edit_file: Some(( code: Char('I'), modifiers: ( bits: 1,),)),
+
+    status_reset_item: Some(( code: Char('U'), modifiers: ( bits: 1,),)),
+
+    diff_reset_lines: Some(( code: Char('u'), modifiers: ( bits: 0,),)),
+    diff_stage_lines: Some(( code: Char('s'), modifiers: ( bits: 0,),)),
+
+    stashing_save: Some(( code: Char('w'), modifiers: ( bits: 0,),)),
+    stashing_toggle_index: Some(( code: Char('m'), modifiers: ( bits: 0,),)),
+
+    stash_open: Some(( code: Char('l'), modifiers: ( bits: 0,),)),
+
+    abort_merge: Some(( code: Char('M'), modifiers: ( bits: 1,),)),
+)'';
   };
 }
