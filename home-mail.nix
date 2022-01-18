@@ -10,6 +10,7 @@
     sort = "reverse-threads";
   };
   programs.himalaya.enable = true;
+  programs.mu.enable = true;
 
   accounts.email = {
     maildirBasePath = "Mail";
@@ -36,6 +37,7 @@
         mbsync = {
           enable = true;
           create = "maildir";
+          expunge = "maildir";
         };
         # imapnotify = {
         #   enable = true;
@@ -68,12 +70,12 @@ source = maildir://~/Mail/FastMail
 from = "Dustin Swan <dustin@dustinswan.com>"
 outgoing = ${builtins.getEnv "HOME"}/.nix-profile/bin/msmtp --read-envelope-from
 '';
-#     text = ''[FastMail]
-# source = imaps://dustinswan%40fastmail.com@mail.messagingengine.com:993
-# from = "Dustin Swan <dustin@dustinswan.com>"
-# outgoing = ${builtins.getEnv "HOME"}/.nix-profile/bin/msmtp --read-envelope-from
-# sourc-cred-cmd = "gpg -dq ${builtins.getEnv "HOME"}/.dustinswan@fastmail.com-password.gpg"
-# '';
+#    text = ''[FastMail]
+#source = imaps://dustinswan%40fastmail.com@mail.messagingengine.com:993
+#from = "Dustin Swan <dustin@dustinswan.com>"
+#outgoing = ${builtins.getEnv "HOME"}/.nix-profile/bin/msmtp --read-envelope-from
+#source-cred-cmd = "gpg -dq ${builtins.getEnv "HOME"}/.dustinswan@fastmail.com-password.gpg"
+#'';
   };
 
   home.file.vdirsyncer = {
@@ -138,5 +140,4 @@ longdateformat = %Y-%m-%d
 datetimeformat = %Y-%m-%d %H:%M
 longdatetimeformat = %Y-%m-%d %H:%M'';
   };
-
 }
