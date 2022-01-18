@@ -394,4 +394,9 @@ in
     abort_merge: Some(( code: Char('M'), modifiers: ( bits: 1,),)),
 )'';
   };
+
+  home.file.helix = {
+    target = ".config/helix/config.toml";
+    text = "theme = \"nord\"";
+  };
 }
