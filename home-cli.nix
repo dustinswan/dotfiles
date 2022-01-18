@@ -123,6 +123,7 @@ in
         inherit (secrets.visionable-aws) user;
         inherit (secrets.visionable-aws) hostname;
         identityFile = "/Users/dustinswan/.ssh/id_rsa";
+        extraOptions = { PubkeyAcceptedKeyTypes = "+ssh-rsa"; HostKeyAlgorithms = "+ssh-rsa"; };
       };
     };
   };
