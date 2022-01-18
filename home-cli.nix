@@ -5,7 +5,7 @@ let
 in
   {
     home.packages = with pkgs; [
-    ripgrep fd wget mosh w3m nnn urlview gnupg hexyl httpie catimg tealdeer du-dust duplicati bitwarden-cli rage sd eva glow restic tig gitui spotify-tui manix amfora weechat duf procs pandoc magic-wormhole pastel fx
+    helix ripgrep fd wget mosh w3m nnn urlview gnupg hexyl httpie catimg tealdeer du-dust duplicati bitwarden-cli rage sd eva glow restic tig gitui spotify-tui manix amfora weechat duf procs pandoc magic-wormhole pastel fx
     nodejs deno yarn nodePackages.stylelint nodePackages.js-beautify
     ocaml dune_2 ocamlPackages.utop ocamlPackages.ocp-indent ocamlPackages.merlin
     # racket-minimal
@@ -17,7 +17,7 @@ in
 ];
 
   home.sessionVariables = {
-    EDITOR = "vim";
+    EDITOR = "hx";
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";
     PATH = "$PATH:${builtins.getEnv "HOME"}/.emacs.d/bin:${builtins.getEnv "HOME"}/.cargo/bin";
     EXA_ICON_SPACING = 2;
@@ -151,172 +151,172 @@ in
     package = ((pkgs.emacsPackagesNgGen pkgs.emacs).emacsWithPackages (epkgs: [ epkgs.vterm ]));
   };
 
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-    vimdiffAlias = true;
-    withNodeJs = true;
-    withPython3 = true;
-    coc = {
-      enable = true;
-      settings = ''
-        {
-          "tsserver.formatOnType": true,
-          "coc.preferences.formatOnType": true
-        }
-      '';
-    };
-    plugins = with pkgs.vimPlugins; [ # ale
-      vim-repeat vim-snippets vim-signify vim-orgmode vim-devicons vim-startify vim-highlightedyank
-      emmet-vim # <ctrl-y>,
-      vim-signature # marks in the gutter; mx (add), dmx (delete), m, (place next available), m. (next available if empty), m- (delete all on line), m<space> (delete all)
-      vim-expand-region # + / - to select increasingly larger / smaller regions∑
-      vim-better-whitespace # :StripWhitespace
-      vim-peekaboo # see registers when doing " @ and ctrl-r
-      vim-abolish # Substitution: :Subvert/child{,ren}/adult{,s}/g Coercios: crs (coerce to snake-case), crm (mixed), crc (camel), cru (upper), cr- (dash), cr., cr<space>, crt (title-case)
-      vim-polyglot # includes sensible, dups vim-sleuth
-      argtextobj-vim # daa => delete an argument
-      splitjoin-vim # gS / gJ to turn single-line code into multi, etc.
-      MatchTagAlways # highlights the matching & surrounding tags
-      vim-visual-multi # ctrl-n on word, n/N to select next/prev, [/] to switch cursors, q to skip, Q to remove current
-      # vim-endwise # automatically add end block keyword or symbol
-      vim-fugitive # Git, Gdiff, Gblame, Gstatus, Gcommit
-      vim-speeddating # ctrl-a & ctrl-x on dates
-      jdaddy-vim # cij: change inner json. gqaj: pretty print json
-      vim-surround # cs[{ -> change surrounding [ to {, cst -> change surrounding tag, ysiw] -> surround inner word with ], etc.
-      vim-tmux-navigator # ctrl-l -> right in vim splits then tmux panes, etc.
-      vim-sneak # stp -> jump to next occurance of 'tp'. ; -> next. , -> go back, `` -> back home
-      fzf-vim
-      vim-table-mode # <space>tm, || for rule, <space>tt -> tableize csv
-      tabular # :Tabularize /, :Tabu (shortcut & guess the right thing)
-      vim-markdown # zr, zR, zm, zM, za, zA, zc, zC for folding
-      vim-gnupg
-      vim-floaterm # <leader>T
-      undotree # <leader>u
-      vim-which-key
-      coc-nvim coc-css coc-html coc-eslint coc-tsserver coc-json coc-fzf coc-snippets
-      {
-        plugin = chadtree; # nvim-tree-lua
-        config = "let g:chadtree_settings = { 'xdg': v:true }";
-      }
-      {
-        plugin = vim-easy-align; # gaip= -> align inner paragraph on first =, gaip*= -> align aroud all =
-        config = ''
-          xmap ga <Plug>(EasyAlign)
-          nmap ga <Plug>(EasyAlign)
-        '';
-      }
-      {
-        plugin = vim-easymotion; # <leader><leader> w, <leader><leader>fx -> find x
-        config = "let g:EasyMotion_smartcase = 1";
-      }
-      {
-        plugin = nerdcommenter; # toggle: <leader>c<space>, comment: <leader>cc
-        config = "let g:NERDSpaceDelims = 1";
-      }
-      {
-        plugin = vim-airline;
-        config = ''
-          let g:airline#extensions#tabline#enabled = 1
-          let g:airline#extensions#ale#enabled = 1
-          let g:airline_powerline_fonts = 1
-        '';
-      }
-      vim-airline-themes
-      {
-        plugin = nord-vim;
-        config = ''
-          colorscheme nord
-          let g:nord_italic = 1
-          let g:nord_underline = 1
-        '';
-      }
-    ];
-    extraConfig = ''
-      set hidden
-      set number
-      set ignorecase
-      set smartcase
-      set magic
-      set mouse=a
+#  programs.neovim = {
+#    enable = true;
+#    viAlias = true;
+#    vimAlias = true;
+#    vimdiffAlias = true;
+#    withNodeJs = true;
+#    withPython3 = true;
+#    coc = {
+#      enable = true;
+#      settings = ''
+#        {
+#          "tsserver.formatOnType": true,
+#          "coc.preferences.formatOnType": true
+#        }
+#      '';
+#    };
+#    plugins = with pkgs.vimPlugins; [ # ale
+#      vim-repeat vim-snippets vim-signify vim-orgmode vim-devicons vim-startify vim-highlightedyank
+#      emmet-vim # <ctrl-y>,
+#      vim-signature # marks in the gutter; mx (add), dmx (delete), m, (place next available), m. (next available if empty), m- (delete all on line), m<space> (delete all)
+#      vim-expand-region # + / - to select increasingly larger / smaller regions∑
+#      vim-better-whitespace # :StripWhitespace
+#      vim-peekaboo # see registers when doing " @ and ctrl-r
+#      vim-abolish # Substitution: :Subvert/child{,ren}/adult{,s}/g Coercios: crs (coerce to snake-case), crm (mixed), crc (camel), cru (upper), cr- (dash), cr., cr<space>, crt (title-case)
+#      vim-polyglot # includes sensible, dups vim-sleuth
+#      argtextobj-vim # daa => delete an argument
+#      splitjoin-vim # gS / gJ to turn single-line code into multi, etc.
+#      MatchTagAlways # highlights the matching & surrounding tags
+#      vim-visual-multi # ctrl-n on word, n/N to select next/prev, [/] to switch cursors, q to skip, Q to remove current
+#      # vim-endwise # automatically add end block keyword or symbol
+#      vim-fugitive # Git, Gdiff, Gblame, Gstatus, Gcommit
+#      vim-speeddating # ctrl-a & ctrl-x on dates
+#      jdaddy-vim # cij: change inner json. gqaj: pretty print json
+#      vim-surround # cs[{ -> change surrounding [ to {, cst -> change surrounding tag, ysiw] -> surround inner word with ], etc.
+#      vim-tmux-navigator # ctrl-l -> right in vim splits then tmux panes, etc.
+#      vim-sneak # stp -> jump to next occurance of 'tp'. ; -> next. , -> go back, `` -> back home
+#      fzf-vim
+#      vim-table-mode # <space>tm, || for rule, <space>tt -> tableize csv
+#      tabular # :Tabularize /, :Tabu (shortcut & guess the right thing)
+#      vim-markdown # zr, zR, zm, zM, za, zA, zc, zC for folding
+#      vim-gnupg
+#      vim-floaterm # <leader>T
+#      undotree # <leader>u
+#      vim-which-key
+#      coc-nvim coc-css coc-html coc-eslint coc-tsserver coc-json coc-fzf coc-snippets
+#      {
+#        plugin = chadtree; # nvim-tree-lua
+#        config = "let g:chadtree_settings = { 'xdg': v:true }";
+#      }
+#      {
+#        plugin = vim-easy-align; # gaip= -> align inner paragraph on first =, gaip*= -> align aroud all =
+#        config = ''
+#          xmap ga <Plug>(EasyAlign)
+#          nmap ga <Plug>(EasyAlign)
+#        '';
+#      }
+#      {
+#        plugin = vim-easymotion; # <leader><leader> w, <leader><leader>fx -> find x
+#        config = "let g:EasyMotion_smartcase = 1";
+#      }
+#      {
+#        plugin = nerdcommenter; # toggle: <leader>c<space>, comment: <leader>cc
+#        config = "let g:NERDSpaceDelims = 1";
+#      }
+#      {
+#        plugin = vim-airline;
+#        config = ''
+#          let g:airline#extensions#tabline#enabled = 1
+#          let g:airline#extensions#ale#enabled = 1
+#          let g:airline_powerline_fonts = 1
+#        '';
+#      }
+#      vim-airline-themes
+#      {
+#        plugin = nord-vim;
+#        config = ''
+#          colorscheme nord
+#          let g:nord_italic = 1
+#          let g:nord_underline = 1
+#        '';
+#      }
+#    ];
+#    extraConfig = ''
+#      set hidden
+#      set number
+#      set ignorecase
+#      set smartcase
+#      set magic
+#      set mouse=a
 
-      let mapleader="\<Space>"
-      let maplocalleader="\\"
+#      let mapleader="\<Space>"
+#      let maplocalleader="\\"
 
-      let g:org_indent = 1
+#      let g:org_indent = 1
 
-      nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
-      nnoremap <silent> <leader>t :CHADopen<CR>
-      nnoremap <silent> <leader>T :FloatermNew<CR>
-      nnoremap <silent> <leader>u :UndotreeToggle<cr>
+#      nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+#      nnoremap <silent> <leader>t :CHADopen<CR>
+#      nnoremap <silent> <leader>T :FloatermNew<CR>
+#      nnoremap <silent> <leader>u :UndotreeToggle<cr>
 
-      " let g:coc_snippet_next = '<tab>'
-      " let g:coc_snippet_prev = '<S-Tab>'
+#      " let g:coc_snippet_next = '<tab>'
+#      " let g:coc_snippet_prev = '<S-Tab>'
 
-      " CoC
-      " Use tab for trigger completion with characters ahead and navigate.
-      inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
-      inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+#      " CoC
+#      " Use tab for trigger completion with characters ahead and navigate.
+#      inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
+#      inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-      " Make <CR> auto-select the first completion item and notify coc.nvim to
-      " format on enter, <cr> could be remapped by other vim plugin
-      inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+#      " Make <CR> auto-select the first completion item and notify coc.nvim to
+#      " format on enter, <cr> could be remapped by other vim plugin
+#      inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-      function! s:check_back_space() abort
-        let col = col('.') - 1
-        return !col || getline('.')[col - 1]  =~# '\s'
-      endfunction
+#      function! s:check_back_space() abort
+#        let col = col('.') - 1
+#        return !col || getline('.')[col - 1]  =~# '\s'
+#      endfunction
 
-      " GoTo code navigation.
-      nmap <silent> gd <Plug>(coc-definition)
-      nmap <silent> gy <Plug>(coc-type-definition)
-      nmap <silent> gi <Plug>(coc-implementation)
-      nmap <silent> gr <Plug>(coc-references)
+#      " GoTo code navigation.
+#      nmap <silent> gd <Plug>(coc-definition)
+#      nmap <silent> gy <Plug>(coc-type-definition)
+#      nmap <silent> gi <Plug>(coc-implementation)
+#      nmap <silent> gr <Plug>(coc-references)
 
-      " Use K to show documentation in preview window.
-      nnoremap <silent> K :call <SID>show_documentation()<CR>
+#      " Use K to show documentation in preview window.
+#      nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-      function! s:show_documentation()
-        if (index(['vim','help'], &filetype) >= 0)
-          execute 'h '.expand('<cword>')
-        elseif (coc#rpc#ready())
-          call CocActionAsync('doHover')
-        else
-          execute '!' . &keywordprg . " " . expand('<cword>')
-        endif
-      endfunction
+#      function! s:show_documentation()
+#        if (index(['vim','help'], &filetype) >= 0)
+#          execute 'h '.expand('<cword>')
+#        elseif (coc#rpc#ready())
+#          call CocActionAsync('doHover')
+#        else
+#          execute '!' . &keywordprg . " " . expand('<cword>')
+#        endif
+#      endfunction
 
-      " Highlight the symbol and its references when holding the cursor.
-      autocmd CursorHold * silent call CocActionAsync('highlight')
+#      " Highlight the symbol and its references when holding the cursor.
+#      autocmd CursorHold * silent call CocActionAsync('highlight')
 
-      nnoremap <silent><leader>/ :noh<cr>
-      nnoremap <leader>v <c-w>v<c-w>l
-      nnoremap <leader>s <c-w>s<c-w>j
+#      nnoremap <silent><leader>/ :noh<cr>
+#      nnoremap <leader>v <c-w>v<c-w>l
+#      nnoremap <leader>s <c-w>s<c-w>j
 
-      nnoremap <silent> <leader>a :Rg<CR>
-      nnoremap <silent> <leader>f :Files<CR>
-      nnoremap <silent> <leader>b :Buffers<CR>
-      nnoremap <silent> <leader>w :Windows<CR>
-      nnoremap <silent> <leader>C :Commands<CR>
-      nnoremap <silent> <leader>hf :History<CR>
-      nnoremap <silent> <leader>hc :History:<CR>
-      nnoremap <silent> <leader>hs :History/<CR>
-      nnoremap <silent> <leader>l :BLines<CR>
-      nnoremap <silent> <leader><leader>l :Lines<CR>
-      " nnoremap <silent> <leader>t :BTags<CR>
-      nnoremap <silent> <leader><leader>t :Tags<CR>
-      nnoremap <silent> <leader>gc :BCommits<CR>
-      nnoremap <silent> <leader><leader>gc :Commits<CR>
-      nmap <leader><tab> <plug>(fzf-maps-n)
-      xmap <leader><tab> <plug>(fzf-maps-x)
-      omap <leader><tab> <plug>(fzf-maps-o)
-      imap <c-x><c-k> <plug>(fzf-complete-word)
-      imap <c-x><c-f> <plug>(fzf-complete-path)
-      imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-      imap <c-x><c-l> <plug>(fzf-complete-line)
-    '';
-  };
+#      nnoremap <silent> <leader>a :Rg<CR>
+#      nnoremap <silent> <leader>f :Files<CR>
+#      nnoremap <silent> <leader>b :Buffers<CR>
+#      nnoremap <silent> <leader>w :Windows<CR>
+#      nnoremap <silent> <leader>C :Commands<CR>
+#      nnoremap <silent> <leader>hf :History<CR>
+#      nnoremap <silent> <leader>hc :History:<CR>
+#      nnoremap <silent> <leader>hs :History/<CR>
+#      nnoremap <silent> <leader>l :BLines<CR>
+#      nnoremap <silent> <leader><leader>l :Lines<CR>
+#      " nnoremap <silent> <leader>t :BTags<CR>
+#      nnoremap <silent> <leader><leader>t :Tags<CR>
+#      nnoremap <silent> <leader>gc :BCommits<CR>
+#      nnoremap <silent> <leader><leader>gc :Commits<CR>
+#      nmap <leader><tab> <plug>(fzf-maps-n)
+#      xmap <leader><tab> <plug>(fzf-maps-x)
+#      omap <leader><tab> <plug>(fzf-maps-o)
+#      imap <c-x><c-k> <plug>(fzf-complete-word)
+#      imap <c-x><c-f> <plug>(fzf-complete-path)
+#      imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+#      imap <c-x><c-l> <plug>(fzf-complete-line)
+#    '';
+#  };
 
   programs.bat = {
     enable = true;

@@ -4,6 +4,10 @@ if command -v mbsync &> /dev/null; then
   mbsync -a
 fi
 
+if command -v mu &> /dev/null; then
+  mu index
+fi
+
 if command -v vdirsyncer &> /dev/null; then
   vdirsyncer sync
 fi
