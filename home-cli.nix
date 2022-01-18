@@ -50,9 +50,9 @@ in
      set -g mouse on
      set -g status-right ""
      set -g status-left ""
-     set -g status-bg default
-     set -g window-status-format '#[fg=black,bright,nodim]#I #[fg=white,bright,dim]#W '
-     set -g window-status-current-format '#[fg=black,bright,nodim]#I #[fg=white,bright,nodim]#W '
+     set -g status-style fg=white,bg=black
+     set-window-option -g window-status-format '#[fg=black,bright,nodim]#I #[fg=white,bright,dim]#W '
+     set-window-option -g window-status-current-format '#[fg=black,bright,nodim]#I #[fg=white,bright,nodim]#W '
     '';
   };
 
