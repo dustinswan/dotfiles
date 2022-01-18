@@ -4,8 +4,15 @@ let
   secrets = import ./secrets.nix;
 in
   {
-    home.packages = with pkgs; [ # pastel magic-wormhole
-    ripgrep fd wget nodejs yarn cargo mosh w3m nnn urlview gnupg hexyl httpie cacert catimg tealdeer du-dust duplicati bitwarden-cli rage sd eva glow restic tig gitui spotify-tui manix amfora ghc ocaml weechat deno duf procs
+    home.packages = with pkgs; [
+    ripgrep fd wget mosh w3m nnn urlview gnupg hexyl httpie catimg tealdeer du-dust duplicati bitwarden-cli rage sd eva glow restic tig gitui spotify-tui manix amfora weechat duf procs pandoc magic-wormhole pastel fx
+    nodejs deno yarn nodePackages.stylelint nodePackages.js-beautify
+    ocaml dune_2 ocamlPackages.utop ocamlPackages.ocp-indent ocamlPackages.merlin
+    # racket-minimal
+    rustc
+    ghc cargo haskell-language-server hlint haskellPackages.hoogle # haskellPackages.cabal
+    nixfmt shellcheck fontconfig cmigemo cacert
+    emacsPackages.fontawesome emacs-all-the-icons-fonts
     ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es
 ];
 
@@ -54,15 +61,10 @@ in
     enableAliases = true;
   };
 
-  programs.zoxide = {
+  programs.zoxide = { # z doc -> cd ~/Documents; zi -> interactive
     enable = true;
     enableZshIntegration = true;
   };
-
-  # programs.atuin = {
-  #   enable = true;
-  #   enableZshIntegration = true;
-  # };
 
   programs.zsh = {
     enable = true;
@@ -74,6 +76,7 @@ in
     shellAliases = {
       l = "exa -lah --icons --git";
       n = "nnn";
+      h = "himalaya";
       er = "rm -rf logs; unzip -o";
       srsync = "rsync --rsync-path='sudo rsync'";
     };
@@ -89,13 +92,18 @@ in
     enableZshIntegration = true;
   };
 
-  programs.fzf = {
+  programs.fzf = { # ctrl-t, ctrl-r, ssh **<tab>
     enable = true;
     enableZshIntegration = true;
     defaultCommand = "fd --type file --color=always";
     defaultOptions = [ "--height 40%" "--border" "--ansi" ];
     fileWidgetCommand = "fd --type file --color=always";
     fileWidgetOptions = [ "--min-height 30 --preview-window noborder --preview '(bat --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}) 2> /dev/null'" ];
+  };
+
+  programs.navi = { # ctrl-G
+    enable = true;
+    enableZshIntegration = true;
   };
 
   programs.ssh = {
@@ -226,11 +234,6 @@ in
       }
     ];
     extraConfig = ''
-      " set expandtab " insert spaces when tab is pressed
-      " set tabstop=2
-      " set softtabstop=2
-      " set shiftwidth=2
-
       set hidden
       set number
       set ignorecase
