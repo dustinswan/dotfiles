@@ -1,14 +1,15 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [ aerc vdirsyncer ];
-  programs.offlineimap.enable = true;
+  home.packages = with pkgs; [ aerc vdirsyncer imapnotify ];
+  programs.mbsync.enable = true;
   programs.msmtp.enable = true;
   programs.neomutt = {
     enable = true;
     sidebar.enable = true;
     sort = "reverse-threads";
   };
+  programs.himalaya.enable = true;
 
   accounts.email = {
     maildirBasePath = "Mail";
@@ -28,18 +29,34 @@
         };
         userName = "dustinswan@fastmail.com";
         imap.host = "mail.messagingengine.com";
+        imap.port = 993;
         smtp.host = "mail.messagingengine.com";
+        smtp.port = 465;
         passwordCommand = "gpg -dq ${builtins.getEnv "HOME"}/.dustinswan@fastmail.com-password.gpg";
-        offlineimap.enable = true;
+        mbsync = {
+          enable = true;
+          create = "maildir";
+        };
+        # imapnotify = {
+        #   enable = true;
+        #   boxes = [ "INBOX" ];
+        #   onNotify = "\${pkgs.isync}/bin/mbsync -a";
+        #   onNotifyPost = { mail = "\${pkgs.noti}/bin/noti 'New mail'"; };
+        # };
+        mu.enable = true;
         msmtp.enable = true;
         neomutt.enable = true;
-        signature = {
-          text = ''
-            Dustin Swan
-            dustinswan.com
-          '';
-          showSignature = "append";
+        himalaya = {
+          enable = true;
+          settings = {
+            sent-folder = "INBOX.Sent";
+            draft-folder = "INBOX.Drafts";
+          };
         };
+        # signature = {
+        #   text = ''Dustin Swan | dustinswan.com'';
+        #   showSignature = "append";
+        # };
       };
     };
   };
