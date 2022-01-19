@@ -79,6 +79,7 @@ in
       h = "himalaya";
       er = "rm -rf logs; unzip -o";
       srsync = "rsync --rsync-path='sudo rsync'";
+      vim = "echo NO";
     };
   };
 
