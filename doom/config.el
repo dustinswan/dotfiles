@@ -38,6 +38,15 @@
 (setq calendar-week-start-day 1)
 (setq calendar-day-header-array ["日" "月" "火" "水" "木" "金" "土"])
 
+(set-email-account! "FastMail"
+  '((mu4e-sent-folder       . "/FastMail/Sent")
+    (mu4e-drafts-folder     . "/FastMail/Drafts")
+    (mu4e-trash-folder      . "/FastMail/Trash")
+    (mu4e-refile-folder     . "/FastMail/Archive")
+    (smtpmail-smtp-user     . "dustin@dustinswan.com"))
+    ; (user-mail-address      . "dustin@dustinswan.com")    ;; only needed for mu < 1.4
+  t)
+
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
