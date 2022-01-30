@@ -16,6 +16,7 @@
           columns = 0;
           lines = 0;
         };
+        opacity = 0.95;
       };
       font = {
         normal.family = "Iosevka Nerd Font";
@@ -29,7 +30,6 @@
         { key = "B"; mods = "Alt"; chars = "\\x1bb"; }
         # - { key: B,  mods: Alt,           chars: "\x1bb"                       }
       ];
-      background_opacity = 0.95;
       colors = { # Nord
         primary = {
           background = "0x2E3440";
