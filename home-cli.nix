@@ -238,6 +238,11 @@ in
     withPython3 = true;
   };
 
+  home.file.lunarVim = {
+    target = ".config/lvim/config.lua";
+    source = ./lunar.lua;
+  };
+
   programs.bat = {
     enable = true;
     config = {
