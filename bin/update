@@ -12,8 +12,8 @@ if command -v nix &> /dev/null; then
   home-manager switch
 fi
 
-if command -v doom &> /dev/null; then
-  doom sync
-  doom -y upgrade
-  doom env
-fi
+# if command -v doom &> /dev/null; then
+#   doom sync
+#   doom -y upgrade
+#   doom env
+# fi

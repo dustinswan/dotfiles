@@ -2,19 +2,87 @@
 
 let
   secrets = import ./secrets.nix;
+
+  doom-emacs = pkgs.callPackage
+    (builtins.fetchTarball {
+      url = https://github.com/nix-community/nix-doom-emacs/archive/master.tar.gz;
+    })
+    {
+      doomPrivateDir = ./doom;
+    };
 in
-  {
-    home.packages = with pkgs; [
-    ripgrep fd wget mosh w3m nnn urlview gnupg hexyl httpie catimg tealdeer du-dust duplicati bitwarden-cli rage sd eva glow restic tig gitui spotify-tui manix amfora weechat duf procs pandoc magic-wormhole pastel fx
-    nodejs deno yarn nodePackages.stylelint nodePackages.js-beautify
-    ocaml dune_2 ocamlPackages.utop ocamlPackages.ocp-indent ocamlPackages.merlin
+{
+  home.packages = with pkgs; [
+    ripgrep
+    fd
+    wget
+    mosh
+    w3m
+    urlview
+    gnupg
+    hexyl
+    httpie
+    timg
+    tealdeer
+    du-dust
+    duplicati
+    bitwarden-cli
+    rage
+    sd
+    eva
+    glow
+    restic
+    gitui
+    spotify-tui
+    manix
+    amfora
+    weechat
+    duf
+    procs
+    pandoc
+    magic-wormhole
+    pastel
+    jo # jo name=Dustin age=99 -> { name: "dustin", age: 99 }
+    fx # jo -a one two three | fx ".map(e => e.length > 3)"  -> [false, false, true]
+    bandwhich
+    nodejs
+    deno
+    yarn
+    nodePackages.typescript-language-server
+    nodePackages.stylelint
+    nodePackages.js-beautify
+    ocaml
+    dune_2
+    ocamlPackages.utop
+    ocamlPackages.ocp-indent
+    ocamlPackages.merlin
     # racket-minimal
     rustc
-    ghc cargo haskell-language-server hlint haskellPackages.hoogle # haskellPackages.cabal
-    nixfmt shellcheck fontconfig cmigemo cacert
-    emacsPackages.fontawesome emacs-all-the-icons-fonts
-    ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es
-];
+    ghc
+    cargo
+    go
+    haskell-language-server
+    hlint
+    haskellPackages.hoogle # haskellPackages.cabal
+    nixfmt
+    shellcheck
+    fontconfig
+    cmigemo
+    cacert
+    emacsPackages.fontawesome
+    emacs-all-the-icons-fonts
+    ispell
+    aspell
+    aspellDicts.en
+    aspellDicts.en-computers
+    aspellDicts.en-science
+    aspellDicts.fr
+    aspellDicts.de
+    aspellDicts.eo
+    aspellDicts.es
+    doom-emacs
+    code-minimap
+  ];
 
   home.sessionVariables = {
     EDITOR = "hx";
@@ -35,24 +103,21 @@ in
     secureSocket = false;
     plugins = with pkgs.tmuxPlugins; [
       sensible
-      continuum
-      resurrect # prefix ctrl-s -> save; prefix ctrl-r -> restore
       pain-control # prefix |, -, \, _ to split; prefix h, j, k, l to switch; prefix H, J, K, L to resize; prefix <, > to move
       fzf-tmux-url # prefix u -> fzf urls
       yank # prefix y -> copy command line to clipboard; prefix Y -> copy pwd to clipboard; search + y -> copy to clipboard
       open # highlight: o -> open; ctrl-o -> $EDITOR; S -> web search
       # vim-tmux-navigator # ctrl-h, -j, -k, -l -> move between tmux and vim splits # TODO doesn't work with helix
-      copycat # prefix ctrl-/ -> regex search; ctrl-f -> file search; ctrl-u -> url search; etc.
     ];
+    # set -g set-titles on
+    # set -g set-titles-string "#H (#S)"
     extraConfig = ''
-     set -g set-titles on
-     set -g set-titles-string "#H (#S)"
-     set -g mouse on
-     set -g status-right ""
-     set -g status-left ""
-     set -g status-style fg=white,bg=black
-     set-window-option -g window-status-format '#[fg=black,bright,nodim]#I #[fg=white,bright,dim]#W '
-     set-window-option -g window-status-current-format '#[fg=black,bright,nodim]#I #[fg=white,bright,nodim]#W '
+      set -g mouse on
+      set -g status-right ""
+      set -g status-left ""
+      set -g status-style fg=white,bg=black
+      set-window-option -g window-status-format '#[fg=black,bright,nodim]#I #[fg=white,bright,dim]#W '
+      set-window-option -g window-status-current-format '#[fg=black,bright,nodim]#I #[fg=white,bright,nodim]#W '
     '';
   };
 
@@ -61,7 +126,8 @@ in
     enableAliases = true;
   };
 
-  programs.zoxide = { # z doc -> cd ~/Documents; zi -> interactive
+  programs.zoxide = {
+    # z doc -> cd ~/Documents; zi -> interactive
     enable = true;
     enableZshIntegration = true;
   };
@@ -79,6 +145,7 @@ in
       h = "himalaya";
       er = "rm -rf logs; unzip -o";
       srsync = "rsync --rsync-path='sudo rsync'";
+      vim = "~/.local/bin/lvim"; # trying out LunarVim
     };
   };
 
@@ -92,7 +159,8 @@ in
     enableZshIntegration = true;
   };
 
-  programs.fzf = { # ctrl-t, ctrl-r, ssh **<tab>
+  programs.fzf = {
+    # ctrl-t, ctrl-r, ssh **<tab>
     enable = true;
     enableZshIntegration = true;
     defaultCommand = "fd --type file --color=always";
@@ -101,7 +169,8 @@ in
     fileWidgetOptions = [ "--min-height 30 --preview-window noborder --preview '(bat --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}) 2> /dev/null'" ];
   };
 
-  programs.navi = { # ctrl-G
+  programs.navi = {
+    # ctrl-G
     enable = true;
     enableZshIntegration = true;
   };
@@ -136,7 +205,8 @@ in
       signByDefault = true;
       key = "AD11750151C10881970BD943AB49BD6B2B3A6377";
     };
-    aliases = { # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
+    aliases = {
+      # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
       lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit";
     };
     delta = {
@@ -147,11 +217,6 @@ in
     };
   };
 
-  programs.emacs = {
-    enable = true;
-    package = ((pkgs.emacsPackagesNgGen pkgs.emacs).emacsWithPackages (epkgs: [ epkgs.vterm ]));
-  };
-    
   programs.helix = {
     enable = true;
     settings = {
@@ -171,164 +236,6 @@ in
     vimdiffAlias = true;
     withNodeJs = true;
     withPython3 = true;
-    coc = {
-      enable = true;
-      settings = ''
-        {
-          "tsserver.formatOnType": true,
-          "coc.preferences.formatOnType": true
-        }
-      '';
-    };
-    plugins = with pkgs.vimPlugins; [ # ale
-      vim-repeat vim-snippets vim-signify vim-orgmode vim-devicons vim-startify vim-highlightedyank
-      emmet-vim # <ctrl-y>,
-      vim-signature # marks in the gutter; mx (add), dmx (delete), m, (place next available), m. (next available if empty), m- (delete all on line), m<space> (delete all)
-      vim-expand-region # + / - to select increasingly larger / smaller regions∑
-      vim-better-whitespace # :StripWhitespace
-      vim-peekaboo # see registers when doing " @ and ctrl-r
-      vim-abolish # Substitution: :Subvert/child{,ren}/adult{,s}/g Coercios: crs (coerce to snake-case), crm (mixed), crc (camel), cru (upper), cr- (dash), cr., cr<space>, crt (title-case)
-      vim-polyglot # includes sensible, dups vim-sleuth
-      argtextobj-vim # daa => delete an argument
-      splitjoin-vim # gS / gJ to turn single-line code into multi, etc.
-      MatchTagAlways # highlights the matching & surrounding tags
-      vim-visual-multi # ctrl-n on word, n/N to select next/prev, [/] to switch cursors, q to skip, Q to remove current
-      # vim-endwise # automatically add end block keyword or symbol
-      vim-fugitive # Git, Gdiff, Gblame, Gstatus, Gcommit
-      vim-speeddating # ctrl-a & ctrl-x on dates
-      jdaddy-vim # cij: change inner json. gqaj: pretty print json
-      vim-surround # cs[{ -> change surrounding [ to {, cst -> change surrounding tag, ysiw] -> surround inner word with ], etc.
-      vim-tmux-navigator # ctrl-l -> right in vim splits then tmux panes, etc.
-      vim-sneak # stp -> jump to next occurance of 'tp'. ; -> next. , -> go back, `` -> back home
-      fzf-vim
-      vim-table-mode # <space>tm, || for rule, <space>tt -> tableize csv
-      tabular # :Tabularize /, :Tabu (shortcut & guess the right thing)
-      vim-markdown # zr, zR, zm, zM, za, zA, zc, zC for folding
-      vim-gnupg
-      vim-floaterm # <leader>T
-      undotree # <leader>u
-      vim-which-key
-      coc-nvim coc-css coc-html coc-eslint coc-tsserver coc-json coc-fzf coc-snippets
-      {
-        plugin = chadtree; # nvim-tree-lua
-        config = "let g:chadtree_settings = { 'xdg': v:true }";
-      }
-      {
-        plugin = vim-easy-align; # gaip= -> align inner paragraph on first =, gaip*= -> align aroud all =
-        config = ''
-          xmap ga <Plug>(EasyAlign)
-          nmap ga <Plug>(EasyAlign)
-        '';
-      }
-      {
-        plugin = vim-easymotion; # <leader><leader> w, <leader><leader>fx -> find x
-        config = "let g:EasyMotion_smartcase = 1";
-      }
-      {
-        plugin = nerdcommenter; # toggle: <leader>c<space>, comment: <leader>cc
-        config = "let g:NERDSpaceDelims = 1";
-      }
-      {
-        plugin = vim-airline;
-        config = ''
-          let g:airline#extensions#tabline#enabled = 1
-          let g:airline#extensions#ale#enabled = 1
-          let g:airline_powerline_fonts = 1
-        '';
-      }
-      vim-airline-themes
-      {
-        plugin = nord-vim;
-        config = ''
-          colorscheme nord
-          let g:nord_italic = 1
-          let g:nord_underline = 1
-        '';
-      }
-    ];
-    extraConfig = ''
-      set hidden
-      set number
-      set ignorecase
-      set smartcase
-      set magic
-      set mouse=a
-
-      let mapleader="\<Space>"
-      let maplocalleader="\\"
-
-      let g:org_indent = 1
-
-      nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
-      nnoremap <silent> <leader>t :CHADopen<CR>
-      nnoremap <silent> <leader>T :FloatermNew<CR>
-      nnoremap <silent> <leader>u :UndotreeToggle<cr>
-
-      " let g:coc_snippet_next = '<tab>'
-      " let g:coc_snippet_prev = '<S-Tab>'
-
-      " CoC
-      " Use tab for trigger completion with characters ahead and navigate.
-      inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : <SID>check_back_space() ? "\<TAB>" : coc#refresh()
-      inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-      " Make <CR> auto-select the first completion item and notify coc.nvim to
-      " format on enter, <cr> could be remapped by other vim plugin
-      inoremap <silent><expr> <CR> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-      function! s:check_back_space() abort
-        let col = col('.') - 1
-        return !col || getline('.')[col - 1]  =~# '\s'
-      endfunction
-
-      " GoTo code navigation.
-      nmap <silent> gd <Plug>(coc-definition)
-      nmap <silent> gy <Plug>(coc-type-definition)
-      nmap <silent> gi <Plug>(coc-implementation)
-      nmap <silent> gr <Plug>(coc-references)
-
-      " Use K to show documentation in preview window.
-      nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-      function! s:show_documentation()
-        if (index(['vim','help'], &filetype) >= 0)
-          execute 'h '.expand('<cword>')
-        elseif (coc#rpc#ready())
-          call CocActionAsync('doHover')
-        else
-          execute '!' . &keywordprg . " " . expand('<cword>')
-        endif
-      endfunction
-
-      " Highlight the symbol and its references when holding the cursor.
-      autocmd CursorHold * silent call CocActionAsync('highlight')
-
-      nnoremap <silent><leader>/ :noh<cr>
-      nnoremap <leader>v <c-w>v<c-w>l
-      nnoremap <leader>s <c-w>s<c-w>j
-
-      nnoremap <silent> <leader>a :Rg<CR>
-      nnoremap <silent> <leader>f :Files<CR>
-      nnoremap <silent> <leader>b :Buffers<CR>
-      nnoremap <silent> <leader>w :Windows<CR>
-      nnoremap <silent> <leader>C :Commands<CR>
-      nnoremap <silent> <leader>hf :History<CR>
-      nnoremap <silent> <leader>hc :History:<CR>
-      nnoremap <silent> <leader>hs :History/<CR>
-      nnoremap <silent> <leader>l :BLines<CR>
-      nnoremap <silent> <leader><leader>l :Lines<CR>
-      " nnoremap <silent> <leader>t :BTags<CR>
-      nnoremap <silent> <leader><leader>t :Tags<CR>
-      nnoremap <silent> <leader>gc :BCommits<CR>
-      nnoremap <silent> <leader><leader>gc :Commits<CR>
-      nmap <leader><tab> <plug>(fzf-maps-n)
-      xmap <leader><tab> <plug>(fzf-maps-x)
-      omap <leader><tab> <plug>(fzf-maps-o)
-      imap <c-x><c-k> <plug>(fzf-complete-word)
-      imap <c-x><c-f> <plug>(fzf-complete-path)
-      imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-      imap <c-x><c-l> <plug>(fzf-complete-line)
-    '';
   };
 
   programs.bat = {
@@ -348,8 +255,8 @@ in
     enable = true;
     enableZshIntegration = true;
     inheritType = "any";
-    agents = ["gpg" "ssh"];
-    keys = ["id_rsa" "2B3A6377"];
+    agents = [ "gpg" "ssh" ];
+    keys = [ "id_rsa" "2B3A6377" ];
   };
 
   programs.newsboat = {
