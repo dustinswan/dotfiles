@@ -19,7 +19,6 @@ in
     mosh
     w3m
     urlview
-    gnupg
     hexyl
     httpie
     timg
@@ -27,6 +26,8 @@ in
     du-dust
     duplicati
     bitwarden-cli
+    gnupg
+    gpg-tui
     rage
     sd
     eva
@@ -34,6 +35,7 @@ in
     restic
     gitui
     spotify-tui
+    slides
     manix
     amfora
     weechat
@@ -41,6 +43,7 @@ in
     procs
     pandoc
     magic-wormhole
+    qrcp
     pastel
     jo # jo name=Dustin age=99 -> { name: "dustin", age: 99 }
     fx # jo -a one two three | fx ".map(e => e.length > 3)"  -> [false, false, true]
@@ -61,6 +64,7 @@ in
     ghc
     cargo
     go
+    cmake
     haskell-language-server
     hlint
     haskellPackages.hoogle # haskellPackages.cabal
