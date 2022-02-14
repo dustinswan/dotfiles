@@ -47,6 +47,7 @@ in
     pastel
     jo # jo name=Dustin age=99 -> { name: "dustin", age: 99 }
     fx # jo -a one two three | fx ".map(e => e.length > 3)"  -> [false, false, true]
+    visidata
     bandwhich
     nodejs
     deno
@@ -89,7 +90,8 @@ in
   ];
 
   home.sessionVariables = {
-    EDITOR = "hx";
+    EDITOR = "vim";
+    BROSWER = "open";
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";
     PATH = "$PATH:${builtins.getEnv "HOME"}/.emacs.d/bin:${builtins.getEnv "HOME"}/.cargo/bin";
     EXA_ICON_SPACING = 2;
