@@ -108,6 +108,7 @@ in
     newSession = true;
     secureSocket = false;
     plugins = with pkgs.tmuxPlugins; [
+      resurrect
       sensible
       pain-control # prefix |, -, \, _ to split; prefix h, j, k, l to switch; prefix H, J, K, L to resize; prefix <, > to move
       fzf-tmux-url # prefix u -> fzf urls
