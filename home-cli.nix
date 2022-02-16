@@ -108,13 +108,17 @@ in
     newSession = true;
     secureSocket = false;
     plugins = with pkgs.tmuxPlugins; [
-      resurrect
+      resurrect # prefix ctrl-s to save sessions; prefix ctrl-r to restore
+      continuum # automatically save the session every 15 minutes
+      # suspend # F12 to disable the "outer" nested session
+      tmux-fzf
+      sessionist # prefix g to switch sessions; prefix C to create; prefix X to kill; prefix S to switch back; prefix @ to promote
       sensible
       pain-control # prefix |, -, \, _ to split; prefix h, j, k, l to switch; prefix H, J, K, L to resize; prefix <, > to move
       fzf-tmux-url # prefix u -> fzf urls
       yank # prefix y -> copy command line to clipboard; prefix Y -> copy pwd to clipboard; search + y -> copy to clipboard
       open # highlight: o -> open; ctrl-o -> $EDITOR; S -> web search
-      # vim-tmux-navigator # ctrl-h, -j, -k, -l -> move between tmux and vim splits # TODO doesn't work with helix
+      vim-tmux-navigator # ctrl-h, -j, -k, -l -> move between tmux and vim splits
     ];
     # set -g set-titles on
     # set -g set-titles-string "#H (#S)"
@@ -125,6 +129,7 @@ in
       set -g status-style fg=white,bg=black
       set-window-option -g window-status-format '#[fg=black,bright,nodim]#I #[fg=white,bright,dim]#W '
       set-window-option -g window-status-current-format '#[fg=black,bright,nodim]#I #[fg=white,bright,nodim]#W '
+      TMUX_FZF_LAUNCH_KEY="Space"
     '';
   };
 
