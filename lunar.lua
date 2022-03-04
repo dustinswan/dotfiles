@@ -1,5 +1,5 @@
 lvim.log.level = "warn"
-lvim.format_on_save = true
+lvim.format_on_save = false
 lvim.leader = "space"
 lvim.colorscheme = "nord"
 lvim.transparent_window = true
