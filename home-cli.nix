@@ -2,14 +2,6 @@
 
 let
   secrets = import ./secrets.nix;
-
-  doom-emacs = pkgs.callPackage
-    (builtins.fetchTarball {
-      url = https://github.com/nix-community/nix-doom-emacs/archive/master.tar.gz;
-    })
-    {
-      doomPrivateDir = ./doom;
-    };
 in
 {
   home.packages = with pkgs; [
@@ -54,6 +46,7 @@ in
     nodePackages.typescript-language-server
     nodePackages.stylelint
     nodePackages.js-beautify
+    nodePackages.expo-cli
     ocaml
     dune_2
     ocamlPackages.utop
@@ -73,8 +66,6 @@ in
     fontconfig
     cmigemo
     cacert
-    emacsPackages.fontawesome
-    emacs-all-the-icons-fonts
     ispell
     aspell
     aspellDicts.en
@@ -84,15 +75,13 @@ in
     aspellDicts.de
     aspellDicts.eo
     aspellDicts.es
-    doom-emacs
-    code-minimap
   ];
 
   home.sessionVariables = {
     EDITOR = "vim";
     BROSWER = "open";
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";
-    PATH = "$PATH:${builtins.getEnv "HOME"}/.emacs.d/bin:${builtins.getEnv "HOME"}/.cargo/bin";
+    PATH = "$PATH:${builtins.getEnv "HOME"}/.cargo/bin";
     EXA_ICON_SPACING = 2;
   };
 
@@ -148,7 +137,7 @@ in
     enableAutosuggestions = true;
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "httpie" "aws" "emacs" "fd" "fzf" "mosh" "npm" "ripgrep" "rsync" "sudo" "yarn" ];
+      plugins = [ "git" "httpie" "aws" "fd" "fzf" "mosh" "npm" "ripgrep" "rsync" "sudo" "yarn" ];
     };
     shellAliases = {
       l = "exa -lah --icons --git";
@@ -330,43 +319,4 @@ in
       bind-key k up
     '';
   };
-
-  # home.file.gitui = {
-  #   target = ".config/gitui/key_bindings.ron";
-  #   text = ''(
-  #   focus_right: Some(( code: Char('l'), modifiers: ( bits: 0,),)),
-  #   focus_left: Some(( code: Char('h'), modifiers: ( bits: 0,),)),
-  #   focus_above: Some(( code: Char('k'), modifiers: ( bits: 0,),)),
-  #   focus_below: Some(( code: Char('j'), modifiers: ( bits: 0,),)),
-
-  #   open_help: Some(( code: F(1), modifiers: ( bits: 0,),)),
-
-  #   move_left: Some(( code: Char('h'), modifiers: ( bits: 0,),)),
-  #   move_right: Some(( code: Char('l'), modifiers: ( bits: 0,),)),
-  #   move_up: Some(( code: Char('k'), modifiers: ( bits: 0,),)),
-  #   move_down: Some(( code: Char('j'), modifiers: ( bits: 0,),)),
-  #   popup_up: Some(( code: Char('p'), modifiers: ( bits: 2,),)),
-  #   popup_down: Some(( code: Char('n'), modifiers: ( bits: 2,),)),
-  #   page_up: Some(( code: Char('b'), modifiers: ( bits: 2,),)),
-  #   page_down: Some(( code: Char('f'), modifiers: ( bits: 2,),)),
-  #   home: Some(( code: Char('g'), modifiers: ( bits: 0,),)),
-  #   end: Some(( code: Char('G'), modifiers: ( bits: 1,),)),
-  #   shift_up: Some(( code: Char('K'), modifiers: ( bits: 1,),)),
-  #   shift_down: Some(( code: Char('J'), modifiers: ( bits: 1,),)),
-
-  #   edit_file: Some(( code: Char('I'), modifiers: ( bits: 1,),)),
-
-  #   status_reset_item: Some(( code: Char('U'), modifiers: ( bits: 1,),)),
-
-  #   diff_reset_lines: Some(( code: Char('u'), modifiers: ( bits: 0,),)),
-  #   diff_stage_lines: Some(( code: Char('s'), modifiers: ( bits: 0,),)),
-
-  #   stashing_save: Some(( code: Char('w'), modifiers: ( bits: 0,),)),
-  #   stashing_toggle_index: Some(( code: Char('m'), modifiers: ( bits: 0,),)),
-
-  #   stash_open: Some(( code: Char('l'), modifiers: ( bits: 0,),)),
-
-  #   abort_merge: Some(( code: Char('M'), modifiers: ( bits: 1,),)),
-  # )'';
-  # };
 }
