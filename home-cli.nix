@@ -10,6 +10,7 @@ in
     wget
     mosh
     w3m
+    nnn
     urlview
     hexyl
     httpie
