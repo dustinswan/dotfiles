@@ -17,6 +17,7 @@ lvim.plugins = {
   { "shaunsingh/nord.nvim" },
   -- { "rose-pine/neovim" },
   -- { "folke/tokyonight.nvim" },
+  { 'dhruvasagar/vim-table-mode' },
   { 'michaelb/sniprun', run = 'bash ./install.sh' },
   { "nacro90/numb.nvim", event = "BufRead", config = function() require("numb").setup() end },
   { "npxbr/glow.nvim", ft = { "markdown" } },
@@ -43,7 +44,7 @@ lvim.plugins = {
   { "akinsho/org-bullets.nvim",
     config = function()
       require("org-bullets").setup {
-        symbols = { "◉", "○", "✸", "✿" }
+        symbols = { "◉", "○", "✸" }
       }
     end
   },
