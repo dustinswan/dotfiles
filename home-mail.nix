@@ -19,7 +19,7 @@
     accounts = {
       FastMail = {
         address = "dustin@dustinswan.com";
-        aliases = "dustinswan@gmail.com";
+        aliases = ["dustinswan@gmail.com"];
         realName = "Dustin Swan";
         primary = true;
         folders = {
