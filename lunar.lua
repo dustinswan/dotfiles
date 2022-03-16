@@ -36,6 +36,7 @@ lvim.plugins = {
       require('orgmode').setup {
         org_agenda_files = {'~/Sync/Notes/*'},
         org_default_notes_file = '~/Sync/Notes/Main.org',
+        org_log_done = false,
         -- org_todo_keywords = {'TODO', 'WAIT', '|', 'DONE'},
       }
       -- vim.opt.conceallevel = 1
@@ -81,6 +82,7 @@ lvim.plugins = {
   --     auto_dark_mode.init()
   --   end
   -- },
+  { "jamessan/vim-gnupg" },
 }
 
 lvim.builtin.which_key.mappings["t"] = {
@@ -91,6 +93,12 @@ lvim.builtin.which_key.mappings["t"] = {
   q = { "<cmd>TroubleToggle quickfix<cr>", "quickfix" },
   l = { "<cmd>TroubleToggle loclist<cr>", "loclist" },
   r = { "<cmd>TroubleToggle lsp_references<cr>", "references" },
+}
+lvim.builtin.which_key.mappings["T"] = {
+  name = "Table Mode",
+  t = { "<cmd>:TableModeToggle<cr>", "Toggle enable" },
+  e = { "<cmd>:TableEvalFormulaLine<cr>", "Eval formula line" },
+  T = { "<cmd>:TableModeRealign<cr>", "Realign" },
 }
 
 lvim.builtin.which_key.mappings["m"] = { "<cmd>MinimapToggle<cr>", "Toggle Minimap" }
