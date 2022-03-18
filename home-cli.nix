@@ -27,6 +27,7 @@ in
     glow
     restic
     spotify-tui
+    spotifyd
     slides
     manix
     amfora
@@ -40,6 +41,7 @@ in
     jo # jo name=Dustin age=99 -> { name: "dustin", age: 99 }
     fx # jo -a one two three | fx ".map(e => e.length > 3)"  -> [false, false, true]
     visidata
+    sc-im
     bandwhich
     nodejs
     deno
