@@ -6,10 +6,13 @@ lvim.transparent_window = true
 -- vim.opt.cmdheight = 1
 vim.opt.conceallevel = 2 -- TODO: only for org files
 
-lvim.builtin.dashboard.active = true
+lvim.builtin.alpha.mode = 'startify'
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.treesitter.highlight.enabled = true
+
+lvim.builtin.nvimtree.setup.hijack_netrw = false -- to get gx working again
+lvim.builtin.nvimtree.setup.disable_netrw = true -- TODO: but it isn't working
 
 table.insert(lvim.builtin.cmp.sources, { name = "orgmode" })
 
@@ -83,6 +86,8 @@ lvim.plugins = {
   --   end
   -- },
   { "jamessan/vim-gnupg" },
+  { "simrat39/symbols-outline.nvim" },
+  { "voldikss/vim-floaterm" },
 }
 
 lvim.builtin.which_key.mappings["t"] = {
@@ -101,8 +106,8 @@ lvim.builtin.which_key.mappings["T"] = {
   T = { "<cmd>:TableModeRealign<cr>", "Realign" },
 }
 
-lvim.builtin.which_key.mappings["m"] = { "<cmd>MinimapToggle<cr>", "Toggle Minimap" }
 lvim.builtin.which_key.mappings["B"] = { "<cmd>BlamerShow<cr>", "Show Blamer" }
+lvim.builtin.which_key.mappings["S"] = { "<cmd>SymbolsOutline<cr>", "Symbols Outline" }
 
 -- Org mode stuff
 
@@ -130,3 +135,21 @@ lvim.builtin.which_key.mappings["B"] = { "<cmd>BlamerShow<cr>", "Show Blamer" }
 --   org_agenda_files = {'~/Dropbox/org/*', '~/my-orgs/**/*'},
 --   org_default_notes_file = '~/Dropbox/org/refile.org',
 -- })
+
+-- Prettier configuration
+local formatters = require "lvim.lsp.null-ls.formatters"
+formatters.setup {
+  {
+    exe = "prettier",
+    -- filetypes = { "javascriptreact", "javascript", "typescriptreact", "typescript", "json", "markdown", },
+  },
+}
+
+-- ESLint
+local linters = require "lvim.lsp.null-ls.linters"
+linters.setup {
+  {
+    exe = "eslint",
+    -- filetypes = { "javascriptreact", "javascript", "typescriptreact", "typescript", "vue", },
+  },
+}

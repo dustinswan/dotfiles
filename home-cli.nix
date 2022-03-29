@@ -15,6 +15,7 @@ in
     hexyl
     httpie
     timg
+    sox
     tealdeer
     du-dust
     duplicati
@@ -38,8 +39,10 @@ in
     magic-wormhole
     qrcp
     pastel
+    jq
     jo # jo name=Dustin age=99 -> { name: "dustin", age: 99 }
     fx # jo -a one two three | fx ".map(e => e.length > 3)"  -> [false, false, true]
+    jc # dig example.com | jc --dig; or "magic" syntax: jc dig example.com; jc ls -l; etc.
     visidata
     sc-im
     bandwhich
@@ -149,6 +152,9 @@ in
       er = "rm -rf logs; unzip -o";
       srsync = "rsync --rsync-path='sudo rsync'";
       vim = "~/.local/bin/lvim"; # trying out LunarVim
+      ambient1 = "play -n -c1 synth whitenoise lowpass -1 120 lowpass -1 120 lowpass -1 120 gain +16";
+      ambient2 = "play -c 2 -n synth brownnoise lowpass 200";
+      ambient3 = "play -c 2 -n synth brownnoise lowpass 150 loudness +10";
     };
   };
 
@@ -294,7 +300,6 @@ in
 
   programs.gpg.enable = true;
   programs.mpv.enable = true;
-  programs.jq.enable = true;
   programs.noti.enable = true;
   programs.bottom.enable = true;
 
