@@ -226,6 +226,8 @@ in
     };
   };
 
+  programs.lazygit.enable = true;
+
   programs.gitui = {
     enable = true;
     keyConfig = ''(
