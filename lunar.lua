@@ -66,7 +66,6 @@ lvim.plugins = {
       }
     end
   },
-  { "APZelos/blamer.nvim" },
   { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' },
   -- {
   --   'f-person/auto-dark-mode.nvim',
@@ -87,7 +86,6 @@ lvim.plugins = {
   -- },
   { "jamessan/vim-gnupg" },
   { "simrat39/symbols-outline.nvim" },
-  { "voldikss/vim-floaterm" },
   { "github/copilot.vim" },
   { 'alexghergh/nvim-tmux-navigation', config = function()
         require'nvim-tmux-navigation'.setup {
@@ -121,7 +119,6 @@ lvim.builtin.which_key.mappings["T"] = {
   T = { "<cmd>:TableModeRealign<cr>", "Realign" },
 }
 
-lvim.builtin.which_key.mappings["B"] = { "<cmd>BlamerShow<cr>", "Show Blamer" }
 lvim.builtin.which_key.mappings["S"] = { "<cmd>SymbolsOutline<cr>", "Symbols Outline" }
 
 -- Org mode stuff
