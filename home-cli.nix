@@ -5,82 +5,12 @@ let
 in
 {
   home.packages = with pkgs; [
-    ripgrep
-    fd
-    wget
-    mosh
-    w3m
-    nnn
-    urlview
-    hexyl
-    httpie
-    timg
-    sox
-    tealdeer
-    du-dust
-    duplicati
-    bitwarden-cli
-    gnupg
-    gpg-tui
-    rage
-    sd
-    eva
-    glow
-    restic
-    spotify-tui
-    spotifyd
-    slides
-    manix
-    amfora
-    weechat
-    duf
-    procs
-    pandoc
-    magic-wormhole
-    qrcp
-    pastel
-    jq
-    jo # jo name=Dustin age=99 -> { name: "dustin", age: 99 }
-    fx # jo -a one two three | fx ".map(e => e.length > 3)"  -> [false, false, true]
-    jc # dig example.com | jc --dig; or "magic" syntax: jc dig example.com; jc ls -l; etc.
-    visidata
-    sc-im
-    bandwhich
-    nodejs
-    deno
-    yarn
-    nodePackages.typescript-language-server
-    nodePackages.stylelint
-    nodePackages.js-beautify
-    nodePackages.expo-cli
-    ocaml
-    dune_2
-    ocamlPackages.utop
-    ocamlPackages.ocp-indent
-    ocamlPackages.merlin
-    # racket-minimal
-    rustc
-    ghc
-    cargo
-    go
-    cmake
-    haskell-language-server
-    hlint
-    haskellPackages.hoogle # haskellPackages.cabal
-    nixfmt
-    shellcheck
-    fontconfig
-    cmigemo
-    cacert
-    ispell
-    aspell
-    aspellDicts.en
-    aspellDicts.en-computers
-    aspellDicts.en-science
-    aspellDicts.fr
-    aspellDicts.de
-    aspellDicts.eo
-    aspellDicts.es
+    ripgrep fd wget mosh w3m nnn urlview hexyl httpie timg sox tealdeer du-dust duplicati bitwarden-cli gnupg gpg-tui rage sd eva glow restic spotify-tui spotifyd slides manix amfora weechat duf procs pandoc magic-wormhole qrcp pastel jq jo fx jc visidata sc-im bandwhich nixfmt shellcheck fontconfig cacert
+    nodejs deno yarn nodePackages.typescript-language-server nodePackages.stylelint nodePackages.js-beautify nodePackages.expo-cli
+    ocaml dune_2 ocamlPackages.utop ocamlPackages.ocp-indent ocamlPackages.merlin
+    rustc go cmake # racket-minimal
+    ghc cargo haskell-language-server hlint haskellPackages.hoogle
+    ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es
   ];
 
   home.sessionVariables = {
@@ -151,7 +81,8 @@ in
       h = "himalaya";
       er = "rm -rf logs; unzip -o";
       srsync = "rsync --rsync-path='sudo rsync'";
-      vim = "~/.local/bin/lvim"; # trying out LunarVim
+      vim = "~/.local/bin/lvim";
+      lg = "lazygit";
       ambient1 = "play -n -c1 synth whitenoise lowpass -1 120 lowpass -1 120 lowpass -1 120 gain +16";
       ambient2 = "play -c 2 -n synth brownnoise lowpass 200";
       ambient3 = "play -c 2 -n synth brownnoise lowpass 150 loudness +10";
