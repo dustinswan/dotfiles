@@ -31,18 +31,15 @@ lvim.plugins = {
   { "folke/todo-comments.nvim", event = "BufRead", config = function() require "todo-comments".setup() end },
   { "ray-x/lsp_signature.nvim", event = "BufRead", config = function() require "lsp_signature".setup() end },
   { "lukas-reineke/indent-blankline.nvim", event = "BufRead" },
-  {
-    "nvim-orgmode/orgmode",
-    config = function()
+  { "nvim-orgmode/orgmode", config = function()
       require('orgmode').setup_ts_grammar()
+      -- vim.opt.conceallevel = 1
 
       require('orgmode').setup {
         org_agenda_files = {'~/Sync/Notes/*'},
         org_default_notes_file = '~/Sync/Notes/Main.org',
         org_log_done = false,
-        -- org_todo_keywords = {'TODO', 'WAIT', '|', 'DONE'},
       }
-      -- vim.opt.conceallevel = 1
     end
   },
   { "akinsho/org-bullets.nvim",

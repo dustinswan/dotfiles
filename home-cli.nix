@@ -14,7 +14,7 @@ in
   ];
 
   home.sessionVariables = {
-    EDITOR = "vim";
+    EDITOR = "$PATH:${builtins.getEnv "HOME"}/.local/bin/lvim";
     BROSWER = "open";
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";
     PATH = "$PATH:${builtins.getEnv "HOME"}/.cargo/bin";
@@ -73,7 +73,7 @@ in
     enableAutosuggestions = true;
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "httpie" "aws" "fd" "fzf" "mosh" "npm" "ripgrep" "rsync" "sudo" "yarn" ];
+      plugins = [ "git" "httpie" "aws" "fd" "fzf" "mosh" "npm" "ripgrep" "rsync" "sudo" "yarn" "vi-mode" ];
     };
     shellAliases = {
       l = "exa -lah --icons --git";
