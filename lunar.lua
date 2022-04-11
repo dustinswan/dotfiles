@@ -98,6 +98,7 @@ lvim.plugins = {
         }
     end
   },
+  { "AndrewRadev/splitjoin.vim" },
 }
 
 lvim.builtin.which_key.mappings["t"] = {
