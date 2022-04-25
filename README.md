@@ -12,5 +12,5 @@ I'm going all in on [Nix](https://nixos.org/) & [home-manager](https://github.co
 
 - **Samsung S22+**: Android & [Samsung Dex](https://www.samsung.com/us/explore/dex/) & [nix-on-droid](https://github.com/t184256/nix-on-droid)
 - **Raspberry Pi 4**: NixOS
-- **[Vultr](https://www.vultr.com/) VPS ([dustinswan.com](http://dustinswan.com))**: NixOS
+- **[Vultr](https://www.vultr.com/?ref=6895496) VPS ([dustinswan.com](http://dustinswan.com))**: NixOS
 - **Apple Macbook Pro (work laptop)**: MacOS & Nix
