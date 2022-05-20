@@ -5,7 +5,7 @@ let
 in
 {
   home.packages = with pkgs; [
-    ripgrep fd wget mosh w3m nnn urlview hexyl httpie timg sox tealdeer du-dust duplicati bitwarden-cli gnupg gpg-tui rage sd eva glow restic spotify-tui spotifyd slides manix amfora weechat duf procs pandoc magic-wormhole qrcp pastel jq jo fx jc miller visidata sc-im bandwhich nixfmt shellcheck fontconfig cacert
+    ripgrep fd wget mosh w3m nnn urlview hexyl httpie timg sox du-dust duplicati bitwarden-cli gnupg gpg-tui rage sd eva glow restic spotify-tui spotifyd slides manix amfora weechat duf procs pandoc magic-wormhole qrcp pastel jq jo fx jc miller visidata sc-im bandwhich nixfmt shellcheck fontconfig cacert
     nodejs deno yarn nodePackages.typescript-language-server nodePackages.stylelint nodePackages.js-beautify nodePackages.expo-cli
     ocaml dune_2 ocamlPackages.utop ocamlPackages.ocp-indent ocamlPackages.merlin
     rustc go cmake # racket-minimal
@@ -235,6 +235,7 @@ in
   programs.mpv.enable = true;
   programs.noti.enable = true;
   programs.bottom.enable = true;
+  programs.tealdeer.enable = true;
 
   programs.keychain = {
     enable = true;

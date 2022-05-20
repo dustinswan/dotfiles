@@ -99,6 +99,7 @@ lvim.plugins = {
     end
   },
   { "AndrewRadev/splitjoin.vim" },
+  { "azabiong/vim-highlighter" } -- f-<CR> to highlight
 }
 
 lvim.builtin.which_key.mappings["t"] = {
