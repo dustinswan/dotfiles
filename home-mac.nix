@@ -16,5 +16,15 @@
   #   text = ''Library'';
   # };
 
+  launchd.agents.duplicati = {
+    enable = true;
+    config = {
+      ProgramArguments = [ "/Users/dustinswan/.nix-profile/bin/duplicati-server" ];
+      RunAtLoad = true;
+      LaunchOnlyOnce = true;
+      KeepAlive = true;
+    };
+  };
+
   imports = [ ./home-cli.nix ./home-gui.nix ./home-mail.nix ];
 }
