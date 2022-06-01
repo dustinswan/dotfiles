@@ -1,7 +1,7 @@
 lvim.log.level = "warn"
 lvim.format_on_save = false
 lvim.leader = "space"
-lvim.colorscheme = "nord"
+lvim.colorscheme = "catppuccin"
 lvim.transparent_window = true
 -- vim.opt.cmdheight = 1
 vim.opt.conceallevel = 2 -- TODO: only for org files
@@ -18,6 +18,7 @@ table.insert(lvim.builtin.cmp.sources, { name = "orgmode" })
 
 lvim.plugins = {
   { "shaunsingh/nord.nvim" },
+  { "catppuccin/nvim" },
   -- { "rose-pine/neovim" },
   -- { "folke/tokyonight.nvim" },
   { 'dhruvasagar/vim-table-mode' },
@@ -32,7 +33,6 @@ lvim.plugins = {
   { "ray-x/lsp_signature.nvim", event = "BufRead", config = function() require "lsp_signature".setup() end },
   { "lukas-reineke/indent-blankline.nvim", event = "BufRead" },
   { "nvim-orgmode/orgmode", config = function()
-      require('orgmode').setup_ts_grammar()
       -- vim.opt.conceallevel = 1
 
       require('orgmode').setup {
@@ -102,6 +102,8 @@ lvim.plugins = {
   { "azabiong/vim-highlighter" } -- f-<CR> to highlight
 }
 
+require('orgmode').setup_ts_grammar()
+
 lvim.builtin.which_key.mappings["t"] = {
   name = "Diagnostics",
   t = { "<cmd>TroubleToggle<cr>", "trouble" },
@@ -163,4 +165,7 @@ linters.setup {
     exe = "eslint",
     -- filetypes = { "javascriptreact", "javascript", "typescriptreact", "typescript", "vue", },
   },
+  {
+    exe = "vale",
+  }
 }

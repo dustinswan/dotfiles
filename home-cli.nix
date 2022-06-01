@@ -5,9 +5,9 @@ let
 in
 {
   home.packages = with pkgs; [
-    ripgrep fd wget mosh w3m nnn urlview hexyl httpie timg sox du-dust duplicati bitwarden-cli gnupg gpg-tui rage sd eva glow restic spotify-tui spotifyd slides manix amfora weechat duf procs pandoc magic-wormhole qrcp pastel jq jo fx jc miller visidata sc-im bandwhich nixfmt shellcheck fontconfig cacert
+    ripgrep fd wget mosh w3m nnn urlview hexyl httpie timg sox du-dust duplicati bitwarden-cli gnupg gpg-tui rage sd eva glow restic spotify-tui spotifyd slides manix amfora weechat duf procs pandoc magic-wormhole qrcp pastel jq jo fx jc miller visidata sc-im bandwhich nixfmt shellcheck fontconfig cacert vale
     nodejs deno yarn nodePackages.typescript-language-server nodePackages.stylelint nodePackages.js-beautify nodePackages.expo-cli
-    ocaml dune_2 ocamlPackages.utop ocamlPackages.ocp-indent ocamlPackages.merlin
+    # ocaml dune_2 ocamlPackages.utop ocamlPackages.ocp-indent ocamlPackages.merlin
     rustc go cmake # racket-minimal
     ghc cargo haskell-language-server hlint haskellPackages.hoogle
     ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es
@@ -104,7 +104,15 @@ in
     enable = true;
     enableZshIntegration = true;
     defaultCommand = "fd --type file --color=always";
-    defaultOptions = [ "--height 40%" "--border" "--ansi" ];
+    defaultOptions = [
+      "--height 40%"
+        "--border"
+        "--ansi"
+        "--color bg+:#302D41,bg:#1E1E2E,spinner:#F8BD96,hl:#F28FAD"
+        "--color=fg:#D9E0EE,header:#F28FAD,info:#DDB6F2,pointer:#F8BD96"
+        "--color=marker:#F8BD96,fg+:#F2CDCD,prompt:#DDB6F2,hl+:#F28FAD"
+    ];
+
     fileWidgetCommand = "fd --type file --color=always";
     fileWidgetOptions = [ "--min-height 30 --preview-window noborder --preview '(bat --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}) 2> /dev/null'" ];
   };
@@ -156,6 +164,8 @@ in
       };
     };
   };
+
+  programs.gh.enable = true;
 
   programs.lazygit.enable = true;
 

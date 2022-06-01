@@ -1,15 +1,23 @@
 { pkgs, ... }:
 
+let
+  secrets = import ./secrets.nix;
+in
 {
-  home.packages = with pkgs; [ aerc vdirsyncer imapnotify ];
+  home.packages = with pkgs; [ aerc vdirsyncer khal khard imapnotify ];
+
   programs.mbsync.enable = true;
+
   programs.msmtp.enable = true;
+
   programs.neomutt = {
     enable = true;
     sidebar.enable = true;
     sort = "reverse-threads";
   };
+
   programs.himalaya.enable = true;
+
   programs.mu.enable = true;
 
   accounts.email = {
@@ -70,12 +78,6 @@ source = maildir://~/Mail/FastMail
 from = "Dustin Swan <dustin@dustinswan.com>"
 outgoing = ${builtins.getEnv "HOME"}/.nix-profile/bin/msmtp --read-envelope-from
 '';
-#    text = ''[FastMail]
-#source = imaps://dustinswan%40fastmail.com@mail.messagingengine.com:993
-#from = "Dustin Swan <dustin@dustinswan.com>"
-#outgoing = ${builtins.getEnv "HOME"}/.nix-profile/bin/msmtp --read-envelope-from
-#source-cred-cmd = "gpg -dq ${builtins.getEnv "HOME"}/.dustinswan@fastmail.com-password.gpg"
-#'';
   };
 
   home.file.vdirsyncer = {
@@ -100,6 +102,7 @@ url = "https://carddav.messagingengine.com/"
 username = "dustinswan@fastmail.com"
 password.fetch = ["command", "~/dotfiles/bin/decrypt-password", "dustinswan@fastmail.com"]
 
+
 [pair fastmail_calendar]
 a = "fastmail_calendar_local"
 b = "fastmail_calendar_remote"
@@ -109,28 +112,59 @@ metadata = ["color", "displayname"]
 
 [storage fastmail_calendar_local]
 type = "filesystem"
-path = "~/Calendars/"
+path = "~/Calendars/Fastmail"
 fileext = ".ics"
 
 [storage fastmail_calendar_remote]
 type = "caldav"
 url = "https://caldav.messagingengine.com/"
 username = "dustinswan@fastmail.com"
-password.fetch = ["command", "~/dotfiles/bin/decrypt-password", "dustinswan@fastmail.com"]'';
+password.fetch = ["command", "~/dotfiles/bin/decrypt-password", "dustinswan@fastmail.com"]
+
+
+[pair google_calendar]
+a = "google_calendar_local"
+b = "google_calendar_remote"
+collections = null
+# conflict_resolution = "b wins"
+# metadata = ["color", "displayname"]
+
+[storage google_calendar_local]
+type = "filesystem"
+path = "~/Calendars/Google"
+fileext = ".ics"
+
+[storage google_calendar_remote]
+type = "http"
+url = "${secrets.google-calendar.our-stuff}"
+# type = "google_calendar"
+# token_file = "~/token_file"
+# client_id = "${secrets.google-vdirsyncer.id}"
+# client_secret = "${secrets.google-vdirsyncer.secret}"
+'';
   };
 
   home.file.khard = {
-    target = ".config/khard/config";
+    target = ".config/khard/khard.conf";
     text = ''[addressbooks]
 [[contacts]]
-path = ~/Contacts/Default'';
+path = ~/Contacts/Default
+
+[general]
+default_action = list'';
   };
 
   home.file.khal = {
     target = ".config/khal/config";
     text = ''[calendars]
 [[Fastmail]]
-path = ~/Calendars/*
+path = ~/Calendars/Fastmail/*
+color = light green
+type = discover
+
+[[Google]]
+path = ~/Calendars/Google
+color = light blue
 type = discover
 
 [locale]
