@@ -6,12 +6,12 @@ in
 {
   home.stateVersion = "18.09";
 
-  home.packages = with pkgs; [
-    ripgrep fd wget mosh w3m nnn urlview hexyl httpie timg sox du-dust duplicati bitwarden-cli gnupg gpg-tui rage sd eva glow restic spotify-tui spotifyd slides manix amfora weechat duf procs pandoc magic-wormhole qrcp pastel jq jo fx jc miller visidata sc-im bandwhich nixfmt shellcheck fontconfig cacert vale
+  home.packages = with pkgs; [ # magic-wormhole
+    ripgrep fd wget mosh w3m nnn urlview hexyl httpie timg sox du-dust duplicati bitwarden-cli gnupg gpg-tui rage sd eva glow restic spotify-tui spotifyd slides manix amfora duf procs pandoc pastel jq jo fx jc miller visidata sc-im bandwhich nixfmt shellcheck fontconfig cacert vale weechat
     nodejs deno yarn nodePackages.typescript-language-server nodePackages.stylelint nodePackages.js-beautify nodePackages.expo-cli
-    # ocaml dune_2 ocamlPackages.utop ocamlPackages.ocp-indent ocamlPackages.merlin
+    ocaml dune_2 ocamlPackages.utop ocamlPackages.ocp-indent ocamlPackages.merlin
     rustc go cmake # racket-minimal
-    ghc cargo haskell-language-server hlint haskellPackages.hoogle
+    # ghc cargo haskell-language-server hlint haskellPackages.hoogle
     ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es
   ];
 
@@ -45,6 +45,7 @@ in
       yank # prefix y -> copy command line to clipboard; prefix Y -> copy pwd to clipboard; search + y -> copy to clipboard
       open # highlight: o -> open; ctrl-o -> $EDITOR; S -> web search
       vim-tmux-navigator # ctrl-h, -j, -k, -l -> move between tmux and vim splits
+      extrakto # prefix tab -> fuzzy find text on screen; enter to copy; tab to paste 
     ];
     # set -g set-titles on
     # set -g set-titles-string "#H (#S)"

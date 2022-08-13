@@ -4,7 +4,7 @@ let
   secrets = import ./secrets.nix;
 in
 {
-  home.packages = with pkgs; [ aerc vdirsyncer khal khard imapnotify ];
+  home.packages = with pkgs; [ aerc vdirsyncer khard imapnotify ]; # khal
 
   programs.mbsync.enable = true;
 

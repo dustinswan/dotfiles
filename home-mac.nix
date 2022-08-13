@@ -1,7 +1,7 @@
 { pkgs, lib, ... }:
 
 {
-  home.packages = with pkgs; [ pinentry_mac terminal-notifier syncthing ];
+  home.packages = with pkgs; [ pinentry_mac terminal-notifier ];
 
   home.file.gpg-agent = {
     target = ".gnupg/gpg-agent.conf";

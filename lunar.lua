@@ -42,13 +42,13 @@ lvim.plugins = {
       }
     end
   },
-  { "akinsho/org-bullets.nvim",
-    config = function()
-      require("org-bullets").setup {
-        symbols = { "◉", "○", "✸" }
-      }
-    end
-  },
+  -- { "akinsho/org-bullets.nvim",
+  --   config = function()
+  --     require("org-bullets").setup {
+  --       symbols = { "◉", "○", "✸" }
+  --     }
+  --   end
+  -- },
   -- {
   --   'lukas-reineke/headlines.nvim',
   --   config = function()
@@ -83,7 +83,7 @@ lvim.plugins = {
   -- },
   { "jamessan/vim-gnupg" },
   { "simrat39/symbols-outline.nvim" },
-  { "github/copilot.vim" },
+  -- { "github/copilot.vim" },
   { 'alexghergh/nvim-tmux-navigation', config = function()
         require'nvim-tmux-navigation'.setup {
             disable_when_zoomed = true, -- defaults to false
