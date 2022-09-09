@@ -16,7 +16,7 @@ in
   ];
 
   home.sessionVariables = {
-    EDITOR = "$PATH:${builtins.getEnv "HOME"}/.local/bin/lvim";
+    EDITOR = "${builtins.getEnv "HOME"}/.local/bin/lvim";
     BROSWER = "open";
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";
     PATH = "$PATH:${builtins.getEnv "HOME"}/.cargo/bin";
