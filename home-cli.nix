@@ -7,7 +7,7 @@ in
   home.stateVersion = "18.09";
 
   home.packages = with pkgs; [ # magic-wormhole
-    ripgrep fd wget mosh w3m nnn urlview hexyl httpie timg sox du-dust duplicati bitwarden-cli gnupg gpg-tui rage sd eva glow restic spotify-tui spotifyd slides manix amfora duf procs pandoc pastel jq jo fx jc miller visidata sc-im bandwhich nixfmt shellcheck fontconfig cacert vale weechat
+    ripgrep fd mosh w3m nnn urlview hexyl httpie timg sox du-dust duplicati bitwarden-cli gnupg gpg-tui rage sd eva glow restic spotify-tui spotifyd slides manix amfora duf procs pandoc pastel jq jo fx jc miller visidata sc-im bandwhich nixfmt shellcheck fontconfig cacert vale weechat
     nodejs deno yarn nodePackages.typescript-language-server nodePackages.stylelint nodePackages.js-beautify nodePackages.expo-cli
     ocaml dune_2 ocamlPackages.utop ocamlPackages.ocp-indent ocamlPackages.merlin
     rustc go cmake # racket-minimal
@@ -34,13 +34,11 @@ in
     newSession = true;
     secureSocket = false;
     plugins = with pkgs.tmuxPlugins; [
+      sensible
       resurrect # prefix ctrl-s to save sessions; prefix ctrl-r to restore
       continuum # automatically save the session every 15 minutes
-      # suspend # F12 to disable the "outer" nested session
-      tmux-fzf
-      sessionist # prefix g to switch sessions; prefix C to create; prefix X to kill; prefix S to switch back; prefix @ to promote
-      sensible
-      pain-control # prefix |, -, \, _ to split; prefix h, j, k, l to switch; prefix H, J, K, L to resize; prefix <, > to move
+      sessionist # prefix g to switch sessions; prefix C to create; prefix X to kill; prefix S to switch back; prefix @ to promote; prefix t f to join marked pane
+      pain-control # prefix |, -, \, _ to split; prefix h, j, k, l to switch; prefix H, J, K, L to resize; prefix <, > to move windows
       fzf-tmux-url # prefix u -> fzf urls
       yank # prefix y -> copy command line to clipboard; prefix Y -> copy pwd to clipboard; search + y -> copy to clipboard
       open # highlight: o -> open; ctrl-o -> $EDITOR; S -> web search

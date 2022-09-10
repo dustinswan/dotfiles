@@ -3,7 +3,6 @@ lvim.format_on_save = false
 lvim.leader = "space"
 lvim.colorscheme = "catppuccin"
 lvim.transparent_window = true
--- vim.opt.cmdheight = 1
 vim.opt.conceallevel = 2 -- TODO: only for org files
 
 lvim.builtin.alpha.mode = 'startify'
@@ -11,23 +10,35 @@ lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
 lvim.builtin.treesitter.highlight.enabled = true
 
-lvim.builtin.nvimtree.setup.hijack_netrw = false -- to get gx working again
-lvim.builtin.nvimtree.setup.disable_netrw = true -- TODO: but it isn't working
-
 table.insert(lvim.builtin.cmp.sources, { name = "orgmode" })
 
 lvim.plugins = {
-  { "shaunsingh/nord.nvim" },
-  { "catppuccin/nvim" },
-  -- { "rose-pine/neovim" },
-  -- { "folke/tokyonight.nvim" },
+  {
+    "catppuccin/nvim",
+    require("catppuccin").setup {
+      vim.api.nvim_create_autocmd("OptionSet", {
+        pattern = "background",
+        callback = function()
+          vim.cmd("Catppuccin " .. (vim.v.option_new == "light" and "latte" or "mocha"))
+        end,
+      })
+    },
+  },
   { 'dhruvasagar/vim-table-mode' },
-  { 'michaelb/sniprun', run = 'bash ./install.sh' },
   { "nacro90/numb.nvim", event = "BufRead", config = function() require("numb").setup() end },
   { "npxbr/glow.nvim", ft = { "markdown" } },
   { "tpope/vim-repeat" },
   { "tpope/vim-surround" },
-  { "ggandor/lightspeed.nvim", event = "BufRead" },
+  {
+    "phaazon/hop.nvim",
+    event = "BufRead",
+    branch = "v2",
+    config = function()
+      require("hop").setup()
+      vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
+      vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
+    end,
+  },
   { "folke/trouble.nvim", cmd = "TroubleToggle" },
   { "folke/todo-comments.nvim", event = "BufRead", config = function() require "todo-comments".setup() end },
   { "ray-x/lsp_signature.nvim", event = "BufRead", config = function() require "lsp_signature".setup() end },
@@ -70,11 +81,11 @@ lvim.plugins = {
   --     local auto_dark_mode = require('auto-dark-mode')
   --     auto_dark_mode.setup({
   --       set_dark_mode = function()
-  --         -- vim.api.nvim_set_option('background', 'dark')
-  --         -- vim.cmd('colorscheme rose-pine')
+  --         vim.api.nvim_set_option('background', 'dark')
+  --         -- vim.cmd('Catpuccin mocha')
   --       end,
   --       set_light_mode = function()
-  --         -- vim.api.nvim_set_option('background', 'light')
+  --         vim.api.nvim_set_option('background', 'light')
   --         -- vim.cmd('colorscheme rose-pine')
   --       end
   --     })
@@ -83,7 +94,6 @@ lvim.plugins = {
   -- },
   { "jamessan/vim-gnupg" },
   { "simrat39/symbols-outline.nvim" },
-  -- { "github/copilot.vim" },
   { 'alexghergh/nvim-tmux-navigation', config = function()
         require'nvim-tmux-navigation'.setup {
             disable_when_zoomed = true, -- defaults to false
@@ -99,7 +109,11 @@ lvim.plugins = {
     end
   },
   { "AndrewRadev/splitjoin.vim" },
-  { "azabiong/vim-highlighter" } -- f-<CR> to highlight
+  { "azabiong/vim-highlighter" }, -- f-<CR> to highlight
+  {
+    "felipec/vim-sanegx",
+    event = "BufRead",
+  },
 }
 
 require('orgmode').setup_ts_grammar()

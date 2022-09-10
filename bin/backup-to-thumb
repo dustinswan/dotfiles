@@ -1,6 +1,0 @@
-#!/bin/sh
-
-rsync -avhW --compress-level=0 --progress --delete --checksum Sync /Volumes/NO\ NAME/
-rsync -avhW --compress-level=0 --progress --delete --checksum Pictures /Volumes/NO\ NAME/
-rsync -avhW --compress-level=0 --progress --delete --checksum Contacts /Volumes/NO\ NAME/
-rsync -avhW --compress-level=0 --progress --delete --checksum Calendars /Volumes/NO\ NAME/
