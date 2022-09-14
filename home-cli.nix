@@ -7,11 +7,12 @@ in
   home.stateVersion = "18.09";
 
   home.packages = with pkgs; [ # magic-wormhole
-    ripgrep fd mosh w3m nnn urlview hexyl httpie timg sox du-dust duplicati bitwarden-cli gnupg gpg-tui rage sd eva glow restic spotify-tui spotifyd slides manix amfora duf procs pandoc pastel jq jo fx jc miller visidata sc-im bandwhich nixfmt shellcheck fontconfig cacert vale weechat
+    ripgrep fd mosh w3m nnn hexyl httpie timg sox du-dust duplicati bitwarden-cli gnupg gpg-tui rage sd libqalculate glow restic spotify-tui spotifyd slides amfora duf pandoc pastel jq jo fx jc miller visidata sc-im cacert fontconfig weechat
+    nixfmt shellcheck vale
     nodejs deno yarn nodePackages.typescript-language-server nodePackages.stylelint nodePackages.js-beautify nodePackages.expo-cli
     ocaml dune_2 ocamlPackages.utop ocamlPackages.ocp-indent ocamlPackages.merlin
     rustc go cmake # racket-minimal
-    # ghc cargo haskell-language-server hlint haskellPackages.hoogle
+    cargo # ghc haskell-language-server hlint haskellPackages.hoogle
     ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es
   ];
 
@@ -45,16 +46,13 @@ in
       vim-tmux-navigator # ctrl-h, -j, -k, -l -> move between tmux and vim splits
       extrakto # prefix tab -> fuzzy find text on screen; enter to copy; tab to paste 
     ];
-    # set -g set-titles on
-    # set -g set-titles-string "#H (#S)"
     extraConfig = ''
       set -g mouse on
       set -g status-right ""
       set -g status-left ""
-      set -g status-style fg=white,bg=black
-      set-window-option -g window-status-format '#[fg=black,bright,nodim]#I #[fg=white,bright,dim]#W '
-      set-window-option -g window-status-current-format '#[fg=black,bright,nodim]#I #[fg=white,bright,nodim]#W '
-      TMUX_FZF_LAUNCH_KEY="Space"
+      set -g status-style fg=white
+      set-window-option -g window-status-format '#[fg=cyan,bright,dim]#I #[fg=white,bright,dim]#W '
+      set-window-option -g window-status-current-format '#[fg=cyan,bright,nodim]#I #[fg=white,bright,nodim]#W '
     '';
   };
 
@@ -63,8 +61,7 @@ in
     enableAliases = true;
   };
 
-  programs.zoxide = {
-    # z doc -> cd ~/Documents; zi -> interactive
+  programs.zoxide = { # z doc -> cd ~/Documents; zi -> interactive
     enable = true;
     enableZshIntegration = true;
   };
@@ -77,6 +74,7 @@ in
       plugins = [ "git" "httpie" "aws" "fd" "fzf" "mosh" "npm" "ripgrep" "rsync" "sudo" "yarn" "vi-mode" ];
     };
     shellAliases = {
+      v = "vim";
       l = "exa -lah --icons --git";
       n = "nnn";
       h = "himalaya";
@@ -245,7 +243,7 @@ in
   programs.gpg.enable = true;
   programs.mpv.enable = true;
   programs.noti.enable = true;
-  programs.bottom.enable = true;
+  programs.btop.enable = true;
   programs.tealdeer.enable = true;
 
   programs.keychain = {
