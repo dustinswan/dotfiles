@@ -7,13 +7,14 @@ in
   home.stateVersion = "18.09";
 
   home.packages = with pkgs; [ # magic-wormhole
-    ripgrep fd mosh w3m nnn hexyl httpie timg sox du-dust duplicati bitwarden-cli gnupg gpg-tui rage sd libqalculate glow restic spotify-tui spotifyd slides amfora duf pandoc pastel jq jo fx jc miller visidata sc-im cacert fontconfig weechat
-    nixfmt shellcheck vale
+    ripgrep fd mosh w3m nnn hexyl httpie timg sox du-dust duplicati bitwarden-cli gnupg gpg-tui rage sd libqalculate glow restic spotify-tui spotifyd slides amfora duf pandoc pastel jq jo fx jc miller visidata sc-im cacert weechat
+    nixfmt shellcheck vale tectonic zathura # lilypond-with-fonts
     nodejs deno yarn nodePackages.typescript-language-server nodePackages.stylelint nodePackages.js-beautify nodePackages.expo-cli
     ocaml dune_2 ocamlPackages.utop ocamlPackages.ocp-indent ocamlPackages.merlin
     rustc go cmake # racket-minimal
     cargo # ghc haskell-language-server hlint haskellPackages.hoogle
     ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es
+    fontconfig iosevka iosevka-bin
   ];
 
   home.sessionVariables = {
@@ -23,6 +24,8 @@ in
     PATH = "$PATH:${builtins.getEnv "HOME"}/.cargo/bin";
     EXA_ICON_SPACING = 2;
   };
+
+  fonts.fontconfig.enable = true;
 
   programs.home-manager.enable = true;
 
@@ -226,6 +229,7 @@ in
     vimdiffAlias = true;
     withNodeJs = true;
     withPython3 = true;
+    withRuby = true;
   };
 
   home.file.lunarVim = {

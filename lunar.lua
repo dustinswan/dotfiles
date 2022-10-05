@@ -1,6 +1,7 @@
 lvim.log.level = "warn"
 lvim.format_on_save = false
 lvim.leader = "space"
+vim.g.maplocalleader = ','
 lvim.colorscheme = "catppuccin"
 lvim.transparent_window = true
 vim.opt.conceallevel = 2 -- TODO: only for org files
@@ -114,7 +115,33 @@ lvim.plugins = {
     "felipec/vim-sanegx",
     event = "BufRead",
   },
+  { "uga-rosa/ccc.nvim" },
+  { "anuvyklack/windows.nvim",
+    requires = {
+      "anuvyklack/middleclass",
+      "anuvyklack/animation.nvim"
+    },
+    config = function()
+      vim.o.winwidth = 10
+      vim.o.winminwidth = 10
+      vim.o.equalalways = false
+      require('windows').setup()
+      vim.keymap.set('n', '<C-w>z', '<Cmd>WindowsMaximize<CR>')
+    end
+  },
+  {
+    'martineausimon/nvim-lilypond-suite',
+    requires = { 'MunifTanjim/nui.nvim' }
+  },
+  {
+    "lervag/vimtex", config = function()
+      vim.g.vimtex_compiler_method = "tectonic"
+      -- vim.g.vimtex_view_method = "zathura"
+      -- vim.g.vimtex_view_general_viewer = "zathura"
+    end
+  },
 }
+
 
 require('orgmode').setup_ts_grammar()
 
