@@ -19,7 +19,7 @@ in
 
   home.sessionVariables = {
     EDITOR = "${builtins.getEnv "HOME"}/.local/bin/lvim";
-    BROSWER = "open";
+    BROWSER = "open";
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";
     PATH = "$PATH:${builtins.getEnv "HOME"}/.cargo/bin";
     EXA_ICON_SPACING = 2;
