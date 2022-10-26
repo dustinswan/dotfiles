@@ -14,24 +14,22 @@ vim.opt.termguicolors = true
 vim.opt.completeopt = "menu,menuone,noselect"
 
 require('packer').startup(function(use)
-	use {
-		'wbthomason/packer.nvim',
-		config = function()
-			vim.keymap.set('n', '<leader>ps', ":PackerSync<cr>", { silent = true })
-		end
-	}
+	use 'wbthomason/packer.nvim'
+	use 'tpope/vim-surround'
+	use 'tpope/vim-repeat'
+	use 'felipec/vim-sanegx'
+	use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+	use 'folke/neodev.nvim'
+	use 'jamessan/vim-gnupg'
+	use 'dhruvasagar/vim-table-mode'
+	use 'mfussenegger/nvim-dap'
+	use 'lukas-reineke/indent-blankline.nvim'
+	use 'LnL7/vim-nix'
 
 	use {
 		'nvim-telescope/telescope.nvim',
 		branch = '0.1.x',
-		requires = { 'nvim-lua/plenary.nvim' },
-		config = function()
-			local builtin = require('telescope.builtin')
-			vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-			vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-			vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-			vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-		end,
+		requires = { 'nvim-lua/plenary.nvim' }
 	}
 
 	use {
@@ -43,7 +41,6 @@ require('packer').startup(function(use)
 		require('orgmode').setup_ts_grammar()
 
 		require'nvim-treesitter.configs'.setup {
-			-- If TS highlights are not enabled at all, or disabled via `disable` prop, highlighting will fallback to default Vim syntax highlighting
 			highlight = {
 				enable = true,
 				additional_vim_regex_highlighting = {'org'}, -- Required for spellcheck, some LaTex highlights and code block highlights that do not have ts grammar
@@ -82,16 +79,10 @@ require('packer').startup(function(use)
 		config = function() require('lualine').setup() end
 	}
 
-	use "folke/neodev.nvim"
-
 	use {
 		"folke/which-key.nvim",
 		config = function()
-			require("which-key").setup({
-				plugins = {
-					spelling = { enabled = true }
-				}
-			})
+			require("which-key").setup()
 		end
 	}
 
@@ -101,21 +92,16 @@ require('packer').startup(function(use)
 		requires = 'kyazdani42/nvim-web-devicons',
 		config = function()
 			require("bufferline").setup()
-			
-			vim.keymap.set("n", "<S-l>", ":BufferLineCycleNext<cr>", { silent = true })
-			vim.keymap.set("n", "<S-h>", ":BufferLineCyclePrev<cr>", { silent = true })
 		end
 	}
 
+	use 'nvim-tree/nvim-web-devicons'
 	use {
 		'nvim-tree/nvim-tree.lua',
-		requires = {
-			'nvim-tree/nvim-web-devicons', -- optional, for file icons
-		},
+		requires = { 'nvim-tree/nvim-web-devicons' },
 		tag = 'nightly', -- optional, updated every week. (see issue #1193)
 		config = function()
 			require("nvim-tree").setup()
-			vim.keymap.set('n', '<leader>e', ":NvimTreeToggle<cr>", { silent = true })
 		end
 	}
 
@@ -124,6 +110,9 @@ require('packer').startup(function(use)
 		event = "VimEnter",
 		config = function()
 			require("noice").setup()
+			require("notify").setup({
+				background_colour = "#000000" -- #1a1b26",
+			})
 		end,
 		requires = {
 			"MunifTanjim/nui.nvim",
@@ -248,14 +237,11 @@ require('packer').startup(function(use)
 		end
 	}
 
-	use 'nvim-tree/nvim-web-devicons'
-
 	use {
 		'goolord/alpha-nvim',
 		requires = { 'kyazdani42/nvim-web-devicons' },
 		config = function()
 			require'alpha'.setup(require'alpha.themes.startify'.config)
-			vim.keymap.set('n', '<leader>;', ":Alpha<cr>", { silent = true })
 		end
 	}
 
@@ -265,8 +251,6 @@ require('packer').startup(function(use)
 			require("nvim-autopairs").setup {}
 		end
 	}
-
-	use 'LnL7/vim-nix'
 
 	use {
 		'alexghergh/nvim-tmux-navigation', config = function()
@@ -297,8 +281,6 @@ require('packer').startup(function(use)
 		requires = { "nvim-lua/plenary.nvim" }
 	}
 
-	use "lukas-reineke/indent-blankline.nvim"
-
 	use {
 		"akinsho/toggleterm.nvim", tag = '*', config = function()
 			require("toggleterm").setup({
@@ -311,8 +293,6 @@ require('packer').startup(function(use)
 		end
 	}
 
-	use 'mfussenegger/nvim-dap'
-
 	use {
 		'ggandor/leap.nvim',
 		config = function()
@@ -320,26 +300,40 @@ require('packer').startup(function(use)
 		end
 	}
 
-	use 'tpope/vim-surround'
-	use 'tpope/vim-repeat'
-	use 'felipec/vim-sanegx'
-
-	use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
-
 	use {
 		"folke/trouble.nvim",
 		requires = "kyazdani42/nvim-web-devicons",
 		config = function()
-			require("trouble").setup({
-				vim.keymap.set('n', '<leader>t', ":TroubleToggle<cr>", { silent = true })
-			})
-		end
-	}
-
-	use {
-		'dhruvasagar/vim-table-mode',
-		config = function()
-			vim.keymap.set('n', '<leader>TT', ":Tableize<cr>", { silent = true })
+			require("trouble").setup()
 		end
 	}
 end)
+
+local wk = require("which-key")
+
+wk.register({
+	["<leader>"] = {
+		f = {
+			name = "Find",
+			f = { "<cmd>Telescope find_files<cr>", "Files" },
+			g = { "<cmd>Telescope live_grep<cr>", "Grep" },
+			r = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
+			b = { "<cmd>Telescope buffers<cr>", "Buffers" },
+		},
+		b = {
+			name = "buffer",
+			d = { ":bdelete!<cr>", "Delete" },
+		},
+		e = { ":NvimTreeToggle<cr>", "File Tree" },
+		t = {
+			name = "Table",
+			t = { ":TableModeRealign", "Realign" },
+		},
+		S = { ":source %<cr>", "Source current file" },
+		T = { ":TroubleToggle<cr>", "Trouble" },
+		ps = { ":PackerSync<cr>", "Packer Sync" },
+		[";"] = { ":Alpha<cr>", "Alpha" },
+	},
+	["<S-l>"] = { ":BufferLineCycleNext<cr>", "Next Tab" },
+	["<S-h>"] = { ":BufferLineCyclePrev<cr>", "Previous Tab" },
+})
