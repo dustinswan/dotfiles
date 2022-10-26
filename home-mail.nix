@@ -4,7 +4,7 @@ let
   secrets = import ./secrets.nix;
 in
 {
-  home.packages = with pkgs; [ aerc vdirsyncer khard imapnotify ]; # khal
+  home.packages = with pkgs; [ vdirsyncer khard imapnotify ]; # khal
 
   programs.mbsync.enable = true;
 
@@ -17,6 +17,13 @@ in
   };
 
   programs.himalaya.enable = true;
+
+  programs.aerc = {
+    enable = true;
+    extraConfig = {
+      general = { unsafe-accounts-conf = true; };
+    };
+  };
 
   programs.mu.enable = true;
 
@@ -56,6 +63,7 @@ in
         mu.enable = true;
         msmtp.enable = true;
         neomutt.enable = true;
+        aerc.enable = true;
         himalaya = {
           enable = true;
           settings = {
@@ -71,14 +79,14 @@ in
     };
   };
 
-  home.file.aerc-accounts = {
-    target = ".config/aerc/accounts.conf";
-    text = ''[FastMail]
-source = maildir://~/Mail/FastMail
-from = "Dustin Swan <dustin@dustinswan.com>"
-outgoing = ${builtins.getEnv "HOME"}/.nix-profile/bin/msmtp --read-envelope-from
-'';
-  };
+#   home.file.aerc-accounts = {
+#     target = ".config/aerc/accounts.conf";
+#     text = ''[FastMail]
+# source = maildir://~/Mail/FastMail
+# from = "Dustin Swan <dustin@dustinswan.com>"
+# outgoing = ${builtins.getEnv "HOME"}/.nix-profile/bin/msmtp --read-envelope-from
+# '';
+#   };
 
   home.file.vdirsyncer = {
     target = ".config/vdirsyncer/config";

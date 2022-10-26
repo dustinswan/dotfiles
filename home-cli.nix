@@ -7,21 +7,22 @@ in
   home.stateVersion = "18.09";
 
   home.packages = with pkgs; [ # magic-wormhole
-    ripgrep fd mosh w3m nnn hexyl httpie timg sox du-dust duplicati bitwarden-cli gnupg gpg-tui rage sd libqalculate glow restic spotify-tui spotifyd slides amfora duf pandoc pastel jq jo fx jc miller visidata sc-im cacert weechat
+    ripgrep fd mosh w3m nnn hexyl wget httpie timg sox du-dust duplicati bitwarden-cli gnupg gpg-tui rage sd libqalculate glow spotify-tui spotifyd amfora duf pandoc pastel jq jo fx jc miller visidata sc-im cacert weechat ddgr
     nixfmt shellcheck vale tectonic zathura # lilypond-with-fonts
     nodejs deno yarn nodePackages.typescript-language-server nodePackages.stylelint nodePackages.js-beautify nodePackages.expo-cli
     ocaml dune_2 ocamlPackages.utop ocamlPackages.ocp-indent ocamlPackages.merlin
     rustc go cmake # racket-minimal
     cargo # ghc haskell-language-server hlint haskellPackages.hoogle
+    lua53Packages.luarocks
     ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es
     fontconfig iosevka iosevka-bin
   ];
 
   home.sessionVariables = {
-    EDITOR = "${builtins.getEnv "HOME"}/.local/bin/lvim";
+    EDITOR = "vim";
     BROWSER = "open";
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";
-    PATH = "$PATH:${builtins.getEnv "HOME"}/.cargo/bin";
+    PATH = "$PATH:${builtins.getEnv "HOME"}/.cargo/bin:${builtins.getEnv "HOME"}/.local/bin";
     EXA_ICON_SPACING = 2;
   };
 
@@ -83,7 +84,6 @@ in
       h = "himalaya";
       er = "rm -rf logs; unzip -o";
       srsync = "rsync --rsync-path='sudo rsync'";
-      vim = "~/.local/bin/lvim";
       lg = "lazygit";
       ambient1 = "play -n -c1 synth whitenoise lowpass -1 120 lowpass -1 120 lowpass -1 120 gain +16";
       ambient2 = "play -c 2 -n synth brownnoise lowpass 200";
@@ -213,11 +213,11 @@ in
   programs.helix = {
     enable = true;
     settings = {
-      theme = "nord";
-      lsp.display-messages = true;
-      keys.normal = {
-        C-h = "jump_view_left";
-        C-l = "jump_view_right";
+      theme = "catpuccin";
+      editor = {
+        cursorline = true;
+        lsp.display-messages = true;
+        indent-guides.render = true;
       };
     };
   };
@@ -232,9 +232,9 @@ in
     withRuby = true;
   };
 
-  home.file.lunarVim = {
-    target = ".config/lvim/config.lua";
-    source = ./lunar.lua;
+  home.file.nvim = {
+    target = ".config/nvim/init.lua";
+    source = ./init.lua;
   };
 
   programs.bat = {
