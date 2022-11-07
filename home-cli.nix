@@ -73,6 +73,7 @@ in
   programs.zsh = {
     enable = true;
     enableAutosuggestions = true;
+    enableSyntaxHighlighting = true;
     oh-my-zsh = {
       enable = true;
       plugins = [ "git" "httpie" "aws" "fd" "fzf" "mosh" "npm" "ripgrep" "rsync" "sudo" "yarn" "vi-mode" ];
