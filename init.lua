@@ -1,8 +1,9 @@
 vim.g.mapleader = ' '
-vim.g.maplocalleader = '\\'
+vim.g.maplocalleader = ','
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+vim.opt.timeoutlen = 100
 vim.opt.number = true
 vim.opt.mouse = 'a'
 vim.opt.ignorecase = true
@@ -12,6 +13,9 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.termguicolors = true
 vim.opt.completeopt = "menu,menuone,noselect"
+vim.opt.cursorline = true
+
+vim.api.nvim_create_autocmd("FileType", { pattern = { "org" }, command = "setlocal nowrap" })
 
 require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
@@ -25,6 +29,7 @@ require('packer').startup(function(use)
 	use 'mfussenegger/nvim-dap'
 	use 'lukas-reineke/indent-blankline.nvim'
 	use 'LnL7/vim-nix'
+	use 'AndrewRadev/splitjoin.vim'
 
 	use {
 		'nvim-telescope/telescope.nvim',
@@ -82,7 +87,13 @@ require('packer').startup(function(use)
 	use {
 		"folke/which-key.nvim",
 		config = function()
-			require("which-key").setup()
+			require("which-key").setup({
+				plugins = {
+					spelling = {
+						enabled = true
+					}
+				}
+			})
 		end
 	}
 
@@ -111,7 +122,7 @@ require('packer').startup(function(use)
 		config = function()
 			require("noice").setup()
 			require("notify").setup({
-				background_colour = "#000000" -- #1a1b26",
+				background_colour = "#000000"
 			})
 		end,
 		requires = {
@@ -119,98 +130,30 @@ require('packer').startup(function(use)
 			"rcarriga/nvim-notify",
 		}
 	})
-
-	use "rafamadriz/friendly-snippets"
-
-	use({
-		"L3MON4D3/LuaSnip",
-		tag = "v<CurrentMajor>.*",
-		config = function()
-			require("luasnip.loaders.from_vscode").lazy_load()
-		end
-	})
-
-	use 'hrsh7th/cmp-nvim-lsp'
-	use 'hrsh7th/cmp-buffer'
-	use 'hrsh7th/cmp-path'
-	use 'hrsh7th/cmp-cmdline'
-	use 'saadparwaiz1/cmp_luasnip'
-	use 'dmitmel/cmp-digraphs'
-	use 'uga-rosa/cmp-dictionary'
-	use 'kdheepak/cmp-latex-symbols'
-
 	use {
-		'hrsh7th/nvim-cmp',
-		config = function ()
-			local has_words_before = function()
-				local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-				return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-			end
+		'VonHeikemen/lsp-zero.nvim',
+		requires = {
+			-- LSP Support
+			{'neovim/nvim-lspconfig'},
+			{'williamboman/mason.nvim'},
+			{'williamboman/mason-lspconfig.nvim'},
 
-			local luasnip = require("luasnip")
-			local cmp = require("cmp")
+			-- Autocompletion
+			{'hrsh7th/nvim-cmp'},
+			{'hrsh7th/cmp-buffer'},
+			{'hrsh7th/cmp-path'},
+			{'saadparwaiz1/cmp_luasnip'},
+			{'hrsh7th/cmp-nvim-lsp'},
+			{'hrsh7th/cmp-nvim-lua'},
 
-			cmp.setup({
-				snippet = {
-					expand = function(args)
-						require'luasnip'.lsp_expand(args.body)
-					end
-				},
-				
-				sources = {
-					{ name = 'luasnip' },
-					{ name = 'buffer' },
-					{ name = 'path' },
-					{ name = 'nvim_lsp' },
-					-- { name = 'digraphs' },
-					{ name = "latex_symbols" },
-					{ name = 'dictionary', keyword_length = 2 },
-				},
-
-				mapping = {
-					['<CR>'] = cmp.mapping.confirm {
-						behavior = cmp.ConfirmBehavior.Replace,
-						select = false,
-					},
-
-					["<Tab>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							cmp.select_next_item()
-						elseif luasnip.expand_or_jumpable() then
-							luasnip.expand_or_jump()
-						elseif has_words_before() then
-							cmp.complete()
-						else
-							fallback()
-						end
-					end, { "i", "s" }),
-
-					["<S-Tab>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							cmp.select_prev_item()
-						elseif luasnip.jumpable(-1) then
-							luasnip.jump(-1)
-						else
-							fallback()
-						end
-					end, { "i", "s" }),
-				}
-			})
-		end
-	}
-
-	use {
-		'neovim/nvim-lspconfig',
+			-- Snippets
+			{'L3MON4D3/LuaSnip'},
+			{'rafamadriz/friendly-snippets'},
+		},
 		config = function()
-			-- require'lspconfig'.eslint.setup{}
-			require'lspconfig'.tsserver.setup{}
-		end
-	}
-
-	use {
-		"williamboman/mason.nvim",
-		config = function()
-			require("mason").setup()
+			local lsp = require('lsp-zero')
+			lsp.preset('recommended')
+			lsp.setup()
 		end
 	}
 
@@ -218,10 +161,14 @@ require('packer').startup(function(use)
 		'numToStr/Comment.nvim',
 		config = function()
 			require('Comment').setup({
-				-- toggler = {
-				-- 	line = '<leader>cc',
-				-- 	block = '<leader>cb',
-				-- }
+				toggler = {
+					line = '<leader>cc',
+					block = '<leader>cb',
+				},
+				opleader = {
+					line = '<leader>cc',
+					block = '<leader>cb',
+				}
 			})
 		end
 	}
@@ -283,13 +230,7 @@ require('packer').startup(function(use)
 
 	use {
 		"akinsho/toggleterm.nvim", tag = '*', config = function()
-			require("toggleterm").setup({
-				open_mapping = [[<c-t>]],
-				direction = 'float',
-				float_opts = {
-					border = "curved"
-				}
-			})
+			require("toggleterm").setup({ direction = 'float' })
 		end
 	}
 
@@ -313,6 +254,13 @@ local wk = require("which-key")
 
 wk.register({
 	["<leader>"] = {
+		a = { ":Alpha<cr>", "Alpha" },
+		b = {
+			name = "Buffer",
+			d = { ":bdelete!<cr>", "Delete" },
+		},
+		c = "Comment",
+		e = { ":NvimTreeToggle<cr>", "File Tree" },
 		f = {
 			name = "Find",
 			f = { "<cmd>Telescope find_files<cr>", "Files" },
@@ -320,20 +268,23 @@ wk.register({
 			r = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
 			b = { "<cmd>Telescope buffers<cr>", "Buffers" },
 		},
-		b = {
-			name = "buffer",
-			d = { ":bdelete!<cr>", "Delete" },
-		},
-		e = { ":NvimTreeToggle<cr>", "File Tree" },
+		J = { ":SplitjoinJoin<cr>", "Join" },
 		t = {
 			name = "Table",
-			t = { ":TableModeRealign", "Realign" },
+			m = "Toggle Table Mode",
+			t = "Tableize",
+			r = { ":TableModeRealign<cr>", "Realign" },
+			e = { ":TableEvalFormulaLine<cr>", "Evaluate" },
 		},
-		S = { ":source %<cr>", "Source current file" },
+		o = "Org",
+		p = {
+			name = "Packer",
+			s = { ":PackerSync<cr>", "Sync" },
+		},
+		S = { ":SplitjoinSplit<cr>", "Split" },
 		T = { ":TroubleToggle<cr>", "Trouble" },
-		ps = { ":PackerSync<cr>", "Packer Sync" },
-		[";"] = { ":Alpha<cr>", "Alpha" },
 	},
 	["<S-l>"] = { ":BufferLineCycleNext<cr>", "Next Tab" },
 	["<S-h>"] = { ":BufferLineCyclePrev<cr>", "Previous Tab" },
+	["<C-t>"] = { ":ToggleTerm<cr>", "Terminal" },
 })

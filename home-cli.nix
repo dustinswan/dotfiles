@@ -7,7 +7,7 @@ in
   home.stateVersion = "18.09";
 
   home.packages = with pkgs; [ # magic-wormhole
-    ripgrep fd mosh w3m nnn hexyl wget httpie timg sox du-dust duplicati bitwarden-cli gnupg gpg-tui rage sd libqalculate glow spotify-tui spotifyd amfora duf pandoc pastel jq jo fx jc miller visidata sc-im cacert weechat ddgr
+    ripgrep fd mosh w3m nnn hexyl wget httpie timg sox du-dust restic bitwarden-cli gnupg gpg-tui rage sd libqalculate glow spotify-tui spotifyd amfora duf pandoc pastel jq jo fx jc miller sc-im cacert weechat ddgr # visidata
     nixfmt shellcheck vale tectonic zathura # lilypond-with-fonts
     nodejs deno yarn nodePackages.typescript-language-server nodePackages.stylelint nodePackages.js-beautify nodePackages.expo-cli
     ocaml dune_2 ocamlPackages.utop ocamlPackages.ocp-indent ocamlPackages.merlin
