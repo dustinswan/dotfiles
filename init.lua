@@ -15,17 +15,22 @@ vim.opt.termguicolors = true
 vim.opt.completeopt = "menu,menuone,noselect"
 vim.opt.cursorline = true
 
-vim.api.nvim_create_autocmd("FileType", { pattern = { "org" }, command = "setlocal nowrap" })
+vim.api.nvim_create_autocmd('FileType', { pattern = 'org', command = 'setlocal nowrap' })
+vim.api.nvim_create_autocmd('TextYankPost', {
+	pattern = '*',
+	callback = function()
+		vim.highlight.on_yank { higroup = 'IncSearch' }
+	end,
+})
 
 local ensure_packer = function()
-  local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-    vim.cmd [[packadd packer.nvim]]
-    return true
-  end
-  return false
+	local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+	if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+		vim.fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+		vim.cmd [[packadd packer.nvim]]
+		return true
+	end
+	return false
 end
 local packer_bootstrap = ensure_packer()
 
@@ -57,19 +62,19 @@ require('packer').startup(function(use)
 	use { 'nvim-orgmode/orgmode', config = function()
 		require('orgmode').setup_ts_grammar()
 
-		require'nvim-treesitter.configs'.setup {
+		require 'nvim-treesitter.configs'.setup {
 			highlight = {
 				enable = true,
-				additional_vim_regex_highlighting = {'org'}, -- Required for spellcheck, some LaTex highlights and code block highlights that do not have ts grammar
+				additional_vim_regex_highlighting = { 'org' }, -- Required for spellcheck, some LaTex highlights and code block highlights that do not have ts grammar
 			},
-			ensure_installed = {'org'}, -- Or run :TSUpdate org
+			ensure_installed = { 'org' }, -- Or run :TSUpdate org
 		}
 
 		require('orgmode').setup({
-			org_agenda_files = {'~/Sync/Notes/*'},
+			org_agenda_files = { '~/Sync/Notes/*' },
 			org_default_notes_file = '~/Sync/Notes/Main.org',
 		})
-	end}
+	end }
 
 	use {
 		"catppuccin/nvim",
@@ -146,21 +151,21 @@ require('packer').startup(function(use)
 		'VonHeikemen/lsp-zero.nvim',
 		requires = {
 			-- LSP Support
-			{'neovim/nvim-lspconfig'},
-			{'williamboman/mason.nvim'},
-			{'williamboman/mason-lspconfig.nvim'},
+			{ 'neovim/nvim-lspconfig' },
+			{ 'williamboman/mason.nvim' },
+			{ 'williamboman/mason-lspconfig.nvim' },
 
 			-- Autocompletion
-			{'hrsh7th/nvim-cmp'},
-			{'hrsh7th/cmp-buffer'},
-			{'hrsh7th/cmp-path'},
-			{'saadparwaiz1/cmp_luasnip'},
-			{'hrsh7th/cmp-nvim-lsp'},
-			{'hrsh7th/cmp-nvim-lua'},
+			{ 'hrsh7th/nvim-cmp' },
+			{ 'hrsh7th/cmp-buffer' },
+			{ 'hrsh7th/cmp-path' },
+			{ 'saadparwaiz1/cmp_luasnip' },
+			{ 'hrsh7th/cmp-nvim-lsp' },
+			{ 'hrsh7th/cmp-nvim-lua' },
 
 			-- Snippets
-			{'L3MON4D3/LuaSnip'},
-			{'rafamadriz/friendly-snippets'},
+			{ 'L3MON4D3/LuaSnip' },
+			{ 'rafamadriz/friendly-snippets' },
 		},
 		config = function()
 			local lsp = require('lsp-zero')
@@ -188,7 +193,7 @@ require('packer').startup(function(use)
 	use {
 		'JoosepAlviste/nvim-ts-context-commentstring',
 		config = function()
-			require'nvim-treesitter.configs'.setup({
+			require 'nvim-treesitter.configs'.setup({
 				context_commentstring = {
 					enable = true
 				}
@@ -200,7 +205,7 @@ require('packer').startup(function(use)
 		'goolord/alpha-nvim',
 		requires = { 'kyazdani42/nvim-web-devicons' },
 		config = function()
-			require'alpha'.setup(require'alpha.themes.startify'.config)
+			require 'alpha'.setup(require 'alpha.themes.startify'.config)
 		end
 	}
 
@@ -213,7 +218,7 @@ require('packer').startup(function(use)
 
 	use {
 		'alexghergh/nvim-tmux-navigation', config = function()
-			require'nvim-tmux-navigation'.setup {
+			require 'nvim-tmux-navigation'.setup {
 				keybindings = {
 					left = "<C-h>",
 					down = "<C-j>",
@@ -242,7 +247,10 @@ require('packer').startup(function(use)
 
 	use {
 		"akinsho/toggleterm.nvim", tag = '*', config = function()
-			require("toggleterm").setup({ direction = 'float' })
+			require("toggleterm").setup({
+				direction = 'float',
+				open_mapping = [[<c-t>]]
+			})
 		end
 	}
 
@@ -261,9 +269,9 @@ require('packer').startup(function(use)
 		end
 	}
 
-  if packer_bootstrap then
-    require('packer').sync()
-  end
+	if packer_bootstrap then
+		require('packer').sync()
+	end
 end)
 
 local wk = require("which-key")
@@ -284,6 +292,7 @@ wk.register({
 			r = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
 			b = { "<cmd>Telescope buffers<cr>", "Buffers" },
 		},
+		F = { ":lua vim.lsp.buf.format()<cr>", "Format Buffer" },
 		J = { ":SplitjoinJoin<cr>", "Join" },
 		t = {
 			name = "Table",
@@ -302,5 +311,4 @@ wk.register({
 	},
 	["<S-l>"] = { ":BufferLineCycleNext<cr>", "Next Tab" },
 	["<S-h>"] = { ":BufferLineCyclePrev<cr>", "Previous Tab" },
-	["<C-t>"] = { ":ToggleTerm<cr>", "Terminal" },
 })
