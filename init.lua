@@ -124,13 +124,15 @@ require('packer').startup(function(use)
 	}
 
 	use 'nvim-tree/nvim-web-devicons'
+
 	use {
-		'nvim-tree/nvim-tree.lua',
-		requires = { 'nvim-tree/nvim-web-devicons' },
-		tag = 'nightly', -- optional, updated every week. (see issue #1193)
-		config = function()
-			require("nvim-tree").setup()
-		end
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v2.x",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons",
+			"MunifTanjim/nui.nvim",
+		}
 	}
 
 	use({
@@ -269,6 +271,13 @@ require('packer').startup(function(use)
 		end
 	}
 
+	use {
+		'notjedi/nvim-rooter.lua',
+		config = function()
+			require'nvim-rooter'.setup()
+		end
+	}
+
 	if packer_bootstrap then
 		require('packer').sync()
 	end
@@ -282,17 +291,26 @@ wk.register({
 		b = {
 			name = "Buffer",
 			d = { ":bdelete!<cr>", "Delete" },
+			b = { "<cmd>Telescope buffers<cr>", "Buffers" },
+			t = { ":Neotree buffers<cr>", "Tree" },
 		},
 		c = "Comment",
-		e = { ":NvimTreeToggle<cr>", "File Tree" },
 		f = {
-			name = "Find",
+			name = "File",
 			f = { "<cmd>Telescope find_files<cr>", "Files" },
 			g = { "<cmd>Telescope live_grep<cr>", "Grep" },
-			r = { "<cmd>Telescope oldfiles<cr>", "Recent Files" },
-			b = { "<cmd>Telescope buffers<cr>", "Buffers" },
+			r = { "<cmd>Telescope oldfiles<cr>", "Recent" },
+			t = { ":Neotree<cr>", "Tree" },
 		},
-		F = { ":lua vim.lsp.buf.format()<cr>", "Format Buffer" },
+		g = {
+			name = "Git",
+			g = { ":2TermExec cmd='gitui'<cr>", "Gitui" },
+			t = { ":Neotree git_status<cr>", "Tree" },
+			b = { ":Gitsigns blame_line<cr>", "Blame" },
+			d = { ":DiffviewOpen<cr>", "Diff" },
+			h = { ":DiffviewFileHistory<cr>", "History" },
+		},
+		F = { ":lua vim.lsp.buf.format()<cr>", "Format" },
 		J = { ":SplitjoinJoin<cr>", "Join" },
 		t = {
 			name = "Table",
