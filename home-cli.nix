@@ -11,8 +11,8 @@ in
     nixfmt shellcheck vale tectonic zathura # lilypond-with-fonts
     nodejs deno yarn nodePackages.typescript-language-server nodePackages.stylelint nodePackages.js-beautify nodePackages.expo-cli
     ocaml dune_2 ocamlPackages.utop ocamlPackages.ocp-indent ocamlPackages.merlin
-    rustc go cmake # racket-minimal
-    cargo # ghc haskell-language-server hlint haskellPackages.hoogle
+    rustup go cmake # racket-minimal
+    # ghc haskell-language-server hlint haskellPackages.hoogle
     lua53Packages.luarocks
     ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es
     fontconfig iosevka iosevka-bin
