@@ -9,11 +9,14 @@ vim.opt.mouse = 'a'
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.hlsearch = false
+vim.opt.expandtab = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.termguicolors = true
 vim.opt.completeopt = "menu,menuone,noselect"
 vim.opt.cursorline = true
+vim.opt.cursorcolumn = true
+vim.opt.laststatus = 3 -- global status line
 
 vim.api.nvim_create_autocmd('FileType', { pattern = 'org', command = 'setlocal nowrap' })
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -301,6 +304,7 @@ wk.register({
 			g = { "<cmd>Telescope live_grep<cr>", "Grep" },
 			r = { "<cmd>Telescope oldfiles<cr>", "Recent" },
 			t = { ":Neotree<cr>", "Tree" },
+			d = { ":cd %:p:h<cr>", "Set Directory" },
 		},
 		g = {
 			name = "Git",

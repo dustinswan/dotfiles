@@ -16,7 +16,7 @@ in
     sort = "reverse-threads";
   };
 
-  programs.himalaya.enable = true;
+  # programs.himalaya.enable = true;
 
   programs.aerc = {
     enable = true;
@@ -64,13 +64,15 @@ in
         msmtp.enable = true;
         neomutt.enable = true;
         aerc.enable = true;
-        himalaya = {
-          enable = true;
-          settings = {
-            sent-folder = "INBOX.Sent";
-            draft-folder = "INBOX.Drafts";
-          };
-        };
+        # himalaya = {
+        #   enable = true;
+        #   backend = "maildir";
+        #   sender = "smtp";
+        #   settings = {
+        #     sent-folder = "INBOX.Sent";
+        #     draft-folder = "INBOX.Drafts";
+        #   };
+        # };
         # signature = {
         #   text = ''Dustin Swan | dustinswan.com'';
         #   showSignature = "append";
