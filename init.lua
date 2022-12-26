@@ -9,14 +9,20 @@ vim.opt.mouse = 'a'
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.hlsearch = false
+vim.opt.incsearch = true
 vim.opt.expandtab = true
 vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.termguicolors = true
 vim.opt.completeopt = "menu,menuone,noselect"
-vim.opt.cursorline = true
-vim.opt.cursorcolumn = true
 vim.opt.laststatus = 3 -- global status line
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undofile = true
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.scrolloff = 8
+vim.opt.updatetime = 50
 
 vim.api.nvim_create_autocmd('FileType', { pattern = 'org', command = 'setlocal nowrap' })
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -299,6 +305,8 @@ require('packer').startup(function(use)
     end
   })
 
+  use("mbbill/undotree");
+
   if packer_bootstrap then
     require('packer').sync()
   end
@@ -352,6 +360,7 @@ wk.register({
     },
     S = { ":SplitjoinSplit<cr>", "Split" },
     T = { ":TroubleToggle<cr>", "Trouble" },
+    u = { ":UndoTreeToggle<cr>", "UndoTree" },
   },
   ["<S-l>"] = { ":BufferLineCycleNext<cr>", "Next Tab" },
   ["<S-h>"] = { ":BufferLineCyclePrev<cr>", "Previous Tab" },
