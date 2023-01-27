@@ -39,6 +39,7 @@ in
     clock24 = true;
     newSession = true;
     secureSocket = false;
+    terminal = "tmux-256color";
     plugins = with pkgs.tmuxPlugins; [
       sensible
       resurrect # prefix ctrl-s to save sessions; prefix ctrl-r to restore
@@ -58,6 +59,7 @@ in
       set -g status-style fg=white
       set-window-option -g window-status-format '#[fg=cyan,bright,dim]#I #[fg=white,bright,dim]#W '
       set-window-option -g window-status-current-format '#[fg=cyan,bright,nodim]#I #[fg=white,bright,nodim]#W '
+      set -ag terminal-overrides ",xterm-256color:RGB"
     '';
   };
 
