@@ -10,6 +10,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
+vim.o.inccommand = "split"
 vim.opt.expandtab = true
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
@@ -295,6 +296,13 @@ require('packer').startup(function(use)
 
   use("mbbill/undotree");
 
+  use({
+    "roobert/search-replace.nvim",
+    config = function()
+      require("search-replace").setup()
+    end
+  })
+
   if packer_bootstrap then
     require('packer').sync()
   end
@@ -349,6 +357,24 @@ wk.register({
     S = { ":SplitjoinSplit<cr>", "Split" },
     T = { ":TroubleToggle<cr>", "Trouble" },
     u = { ":UndoTreeToggle<cr>", "UndoTree" },
+    r = {
+      name = "Replace",
+      s = { "<CMD>SearchReplaceSingleBufferSelections<CR>", "selction list" },
+      o = { "<CMD>SearchReplaceSingleBufferOpen<CR>", "open" },
+      w = { "<CMD>SearchReplaceSingleBufferCWord<CR>", "word" },
+      W = { "<CMD>SearchReplaceSingleBufferCWORD<CR>", "WORD" },
+      e = { "<CMD>SearchReplaceSingleBufferCExpr<CR>", "expr" },
+      f = { "<CMD>SearchReplaceSingleBufferCFile<CR>", "file" },
+      b = {
+        name = "MultiBuffer",
+        s = { "<CMD>SearchReplaceMultiBufferSelections<CR>","selction list" },
+        o = { "<CMD>SearchReplaceMultiBufferOpen<CR>", "open" },
+        w = { "<CMD>SearchReplaceMultiBufferCWord<CR>", "word" },
+        W = { "<CMD>SearchReplaceMultiBufferCWORD<CR>", "WORD" },
+        e = { "<CMD>SearchReplaceMultiBufferCExpr<CR>", "expr" },
+        f = { "<CMD>SearchReplaceMultiBufferCFile<CR>", "file" },
+      },
+    },
   },
   ["<S-l>"] = { ":BufferLineCycleNext<cr>", "Next Tab" },
   ["<S-h>"] = { ":BufferLineCyclePrev<cr>", "Previous Tab" },
