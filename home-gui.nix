@@ -1,7 +1,8 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [ iosevka-bin ];
+  # home.packages = with pkgs; [ iosevka-bin ];
+  fonts.fontconfig.enable = true;
 
   programs.alacritty = {
     enable = true;

@@ -6,14 +6,13 @@ in
 {
   home.stateVersion = "18.09";
 
-  home.packages = with pkgs; [ # magic-wormhole
-    ripgrep fd mosh w3m nnn hexyl wget httpie timg sox du-dust restic bitwarden-cli gnupg gpg-tui rage sd libqalculate glow spotify-tui spotifyd amfora duf pandoc pastel jq jo fx jc miller sc-im cacert weechat ddgr # visidata
+  home.packages = with pkgs; [
+    ripgrep fd mosh w3m nnn hexyl wget httpie timg sox du-dust restic bitwarden-cli gnupg gpg-tui rage sd libqalculate glow spotify-tui spotifyd amfora duf pandoc pastel jq jo fx jc miller sc-im cacert weechat ddgr visidata magic-wormhole
     nixfmt shellcheck vale tectonic zathura # lilypond-with-fonts
     nodejs deno yarn nodePackages.typescript-language-server nodePackages.stylelint nodePackages.js-beautify nodePackages.expo-cli
     ocaml dune_2 ocamlPackages.utop ocamlPackages.ocp-indent ocamlPackages.merlin
-    rustup go cmake
-    # racket-minimal
-    ghc haskell-language-server hlint haskellPackages.hoogle
+    rustup go cmake racket-minimal
+    # ghc haskell-language-server hlint haskellPackages.hoogle
     lua53Packages.luarocks
     ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es
   ];
@@ -21,12 +20,7 @@ in
   home.sessionVariables = {
     EDITOR = "vim";
     BROWSER = "open";
-    MANPAGER = "sh -c 'col -bx | bat -l man -p'";
-    PATH = "$PATH:${builtins.getEnv "HOME"}/.cargo/bin:${builtins.getEnv "HOME"}/.local/bin";
-    EXA_ICON_SPACING = 2;
   };
-
-  fonts.fontconfig.enable = true;
 
   programs.home-manager.enable = true;
 
@@ -70,6 +64,7 @@ in
   programs.zoxide = { # z doc -> cd ~/Documents; zi -> interactive
     enable = true;
     enableZshIntegration = true;
+    enableFishIntegration = true;
   };
 
   programs.zsh = {
@@ -94,20 +89,45 @@ in
     };
   };
 
+  programs.fish = {
+    enable = true;
+    # enableAutosuggestions = true;
+    # enableSyntaxHighlighting = true;
+    # oh-my-zsh = {
+    #   enable = true;
+    #   plugins = [ "git" "httpie" "aws" "fd" "fzf" "mosh" "npm" "ripgrep" "rsync" "sudo" "yarn" "vi-mode" ];
+    # };
+    shellAliases = {
+      v = "vim";
+      l = "exa -lah --icons --git";
+      n = "nnn";
+      h = "himalaya";
+      er = "rm -rf logs; unzip -o";
+      srsync = "rsync --rsync-path='sudo rsync'";
+      lg = "lazygit";
+      ambient1 = "play -n -c1 synth whitenoise lowpass -1 120 lowpass -1 120 lowpass -1 120 gain +16";
+      ambient2 = "play -c 2 -n synth brownnoise lowpass 200";
+      ambient3 = "play -c 2 -n synth brownnoise lowpass 150 loudness +10";
+    };
+  };
+
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
+    # enableFishIntegration = true;
   };
 
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
+    enableFishIntegration = true;
   };
 
   programs.fzf = {
     # ctrl-t, ctrl-r, ssh **<tab>
     enable = true;
     enableZshIntegration = true;
+    enableFishIntegration = true;
     defaultCommand = "fd --type file --color=always";
     defaultOptions = [
       "--height 40%"
@@ -126,6 +146,7 @@ in
     # ctrl-G
     enable = true;
     enableZshIntegration = true;
+    enableFishIntegration = true;
   };
 
   programs.ssh = {
@@ -216,7 +237,7 @@ in
   programs.helix = {
     enable = true;
     settings = {
-      theme = "catpuccin";
+      theme = "catppuccin_mocha";
       editor = {
         cursorline = true;
         lsp.display-messages = true;
@@ -238,8 +259,16 @@ in
 
   programs.bat = {
     enable = true;
+    themes = {
+      Catppuccin-mocha = builtins.readFile (pkgs.fetchFromGitHub {
+        owner = "catppuccin";
+        repo = "bat";
+        rev = "ba4d16880d63e656acced2b7d4e034e4a93f74b1";
+        sha256 = "6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw=";
+      } + "/Catppuccin-mocha.tmTheme");
+    };
     config = {
-      theme = "Nord";
+      theme = "Catppuccin-mocha";
     };
   };
 
@@ -252,6 +281,7 @@ in
   programs.keychain = {
     enable = true;
     enableZshIntegration = true;
+    enableFishIntegration = true;
     inheritType = "any";
     agents = [ "gpg" "ssh" ];
     keys = [ "id_rsa" "2B3A6377" ];
