@@ -16,7 +16,6 @@ in
     ghc haskell-language-server hlint haskellPackages.hoogle
     lua53Packages.luarocks
     ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es
-    fontconfig iosevka iosevka-bin
   ];
 
   home.sessionVariables = {
@@ -237,11 +236,7 @@ in
     withNodeJs = true;
     withPython3 = true;
     withRuby = true;
-  };
-
-  home.file.nvim = {
-    target = ".config/nvim/init.lua";
-    source = ./init.lua;
+    extraLuaConfig = builtins.readFile ./vim.lua;
   };
 
   programs.bat = {

@@ -303,6 +303,25 @@ require('packer').startup(function(use)
     end
   })
 
+  use({
+    "chentoast/marks.nvim",
+    config = function()
+      require("marks").setup()
+    end
+  })
+
+  use({
+    "utilyre/barbecue.nvim",
+    tag = "*",
+    requires = {
+      "SmiteshP/nvim-navic",
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      require("barbecue").setup()
+    end,
+  })
+
   if packer_bootstrap then
     require('packer').sync()
   end
@@ -367,7 +386,7 @@ wk.register({
       f = { "<CMD>SearchReplaceSingleBufferCFile<CR>", "file" },
       b = {
         name = "MultiBuffer",
-        s = { "<CMD>SearchReplaceMultiBufferSelections<CR>","selction list" },
+        s = { "<CMD>SearchReplaceMultiBufferSelections<CR>", "selction list" },
         o = { "<CMD>SearchReplaceMultiBufferOpen<CR>", "open" },
         w = { "<CMD>SearchReplaceMultiBufferCWord<CR>", "word" },
         W = { "<CMD>SearchReplaceMultiBufferCWORD<CR>", "WORD" },
