@@ -169,6 +169,9 @@ in
         syntax-theme = "Nord";
       };
     };
+    extraConfig = {
+      push.autoSetupRemote = true;
+    };
   };
 
   programs.gh.enable = true;
