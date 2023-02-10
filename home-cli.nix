@@ -76,13 +76,12 @@ in
       plugins = [ "git" "httpie" "aws" "fd" "fzf" "mosh" "npm" "ripgrep" "rsync" "sudo" "yarn" "vi-mode" ];
     };
     shellAliases = {
-      v = "vim";
+      v = "vi";
       l = "exa -lah --icons --git";
       n = "nnn";
       h = "himalaya";
       er = "rm -rf logs; unzip -o";
       srsync = "rsync --rsync-path='sudo rsync'";
-      lg = "lazygit";
       ambient1 = "play -n -c1 synth whitenoise lowpass -1 120 lowpass -1 120 lowpass -1 120 gain +16";
       ambient2 = "play -c 2 -n synth brownnoise lowpass 200";
       ambient3 = "play -c 2 -n synth brownnoise lowpass 150 loudness +10";
@@ -91,20 +90,13 @@ in
 
   programs.fish = {
     enable = true;
-    # enableAutosuggestions = true;
-    # enableSyntaxHighlighting = true;
-    # oh-my-zsh = {
-    #   enable = true;
-    #   plugins = [ "git" "httpie" "aws" "fd" "fzf" "mosh" "npm" "ripgrep" "rsync" "sudo" "yarn" "vi-mode" ];
-    # };
     shellAliases = {
-      v = "vim";
+      v = "vi";
       l = "exa -lah --icons --git";
       n = "nnn";
       h = "himalaya";
       er = "rm -rf logs; unzip -o";
       srsync = "rsync --rsync-path='sudo rsync'";
-      lg = "lazygit";
       ambient1 = "play -n -c1 synth whitenoise lowpass -1 120 lowpass -1 120 lowpass -1 120 gain +16";
       ambient2 = "play -c 2 -n synth brownnoise lowpass 200";
       ambient3 = "play -c 2 -n synth brownnoise lowpass 150 loudness +10";
