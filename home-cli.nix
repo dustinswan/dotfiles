@@ -7,14 +7,73 @@ in
   home.stateVersion = "18.09";
 
   home.packages = with pkgs; [
-    ripgrep fd mosh w3m nnn hexyl wget httpie timg sox du-dust restic bitwarden-cli gnupg gpg-tui rage sd libqalculate glow spotify-tui spotifyd amfora duf pandoc pastel jq jo fx jc miller sc-im cacert weechat ddgr visidata magic-wormhole
-    nixfmt shellcheck vale tectonic zathura # lilypond-with-fonts
-    nodejs deno yarn nodePackages.typescript-language-server nodePackages.stylelint nodePackages.js-beautify nodePackages.expo-cli
-    ocaml dune_2 ocamlPackages.utop ocamlPackages.ocp-indent ocamlPackages.merlin
-    rustup go cmake racket-minimal
+    ripgrep
+    fd
+    mosh
+    w3m
+    nnn
+    hexyl
+    wget
+    httpie
+    timg
+    sox
+    du-dust
+    restic
+    bitwarden-cli
+    gnupg
+    gpg-tui
+    rage
+    sd
+    libqalculate
+    glow
+    spotify-tui
+    spotifyd
+    amfora
+    duf
+    pandoc
+    pastel
+    jq
+    jo
+    fx
+    jc
+    miller
+    sc-im
+    cacert
+    weechat
+    ddgr
+    visidata # magic-wormhole
+    nixfmt
+    shellcheck
+    vale
+    tectonic
+    zathura # lilypond-with-fonts
+    nodejs
+    deno
+    yarn
+    nodePackages.typescript-language-server
+    nodePackages.stylelint
+    nodePackages.js-beautify
+    nodePackages.expo-cli
+    ocaml
+    dune_2
+    ocamlPackages.utop
+    ocamlPackages.ocp-indent
+    ocamlPackages.merlin
+    rustup
+    go
+    cmake
+    racket-minimal
     # ghc haskell-language-server hlint haskellPackages.hoogle
     lua53Packages.luarocks
-    ispell aspell aspellDicts.en aspellDicts.en-computers aspellDicts.en-science aspellDicts.fr aspellDicts.de aspellDicts.eo aspellDicts.es
+    ispell
+    aspell
+    aspellDicts.en
+    aspellDicts.en-computers
+    aspellDicts.en-science
+    aspellDicts.fr
+    aspellDicts.de
+    aspellDicts.eo
+    aspellDicts.es
   ];
 
   home.sessionVariables = {
@@ -61,7 +120,8 @@ in
     enableAliases = true;
   };
 
-  programs.zoxide = { # z doc -> cd ~/Documents; zi -> interactive
+  programs.zoxide = {
+    # z doc -> cd ~/Documents; zi -> interactive
     enable = true;
     enableZshIntegration = true;
     enableFishIntegration = true;
@@ -123,11 +183,11 @@ in
     defaultCommand = "fd --type file --color=always";
     defaultOptions = [
       "--height 40%"
-        "--border"
-        "--ansi"
-        "--color bg+:#302D41,bg:#1E1E2E,spinner:#F8BD96,hl:#F28FAD"
-        "--color=fg:#D9E0EE,header:#F28FAD,info:#DDB6F2,pointer:#F8BD96"
-        "--color=marker:#F8BD96,fg+:#F2CDCD,prompt:#DDB6F2,hl+:#F28FAD"
+      "--border"
+      "--ansi"
+      "--color bg+:#302D41,bg:#1E1E2E,spinner:#F8BD96,hl:#F28FAD"
+      "--color=fg:#D9E0EE,header:#F28FAD,info:#DDB6F2,pointer:#F8BD96"
+      "--color=marker:#F8BD96,fg+:#F2CDCD,prompt:#DDB6F2,hl+:#F28FAD"
     ];
 
     fileWidgetCommand = "fd --type file --color=always";
@@ -249,18 +309,20 @@ in
     withNodeJs = true;
     withPython3 = true;
     withRuby = true;
-    extraLuaConfig = builtins.readFile ./vim.lua;
+    # extraLuaConfig = builtins.readFile ./vim.lua;
   };
+  # xdg.configFile."nvim/lua/plugins/lazyvim-plugins.lua".source = ./lazyvim-plugins.lua;
 
   programs.bat = {
     enable = true;
     themes = {
-      Catppuccin-mocha = builtins.readFile (pkgs.fetchFromGitHub {
-        owner = "catppuccin";
-        repo = "bat";
-        rev = "ba4d16880d63e656acced2b7d4e034e4a93f74b1";
-        sha256 = "6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw=";
-      } + "/Catppuccin-mocha.tmTheme");
+      Catppuccin-mocha = builtins.readFile (pkgs.fetchFromGitHub
+        {
+          owner = "catppuccin";
+          repo = "bat";
+          rev = "ba4d16880d63e656acced2b7d4e034e4a93f74b1";
+          sha256 = "6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw=";
+        } + "/Catppuccin-mocha.tmTheme");
     };
     config = {
       theme = "Catppuccin-mocha";
