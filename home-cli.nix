@@ -309,7 +309,6 @@ in
     withNodeJs = true;
     withPython3 = true;
     withRuby = true;
-    # extraLuaConfig = builtins.readFile ./vim.lua;
   };
   # xdg.configFile."nvim/lua/plugins/lazyvim-plugins.lua".source = ./lazyvim-plugins.lua;
 
