@@ -15,6 +15,7 @@ in
     hexyl
     wget
     httpie
+    nmap
     timg
     sox
     du-dust
@@ -41,7 +42,8 @@ in
     cacert
     weechat
     ddgr
-    visidata # magic-wormhole
+    visidata
+    magic-wormhole
     nixfmt
     shellcheck
     vale
@@ -65,6 +67,7 @@ in
     racket-minimal
     # ghc haskell-language-server hlint haskellPackages.hoogle
     lua53Packages.luarocks
+    translate-shell
     ispell
     aspell
     aspellDicts.en
