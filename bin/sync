@@ -1,13 +1,31 @@
 #!/bin/sh
 
-if command -v mbsync &> /dev/null; then
-  mbsync -a
+# Required parameters:
+# @raycast.schemaVersion 1
+# @raycast.title Test
+# @raycast.mode compact
+
+# Optional parameters:
+# @raycast.icon 🤖
+
+# Documentation:
+# @raycast.author dustinswan
+# @raycast.authorURL https://raycast.com/dustinswan
+
+if
+	command -v mbsync >/dev/null
+then
+	mbsync -a
 fi
 
-if command -v mu &> /dev/null; then
-  mu index
+if
+	command -v mu >/dev/null
+then
+	mu index
 fi
 
-if command -v vdirsyncer &> /dev/null; then
-  vdirsyncer sync
+if
+	command -v vdirsyncer >/dev/null
+then
+	vdirsyncer sync
 fi

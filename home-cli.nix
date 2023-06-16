@@ -7,7 +7,6 @@ in
   home.stateVersion = "18.09";
 
   home.packages = with pkgs; [
-    ripgrep
     fd
     mosh
     w3m
@@ -29,6 +28,8 @@ in
     glow
     spotify-tui
     spotifyd
+    yt-dlp
+    youtube-tui
     amfora
     duf
     pandoc
@@ -62,10 +63,14 @@ in
     ocamlPackages.ocp-indent
     ocamlPackages.merlin
     rustup
+    zig
     go
     cmake
-    racket-minimal
-    # ghc haskell-language-server hlint haskellPackages.hoogle
+    # racket-minimal
+    ghc
+    haskell-language-server
+    hlint
+    haskellPackages.hoogle
     lua53Packages.luarocks
     translate-shell
     ispell
@@ -142,6 +147,7 @@ in
       v = "vi";
       l = "exa -lah --icons --git";
       n = "nnn";
+      t = "trans";
       h = "himalaya";
       er = "rm -rf logs; unzip -o";
       srsync = "rsync --rsync-path='sudo rsync'";
@@ -336,6 +342,7 @@ in
   programs.noti.enable = true;
   programs.btop.enable = true;
   programs.tealdeer.enable = true;
+  programs.ripgrep.enable = true;
 
   programs.keychain = {
     enable = true;

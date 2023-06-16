@@ -10,13 +10,13 @@ in
 
   programs.msmtp.enable = true;
 
-  programs.neomutt = {
-    enable = true;
-    sidebar.enable = true;
-    sort = "reverse-threads";
-  };
+  # programs.neomutt = {
+  #   enable = true;
+  #   sidebar.enable = true;
+  #   sort = "reverse-threads";
+  # };
 
-  programs.himalaya.enable = true;
+  # programs.himalaya.enable = true;
 
   programs.aerc = {
     enable = true;
@@ -34,7 +34,7 @@ in
     accounts = {
       FastMail = {
         address = "dustin@dustinswan.com";
-        aliases = ["dustinswan@gmail.com"];
+        aliases = [ "dustinswan@gmail.com" ];
         realName = "Dustin Swan";
         primary = true;
         folders = {
@@ -62,7 +62,7 @@ in
         # };
         mu.enable = true;
         msmtp.enable = true;
-        neomutt.enable = true;
+        # neomutt.enable = true;
         aerc.enable = true;
         # himalaya = {
         #   enable = true;
@@ -73,10 +73,10 @@ in
         #     draft-folder = "INBOX.Drafts";
         #   };
         # };
-        # signature = {
-        #   text = ''Dustin Swan | dustinswan.com'';
-        #   showSignature = "append";
-        # };
+        signature = {
+          text = ''Dustin Swan | dustinswan.com'';
+          showSignature = "append";
+        };
       };
     };
   };
