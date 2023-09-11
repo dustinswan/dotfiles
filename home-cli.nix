@@ -42,7 +42,11 @@ in
     sc-im
     cacert
     weechat
+    cointop
+    tz
     ddgr
+    so
+    silicon
     visidata
     magic-wormhole
     nixfmt
@@ -53,6 +57,7 @@ in
     nodejs
     deno
     yarn
+    lazydocker
     nodePackages.typescript-language-server
     nodePackages.stylelint
     nodePackages.js-beautify
@@ -87,6 +92,7 @@ in
   home.sessionVariables = {
     EDITOR = "vim";
     BROWSER = "open";
+    TZ_LIST = "US/Pacific;US/Mountain;US/Central;US/Eastern;Europe/London;Europe/Kiev;Asia/Shanghai;Asia/Tokyo";
   };
 
   programs.home-manager.enable = true;
@@ -123,7 +129,7 @@ in
     '';
   };
 
-  programs.exa = {
+  programs.eza = {
     enable = true;
     enableAliases = true;
   };
@@ -341,6 +347,7 @@ in
   programs.mpv.enable = true;
   programs.noti.enable = true;
   programs.btop.enable = true;
+  programs.bottom.enable = true;
   programs.tealdeer.enable = true;
   programs.ripgrep.enable = true;
 
