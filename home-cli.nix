@@ -7,6 +7,12 @@ in
   home.stateVersion = "18.09";
 
   home.packages = with pkgs; [
+    # AI
+    # aichat
+    # aider
+    mods
+    shell_gpt
+
     fd
     mosh
     w3m
@@ -39,7 +45,7 @@ in
     fx
     jc
     miller
-    sc-im
+    # sc-im
     cacert
     weechat
     cointop
@@ -52,25 +58,31 @@ in
     nixfmt
     shellcheck
     vale
-    tectonic
-    zathura # lilypond-with-fonts
+    # tectonic
+    # zathura # lilypond-with-fonts
     nodejs
     deno
+    bun
     yarn
     lazydocker
     nodePackages.typescript-language-server
     nodePackages.stylelint
     nodePackages.js-beautify
+    nodePackages.intelephense
     nodePackages.expo-cli
+    nodePackages.localtunnel
     ocaml
     dune_2
     ocamlPackages.utop
     ocamlPackages.ocp-indent
     ocamlPackages.merlin
-    rustup
+    # rustup
+    rustc
+    cargo
     zig
     go
     cmake
+    # python311Packages.west
     # racket-minimal
     ghc
     haskell-language-server
@@ -93,7 +105,15 @@ in
     EDITOR = "vim";
     BROWSER = "open";
     TZ_LIST = "US/Pacific;US/Mountain;US/Central;US/Eastern;Europe/London;Europe/Kiev;Asia/Shanghai;Asia/Tokyo";
+    inherit (secrets.openai) OPENAI_API_KEY;
   };
+
+  home.sessionPath = [
+    "$HOME/.cargo/bin"
+    "$HOME/.npm-global/bin"
+    "/opt/homebrew/opt/php@7.4/bin"
+    "/opt/homebrew/opt/php@7.4/sbin"
+  ];
 
   programs.home-manager.enable = true;
 
@@ -131,7 +151,7 @@ in
 
   programs.eza = {
     enable = true;
-    enableAliases = true;
+    # enableAliases = true;
   };
 
   programs.zoxide = {
@@ -229,11 +249,25 @@ in
         inherit (secrets.dswan) hostname;
       };
 
-      aws = {
-        inherit (secrets.visionable-aws) user;
-        inherit (secrets.visionable-aws) hostname;
-        identityFile = "/Users/dustinswan/.ssh/id_rsa";
-        extraOptions = { PubkeyAcceptedKeyTypes = "+ssh-rsa"; HostKeyAlgorithms = "+ssh-rsa"; };
+      mr = {
+        inherit (secrets.mr) user;
+        inherit (secrets.mr) hostname;
+        identityFile = "/Users/dustinswan/.ssh/id_rsa_mr";
+        identitiesOnly = true;
+      };
+
+      mr-prod = {
+        inherit (secrets.mr-prod) user;
+        inherit (secrets.mr-prod) hostname;
+        identityFile = "/Users/dustinswan/.ssh/id_rsa_mr";
+        identitiesOnly = true;
+      };
+
+      mr-prod2 = {
+        inherit (secrets.mr-prod2) user;
+        inherit (secrets.mr-prod2) hostname;
+        identityFile = "/Users/dustinswan/.ssh/id_rsa_mr";
+        identitiesOnly = true;
       };
     };
   };
@@ -253,7 +287,7 @@ in
     delta = {
       enable = true;
       options = {
-        syntax-theme = "Nord";
+        syntax-theme = "ansi";
       };
     };
     extraConfig = {
@@ -307,7 +341,7 @@ in
   programs.helix = {
     enable = true;
     settings = {
-      theme = "catppuccin_mocha";
+      # theme = "catppuccin_mocha";
       editor = {
         cursorline = true;
         lsp.display-messages = true;
@@ -329,24 +363,13 @@ in
 
   programs.bat = {
     enable = true;
-    themes = {
-      Catppuccin-mocha = builtins.readFile (pkgs.fetchFromGitHub
-        {
-          owner = "catppuccin";
-          repo = "bat";
-          rev = "ba4d16880d63e656acced2b7d4e034e4a93f74b1";
-          sha256 = "6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw=";
-        } + "/Catppuccin-mocha.tmTheme");
-    };
-    config = {
-      theme = "Catppuccin-mocha";
-    };
+    config.theme = "ansi";
   };
 
   programs.gpg.enable = true;
   programs.mpv.enable = true;
   programs.noti.enable = true;
-  programs.btop.enable = true;
+  # programs.btop.enable = true;
   programs.bottom.enable = true;
   programs.tealdeer.enable = true;
   programs.ripgrep.enable = true;
