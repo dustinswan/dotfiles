@@ -82,8 +82,9 @@ in
     zig
     go
     cmake
-    # python311Packages.west
-    # racket-minimal
+    python3
+    python312Packages.pip
+    racket-minimal
     ghc
     haskell-language-server
     hlint
@@ -121,8 +122,8 @@ in
     enable = true;
     shortcut = "a";
     keyMode = "vi";
+    mouse = true;
     baseIndex = 1;
-    clock24 = true;
     newSession = true;
     secureSocket = false;
     terminal = "tmux-256color";
@@ -139,7 +140,6 @@ in
       extrakto # prefix tab -> fuzzy find text on screen; enter to copy; tab to paste 
     ];
     extraConfig = ''
-      set -g mouse on
       set -g status-right ""
       set -g status-left ""
       set -g status-style fg=white
@@ -151,14 +151,14 @@ in
 
   programs.eza = {
     enable = true;
-    # enableAliases = true;
+    enableAliases = true;
+    git = true;
   };
 
   programs.zoxide = {
     # z doc -> cd ~/Documents; zi -> interactive
     enable = true;
     enableZshIntegration = true;
-    enableFishIntegration = true;
   };
 
   programs.zsh = {
@@ -169,52 +169,22 @@ in
       enable = true;
       plugins = [ "git" "httpie" "aws" "fd" "fzf" "mosh" "npm" "ripgrep" "rsync" "sudo" "yarn" "vi-mode" ];
     };
-    shellAliases = {
-      v = "vi";
-      l = "exa -lah --icons --git";
-      n = "nnn";
-      t = "trans";
-      h = "himalaya";
-      er = "rm -rf logs; unzip -o";
-      srsync = "rsync --rsync-path='sudo rsync'";
-      ambient1 = "play -n -c1 synth whitenoise lowpass -1 120 lowpass -1 120 lowpass -1 120 gain +16";
-      ambient2 = "play -c 2 -n synth brownnoise lowpass 200";
-      ambient3 = "play -c 2 -n synth brownnoise lowpass 150 loudness +10";
-    };
-  };
-
-  programs.fish = {
-    enable = true;
-    shellAliases = {
-      v = "vi";
-      l = "exa -lah --icons --git";
-      n = "nnn";
-      h = "himalaya";
-      er = "rm -rf logs; unzip -o";
-      srsync = "rsync --rsync-path='sudo rsync'";
-      ambient1 = "play -n -c1 synth whitenoise lowpass -1 120 lowpass -1 120 lowpass -1 120 gain +16";
-      ambient2 = "play -c 2 -n synth brownnoise lowpass 200";
-      ambient3 = "play -c 2 -n synth brownnoise lowpass 150 loudness +10";
-    };
   };
 
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
-    # enableFishIntegration = true;
   };
 
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
-    enableFishIntegration = true;
   };
 
   programs.fzf = {
     # ctrl-t, ctrl-r, ssh **<tab>
     enable = true;
     enableZshIntegration = true;
-    enableFishIntegration = true;
     defaultCommand = "fd --type file --color=always";
     defaultOptions = [
       "--height 40%"
@@ -229,24 +199,12 @@ in
     fileWidgetOptions = [ "--min-height 30 --preview-window noborder --preview '(bat --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}) 2> /dev/null'" ];
   };
 
-  programs.navi = {
-    # ctrl-G
-    enable = true;
-    enableZshIntegration = true;
-    enableFishIntegration = true;
-  };
-
   programs.ssh = {
     enable = true;
     matchBlocks = {
       dustinswan = {
         inherit (secrets.dustinswan) user;
         inherit (secrets.dustinswan) hostname;
-      };
-
-      dswan = {
-        inherit (secrets.dswan) user;
-        inherit (secrets.dswan) hostname;
       };
 
       mr = {
@@ -280,75 +238,17 @@ in
       signByDefault = true;
       key = "AD11750151C10881970BD943AB49BD6B2B3A6377";
     };
-    aliases = {
-      # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
-      lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit";
-    };
-    delta = {
-      enable = true;
-      options = {
-        syntax-theme = "ansi";
-      };
-    };
-    extraConfig = {
-      push.autoSetupRemote = true;
-    };
+    delta.enable = true;
+  };
+
+  programs.jujutsu = {
+    enable = true;
+    enableZshIntegration = true;
   };
 
   programs.gh.enable = true;
-
   programs.lazygit.enable = true;
-
-  programs.gitui = {
-    enable = true;
-    keyConfig = ''(
-      focus_right: Some(( code: Char('l'), modifiers: ( bits: 0,),)),
-      focus_left: Some(( code: Char('h'), modifiers: ( bits: 0,),)),
-      focus_above: Some(( code: Char('k'), modifiers: ( bits: 0,),)),
-      focus_below: Some(( code: Char('j'), modifiers: ( bits: 0,),)),
-
-      open_help: Some(( code: F(1), modifiers: ( bits: 0,),)),
-
-      move_left: Some(( code: Char('h'), modifiers: ( bits: 0,),)),
-      move_right: Some(( code: Char('l'), modifiers: ( bits: 0,),)),
-      move_up: Some(( code: Char('k'), modifiers: ( bits: 0,),)),
-      move_down: Some(( code: Char('j'), modifiers: ( bits: 0,),)),
-      popup_up: Some(( code: Char('p'), modifiers: ( bits: 2,),)),
-      popup_down: Some(( code: Char('n'), modifiers: ( bits: 2,),)),
-      page_up: Some(( code: Char('b'), modifiers: ( bits: 2,),)),
-      page_down: Some(( code: Char('f'), modifiers: ( bits: 2,),)),
-      home: Some(( code: Char('g'), modifiers: ( bits: 0,),)),
-      end: Some(( code: Char('G'), modifiers: ( bits: 1,),)),
-      shift_up: Some(( code: Char('K'), modifiers: ( bits: 1,),)),
-      shift_down: Some(( code: Char('J'), modifiers: ( bits: 1,),)),
-
-      edit_file: Some(( code: Char('I'), modifiers: ( bits: 1,),)),
-
-      status_reset_item: Some(( code: Char('U'), modifiers: ( bits: 1,),)),
-
-      diff_reset_lines: Some(( code: Char('u'), modifiers: ( bits: 0,),)),
-      diff_stage_lines: Some(( code: Char('s'), modifiers: ( bits: 0,),)),
-
-      stashing_save: Some(( code: Char('w'), modifiers: ( bits: 0,),)),
-      stashing_toggle_index: Some(( code: Char('m'), modifiers: ( bits: 0,),)),
-
-      stash_open: Some(( code: Char('l'), modifiers: ( bits: 0,),)),
-
-      abort_merge: Some(( code: Char('M'), modifiers: ( bits: 1,),)),
-    )'';
-  };
-
-  programs.helix = {
-    enable = true;
-    settings = {
-      # theme = "catppuccin_mocha";
-      editor = {
-        cursorline = true;
-        lsp.display-messages = true;
-        indent-guides.render = true;
-      };
-    };
-  };
+  programs.gitui.enable = true;
 
   programs.neovim = {
     enable = true;
@@ -361,26 +261,30 @@ in
   };
   # xdg.configFile."nvim/lua/plugins/lazyvim-plugins.lua".source = ./lazyvim-plugins.lua;
 
-  programs.bat = {
+  programs.btop = {
     enable = true;
-    config.theme = "ansi";
+    settings = {
+      color_theme = "tokyo-night";
+      theme_background = false;
+      vim_keys = true;
+    };
   };
 
+  programs.bat.enable = true; 
+  programs.yazi.enable = true;
+  # programs.bottom.enable = true;
   programs.gpg.enable = true;
   programs.mpv.enable = true;
   programs.noti.enable = true;
-  # programs.btop.enable = true;
-  programs.bottom.enable = true;
   programs.tealdeer.enable = true;
   programs.ripgrep.enable = true;
 
   programs.keychain = {
     enable = true;
     enableZshIntegration = true;
-    enableFishIntegration = true;
     inheritType = "any";
     agents = [ "gpg" "ssh" ];
-    keys = [ "id_rsa" "2B3A6377" ];
+    keys = [ "id_rsa" "id_rsa_mr" "2B3A6377" ];
   };
 
   programs.newsboat = {
