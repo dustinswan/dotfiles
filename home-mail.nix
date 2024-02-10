@@ -10,20 +10,7 @@ in
 
   programs.msmtp.enable = true;
 
-  # programs.neomutt = {
-  #   enable = true;
-  #   sidebar.enable = true;
-  #   sort = "reverse-threads";
-  # };
-
   # programs.himalaya.enable = true;
-
-  programs.aerc = {
-    enable = true;
-    extraConfig = {
-      general = { unsafe-accounts-conf = true; };
-    };
-  };
 
   programs.mu.enable = true;
 
@@ -62,17 +49,15 @@ in
         # };
         mu.enable = true;
         msmtp.enable = true;
-        # neomutt.enable = true;
-        aerc.enable = true;
-        # himalaya = {
-        #   enable = true;
-        #   backend = "maildir";
-        #   sender = "smtp";
-        #   settings = {
-        #     sent-folder = "INBOX.Sent";
-        #     draft-folder = "INBOX.Drafts";
-        #   };
-        # };
+        himalaya = {
+          enable = true;
+          settings = {
+            backend = "maildir";
+            message.send.backend = "smtp";
+            sent-folder = "INBOX.Sent";
+            draft-folder = "INBOX.Drafts";
+          };
+        };
         signature = {
           text = ''Dustin Swan | dustinswan.com'';
           showSignature = "append";
