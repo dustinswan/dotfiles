@@ -1,5 +1,0 @@
-#!/bin/sh
-export IGVERBOSE=3
-rm -rf ~/Library/Application\ Support/IOCOM/visionable/dswan.iocom.com
-rm -rf ~/Library/Application\ Support/IOCOM/visionable/devbranch.visionable.io
-[ -s /Applications/Visionable.app/Contents/MacOS/visionable ] && /Applications/Visionable.app/Contents/MacOS/visionable --nologin --remote-debugging-port=1234 &
