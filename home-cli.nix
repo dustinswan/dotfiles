@@ -8,7 +8,7 @@ in
 
   home.packages = with pkgs; [
     # AI
-    # aichat
+    aichat
     # aider
     mods
     shell_gpt
@@ -21,9 +21,11 @@ in
     wget
     httpie
     nmap
+    trippy
+    ouch
+    sshs
     timg
     sox
-    du-dust
     restic
     bitwarden-cli
     gnupg
@@ -31,6 +33,7 @@ in
     rage
     sd
     libqalculate
+    # lnav
     glow
     spotify-tui
     spotifyd
@@ -38,13 +41,17 @@ in
     youtube-tui
     amfora
     duf
+    du-dust
     pandoc
     pastel
     jq
     jo
     fx
     jc
+    jless
     miller
+    visidata
+    mysql
     # sc-im
     cacert
     weechat
@@ -53,7 +60,7 @@ in
     ddgr
     so
     silicon
-    visidata
+    imagemagick
     magic-wormhole
     nixfmt
     shellcheck
@@ -64,6 +71,7 @@ in
     deno
     bun
     yarn
+    flyctl
     lazydocker
     nodePackages.typescript-language-server
     nodePackages.stylelint
@@ -83,9 +91,11 @@ in
     go
     cmake
     python3
+    pipx
     python312Packages.pip
     racket-minimal
     ghc
+    llvm
     haskell-language-server
     hlint
     haskellPackages.hoogle
@@ -110,6 +120,7 @@ in
   };
 
   home.sessionPath = [
+    "$HOME/.local/bin"
     "$HOME/.cargo/bin"
     "$HOME/.npm-global/bin"
     "/opt/homebrew/opt/php@7.4/bin"
@@ -146,6 +157,17 @@ in
       set-window-option -g window-status-format '#[fg=cyan,bright,dim]#I #[fg=white,bright,dim]#W '
       set-window-option -g window-status-current-format '#[fg=cyan,bright,nodim]#I #[fg=white,bright,nodim]#W '
       set -ag terminal-overrides ",xterm-256color:RGB"
+
+      # bind -n C-0 select-window -t0
+      # bind -n C-1 select-window -t1
+      # bind -n C-2 select-window -t2
+      # bind -n C-3 select-window -t3
+      # bind -n C-4 select-window -t4
+      # bind -n C-5 select-window -t5
+      # bind -n C-6 select-window -t6
+      # bind -n C-7 select-window -t7
+      # bind -n C-8 select-window -t8
+      # bind -n C-9 select-window -t9
     '';
   };
 
@@ -235,16 +257,16 @@ in
     userName = "Dustin Swan";
     userEmail = "dustin@dustinswan.com";
     signing = {
-      signByDefault = true;
+      # signByDefault = true;
       key = "AD11750151C10881970BD943AB49BD6B2B3A6377";
     };
     delta.enable = true;
   };
 
-  programs.jujutsu = {
-    enable = true;
-    enableZshIntegration = true;
-  };
+  # programs.jujutsu = {
+  #   enable = true;
+  #   enableZshIntegration = true;
+  # };
 
   programs.gh.enable = true;
   programs.lazygit.enable = true;
