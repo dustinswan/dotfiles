@@ -1,17 +1,4 @@
 #!/bin/sh
-
-# Required parameters:
-# @raycast.schemaVersion 1
-# @raycast.title Test
-# @raycast.mode compact
-
-# Optional parameters:
-# @raycast.icon 🤖
-
-# Documentation:
-# @raycast.author dustinswan
-# @raycast.authorURL https://raycast.com/dustinswan
-
 if
 	command -v mbsync >/dev/null
 then

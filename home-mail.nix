@@ -10,7 +10,7 @@ in
 
   programs.msmtp.enable = true;
 
-  # programs.himalaya.enable = true;
+  programs.himalaya.enable = true;
 
   programs.mu.enable = true;
 
@@ -52,10 +52,11 @@ in
         himalaya = {
           enable = true;
           settings = {
-            backend = "maildir";
-            message.send.backend = "smtp";
-            sent-folder = "INBOX.Sent";
-            draft-folder = "INBOX.Drafts";
+            # backend = "maildir";
+            # maildir.root-dir = "";
+            # message.send.backend = "smtp";
+            # sent-folder = "INBOX.Sent";
+            # draft-folder = "INBOX.Drafts";
           };
         };
         signature = {

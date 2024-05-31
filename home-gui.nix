@@ -22,5 +22,6 @@
         size = 16.0;
       };
     };
+    catppuccin.enable = true;
   };
 }

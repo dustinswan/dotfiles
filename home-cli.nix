@@ -6,37 +6,45 @@ in
 {
   home.stateVersion = "18.09";
 
-  home.packages = with pkgs; [
-    # AI
-    aichat
-    # aider
-    mods
-    shell_gpt
+  home.username = "dustinswan";
+  home.homeDirectory = "/Users/dustinswan";
 
-    fd
-    mosh
+  imports = [
+    <catppuccin/modules/home-manager>
+  ];
+
+  # catppuccin.enable = true; # TODO
+
+  home.packages = with pkgs; [
+    fd # `fd PATTERN`; `fd` is like ls-R; `-e ext` searches by extension; `-g` for glob; `-H` searches hidden files; `-u` for unrestricted; `fd -e jpg -x convert {} {.}.png`
+    mosh # like ssh but better on spotty networks
     w3m
-    nnn
     hexyl
     wget
     httpie
+    hurl
+    atac # API client
+    # bruno
     nmap
-    trippy
-    ouch
+    trippy # sudo trip example.com
+    ouch # "Painless compression and decompression"; `ouch d a.zip b.tar.gz c.tar -d output_dir`; `ouch c a.txt b.txt archive.zip`; `ouch list archive.zip --tree`
     sshs
-    timg
-    sox
-    restic
+    ngrok
+    ddev
     bitwarden-cli
+    mkcert
+    timg
+    restic
     gnupg
     gpg-tui
     rage
     sd
-    libqalculate
+    kalker
     # lnav
     glow
-    spotify-tui
+    spotify-player
     spotifyd
+    toot
     yt-dlp
     youtube-tui
     amfora
@@ -48,21 +56,26 @@ in
     jo
     fx
     jc
+    xsv
     jless
     miller
-    visidata
+    # visidata
+    jwt-cli
     mysql
     # sc-im
     cacert
     weechat
     cointop
     tz
+    sttr # string operations. e.g. sttr md5 "Hello World"; sttr snake "ChangeCase"
     ddgr
     so
     silicon
     imagemagick
     magic-wormhole
-    nixfmt
+    # tunnel # portal send <file1> <file2> <folder1> <folder2> ... # portal receive 1-intertia-elliptical-celestial
+    termscp # SCP/SFTP/FTP/S3
+    # nixfmt # deprecated?
     shellcheck
     vale
     # tectonic
@@ -73,6 +86,8 @@ in
     yarn
     flyctl
     lazydocker
+    php83
+    php83Packages.composer
     nodePackages.typescript-language-server
     nodePackages.stylelint
     nodePackages.js-beautify
@@ -123,9 +138,9 @@ in
     "$HOME/.local/bin"
     "$HOME/.cargo/bin"
     "$HOME/.npm-global/bin"
-    "/opt/homebrew/opt/php@7.4/bin"
-    "/opt/homebrew/opt/php@7.4/sbin"
   ];
+
+  xdg.enable = true;
 
   programs.home-manager.enable = true;
 
@@ -146,34 +161,20 @@ in
       pain-control # prefix |, -, \, _ to split; prefix h, j, k, l to switch; prefix H, J, K, L to resize; prefix <, > to move windows
       fzf-tmux-url # prefix u -> fzf urls
       yank # prefix y -> copy command line to clipboard; prefix Y -> copy pwd to clipboard; search + y -> copy to clipboard
-      open # highlight: o -> open; ctrl-o -> $EDITOR; S -> web search
+      # open # highlight: o -> open; ctrl-o -> $EDITOR; S -> web search
       vim-tmux-navigator # ctrl-h, -j, -k, -l -> move between tmux and vim splits
       extrakto # prefix tab -> fuzzy find text on screen; enter to copy; tab to paste 
+      fingers # prefix F -> copy/open/edit items on screen by letter
     ];
     extraConfig = ''
-      set -g status-right ""
-      set -g status-left ""
-      set -g status-style fg=white
-      set-window-option -g window-status-format '#[fg=cyan,bright,dim]#I #[fg=white,bright,dim]#W '
-      set-window-option -g window-status-current-format '#[fg=cyan,bright,nodim]#I #[fg=white,bright,nodim]#W '
       set -ag terminal-overrides ",xterm-256color:RGB"
-
-      # bind -n C-0 select-window -t0
-      # bind -n C-1 select-window -t1
-      # bind -n C-2 select-window -t2
-      # bind -n C-3 select-window -t3
-      # bind -n C-4 select-window -t4
-      # bind -n C-5 select-window -t5
-      # bind -n C-6 select-window -t6
-      # bind -n C-7 select-window -t7
-      # bind -n C-8 select-window -t8
-      # bind -n C-9 select-window -t9
     '';
+    catppuccin.enable = true;
   };
 
   programs.eza = {
     enable = true;
-    enableAliases = true;
+    enableZshIntegration = true;
     git = true;
   };
 
@@ -185,12 +186,13 @@ in
 
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     oh-my-zsh = {
       enable = true;
       plugins = [ "git" "httpie" "aws" "fd" "fzf" "mosh" "npm" "ripgrep" "rsync" "sudo" "yarn" "vi-mode" ];
     };
+    syntaxHighlighting.catppuccin.enable = true;
   };
 
   programs.direnv = {
@@ -201,6 +203,7 @@ in
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
+    catppuccin.enable = true;
   };
 
   programs.fzf = {
@@ -219,6 +222,7 @@ in
 
     fileWidgetCommand = "fd --type file --color=always";
     fileWidgetOptions = [ "--min-height 30 --preview-window noborder --preview '(bat --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}) 2> /dev/null'" ];
+    catppuccin.enable = true;
   };
 
   programs.ssh = {
@@ -260,7 +264,10 @@ in
       # signByDefault = true;
       key = "AD11750151C10881970BD943AB49BD6B2B3A6377";
     };
-    delta.enable = true;
+    delta = {
+      enable = true;
+      catppuccin.enable = true;
+    };
   };
 
   # programs.jujutsu = {
@@ -269,8 +276,14 @@ in
   # };
 
   programs.gh.enable = true;
-  programs.lazygit.enable = true;
-  programs.gitui.enable = true;
+  programs.lazygit = {
+    enable = true;
+    catppuccin.enable = true;
+  };
+  programs.gitui = {
+    enable = true;
+    catppuccin.enable = true;
+  };
 
   programs.neovim = {
     enable = true;
@@ -283,17 +296,29 @@ in
   };
   # xdg.configFile."nvim/lua/plugins/lazyvim-plugins.lua".source = ./lazyvim-plugins.lua;
 
+  programs.helix = {
+    enable = true;
+    catppuccin.enable = true;
+  };
+
   programs.btop = {
     enable = true;
     settings = {
-      color_theme = "tokyo-night";
+      # color_theme = "tokyo-night";
       theme_background = false;
       vim_keys = true;
     };
+    catppuccin.enable = true;
   };
 
-  programs.bat.enable = true; 
-  programs.yazi.enable = true;
+  programs.bat = {
+    enable = true; 
+    catppuccin.enable = true;
+  };
+  programs.yazi = {
+    enable = true;
+    catppuccin.enable = true;
+  };
   # programs.bottom.enable = true;
   programs.gpg.enable = true;
   programs.mpv.enable = true;
