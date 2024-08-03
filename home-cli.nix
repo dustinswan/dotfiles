@@ -13,109 +13,33 @@ in
     <catppuccin/modules/home-manager>
   ];
 
-  # catppuccin.enable = true; # TODO
-
   home.packages = with pkgs; [
     fd # `fd PATTERN`; `fd` is like ls-R; `-e ext` searches by extension; `-g` for glob; `-H` searches hidden files; `-u` for unrestricted; `fd -e jpg -x convert {} {.}.png`
     mosh # like ssh but better on spotty networks
     w3m
-    hexyl
     wget
     httpie
-    hurl
-    atac # API client
-    # bruno
-    nmap
-    trippy # sudo trip example.com
-    ouch # "Painless compression and decompression"; `ouch d a.zip b.tar.gz c.tar -d output_dir`; `ouch c a.txt b.txt archive.zip`; `ouch list archive.zip --tree`
-    sshs
     ngrok
     ddev
     bitwarden-cli
     mkcert
-    timg
-    restic
     gnupg
-    gpg-tui
     rage
     sd
-    kalker
-    # lnav
-    glow
-    spotify-player
-    spotifyd
-    toot
-    yt-dlp
-    youtube-tui
-    amfora
-    duf
-    du-dust
-    pandoc
-    pastel
-    jq
-    jo
-    fx
-    jc
-    xsv
-    jless
-    miller
-    # visidata
-    jwt-cli
-    mysql
-    # sc-im
     cacert
     weechat
-    cointop
-    tz
     sttr # string operations. e.g. sttr md5 "Hello World"; sttr snake "ChangeCase"
-    ddgr
-    so
-    silicon
     imagemagick
     magic-wormhole
-    # tunnel # portal send <file1> <file2> <folder1> <folder2> ... # portal receive 1-intertia-elliptical-celestial
     termscp # SCP/SFTP/FTP/S3
-    # nixfmt # deprecated?
-    shellcheck
-    vale
-    # tectonic
-    # zathura # lilypond-with-fonts
     nodejs
-    deno
-    bun
     yarn
-    flyctl
-    lazydocker
     php83
     php83Packages.composer
     nodePackages.typescript-language-server
     nodePackages.stylelint
     nodePackages.js-beautify
     nodePackages.intelephense
-    nodePackages.expo-cli
-    nodePackages.localtunnel
-    ocaml
-    dune_2
-    ocamlPackages.utop
-    ocamlPackages.ocp-indent
-    ocamlPackages.merlin
-    # rustup
-    rustc
-    cargo
-    zig
-    go
-    cmake
-    python3
-    pipx
-    python312Packages.pip
-    racket-minimal
-    ghc
-    llvm
-    haskell-language-server
-    hlint
-    haskellPackages.hoogle
-    lua53Packages.luarocks
-    translate-shell
     ispell
     aspell
     aspellDicts.en
@@ -130,7 +54,6 @@ in
   home.sessionVariables = {
     EDITOR = "vim";
     BROWSER = "open";
-    TZ_LIST = "US/Pacific;US/Mountain;US/Central;US/Eastern;Europe/London;Europe/Kiev;Asia/Shanghai;Asia/Tokyo";
     inherit (secrets.openai) OPENAI_API_KEY;
   };
 
@@ -270,16 +193,11 @@ in
     };
   };
 
-  # programs.jujutsu = {
-  #   enable = true;
-  #   enableZshIntegration = true;
-  # };
-
-  programs.gh.enable = true;
   programs.lazygit = {
     enable = true;
     catppuccin.enable = true;
   };
+
   programs.gitui = {
     enable = true;
     catppuccin.enable = true;
@@ -296,33 +214,12 @@ in
   };
   # xdg.configFile."nvim/lua/plugins/lazyvim-plugins.lua".source = ./lazyvim-plugins.lua;
 
-  programs.helix = {
-    enable = true;
-    catppuccin.enable = true;
-  };
-
-  programs.btop = {
-    enable = true;
-    settings = {
-      # color_theme = "tokyo-night";
-      theme_background = false;
-      vim_keys = true;
-    };
-    catppuccin.enable = true;
-  };
-
   programs.bat = {
     enable = true; 
     catppuccin.enable = true;
   };
-  programs.yazi = {
-    enable = true;
-    catppuccin.enable = true;
-  };
-  # programs.bottom.enable = true;
+
   programs.gpg.enable = true;
-  programs.mpv.enable = true;
-  programs.noti.enable = true;
   programs.tealdeer.enable = true;
   programs.ripgrep.enable = true;
 
@@ -332,22 +229,5 @@ in
     inheritType = "any";
     agents = [ "gpg" "ssh" ];
     keys = [ "id_rsa" "id_rsa_mr" "2B3A6377" ];
-  };
-
-  programs.newsboat = {
-    enable = true;
-    extraConfig = ''
-      urls-source "inoreader"
-      inoreader-app-id "${secrets.inoreader.id}"
-      inoreader-app-key "${secrets.inoreader.key}"
-      inoreader-login "dustin@dustinswan.com"
-      inoreader-passwordeval "gpg --decrypt ~/.inoreader-password.gpg"
-      inoreader-min-items 100
-
-      unbind-key j
-      unbind-key k
-      bind-key j down
-      bind-key k up
-    '';
   };
 }
