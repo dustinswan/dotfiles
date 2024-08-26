@@ -7,12 +7,11 @@ in
   home.packages = with pkgs; [ vdirsyncer khard khal imapnotify ];
 
   programs.mbsync.enable = true;
-
   programs.msmtp.enable = true;
-
   programs.himalaya.enable = true;
-
-  programs.mu.enable = true;
+  programs.notmuch.enable = true;
+  programs.aerc.enable = true;
+  programs.aerc.extraConfig.general.unsafe-accounts-conf = true;
 
   accounts.email = {
     maildirBasePath = "Mail";
@@ -20,21 +19,22 @@ in
 
     accounts = {
       FastMail = {
+        flavor = "fastmail.com";
         address = "dustin@dustinswan.com";
         aliases = [ "dustinswan@gmail.com" ];
         realName = "Dustin Swan";
         primary = true;
         folders = {
           inbox = "INBOX";
-          drafts = "INBOX.Drafts";
-          sent = "INBOX.Sent";
-          trash = "INBOX.Trash";
+          drafts = "Drafts";
+          sent = "Sent";
+          trash = "Trash";
         };
         userName = "dustinswan@fastmail.com";
-        imap.host = "mail.messagingengine.com";
-        imap.port = 993;
-        smtp.host = "mail.messagingengine.com";
-        smtp.port = 465;
+        gpg = {
+          signByDefault = true;
+          key = "AD11750151C10881970BD943AB49BD6B2B3A6377";
+        };
         passwordCommand = "gpg -dq ${builtins.getEnv "HOME"}/.dustinswan@fastmail.com-password.gpg";
         mbsync = {
           enable = true;
@@ -47,25 +47,58 @@ in
         #   onNotify = "\${pkgs.isync}/bin/mbsync -a";
         #   onNotifyPost = { mail = "\${pkgs.noti}/bin/noti 'New mail'"; };
         # };
-        mu.enable = true;
+        notmuch.enable = true;
         msmtp.enable = true;
-        himalaya = {
-          enable = true;
-          settings = {
+        aerc.enable = true;
+        # himalaya = {
+          # enable = true;
+          # settings = {
             # backend = "maildir";
             # maildir.root-dir = "";
             # message.send.backend = "smtp";
-            # sent-folder = "INBOX.Sent";
-            # draft-folder = "INBOX.Drafts";
-          };
-        };
+            # sent-folder = "Sent";
+            # draft-folder = "Drafts";
+          # };
+        # };
         signature = {
           text = ''Dustin Swan | dustinswan.com'';
           showSignature = "append";
         };
       };
+
+      MajorRocket = {
+        flavor = "gmail.com";
+        address = "dustin@majorrocket.com";
+        realName = "Dustin Swan";
+        primary = false;
+        folders = {
+          inbox = "Inbox";
+          drafts = "[Gmail]/Drafts";
+          sent = "[Gmail]/Sent Mail";
+          trash = "[Gmail]/Trash";
+        };
+        userName = "dustin@majorrocket.com";
+        passwordCommand = "gpg -dq ${builtins.getEnv "HOME"}/.dustin@majorrocket.com-password.gpg";
+        mbsync = {
+          enable = true;
+          create = "maildir";
+          expunge = "maildir";
+        };
+        msmtp.enable = true;
+        notmuch.enable = true;
+        aerc.enable = true;
+        # himalaya = {
+        #   enable = true;
+        # };
+        signature = {
+          text = ''Dustin Swan | Major Rocket'';
+          showSignature = "append";
+        };
+      };
     };
   };
+
+# TODO: home-manager now supports all this, don't need to do custom config files
 
   home.file.vdirsyncer = {
     target = ".config/vdirsyncer/config";

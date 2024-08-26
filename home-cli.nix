@@ -30,11 +30,16 @@ in
     weechat
     sttr # string operations. e.g. sttr md5 "Hello World"; sttr snake "ChangeCase"
     imagemagick
+    # visidata
     magic-wormhole
     termscp # SCP/SFTP/FTP/S3
     nodejs
+    pipx
     yarn
     php83
+    stack
+    ruby
+    # haskellPackages.ghcup
     php83Packages.composer
     nodePackages.typescript-language-server
     nodePackages.stylelint
@@ -113,7 +118,7 @@ in
     syntaxHighlighting.enable = true;
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "httpie" "aws" "fd" "fzf" "mosh" "npm" "ripgrep" "rsync" "sudo" "yarn" "vi-mode" ];
+      plugins = [ "git" "httpie" "aws" "fzf" "mosh" "npm" "rsync" "sudo" "yarn" "vi-mode" ];
     };
     syntaxHighlighting.catppuccin.enable = true;
   };
