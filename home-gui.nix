@@ -1,7 +1,6 @@
 { pkgs, ... }:
 
 {
-  # home.packages = with pkgs; [ iosevka-bin ];
   fonts.fontconfig.enable = true;
 
   programs.alacritty = {
@@ -22,6 +21,5 @@
         size = 16.0;
       };
     };
-    catppuccin.enable = true;
   };
 }

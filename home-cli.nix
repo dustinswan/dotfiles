@@ -2,6 +2,7 @@
 
 let
   secrets = import ./secrets.nix;
+  nixvim = import (builtins.fetchGit { url = "https://github.com/nix-community/nixvim"; });
 in
 {
   home.stateVersion = "18.09";
@@ -9,8 +10,15 @@ in
   home.username = "dustinswan";
   home.homeDirectory = "/Users/dustinswan";
 
+  nix = {
+    package = pkgs.nix;
+    settings.experimental-features = [ "nix-command" "flakes" ];
+  };
+
   imports = [
     <catppuccin/modules/home-manager>
+    nixvim.homeManagerModules.nixvim
+    ./home-nvim.nix
   ];
 
   home.packages = with pkgs; [
@@ -21,7 +29,7 @@ in
     httpie
     ngrok
     ddev
-    bitwarden-cli
+    # bitwarden-cli
     mkcert
     gnupg
     rage
@@ -38,6 +46,7 @@ in
     yarn
     php83
     stack
+    cargo
     ruby
     # haskellPackages.ghcup
     php83Packages.composer
@@ -70,6 +79,11 @@ in
 
   xdg.enable = true;
 
+  catppuccin = {
+    enable = true;
+    flavor = "mocha";
+  };
+
   programs.home-manager.enable = true;
 
   programs.tmux = {
@@ -97,19 +111,19 @@ in
     extraConfig = ''
       set -ag terminal-overrides ",xterm-256color:RGB"
     '';
-    catppuccin.enable = true;
   };
 
   programs.eza = {
     enable = true;
     enableZshIntegration = true;
+    enableFishIntegration = true;
     git = true;
   };
 
   programs.zoxide = {
-    # z doc -> cd ~/Documents; zi -> interactive
     enable = true;
     enableZshIntegration = true;
+    enableFishIntegration = true;
   };
 
   programs.zsh = {
@@ -118,39 +132,57 @@ in
     syntaxHighlighting.enable = true;
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" "httpie" "aws" "fzf" "mosh" "npm" "rsync" "sudo" "yarn" "vi-mode" ];
+      plugins = [ "git" "httpie" "aws" "mosh" "npm" "rsync" "sudo" "yarn" "vi-mode" ];
     };
-    syntaxHighlighting.catppuccin.enable = true;
+  };
+
+  programs.fish = {
+    enable = true;
+    plugins = [
+      {
+        name = "plugin-git";
+        src = pkgs.fishPlugins.plugin-git.src;
+      }
+      {
+        name = "foreign-env";
+        src = pkgs.fetchFromGitHub {
+          owner = "oh-my-fish";
+          repo = "plugin-foreign-env";
+          rev = "dddd9213272a0ab848d474d0cbde12ad034e65bc";
+          sha256 = "00xqlyl3lffc5l0viin1nyp819wf81fncqyz87jx8ljjdhilmgbs";
+        };
+      }
+    ];
+
+    # https://codeberg.org/adamcstephens/dotfiles/src/commit/e14f35f6e9a9cb9174016948c512c0db364e0dec/apps/fish/init.fish
+    shellInit = ''
+      fenv source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+      source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+      source /nix/var/nix/profiles/default/etc/profile.d/nix.fish
+    '';
   };
 
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
+    # enableFishIntegration = true;
   };
 
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
-    catppuccin.enable = true;
+    enableFishIntegration = true;
   };
 
+  # programs.skim = {
+  #   enable = true;
+  #   enableFishIntegration = true;
+  #   enableZshIntegration = true;
+  # };
   programs.fzf = {
-    # ctrl-t, ctrl-r, ssh **<tab>
     enable = true;
+    enableFishIntegration = true;
     enableZshIntegration = true;
-    defaultCommand = "fd --type file --color=always";
-    defaultOptions = [
-      "--height 40%"
-      "--border"
-      "--ansi"
-      "--color bg+:#302D41,bg:#1E1E2E,spinner:#F8BD96,hl:#F28FAD"
-      "--color=fg:#D9E0EE,header:#F28FAD,info:#DDB6F2,pointer:#F8BD96"
-      "--color=marker:#F8BD96,fg+:#F2CDCD,prompt:#DDB6F2,hl+:#F28FAD"
-    ];
-
-    fileWidgetCommand = "fd --type file --color=always";
-    fileWidgetOptions = [ "--min-height 30 --preview-window noborder --preview '(bat --style=numbers,changes --wrap never --color always {} || cat {} || tree -C {}) 2> /dev/null'" ];
-    catppuccin.enable = true;
   };
 
   programs.ssh = {
@@ -189,41 +221,16 @@ in
     userName = "Dustin Swan";
     userEmail = "dustin@dustinswan.com";
     signing = {
-      # signByDefault = true;
+      signByDefault = true;
       key = "AD11750151C10881970BD943AB49BD6B2B3A6377";
     };
-    delta = {
-      enable = true;
-      catppuccin.enable = true;
-    };
+    delta.enable = true;
   };
 
-  programs.lazygit = {
-    enable = true;
-    catppuccin.enable = true;
-  };
+  programs.lazygit.enable = true;
+  programs.gitui.enable = true;
 
-  programs.gitui = {
-    enable = true;
-    catppuccin.enable = true;
-  };
-
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-    vimdiffAlias = true;
-    withNodeJs = true;
-    withPython3 = true;
-    withRuby = true;
-  };
-  # xdg.configFile."nvim/lua/plugins/lazyvim-plugins.lua".source = ./lazyvim-plugins.lua;
-
-  programs.bat = {
-    enable = true; 
-    catppuccin.enable = true;
-  };
-
+  programs.bat.enable = true; 
   programs.gpg.enable = true;
   programs.tealdeer.enable = true;
   programs.ripgrep.enable = true;
@@ -231,6 +238,7 @@ in
   programs.keychain = {
     enable = true;
     enableZshIntegration = true;
+    enableFishIntegration = true;
     inheritType = "any";
     agents = [ "gpg" "ssh" ];
     keys = [ "id_rsa" "id_rsa_mr" "2B3A6377" ];
