@@ -34,12 +34,14 @@
       { key = "<leader>e"; action = "<cmd>Neotree toggle<cr>"; }
       { key = "<leader>ff"; action = "<cmd>Telescope find_files<cr>"; }
       { key = "<leader>fr"; action = "<cmd>Telescope oldfiles<cr>"; }
+      { key = "<leader>/"; action = "<cmd>Telescope live_grep<cr>"; }
       { key = "<leader>bd"; action = "<cmd>bdelete<cr>"; }
       { key = "<S-l>"; action = "<cmd>bnext<cr>"; }
       { key = "<S-h>"; action = "<cmd>bprev<cr>"; }
     ];
 
     plugins = {
+      avante.enable = true;
       bufferline.enable = true;
       cmp = {
         enable = true;
@@ -69,16 +71,23 @@
         servers = {
           eslint.enable = true;
           html.enable = true;
-          lua-ls.enable = true;
-          nil-ls.enable = true;
+          lua_ls.enable = true;
+          nil_ls.enable = true;
           # phpactor.enable = true;
           intelephense.enable = true;
+          intelephense.package = null;
           # rust-analyzer.enable = true;
-          tsserver.enable = true;
-
+          ts_ls.enable = true;
+          roc_ls.enable = true;
+          roc_ls.package = null;
         };
       };
-      lsp-format.enable = true;
+      none-ls = {
+        enable = true;
+        sources.formatting.blade_formatter.enable = true;
+        sources.formatting.blade_formatter.package = null;
+      };
+      # lsp-format.enable = true;
       lsp-lines.enable = true;
       neo-tree.enable = true;
       notify.enable = true;
@@ -92,13 +101,14 @@
         settings.org_default_notes_file = "~/Sync/Notes/Main.org";
       };
       persistence.enable = true;
-      surround.enable = true;
+      vim-surround.enable = true;
       telescope.enable = true;
       tmux-navigator.enable = true;
       todo-comments.enable = true;
       treesitter.enable = true;
       trouble.enable = true;
       ts-autotag.enable = true;
+      web-devicons.enable = true;
       which-key.enable = true;
     };
   };

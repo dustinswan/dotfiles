@@ -24,16 +24,22 @@ in
   home.packages = with pkgs; [
     fd # `fd PATTERN`; `fd` is like ls-R; `-e ext` searches by extension; `-g` for glob; `-H` searches hidden files; `-u` for unrestricted; `fd -e jpg -x convert {} {.}.png`
     mosh # like ssh but better on spotty networks
+    aider-chat
     w3m
     wget
-    httpie
+    httpie # HTTPie CLI — modern, user-friendly command-line HTTP client for the API era. JSON support, colors, sessions, downloads, plugins & more
+    monolith # CLI tool for saving complete web pages as a single HTML file
+    supabase-cli
     ngrok
     ddev
     # bitwarden-cli
     mkcert
     gnupg
-    rage
+    gitu # A TUI Git client inspired by Magit
+    rage # A simple, secure and modern file encryption tool (and Rust library) with small explicit keys, no config options, and UNIX-style composability
     sd
+    jq
+    sq
     cacert
     weechat
     sttr # string operations. e.g. sttr md5 "Hello World"; sttr snake "ChangeCase"
@@ -44,12 +50,14 @@ in
     nodejs
     pipx
     yarn
-    php83
+    # php83
     stack
     cargo
     ruby
+    llvm
+    blade-formatter
     # haskellPackages.ghcup
-    php83Packages.composer
+    # php83Packages.composer
     nodePackages.typescript-language-server
     nodePackages.stylelint
     nodePackages.js-beautify
@@ -75,6 +83,8 @@ in
     "$HOME/.local/bin"
     "$HOME/.cargo/bin"
     "$HOME/.npm-global/bin"
+    "/opt/homebrew/bin"
+    "/Users/dustinswan/Downloads/roc_nightly-macos_apple_silicon-2024-10-09-bf5b13e237f"
   ];
 
   xdg.enable = true;
