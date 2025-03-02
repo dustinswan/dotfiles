@@ -9,6 +9,7 @@ in
 
   home.username = "dustinswan";
   home.homeDirectory = "/Users/dustinswan";
+  home.shell.enableShellIntegration = true;
 
   nix = {
     package = pkgs.nix;
@@ -22,42 +23,19 @@ in
   ];
 
   home.packages = with pkgs; [
-    fd # `fd PATTERN`; `fd` is like ls-R; `-e ext` searches by extension; `-g` for glob; `-H` searches hidden files; `-u` for unrestricted; `fd -e jpg -x convert {} {.}.png`
-    mosh # like ssh but better on spotty networks
-    aider-chat
-    w3m
-    wget
-    httpie # HTTPie CLI — modern, user-friendly command-line HTTP client for the API era. JSON support, colors, sessions, downloads, plugins & more
-    monolith # CLI tool for saving complete web pages as a single HTML file
     supabase-cli
+    bitwarden-cli
+    fd
     ngrok
     ddev
-    # bitwarden-cli
     mkcert
     gnupg
-    gitu # A TUI Git client inspired by Magit
-    rage # A simple, secure and modern file encryption tool (and Rust library) with small explicit keys, no config options, and UNIX-style composability
-    sd
-    jq
-    sq
     cacert
-    weechat
-    sttr # string operations. e.g. sttr md5 "Hello World"; sttr snake "ChangeCase"
-    imagemagick
-    # visidata
-    magic-wormhole
-    termscp # SCP/SFTP/FTP/S3
     nodejs
-    pipx
-    yarn
-    # php83
-    stack
-    cargo
-    ruby
-    llvm
+    typescript
+    pnpm
+    uv
     blade-formatter
-    # haskellPackages.ghcup
-    # php83Packages.composer
     nodePackages.typescript-language-server
     nodePackages.stylelint
     nodePackages.js-beautify
@@ -84,7 +62,6 @@ in
     "$HOME/.cargo/bin"
     "$HOME/.npm-global/bin"
     "/opt/homebrew/bin"
-    "/Users/dustinswan/Downloads/roc_nightly-macos_apple_silicon-2024-10-09-bf5b13e237f"
   ];
 
   xdg.enable = true;
@@ -107,7 +84,7 @@ in
     terminal = "tmux-256color";
     plugins = with pkgs.tmuxPlugins; [
       sensible
-      resurrect # prefix ctrl-s to save sessions; prefix ctrl-r to restore
+      # resurrect # prefix ctrl-s to save sessions; prefix ctrl-r to restore
       continuum # automatically save the session every 15 minutes
       sessionist # prefix g to switch sessions; prefix C to create; prefix X to kill; prefix S to switch back; prefix @ to promote; prefix t f to join marked pane
       pain-control # prefix |, -, \, _ to split; prefix h, j, k, l to switch; prefix H, J, K, L to resize; prefix <, > to move windows
@@ -115,35 +92,25 @@ in
       yank # prefix y -> copy command line to clipboard; prefix Y -> copy pwd to clipboard; search + y -> copy to clipboard
       # open # highlight: o -> open; ctrl-o -> $EDITOR; S -> web search
       vim-tmux-navigator # ctrl-h, -j, -k, -l -> move between tmux and vim splits
-      extrakto # prefix tab -> fuzzy find text on screen; enter to copy; tab to paste 
+      extrakto # prefix tab -> fuzzy find text on screen; enter to copy; tab to paste
       fingers # prefix F -> copy/open/edit items on screen by letter
     ];
+    # Remove that SHELL thing when fixed upstream
     extraConfig = ''
       set -ag terminal-overrides ",xterm-256color:RGB"
+      set -g default-command "$SHELL"
     '';
   };
 
   programs.eza = {
     enable = true;
-    enableZshIntegration = true;
     enableFishIntegration = true;
     git = true;
   };
 
   programs.zoxide = {
     enable = true;
-    enableZshIntegration = true;
     enableFishIntegration = true;
-  };
-
-  programs.zsh = {
-    enable = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-    oh-my-zsh = {
-      enable = true;
-      plugins = [ "git" "httpie" "aws" "mosh" "npm" "rsync" "sudo" "yarn" "vi-mode" ];
-    };
   };
 
   programs.fish = {
@@ -164,36 +131,19 @@ in
       }
     ];
 
+    interactiveShellInit = "set fish_greeting";
+
     # https://codeberg.org/adamcstephens/dotfiles/src/commit/e14f35f6e9a9cb9174016948c512c0db364e0dec/apps/fish/init.fish
     shellInit = ''
       fenv source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
-      source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+      fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
       source /nix/var/nix/profiles/default/etc/profile.d/nix.fish
     '';
   };
 
-  programs.direnv = {
-    enable = true;
-    enableZshIntegration = true;
-    # enableFishIntegration = true;
-  };
-
-  programs.starship = {
-    enable = true;
-    enableZshIntegration = true;
-    enableFishIntegration = true;
-  };
-
-  # programs.skim = {
-  #   enable = true;
-  #   enableFishIntegration = true;
-  #   enableZshIntegration = true;
-  # };
-  programs.fzf = {
-    enable = true;
-    enableFishIntegration = true;
-    enableZshIntegration = true;
-  };
+  programs.direnv.enable = true;
+  programs.starship.enable = true;
+  programs.fzf.enable = true;
 
   programs.ssh = {
     enable = true;
@@ -223,6 +173,20 @@ in
         identityFile = "/Users/dustinswan/.ssh/id_rsa_mr";
         identitiesOnly = true;
       };
+
+      mr-prod3 = {
+        inherit (secrets.mr-prod3) user;
+        inherit (secrets.mr-prod3) hostname;
+        identityFile = "/Users/dustinswan/.ssh/id_rsa_mr";
+        identitiesOnly = true;
+      };
+
+      mr-prod4 = {
+        inherit (secrets.mr-prod4) user;
+        inherit (secrets.mr-prod4) hostname;
+        identityFile = "/Users/dustinswan/.ssh/id_rsa_mr";
+        identitiesOnly = true;
+      };
     };
   };
 
@@ -237,17 +201,13 @@ in
     delta.enable = true;
   };
 
-  programs.lazygit.enable = true;
   programs.gitui.enable = true;
-
-  programs.bat.enable = true; 
+  programs.bat.enable = true;
   programs.gpg.enable = true;
-  programs.tealdeer.enable = true;
   programs.ripgrep.enable = true;
 
   programs.keychain = {
     enable = true;
-    enableZshIntegration = true;
     enableFishIntegration = true;
     inheritType = "any";
     agents = [ "gpg" "ssh" ];

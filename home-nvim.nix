@@ -10,6 +10,7 @@
 
     colorschemes.catppuccin.enable = true;
     colorschemes.catppuccin.settings.transparent_background = true;
+    colorschemes.catppuccin.settings.flavour = "auto";
 
     opts = {
       number = true;
@@ -55,21 +56,22 @@
       cmp-nvim-lsp.enable = true;
       cmp-buffer.enable = true;
       cmp-path.enable = true;
-      codeium-nvim.enable = true;
       commentary.enable = true;
       # conform-nvim.enable = true;
       dashboard.enable = true;
       emmet.enable = true;
+      flash.enable = true;
       gitsigns.enable = true;
       lazygit.enable = true;
       lint.enable = true;
       lualine.enable = true;
       luasnip.enable = true;
-      lsp = { 
+      lsp = {
         enable = true;
         inlayHints = true;
         servers = {
           eslint.enable = true;
+          elixirls.enable = true;
           html.enable = true;
           lua_ls.enable = true;
           nil_ls.enable = true;
@@ -89,6 +91,7 @@
       };
       # lsp-format.enable = true;
       lsp-lines.enable = true;
+      markview.enable = true;
       neo-tree.enable = true;
       notify.enable = true;
       nix.enable = true;
@@ -106,10 +109,32 @@
       tmux-navigator.enable = true;
       todo-comments.enable = true;
       treesitter.enable = true;
+      trim = {
+        enable = true;
+        settings = {
+          highlight = true;
+          trim_on_write = false;
+        };
+      };
       trouble.enable = true;
       ts-autotag.enable = true;
       web-devicons.enable = true;
       which-key.enable = true;
     };
+
+    # extraPlugins = [(pkgs.vimUtils.buildVimPlugin {
+    #   name = "vim-lumen";
+    #   src = pkgs.fetchFromGitHub {
+    #     owner = "f-person";
+    #     repo = "auto-dark-mode.nvim";
+    #     rev = "4531f8b2b09ed8f0b8875a706419f9cecda1d969";
+    #     hash = "sha256-JPoyRRwDJ9KOGWnqOEG4VkEX4rJHFhFYV3bwS9F2f9E=";
+    #   };
+    # })];
+
+    # extraConfigLua = ''
+    #   local auto_dark_mode = require('auto-dark-mode')
+    #   auto_dark_mode.setup()
+    # '';
   };
 }
