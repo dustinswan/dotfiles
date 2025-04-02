@@ -30,4 +30,39 @@ in {
       # keybind = "global:cmd+grave_accent=toggle_quick_terminal";
     };
   };
+
+  programs.zed-editor = {
+    enable = true;
+    userSettings = {
+      vim_mode = true;
+      theme = {
+        mode = "system";
+        # light = "Catppuccin Latte";
+        # dark = "Catppuccin Frappé";
+      };
+      buffer_font_size = 16;
+      buffer_font_family = "Iosevka Nerd Font Mono";
+      # "ui_font_family": "Iosevka Nerd Font";
+      vim = {
+        enable_vim_sneak = true;
+        use_smartcase_find = true;
+      };
+    };
+  };
+
+  home.file.halloy = {
+    target = ".config/halloy/config.toml";
+    text = ''
+theme = "catppuccin-mocha"
+
+[servers.liberachat]
+nickname = "sw4n"
+server = "irc.libera.chat"
+nick_password_file = "/Users/dustinswan/.liberachat-nickserv-password"
+channels = ["#halloy", "#haskell", "#nixos"]
+
+[font]
+size = 16
+    '';
+  };
 }
