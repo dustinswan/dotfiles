@@ -5,7 +5,7 @@ let
   nixvim = import (builtins.fetchGit { url = "https://github.com/nix-community/nixvim"; });
 in
 {
-  home.stateVersion = "18.09";
+  home.stateVersion = "24.11";
 
   home.username = "dustinswan";
   home.homeDirectory = "/Users/dustinswan";
@@ -22,9 +22,19 @@ in
     ./home-nvim.nix
   ];
 
+  # Remove when bitwarden-cli is fixed upstream
+  # https://github.com/NixOS/nixpkgs/issues/339576#issuecomment-2574076670
+  nixpkgs.overlays = [
+    (final: prev: { bitwarden-cli = prev.bitwarden-cli.overrideAttrs (oldAttrs: { nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ prev.llvmPackages_18.stdenv.cc ]; stdenv = prev.llvmPackages_18.stdenv; }); })
+  ];
+
   home.packages = with pkgs; [
     supabase-cli
     bitwarden-cli
+    awscli2
+    claude-code
+    aider-chat
+    pandoc
     fd
     ngrok
     ddev
@@ -69,6 +79,7 @@ in
   catppuccin = {
     enable = true;
     flavor = "mocha";
+    zed.flavor = "latte"; # TODO waiting for auto
   };
 
   programs.home-manager.enable = true;
@@ -102,17 +113,6 @@ in
     '';
   };
 
-  programs.eza = {
-    enable = true;
-    enableFishIntegration = true;
-    git = true;
-  };
-
-  programs.zoxide = {
-    enable = true;
-    enableFishIntegration = true;
-  };
-
   programs.fish = {
     enable = true;
     plugins = [
@@ -143,7 +143,20 @@ in
 
   programs.direnv.enable = true;
   programs.starship.enable = true;
-  programs.fzf.enable = true;
+  programs.television.enable = true;
+  programs.zoxide.enable = true;
+  programs.bat.enable = true;
+  programs.ripgrep.enable = true;
+
+  programs.eza = {
+    enable = true;
+    git = true;
+  };
+
+  programs.tealdeer = {
+    enable = true;
+    settings.updates.auto_update = true;
+  };
 
   programs.ssh = {
     enable = true;
@@ -199,16 +212,17 @@ in
       key = "AD11750151C10881970BD943AB49BD6B2B3A6377";
     };
     delta.enable = true;
+    extraConfig = {
+      push.autoSetupRemote = true;
+    };
   };
 
   programs.gitui.enable = true;
-  programs.bat.enable = true;
+
   programs.gpg.enable = true;
-  programs.ripgrep.enable = true;
 
   programs.keychain = {
     enable = true;
-    enableFishIntegration = true;
     inheritType = "any";
     agents = [ "gpg" "ssh" ];
     keys = [ "id_rsa" "id_rsa_mr" "2B3A6377" ];
