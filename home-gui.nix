@@ -1,12 +1,26 @@
 { pkgs, ... }:
 
-# Ghostty not building on my mac at the moment
+# TODO: Ghostty not building on my mac at the moment
 let
   ghostty-mock = pkgs.writeShellScriptBin "gostty-mock" ''
     true
     '';
 in {
   fonts.fontconfig.enable = true;
+
+  programs.halloy = {
+    enable = true;
+    settings = {
+      theme = "catppuccin-mocha";
+
+      servers.liberachat = {
+        nickname = "sw4n";
+        server = "irc.libera.chat";
+        nick_password_file = "/Users/dustinswan/.liberachat-nickserv-password";
+        channels = ["#halloy" "#haskell" "#nixos"];
+      };
+    };
+  };
 
   programs.ghostty = {
     enable = true;
@@ -17,7 +31,7 @@ in {
       font-family = "Iosevka NFM";
       font-size = 16;
       font-thicken = true;
-      # theme = "dark:catppuccin-mocha,light:catppuccin-latte";
+      # theme = "dark:catppuccin-mocha,light:catppuccin-latte"; # TODO: waiting on all cli apps to handle auto switching too
       theme = "catppuccin-mocha";
       background-opacity = 0.95;
       background-blur-radius = 15;
@@ -47,22 +61,7 @@ in {
         enable_vim_sneak = true;
         use_smartcase_find = true;
       };
+      format_on_save = "off";
     };
-  };
-
-  home.file.halloy = {
-    target = ".config/halloy/config.toml";
-    text = ''
-theme = "catppuccin-mocha"
-
-[servers.liberachat]
-nickname = "sw4n"
-server = "irc.libera.chat"
-nick_password_file = "/Users/dustinswan/.liberachat-nickserv-password"
-channels = ["#halloy", "#haskell", "#nixos"]
-
-[font]
-size = 16
-    '';
   };
 }
