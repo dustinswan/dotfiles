@@ -1,6 +1,6 @@
 { pkgs, ... }:
 
-# TODO: Ghostty not building on my mac at the moment
+# Ghostty not building on my mac at the moment
 let
   ghostty-mock = pkgs.writeShellScriptBin "gostty-mock" ''
     true
@@ -11,7 +11,7 @@ in {
   programs.halloy = {
     enable = true;
     settings = {
-      theme = "catppuccin-mocha";
+      # theme = "catppuccin-mocha";
 
       servers.liberachat = {
         nickname = "sw4n";
@@ -31,8 +31,8 @@ in {
       font-family = "Iosevka NFM";
       font-size = 16;
       font-thicken = true;
-      # theme = "dark:catppuccin-mocha,light:catppuccin-latte"; # TODO: waiting on all cli apps to handle auto switching too
-      theme = "catppuccin-mocha";
+      theme = "dark:catppuccin-mocha,light:catppuccin-latte"; # TODO: waiting on all cli apps to handle auto switching too
+      # theme = "catppuccin-mocha";
       background-opacity = 0.95;
       background-blur-radius = 15;
       window-padding-x = 12;
@@ -41,7 +41,6 @@ in {
       macos-titlebar-style = "tabs";
       macos-option-as-alt = "left";
       copy-on-select = "clipboard";
-      # keybind = "global:cmd+grave_accent=toggle_quick_terminal";
     };
   };
 
@@ -51,8 +50,8 @@ in {
       vim_mode = true;
       theme = {
         mode = "system";
-        # light = "Catppuccin Latte";
-        # dark = "Catppuccin Frappé";
+        light = "Catppuccin Latte";
+        dark = "Catppuccin Frappé";
       };
       buffer_font_size = 16;
       buffer_font_family = "Iosevka Nerd Font Mono";

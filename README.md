@@ -7,3 +7,4 @@ I'm going all in on [Nix](https://nixos.org/) & [home-manager](https://github.co
 - **home-mail**: email, contacts & calendar
 - **home-mac**: Mac-only
 - **home-linux**: Linux-only
+- **home-nvim**: NixVim

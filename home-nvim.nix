@@ -57,6 +57,7 @@
       cmp-buffer.enable = true;
       cmp-path.enable = true;
       commentary.enable = true;
+      csvview.enable = true;
       # conform-nvim.enable = true;
       dashboard.enable = true;
       emmet.enable = true;
