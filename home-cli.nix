@@ -143,13 +143,6 @@ in
     ];
 
     interactiveShellInit = "set fish_greeting";
-
-    # https://codeberg.org/adamcstephens/dotfiles/src/commit/e14f35f6e9a9cb9174016948c512c0db364e0dec/apps/fish/init.fish
-    shellInit = ''
-      fenv source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
-      fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-      source /nix/var/nix/profiles/default/etc/profile.d/nix.fish
-    '';
   };
 
   programs.nix-your-shell.enable = true;
