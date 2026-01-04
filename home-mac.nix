@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 {
+  home.homeDirectory = "/Users/dustinswan";
+
   home.packages = with pkgs; [
     pinentry_mac
     terminal-notifier

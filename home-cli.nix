@@ -8,7 +8,6 @@ in
   home.stateVersion = "24.11";
 
   home.username = "dustinswan";
-  home.homeDirectory = "/Users/dustinswan";
   home.shell.enableShellIntegration = true;
 
   nix = {
@@ -22,24 +21,29 @@ in
     ./home-nvim.nix
   ];
 
-  # Remove when bitwarden-cli is fixed upstream
-  # https://github.com/NixOS/nixpkgs/issues/339576#issuecomment-2574076670
-  nixpkgs.overlays = [
-    (final: prev: { bitwarden-cli = prev.bitwarden-cli.overrideAttrs (oldAttrs: { nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ prev.llvmPackages_18.stdenv.cc ]; stdenv = prev.llvmPackages_18.stdenv; }); })
-  ];
-
   home.packages = with pkgs; [
     supabase-cli
     bitwarden-cli
     awscli2
     claude-code
-    opencode
+    opencode # see also: aider; toad;
     fd
-    poppler-utils
-    xan # e.g. xan slice 3,2 file.csv | xan behead | xan view -An
-    ngrok
+    poppler-utils # pdftotext
+    xan # e.g. xan slice 3,2 file.csv | xan behead | xan view -An; see also: csvi
+    doxx # read docx files
+    sqlit-tui # see also: harlequin; lazysql; gobang; dblab
+    # snitch # see also: bandwhich
+    epy # ebook reader. see also: erp; bookokrat; lue
+    # mimic # tts engine, used by epy
+    posting # see also: httpie, yapi, sled, Yaak (GUI), Bruno (GUI)
+    croc magic-wormhole # transfer files
+    # calcure # calendar cli app, can point to ics files or URL
+    dust duf dua # disk usage
+    doggo # dig
     ddev
+    ngrok
     mkcert
+    ffmpeg
     gnupg
     cacert
     nodejs
@@ -49,12 +53,12 @@ in
     cargo
     uv
     blade-formatter
-    nil
-    nixd
+    nixd # Nix language server
     nodePackages.typescript-language-server
     nodePackages.stylelint
     nodePackages.js-beautify
     nodePackages.intelephense
+    dict
     ispell
     aspell
     aspellDicts.en
@@ -148,13 +152,16 @@ in
     '';
   };
 
+  programs.nix-your-shell.enable = true;
   programs.direnv.enable = true;
   programs.starship.enable = true;
   # programs.television.enable = true; # WAIT config currently broken
+  # programs.nix-search-tv.enable = true;
   programs.fzf.enable = true; # used by other apps, tmux, etc.
   programs.zoxide.enable = true;
   programs.bat.enable = true;
   programs.ripgrep.enable = true;
+  programs.ripgrep-all.enable = true;
   programs.yazi.enable = true;
 
   programs.eza = {
@@ -166,6 +173,8 @@ in
     enable = true;
     settings.updates.auto_update = true;
   };
+
+  # programs.intelli-shell.enable = true;
 
   programs.ssh = {
     enable = true;
@@ -215,16 +224,21 @@ in
 
   programs.git = {
     enable = true;
-    userName = "Dustin Swan";
-    userEmail = "dustin@dustinswan.com";
     signing = {
       signByDefault = true;
-      key = "AD11750151C10881970BD943AB49BD6B2B3A6377";
+      key = "30D46587E2100467";
     };
-    delta.enable = true;
-    extraConfig = {
+    settings = {
       push.autoSetupRemote = true;
+      user.email = "dustin@dustinswan.com";
+      user.name = "Dustin Swan";
     };
+  };
+  programs.gh.enable = true;
+
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
   };
 
   programs.gitui.enable = true;

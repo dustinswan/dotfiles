@@ -31,8 +31,8 @@ in {
       font-family = "Iosevka NFM";
       font-size = 16;
       font-thicken = true;
-      theme = "dark:catppuccin-mocha,light:catppuccin-latte"; # TODO: waiting on all cli apps to handle auto switching too
-      # theme = "catppuccin-mocha";
+      # theme = "dark:catppuccin-mocha,light:catppuccin-latte"; # TODO: waiting on all cli apps to handle auto switching too
+      theme = "catppuccin-mocha";
       background-opacity = 0.95;
       background-blur-radius = 15;
       window-padding-x = 12;

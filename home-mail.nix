@@ -5,6 +5,10 @@
   programs.msmtp.enable = true;
   programs.himalaya.enable = true;
   programs.vdirsyncer.enable = true;
+  programs.aerc = {
+    enable = true;
+    extraConfig.general.unsafe-accounts-conf = true;
+  };
 
   accounts.email = {
     maildirBasePath = "Mail";
@@ -35,6 +39,7 @@
           expunge = "maildir";
         };
         msmtp.enable = true;
+        aerc.enable = true;
         himalaya = {
           enable = true;
           settings = {
@@ -47,35 +52,6 @@
         };
         signature = {
           text = ''Dustin Swan | dustinswan.com'';
-          showSignature = "append";
-        };
-      };
-
-      MajorRocket = {
-        flavor = "gmail.com";
-        address = "dustin@majorrocket.com";
-        realName = "Dustin Swan";
-        primary = false;
-        folders = {
-          inbox = "Inbox";
-          drafts = "[Gmail]/Drafts";
-          sent = "[Gmail]/Sent Mail";
-          trash = "[Gmail]/Trash";
-        };
-        userName = "dustin@majorrocket.com";
-        passwordCommand = "gpg -dq ${builtins.getEnv "HOME"}/.dustin@majorrocket.com-password.gpg";
-        mbsync = {
-          enable = true;
-          create = "maildir";
-          expunge = "maildir";
-        };
-        msmtp.enable = true;
-        aerc.enable = true;
-        # himalaya = {
-        #   enable = true;
-        # };
-        signature = {
-          text = ''Dustin Swan | Major Rocket'';
           showSignature = "append";
         };
       };
