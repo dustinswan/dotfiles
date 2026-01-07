@@ -8,6 +8,11 @@ let
 in {
   fonts.fontconfig.enable = true;
 
+  home.packages = with pkgs; [
+    localsend
+    moonlight
+  ];
+
   programs.halloy = {
     enable = true;
     settings = {
