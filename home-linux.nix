@@ -11,6 +11,7 @@
     nerd-fonts.iosevka
     high-tide tidal-hifi
     deskflow
+    sunshine
   ];
 
   # home.keyboard.options = [ "ctrl:nocaps" "compose:ralt" ];

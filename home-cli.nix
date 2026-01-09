@@ -128,6 +128,11 @@ in
 
   programs.fish = {
     enable = true;
+    shellAbbrs = {
+      nrs = "sudo nixos-rebuild switch";
+      nrsu = "sudo nixos-rebuild switch --upgrade";
+      hms = "home-manager switch";
+    };
     plugins = [
       {
         name = "plugin-git";
