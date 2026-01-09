@@ -134,23 +134,23 @@
     description = "Dustin Swan";
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs.fish;
-    packages = with pkgs; [
-    #  thunderbird
-    ];
+    # packages = with pkgs; [  ];
   };
 
   programs.fish.enable = true;
   programs.steam.enable = true;
+  # programs.xwayland.enable = true;
+  # programs.hyprland.enable = true;
+  # programs.niri.enable = true;
+  # programs.dms-shell.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # List packages installed in system profile
   environment.systemPackages = with pkgs; [
-  vim
-  git
-  #  wget
+    vim
+    git
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -170,21 +170,12 @@
   networking.firewall.allowedTCPPorts = [
     24800 # Deskflow
     24801 # Deskflow
-    # 47984 # Sunshine
-    # 47989 # Sunshine
-    # 47990 # Sunshine
-    # 48010 # Sunshine
     53317 # LocalSend
   ];
 
   networking.firewall.allowedUDPPorts = [
     24800 # Deskflow
     24801 # Deskflow
-    # 47998 # Sunshine
-    # 47999 # Sunshine
-    # 48000 # Sunshine
-    # 48002 # Sunshine
-    # 48010 # Sunshine
     53317 # LocalSend
   ];
   # Or disable the firewall altogether.

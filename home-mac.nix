@@ -8,6 +8,9 @@
     terminal-notifier
   ];
 
+  programs.ghostty.package = pkgs.ghostty-bin;
+  programs.ghostty.settings.font-size = 16;
+
   home.file.gpg-agent = {
     target = ".gnupg/gpg-agent.conf";
     text = ''

@@ -24,11 +24,10 @@
   programs.ghostty = {
     enable = true;
     installBatSyntax = false;
-    package = pkgs.ghostty-bin;
 
     settings = {
       font-family = "Iosevka NFM";
-      font-size = 16;
+      font-size = 12;
       font-thicken = true;
       # theme = "dark:catppuccin-mocha,light:catppuccin-latte"; # TODO: waiting on all cli apps to handle auto switching too
       theme = "catppuccin-mocha";
