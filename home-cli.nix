@@ -26,6 +26,7 @@ in
     bitwarden-cli
     awscli2
     claude-code
+    claude-code-acp
     opencode # see also: aider; toad;
     fd
     poppler-utils # pdftotext
@@ -76,6 +77,7 @@ in
     inherit (secrets.openai) OPENAI_API_KEY;
     inherit (secrets.gemini) GEMINI_API_KEY;
     inherit (secrets.gemini) GOOGLE_CLOUD_PROJECT;
+    inherit (secrets.anthropic) CLAUDE_CODE_OAUTH_TOKEN;
   };
 
   home.sessionPath = [
@@ -148,9 +150,9 @@ in
   programs.nix-your-shell.enable = true;
   programs.direnv.enable = true;
   programs.starship.enable = true;
-  # programs.television.enable = true; # WAIT config currently broken
-  # programs.nix-search-tv.enable = true;
-  programs.fzf.enable = true; # used by other apps, tmux, etc.
+  programs.television.enable = true; # WAIT config currently broken
+  programs.nix-search-tv.enable = true;
+  # programs.fzf.enable = true; # used by other apps, tmux, etc.
   programs.zoxide.enable = true;
   programs.bat.enable = true;
   programs.ripgrep.enable = true;

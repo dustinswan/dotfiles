@@ -33,16 +33,16 @@
 
     keymaps = [
       { key = "<leader>e"; action = "<cmd>Neotree toggle<cr>"; }
-      { key = "<leader>ff"; action = "<cmd>Telescope find_files<cr>"; }
-      { key = "<leader>fr"; action = "<cmd>Telescope oldfiles<cr>"; }
-      { key = "<leader>/"; action = "<cmd>Telescope live_grep<cr>"; }
+      { key = "<leader>f"; action = "<cmd>Tv files<cr>"; }
+      { key = "<leader>/"; action = "<cmd>Tv text<cr>"; }
       { key = "<leader>bd"; action = "<cmd>bdelete<cr>"; }
+      { key = "<leader>nd"; action = "<cmd>NoiceDismiss<cr>"; }
       { key = "<S-l>"; action = "<cmd>bnext<cr>"; }
       { key = "<S-h>"; action = "<cmd>bprev<cr>"; }
     ];
 
     plugins = {
-      avante.enable = true;
+      # avante.enable = true;
       bufferline.enable = true;
       cmp = {
         enable = true;
@@ -56,9 +56,17 @@
       cmp-nvim-lsp.enable = true;
       cmp-buffer.enable = true;
       cmp-path.enable = true;
+      codecompanion = {
+        enable = true;
+        settings = {
+          strategies = {
+            chat = { adapter = "claude_code"; };
+            inline = { adapter = "claude_code"; };
+          };
+        };
+      };
       commentary.enable = true;
       csvview.enable = true;
-      # conform-nvim.enable = true;
       dashboard.enable = true;
       emmet.enable = true;
       flash.enable = true;
@@ -98,7 +106,6 @@
       nix.enable = true;
       noice.enable = true;
       nvim-autopairs.enable = true;
-      oil.enable = true;
       orgmode = {
         enable = true;
         settings.org_agenda_files = "~/Sync/Notes/*";
@@ -106,7 +113,6 @@
       };
       persistence.enable = true;
       vim-surround.enable = true;
-      telescope.enable = true;
       tmux-navigator.enable = true;
       todo-comments.enable = true;
       treesitter.enable = true;
@@ -119,6 +125,7 @@
       };
       trouble.enable = true;
       ts-autotag.enable = true;
+      tv.enable = true;
       web-devicons.enable = true;
       which-key.enable = true;
     };

@@ -1,11 +1,6 @@
 { pkgs, ... }:
 
-# Ghostty not building on my mac at the moment
-let
-  ghostty-mock = pkgs.writeShellScriptBin "gostty-mock" ''
-    true
-    '';
-in {
+{
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
@@ -29,7 +24,7 @@ in {
   programs.ghostty = {
     enable = true;
     installBatSyntax = false;
-    package = ghostty-mock;
+    package = pkgs.ghostty-bin;
 
     settings = {
       font-family = "Iosevka NFM";
@@ -59,7 +54,6 @@ in {
       };
       buffer_font_size = 16;
       buffer_font_family = "Iosevka Nerd Font Mono";
-      # "ui_font_family": "Iosevka Nerd Font";
       vim = {
         enable_vim_sneak = true;
         use_smartcase_find = true;
