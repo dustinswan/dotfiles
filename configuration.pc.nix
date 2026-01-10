@@ -73,7 +73,7 @@
 
         # macOS-style Super/Cmd shortcuts (Dvorak physical positions)
         meta = {
-          a = "C-a";             # Cmd+a → select all
+          # a = "C-a";             # Cmd+a → select all
           i = "C-i";             # Cmd+c → copy (dvorak 'c' = qwerty 'i')
           k = "C-k";             # Cmd+t → new tab (dvorak 't' = qwerty 'k')
           l = "C-l";             # Cmd+n → new window (dvorak 'n' = qwerty 'l')

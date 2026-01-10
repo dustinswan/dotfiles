@@ -1,5 +1,9 @@
 {pkgs, lib, ... }:
 
+let
+  secrets = import ./secrets.nix;
+in
+
 {
   home.homeDirectory = "/home/dustinswan";
 
@@ -63,6 +67,22 @@
 
   services.syncthing = {
     enable = true;
+    settings = {
+      devices = {
+        "Laptop" = { id = secrets.syncthing.laptop; };
+        "Phone" = { id = secrets.syncthing.phone; };
+      };
+      folders = {
+        "Camera" = {
+          path = "~/Camera";
+          devices = [ "Laptop" "Phone" ];
+        };
+        "Sync" = {
+          path = "~/Sync";
+          devices = [ "Laptop" "Phone" ];
+        };
+      };
+    };
   };
 
   services.gpg-agent = {
