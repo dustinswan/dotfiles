@@ -245,6 +245,13 @@ in
 
   programs.gpg.enable = true;
 
+  programs.password-store = {
+    enable = true;
+    settings = {
+      PASSWORD_STORE_DIR = "$HOME/.password-store";
+    };
+  };
+
   programs.keychain = {
     enable = true;
     keys = [ "id_rsa" "id_rsa_mr" "2B3A6377" ];

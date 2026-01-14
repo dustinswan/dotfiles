@@ -81,6 +81,10 @@ in
           path = "~/Sync";
           devices = [ "Laptop" "Phone" ];
         };
+        "Passwords" = {
+          path = "~/.password-store";
+          devices = [ "Laptop" ];  # just Mac, not phone
+        };
       };
     };
   };
@@ -88,11 +92,21 @@ in
   services.gpg-agent = {
     enable = true;
     enableSshSupport = true;
-    defaultCacheTtl = 86400;
-    maxCacheTtl = 86400;
-    defaultCacheTtlSsh = 86400;
-    maxCacheTtlSsh = 86400;
+    defaultCacheTtl = 34560000;
+    maxCacheTtl = 34560000;
+    defaultCacheTtlSsh = 34560000;
+    maxCacheTtlSsh = 34560000;
     pinentry.package = pkgs.pinentry-all;
+  };
+
+  services.mbsync = {
+    enable = true;
+    frequency = "*:0/5";  # every 5 minutes
+  };
+
+  services.vdirsyncer = {
+    enable = true;
+    frequency = "*:0/15";  # every 15 minutes
   };
 
   # Niri config - imported from separate file

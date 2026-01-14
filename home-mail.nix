@@ -5,6 +5,7 @@
   programs.msmtp.enable = true;
   programs.himalaya.enable = true;
   programs.vdirsyncer.enable = true;
+  programs.khard.enable = true;
   programs.aerc = {
     enable = true;
     extraConfig.general.unsafe-accounts-conf = true;
@@ -32,7 +33,7 @@
           signByDefault = true;
           key = "AD11750151C10881970BD943AB49BD6B2B3A6377";
         };
-        passwordCommand = "gpg -dq ${builtins.getEnv "HOME"}/.dustinswan@fastmail.com-password.gpg";
+        passwordCommand = "pass show email/fastmail";
         mbsync = {
           enable = true;
           create = "maildir";
@@ -69,13 +70,33 @@
         };
         primary = true;
         remote = {
-          passwordCommand = ["~/dotfiles/bin/decrypt-password" "dustinswan@fastmail.com"];
+          passwordCommand = ["pass" "show" "email/fastmail"];
           type = "caldav";
           url = "https://caldav.fastmail.com/dav/";
           userName = "dustinswan@fastmail.com";
         };
         vdirsyncer = {
           enable = true;
+          collections = ["from a" "from b"];
+        };
+      };
+    };
+  };
+
+  accounts.contact = {
+    basePath = "Contacts";
+    accounts = {
+      FastMail = {
+        khard.enable = true;
+        remote = {
+          passwordCommand = ["pass" "show" "email/fastmail"];
+          type = "carddav";
+          url = "https://carddav.fastmail.com/dav/";
+          userName = "dustinswan@fastmail.com";
+        };
+        vdirsyncer = {
+          enable = true;
+          collections = ["from a" "from b"];
         };
       };
     };
