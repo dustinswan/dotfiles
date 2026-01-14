@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   programs.mbsync.enable = true;
@@ -6,9 +6,32 @@
   programs.himalaya.enable = true;
   programs.vdirsyncer.enable = true;
   programs.khard.enable = true;
+  programs.notmuch = {
+    enable = true;
+    new = {
+      tags = [ "new" ];
+    };
+    hooks = {
+      preNew = "mbsync -a";
+    };
+  };
+
+  accounts.email.accounts.FastMail.notmuch.enable = true;
   programs.aerc = {
     enable = true;
-    extraConfig.general.unsafe-accounts-conf = true;
+    extraConfig = {
+      general.unsafe-accounts-conf = true;
+      ui = {
+        mouse-enabled = true;
+        threading-enabled = true;
+      };
+      compose = {
+        address-book-cmd = "khard email --parsable '%s'";
+      };
+      filters = {
+        "text/html" = "${pkgs.w3m}/bin/w3m -T text/html -cols $(tput cols) -dump -o display_image=false -o display_link_number=true";
+      };
+    };
   };
 
   accounts.email = {
@@ -38,6 +61,16 @@
           enable = true;
           create = "maildir";
           expunge = "maildir";
+        };
+        imapnotify = {
+          enable = true;
+          boxes = [ "INBOX" ];
+          onNotify = "${pkgs.isync}/bin/mbsync FastMail:INBOX";
+          onNotifyPost = let
+            notifyCmd = if pkgs.stdenv.isDarwin
+              then "${pkgs.terminal-notifier}/bin/terminal-notifier -title 'New Mail' -message 'FastMail INBOX' -sound default"
+              else "${pkgs.libnotify}/bin/notify-send 'New Mail' 'FastMail INBOX'";
+          in notifyCmd;
         };
         msmtp.enable = true;
         aerc.enable = true;

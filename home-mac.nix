@@ -20,13 +20,23 @@
     '';
   };
 
+  services.imapnotify.enable = true;
+
+  # Add PATH to imapnotify service so it can find pass
+  launchd.agents.imapnotify-FastMail.config.EnvironmentVariables = {
+    PATH = "${pkgs.pass}/bin:${pkgs.gnupg}/bin:/usr/bin:/bin";
+  };
+
   launchd.agents.mbsync = {
     enable = true;
     config = {
       ProgramArguments = [ "${pkgs.isync}/bin/mbsync" "-a" ];
-      StartInterval = 300;  # every 5 minutes
+      StartInterval = 900;  # every 15 minutes
       StandardOutPath = "/tmp/mbsync.log";
       StandardErrorPath = "/tmp/mbsync.err";
+      EnvironmentVariables = {
+        PATH = "${pkgs.pass}/bin:${pkgs.gnupg}/bin:/usr/bin:/bin";
+      };
     };
   };
 
@@ -37,6 +47,9 @@
       StartInterval = 900;  # every 15 minutes
       StandardOutPath = "/tmp/vdirsyncer.log";
       StandardErrorPath = "/tmp/vdirsyncer.err";
+      EnvironmentVariables = {
+        PATH = "${pkgs.pass}/bin:${pkgs.gnupg}/bin:/usr/bin:/bin";
+      };
     };
   };
 

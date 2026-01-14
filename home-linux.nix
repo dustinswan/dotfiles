@@ -101,7 +101,7 @@ in
 
   services.mbsync = {
     enable = true;
-    frequency = "*:0/5";  # every 5 minutes
+    frequency = "*:0/15";  # every 15 minutes
   };
 
   services.vdirsyncer = {
