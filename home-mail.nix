@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
+
+let
+  # Cross-platform opener command
+  openCmd = if pkgs.stdenv.isDarwin then "open" else "${pkgs.xdg-utils}/bin/xdg-open";
+in
 
 {
   programs.mbsync.enable = true;
@@ -28,8 +33,18 @@
       compose = {
         address-book-cmd = "khard email --parsable '%s'";
       };
+      # viewer = {
+      #   alternatives = "text/html,text/plain";
+      # };
       filters = {
+        "text/plain" = "cat";
         "text/html" = "${pkgs.w3m}/bin/w3m -T text/html -cols $(tput cols) -dump -o display_image=false -o display_link_number=true";
+      };
+      openers = {
+        "text/html" = "${openCmd}";
+        "text/plain" = "less -R";
+        "application/pdf" = "${openCmd}";
+        "image/*" = "${openCmd}";
       };
     };
   };
