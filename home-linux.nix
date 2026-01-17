@@ -69,11 +69,13 @@ in
     enable = true;
     settings = {
       devices = {
+        "Desktop" = { id = secrets.syncthing.desktop; };
         "Laptop" = { id = secrets.syncthing.laptop; };
         "Phone" = { id = secrets.syncthing.phone; };
       };
       folders = {
         "Camera" = {
+          id = "sm-n950u-photos";
           path = "~/Camera";
           devices = [ "Laptop" "Phone" ];
         };
@@ -83,7 +85,7 @@ in
         };
         "Passwords" = {
           path = "~/.password-store";
-          devices = [ "Laptop" ];  # just Mac, not phone
+          devices = [ "Laptop" ];
         };
       };
     };

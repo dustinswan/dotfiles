@@ -62,28 +62,28 @@
 
         # Emacs bindings (Dvorak physical positions)
         # Use Alt-Backspace for delete-word (works everywhere natively)
-        control = {
-          a = "home";            # C-a → Home
-          d = "end";             # C-e → End (dvorak 'e' = qwerty 'd')
-          r = "up";              # C-p → Up (dvorak 'p' = qwerty 'r')
-          l = "down";            # C-n → Down (dvorak 'n' = qwerty 'l')
-          j = "backspace";       # C-h → Backspace (dvorak 'h' = qwerty 'j')
-          m = "enter";           # C-m → Enter
-        };
+        # control = {
+        #   # a = "home";            # C-a → Home
+        #   d = "end";             # C-e → End (dvorak 'e' = qwerty 'd')
+        #   r = "up";              # C-p → Up (dvorak 'p' = qwerty 'r')
+        #   l = "down";            # C-n → Down (dvorak 'n' = qwerty 'l')
+        #   j = "backspace";       # C-h → Backspace (dvorak 'h' = qwerty 'j')
+        #   m = "enter";           # C-m → Enter
+        # };
 
-        # macOS-style Super/Cmd shortcuts (Dvorak physical positions)
-        meta = {
-          # a = "C-a";             # Cmd+a → select all
-          i = "C-i";             # Cmd+c → copy (dvorak 'c' = qwerty 'i')
-          k = "C-k";             # Cmd+t → new tab (dvorak 't' = qwerty 'k')
-          l = "C-l";             # Cmd+n → new window (dvorak 'n' = qwerty 'l')
-          comma = "C-comma";     # Cmd+w → close tab (dvorak 'w' = qwerty ',')
-          period = "C-period";   # Cmd+v → paste (dvorak 'v' = qwerty '.')
-          semicolon = "C-semicolon"; # Cmd+s → save (dvorak 's' = qwerty ';')
-          slash = "C-slash";     # Cmd+z → undo (dvorak 'z' = qwerty '/')
-          x = "C-x";             # Cmd+q → quit (dvorak 'q' = qwerty 'x')
-          b = "C-b";             # Cmd+x → cut (dvorak 'x' = qwerty 'b')
-        };
+        # # macOS-style Super/Cmd shortcuts (Dvorak physical positions)
+        # meta = {
+        #   # a = "C-a";             # Cmd+a → select all
+        #   i = "C-i";             # Cmd+c → copy (dvorak 'c' = qwerty 'i')
+        #   k = "C-k";             # Cmd+t → new tab (dvorak 't' = qwerty 'k')
+        #   l = "C-l";             # Cmd+n → new window (dvorak 'n' = qwerty 'l')
+        #   comma = "C-comma";     # Cmd+w → close tab (dvorak 'w' = qwerty ',')
+        #   period = "C-period";   # Cmd+v → paste (dvorak 'v' = qwerty '.')
+        #   semicolon = "C-semicolon"; # Cmd+s → save (dvorak 's' = qwerty ';')
+        #   slash = "C-slash";     # Cmd+z → undo (dvorak 'z' = qwerty '/')
+        #   x = "C-x";             # Cmd+q → quit (dvorak 'q' = qwerty 'x')
+        #   b = "C-b";             # Cmd+x → cut (dvorak 'x' = qwerty 'b')
+        # };
       };
     };
   };
