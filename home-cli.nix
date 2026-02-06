@@ -32,14 +32,14 @@ in
     poppler-utils # pdftotext
     xan # e.g. xan slice 3,2 file.csv | xan behead | xan view -An; see also: csvi
     doxx # read docx files
-    sqlit-tui # see also: harlequin; lazysql; gobang; dblab
+    sqlit-tui # see also: pam; harlequin; lazysql; gobang; dblab
     # snitch # see also: bandwhich
     epy # ebook reader. see also: erp; bookokrat; lue
     # mimic # tts engine, used by epy
     posting # see also: httpie, yapi, sled, Yaak (GUI), Bruno (GUI)
     croc magic-wormhole # transfer files
     # calcure # calendar cli app, can point to ics files or URL
-    dust duf dua # disk usage
+    dust duf dua # disk usage. see also: cull
     doggo # dig
     ddev
     ngrok

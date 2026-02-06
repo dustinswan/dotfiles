@@ -37,6 +37,7 @@
       { key = "<leader>/"; action = "<cmd>Tv text<cr>"; }
       { key = "<leader>bd"; action = "<cmd>bdelete<cr>"; }
       { key = "<leader>nd"; action = "<cmd>NoiceDismiss<cr>"; }
+      { key = "<leader>xx"; action = "<cmd>Trouble diagnostics toggle<cr>"; }
       { key = "<S-l>"; action = "<cmd>bnext<cr>"; }
       { key = "<S-h>"; action = "<cmd>bprev<cr>"; }
     ];
@@ -100,7 +101,7 @@
       };
       # lsp-format.enable = true;
       lsp-lines.enable = true;
-      markview.enable = true;
+      # markview.enable = true;
       neo-tree.enable = true;
       notify.enable = true;
       nix.enable = true;

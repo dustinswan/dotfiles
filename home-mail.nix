@@ -92,11 +92,10 @@ in
         himalaya = {
           enable = true;
           settings = {
-            # backend = "imap";
-            # maildir.root-dir = "/Users/dustinswan/Mail/FastMail";
-            # message.send.backend = "smtp";
-            # sent-folder = "Sent";
-            # draft-folder = "Drafts";
+            backend = {
+              type = "maildir";
+              root-dir = "${builtins.getEnv "HOME"}/Mail/FastMail";
+            };
           };
         };
         signature = {
