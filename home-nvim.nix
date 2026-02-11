@@ -31,6 +31,14 @@
       maplocalleader = " ";
     };
 
+    autoCmd = [
+      {
+        event = [ "BufRead" "BufNewFile" ];
+        pattern = [ "*.cg" ];
+        command = "setlocal tabstop=2 shiftwidth=2";
+      }
+    ];
+
     keymaps = [
       { key = "<leader>e"; action = "<cmd>Neotree toggle<cr>"; }
       { key = "<leader>f"; action = "<cmd>Tv files<cr>"; }
@@ -40,6 +48,8 @@
       { key = "<leader>xx"; action = "<cmd>Trouble diagnostics toggle<cr>"; }
       { key = "<S-l>"; action = "<cmd>bnext<cr>"; }
       { key = "<S-h>"; action = "<cmd>bprev<cr>"; }
+      { key = "s"; mode = [ "n" "x" "o" ]; action.__raw = "function() require('flash').jump() end"; options.desc = "Flash"; }
+      { key = "S"; mode = [ "n" "x" "o" ]; action.__raw = "function() require('flash').treesitter() end"; options.desc = "Flash Treesitter"; }
     ];
 
     plugins = {
@@ -48,11 +58,19 @@
       cmp = {
         enable = true;
         autoEnableSources = true;
-        settings.sources = [
-          { name = "nvim_lsp"; }
-          { name = "path"; }
-          { name = "buffer"; }
-        ];
+        settings = {
+          sources = [
+            { name = "nvim_lsp"; }
+            { name = "path"; }
+            { name = "buffer"; }
+          ];
+          mapping = {
+            "<Tab>" = "cmp.mapping.select_next_item()";
+            "<S-Tab>" = "cmp.mapping.select_prev_item()";
+            "<CR>" = "cmp.mapping.confirm({ select = false })";
+            "<C-e>" = "cmp.mapping.abort()";
+          };
+        };
       };
       cmp-nvim-lsp.enable = true;
       cmp-buffer.enable = true;
@@ -70,7 +88,11 @@
       csvview.enable = true;
       dashboard.enable = true;
       emmet.enable = true;
-      flash.enable = true;
+      flash = {
+        enable = true;
+        settings.jump.autojump = true;
+        settings.modes.search.enabled = true;
+      };
       gitsigns.enable = true;
       lazygit.enable = true;
       lint.enable = true;
