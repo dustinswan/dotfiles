@@ -8,10 +8,6 @@
     withNodeJs = true;
     withRuby = true;
 
-    colorschemes.catppuccin.enable = true;
-    colorschemes.catppuccin.settings.transparent_background = true;
-    colorschemes.catppuccin.settings.flavour = "auto";
-
     opts = {
       number = true;
       ignorecase = true;
@@ -91,7 +87,7 @@
       flash = {
         enable = true;
         settings.jump.autojump = true;
-        settings.modes.search.enabled = true;
+        # settings.modes.search.enabled = true;
       };
       gitsigns.enable = true;
       lazygit.enable = true;
@@ -144,6 +140,7 @@
         settings = {
           highlight = true;
           trim_on_write = false;
+          ft_blocklist = [ "dashboard" ];
         };
       };
       trouble.enable = true;
@@ -152,20 +149,5 @@
       web-devicons.enable = true;
       which-key.enable = true;
     };
-
-    # extraPlugins = [(pkgs.vimUtils.buildVimPlugin {
-    #   name = "vim-lumen";
-    #   src = pkgs.fetchFromGitHub {
-    #     owner = "f-person";
-    #     repo = "auto-dark-mode.nvim";
-    #     rev = "4531f8b2b09ed8f0b8875a706419f9cecda1d969";
-    #     hash = "sha256-JPoyRRwDJ9KOGWnqOEG4VkEX4rJHFhFYV3bwS9F2f9E=";
-    #   };
-    # })];
-
-    # extraConfigLua = ''
-    #   local auto_dark_mode = require('auto-dark-mode')
-    #   auto_dark_mode.setup()
-    # '';
   };
 }

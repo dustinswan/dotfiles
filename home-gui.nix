@@ -31,35 +31,35 @@
       font-family = "Iosevka NFM";
       font-size = 12;
       font-thicken = true;
-      # theme = "dark:catppuccin-mocha,light:catppuccin-latte"; # TODO: waiting on all cli apps to handle auto switching too
-      theme = "catppuccin-mocha";
+      theme = "dark:One Half Dark,light:One Half Light";
       background-opacity = 0.95;
       background-blur-radius = 15;
       window-padding-x = 12;
       window-padding-y = 8;
       window-padding-balance = true;
       macos-titlebar-style = "tabs";
+      window-theme = "auto";
       macos-option-as-alt = "left";
       copy-on-select = "clipboard";
     };
   };
 
-  programs.zed-editor = {
-    enable = true;
-    userSettings = {
-      vim_mode = true;
-      theme = {
-        mode = "system";
-        light = "Catppuccin Latte";
-        dark = "Catppuccin Frappé";
-      };
-      buffer_font_size = 16;
-      buffer_font_family = "Iosevka Nerd Font Mono";
-      vim = {
-        enable_vim_sneak = true;
-        use_smartcase_find = true;
-      };
-      format_on_save = "off";
-    };
-  };
+  # programs.zed-editor = {
+  #   enable = true;
+  #   userSettings = {
+  #     vim_mode = true;
+  #     theme = {
+  #       mode = "system";
+  #       light = "Catppuccin Latte";
+  #       dark = "Catppuccin Frappé";
+  #     };
+  #     buffer_font_size = 16;
+  #     buffer_font_family = "Iosevka Nerd Font Mono";
+  #     vim = {
+  #       enable_vim_sneak = true;
+  #       use_smartcase_find = true;
+  #     };
+  #     format_on_save = "off";
+  #   };
+  # };
 }

@@ -16,7 +16,6 @@ in
   };
 
   imports = [
-    <catppuccin/modules/home-manager>
     nixvim.homeModules.nixvim
     ./home-nvim.nix
   ];
@@ -89,11 +88,6 @@ in
 
   xdg.enable = true;
 
-  catppuccin = {
-    enable = true;
-    flavor = "mocha";
-    zed.enable = false;
-  };
 
   programs.home-manager.enable = true;
 
@@ -117,12 +111,29 @@ in
       # open # highlight: o -> open; ctrl-o -> $EDITOR; S -> web search
       vim-tmux-navigator # ctrl-h, -j, -k, -l -> move between tmux and vim splits
       # extrakto # prefix tab -> fuzzy find text on screen; enter to copy; tab to paste
-      fingers # prefix F -> copy/open/edit items on screen by letter
+      # fingers # prefix F -> copy/open/edit items on screen by letter
     ];
     # Remove that SHELL thing when fixed upstream
     extraConfig = ''
       set -ag terminal-overrides ",xterm-256color:RGB"
       set -g default-command "$SHELL"
+
+      # Status bar - inherits terminal fg/bg so it follows light/dark mode
+      set -g status-style "bg=default,fg=default"
+      set -g status-justify centre
+      set -g status-left ""
+      set -g status-right ""
+      set -g window-status-format "  #I  "
+      set -g window-status-current-format "  #I  "
+      set -g window-status-current-style "bold,reverse"
+      set -g window-status-style "dim"
+
+      # Pane borders
+      set -g pane-border-style "fg=brightblack"
+      set -g pane-active-border-style "fg=white"
+
+      # Messages
+      set -g message-style "bg=default,fg=default,bold"
     '';
   };
 
@@ -159,7 +170,10 @@ in
   programs.nix-search-tv.enable = true;
   # programs.fzf.enable = true; # used by other apps, tmux, etc.
   programs.zoxide.enable = true;
-  programs.bat.enable = true;
+  programs.bat = {
+    enable = true;
+    config.theme = "ansi";
+  };
   programs.ripgrep.enable = true;
   programs.ripgrep-all.enable = true;
   programs.yazi.enable = true;
