@@ -2,10 +2,9 @@
 
 let
   secrets = import ./secrets.nix;
-  nixvim = import (builtins.fetchGit { url = "https://github.com/nix-community/nixvim"; });
 in
 {
-  home.stateVersion = "24.11";
+  home.stateVersion = "26.05";
 
   home.username = "dustinswan";
   home.shell.enableShellIntegration = true;
@@ -16,7 +15,6 @@ in
   };
 
   imports = [
-    nixvim.homeModules.nixvim
     ./home-nvim.nix
   ];
 
@@ -25,7 +23,7 @@ in
     bitwarden-cli
     awscli2
     claude-code
-    claude-code-acp
+    # claude-code-acp
     opencode # see also: aider; toad;
     fd
     poppler-utils # pdftotext
@@ -48,16 +46,17 @@ in
     cacert
     nodejs
     typescript
+    bun
     pnpm
     rustc
     cargo
     uv
     blade-formatter
     nixd # Nix language server
-    nodePackages.typescript-language-server
-    nodePackages.stylelint
-    nodePackages.js-beautify
-    nodePackages.intelephense
+    typescript-language-server
+    stylelint
+    js-beautify
+    intelephense
     dict
     ispell
     aspell
@@ -80,6 +79,7 @@ in
   };
 
   home.sessionPath = [
+    "$HOME/.cache/.bun/bin"
     "$HOME/.local/bin"
     "$HOME/.cargo/bin"
     "$HOME/.npm-global/bin"
