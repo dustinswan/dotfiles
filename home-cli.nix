@@ -14,10 +14,6 @@ in
     settings.experimental-features = [ "nix-command" "flakes" ];
   };
 
-  imports = [
-    ./home-nvim.nix
-  ];
-
   home.packages = with pkgs; [
     supabase-cli
     bitwarden-cli
@@ -57,6 +53,10 @@ in
     stylelint
     js-beautify
     intelephense
+    vscode-langservers-extracted
+    elixir-ls
+    lua-language-server
+    tree-sitter
     dict
     ispell
     aspell
@@ -270,4 +270,11 @@ in
     enable = true;
     keys = [ "id_rsa" "id_rsa_mr" "2B3A6377" ];
   };
+
+  programs.neovim = {
+    enable = true;
+    viAlias = true;
+    vimAlias = true;
+  };
+  xdg.configFile."nvim/init.lua".source = ./init.lua;
 }
