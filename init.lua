@@ -70,8 +70,8 @@ vim.pack.add({
 
 -- Theme (auto light/dark based on OS appearance)
 require('tokyonight').setup({
-  style = 'storm',
-  light_style = 'day',
+  -- style = 'storm',
+  -- light_style = 'day',
 })
 vim.cmd.colorscheme('tokyonight')
 
@@ -177,7 +177,7 @@ vim.lsp.enable({
 vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if client and client.supports_method('textDocument/inlayHint') then
+    if client and client:supports_method('textDocument/inlayHint') then
       vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
     end
     vim.lsp.completion.enable(true, args.data.client_id, args.buf)
@@ -197,6 +197,11 @@ vim.keymap.set({ 'n', 'x', 'o' }, 'S', function() require('flash').treesitter() 
 
 -- Completion keymaps
 vim.keymap.set('i', '<Tab>', function()
+  local suggestion = require('supermaven-nvim.completion_preview')
+  if suggestion.has_suggestion() then
+    suggestion.on_accept_suggestion()
+    return
+  end
   return vim.fn.pumvisible() == 1 and '<C-n>' or '<Tab>'
 end, { expr = true })
 vim.keymap.set('i', '<S-Tab>', function()
