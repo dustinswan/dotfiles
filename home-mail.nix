@@ -77,16 +77,6 @@ in
           create = "maildir";
           expunge = "maildir";
         };
-        imapnotify = {
-          enable = true;
-          boxes = [ "INBOX" ];
-          onNotify = "${pkgs.isync}/bin/mbsync FastMail:INBOX";
-          onNotifyPost = let
-            notifyCmd = if pkgs.stdenv.isDarwin
-              then "${pkgs.terminal-notifier}/bin/terminal-notifier -title 'New Mail' -message 'FastMail INBOX' -sound default"
-              else "${pkgs.libnotify}/bin/notify-send 'New Mail' 'FastMail INBOX'";
-          in notifyCmd;
-        };
         msmtp.enable = true;
         aerc.enable = true;
         himalaya = {

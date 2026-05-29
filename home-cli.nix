@@ -193,47 +193,23 @@ in
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false; # TODO: remove when defaults change
-    matchBlocks = {
-      dustinswan = {
-        inherit (secrets.dustinswan) user;
-        inherit (secrets.dustinswan) hostname;
+    settings =
+      let
+        mrKey = {
+          IdentityFile = "/Users/dustinswan/.ssh/id_rsa_mr";
+          IdentitiesOnly = true;
+        };
+      in {
+        dustinswan = {
+          User = secrets.dustinswan.user;
+          HostName = secrets.dustinswan.hostname;
+        };
+        mr = mrKey // { User = secrets.mr.user; HostName = secrets.mr.hostname; };
+        mr-prod = mrKey // { User = secrets.mr-prod.user; HostName = secrets.mr-prod.hostname; };
+        mr-prod2 = mrKey // { User = secrets.mr-prod2.user; HostName = secrets.mr-prod2.hostname; };
+        mr-prod3 = mrKey // { User = secrets.mr-prod3.user; HostName = secrets.mr-prod3.hostname; };
+        mr-prod4 = mrKey // { User = secrets.mr-prod4.user; HostName = secrets.mr-prod4.hostname; };
       };
-
-      mr = {
-        inherit (secrets.mr) user;
-        inherit (secrets.mr) hostname;
-        identityFile = "/Users/dustinswan/.ssh/id_rsa_mr";
-        identitiesOnly = true;
-      };
-
-      mr-prod = {
-        inherit (secrets.mr-prod) user;
-        inherit (secrets.mr-prod) hostname;
-        identityFile = "/Users/dustinswan/.ssh/id_rsa_mr";
-        identitiesOnly = true;
-      };
-
-      mr-prod2 = {
-        inherit (secrets.mr-prod2) user;
-        inherit (secrets.mr-prod2) hostname;
-        identityFile = "/Users/dustinswan/.ssh/id_rsa_mr";
-        identitiesOnly = true;
-      };
-
-      mr-prod3 = {
-        inherit (secrets.mr-prod3) user;
-        inherit (secrets.mr-prod3) hostname;
-        identityFile = "/Users/dustinswan/.ssh/id_rsa_mr";
-        identitiesOnly = true;
-      };
-
-      mr-prod4 = {
-        inherit (secrets.mr-prod4) user;
-        inherit (secrets.mr-prod4) hostname;
-        identityFile = "/Users/dustinswan/.ssh/id_rsa_mr";
-        identitiesOnly = true;
-      };
-    };
   };
 
   programs.git = {
@@ -275,6 +251,6 @@ in
     enable = true;
     viAlias = true;
     vimAlias = true;
+    initLua = builtins.readFile ./init.lua;
   };
-  xdg.configFile."nvim/init.lua".source = ./init.lua;
 }

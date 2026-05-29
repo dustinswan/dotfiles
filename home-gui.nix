@@ -13,6 +13,11 @@
   programs.halloy = {
     enable = true;
     settings = {
+      theme = "catppuccin-mocha";
+      font = {
+        size = 16;
+        family = "Iosevka NFM";
+      };
       servers.liberachat = {
         nickname = "sw4n";
         server = "irc.libera.chat";
@@ -30,7 +35,7 @@
       font-family = "Iosevka NFM";
       font-size = 12;
       font-thicken = true;
-      theme = "dark:TokyoNight Storm,light:TokyoNight Day";
+      theme = "dark:Catppuccin Mocha,light:Catppuccin Latte";
       background-opacity = 0.95;
       background-blur-radius = 15;
       window-padding-x = 12;
@@ -45,12 +50,13 @@
 
   programs.zed-editor = {
     enable = true;
+    extensions = [ "catppuccin" ];
     userSettings = {
       vim_mode = true;
       theme = {
         mode = "system";
-        light = "Tokyo Night Light";
-        dark = "Tokyo Night Storm";
+        light = "Catppuccin Latte";
+        dark = "Catppuccin Mocha";
       };
       buffer_font_size = 16;
       buffer_font_family = "Iosevka Nerd Font Mono";

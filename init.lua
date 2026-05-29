@@ -31,7 +31,7 @@ vim.pack.add({
   gh('nvim-tree/nvim-web-devicons'),          -- file type icons
 
   -- Theme
-  gh('folke/tokyonight.nvim'),                -- auto light/dark theme, follows OS appearance
+  gh('catppuccin/nvim'),                      -- auto light/dark theme, follows OS appearance
 
   -- UI
   gh('akinsho/bufferline.nvim'),              -- tab bar for open buffers, :bnext/:bprev
@@ -57,6 +57,7 @@ vim.pack.add({
 
   -- Language support
   gh('hat0uma/csvview.nvim'),                 -- aligned column view for CSV files
+  gh('dhruvasagar/vim-table-mode'),            -- <leader>tm to toggle, || for header, formulas with :TableEvalFormulaLine
   gh('mattn/emmet-vim'),                      -- expand abbreviations, e.g. div>ul>li then ctrl-y,
   gh('nvim-orgmode/orgmode'),                 -- org-mode notes/agenda in nvim
   { src = gh('nvim-treesitter/nvim-treesitter'), version = 'main' }, -- syntax tree parsing for highlighting/code nav
@@ -69,11 +70,11 @@ vim.pack.add({
 }, { confirm = false })
 
 -- Theme (auto light/dark based on OS appearance)
-require('tokyonight').setup({
-  -- style = 'storm',
-  -- light_style = 'day',
+require('catppuccin').setup({
+  flavour = 'auto',
+  background = { light = 'latte', dark = 'mocha' },
 })
-vim.cmd.colorscheme('tokyonight')
+vim.cmd.colorscheme('catppuccin')
 
 -- Plugin configs
 require('bufferline').setup()
@@ -199,8 +200,10 @@ vim.keymap.set({ 'n', 'x', 'o' }, 'S', function() require('flash').treesitter() 
 vim.keymap.set('i', '<Tab>', function()
   local suggestion = require('supermaven-nvim.completion_preview')
   if suggestion.has_suggestion() then
-    suggestion.on_accept_suggestion()
-    return
+    vim.schedule(function()
+      suggestion.on_accept_suggestion()
+    end)
+    return ''
   end
   return vim.fn.pumvisible() == 1 and '<C-n>' or '<Tab>'
 end, { expr = true })

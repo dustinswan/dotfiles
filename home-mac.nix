@@ -5,8 +5,9 @@
 
   home.packages = with pkgs; [
     pinentry_mac
-    terminal-notifier
   ];
+
+  programs.man.generateCaches = false;
 
   programs.ghostty.package = pkgs.ghostty-bin;
   programs.ghostty.settings.font-size = 16;
@@ -18,13 +19,6 @@
       default-cache-ttl 34560000
       max-cache-ttl 34560000
     '';
-  };
-
-  services.imapnotify.enable = true;
-
-  # Add PATH to imapnotify service so it can find pass
-  launchd.agents.imapnotify-FastMail.config.EnvironmentVariables = {
-    PATH = "${pkgs.pass}/bin:${pkgs.gnupg}/bin:/usr/bin:/bin";
   };
 
   launchd.agents.mbsync = {
