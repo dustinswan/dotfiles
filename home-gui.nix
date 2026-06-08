@@ -8,8 +8,6 @@
     # deskflow
   ];
 
-  programs.sioyek.enable = true;
-
   programs.halloy = {
     enable = true;
     settings = {

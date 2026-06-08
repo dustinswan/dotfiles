@@ -17,27 +17,27 @@ in
   home.packages = with pkgs; [
     supabase-cli
     bitwarden-cli
-    awscli2
-    claude-code
+    # awscli2
+    # claude-code
     # claude-code-acp
-    opencode # see also: aider; toad;
+    # opencode # see also: aider; toad;
     fd
-    poppler-utils # pdftotext
-    xan # e.g. xan slice 3,2 file.csv | xan behead | xan view -An; see also: csvi
-    doxx # read docx files
-    sqlit-tui # see also: pam; harlequin; lazysql; gobang; dblab
+    # poppler-utils # pdftotext
+    # xan # e.g. xan slice 3,2 file.csv | xan behead | xan view -An; see also: csvi
+    # doxx # read docx files
+    # sqlit-tui # see also: pam; harlequin; lazysql; gobang; dblab
     # snitch # see also: bandwhich
-    epy # ebook reader. see also: erp; bookokrat; lue
+    # epy # ebook reader. see also: erp; bookokrat; lue
     # mimic # tts engine, used by epy
-    posting # see also: httpie, yapi, sled, Yaak (GUI), Bruno (GUI)
-    croc magic-wormhole # transfer files
+    # posting # see also: httpie, yapi, sled, Yaak (GUI), Bruno (GUI)
+    # croc magic-wormhole # transfer files
     # calcure # calendar cli app, can point to ics files or URL
-    dust duf dua # disk usage. see also: cull
-    doggo # dig
+    # dust duf dua # disk usage. see also: cull
+    # doggo # dig
     ddev
     ngrok
     mkcert
-    ffmpeg
+    # ffmpeg
     gnupg
     cacert
     nodejs
@@ -49,6 +49,7 @@ in
     uv
     blade-formatter
     nixd # Nix language server
+    comma
     typescript-language-server
     stylelint
     js-beautify
@@ -88,8 +89,9 @@ in
 
   xdg.enable = true;
 
-
   programs.home-manager.enable = true;
+
+  programs.nix-index.enable = true;
 
   programs.tmux = {
     enable = true;
@@ -166,9 +168,8 @@ in
   programs.nix-your-shell.enable = true;
   programs.direnv.enable = true;
   programs.starship.enable = true;
-  programs.television.enable = true; # WAIT config currently broken
   programs.nix-search-tv.enable = true;
-  # programs.fzf.enable = true; # used by other apps, tmux, etc.
+  programs.fzf.enable = true; # used by other apps, tmux, etc.
   programs.zoxide.enable = true;
   programs.bat = {
     enable = true;

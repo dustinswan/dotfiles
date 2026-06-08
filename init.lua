@@ -7,7 +7,6 @@ vim.o.smartcase = true
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
-vim.o.smarttab = true
 vim.o.clipboard = 'unnamedplus'
 vim.o.completeopt = 'menuone,noselect,popup'
 
@@ -66,7 +65,7 @@ vim.pack.add({
   gh('supermaven-inc/supermaven-nvim'),       -- inline ghost-text suggestions, Tab to accept
 
   -- Fuzzy finder
-  gh('alexpasmantier/television.nvim'),       -- fuzzy finder, <leader>f for files, <leader>/ for text
+  gh('ibhagwan/fzf-lua'),                     -- fuzzy finder, <leader>f for files, <leader>/ for text
 }, { confirm = false })
 
 -- Theme (auto light/dark based on OS appearance)
@@ -181,36 +180,17 @@ vim.api.nvim_create_autocmd('LspAttach', {
     if client and client:supports_method('textDocument/inlayHint') then
       vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
     end
-    vim.lsp.completion.enable(true, args.data.client_id, args.buf)
+    vim.lsp.completion.enable(true, args.data.client_id, args.buf, { autotrigger = true })
   end,
 })
 
 -- Keymaps
 vim.keymap.set('n', '<leader>e', '<cmd>Neotree toggle<cr>')
-vim.keymap.set('n', '<leader>f', '<cmd>Tv files<cr>')
-vim.keymap.set('n', '<leader>/', '<cmd>Tv text<cr>')
+vim.keymap.set('n', '<leader>f', '<cmd>FzfLua files<cr>')
+vim.keymap.set('n', '<leader>/', '<cmd>FzfLua live_grep<cr>')
 vim.keymap.set('n', '<leader>bd', '<cmd>bdelete<cr>')
 vim.keymap.set('n', '<leader>xx', '<cmd>Trouble diagnostics toggle<cr>')
 vim.keymap.set('n', '<S-l>', '<cmd>bnext<cr>')
 vim.keymap.set('n', '<S-h>', '<cmd>bprev<cr>')
 vim.keymap.set({ 'n', 'x', 'o' }, 's', function() require('flash').jump() end, { desc = 'Flash' })
 vim.keymap.set({ 'n', 'x', 'o' }, 'S', function() require('flash').treesitter() end, { desc = 'Flash Treesitter' })
-
--- Completion keymaps
-vim.keymap.set('i', '<Tab>', function()
-  local suggestion = require('supermaven-nvim.completion_preview')
-  if suggestion.has_suggestion() then
-    vim.schedule(function()
-      suggestion.on_accept_suggestion()
-    end)
-    return ''
-  end
-  return vim.fn.pumvisible() == 1 and '<C-n>' or '<Tab>'
-end, { expr = true })
-vim.keymap.set('i', '<S-Tab>', function()
-  return vim.fn.pumvisible() == 1 and '<C-p>' or '<S-Tab>'
-end, { expr = true })
-vim.keymap.set('i', '<CR>', function()
-  return (vim.fn.pumvisible() == 1 and vim.fn.complete_info({ 'selected' }).selected >= 0)
-    and '<C-y>' or '<CR>'
-end, { expr = true })
