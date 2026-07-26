@@ -10,12 +10,14 @@ in
   home.packages = with pkgs; [
     # retroarch gimp blender
     brave
-    # ghostty
-    bitwarden-desktop
     nerd-fonts.iosevka
-    high-tide tidal-hifi
     deskflow
-    sunshine
+    # CD ripping -> /srv/music (needs a USB optical drive; this box has none)
+    abcde        # rips + encodes + tags in one command
+    picard       # MusicBrainz tagger, for fixing what abcde gets wrong
+    flac
+    cdparanoia   # error-correcting CD reader used by abcde
+    # sunshine # provided by services.sunshine in configuration.pc.nix (the module wraps the binary with CAP_SYS_ADMIN for KMS capture); a second copy here shipped a conflicting user unit
     # steam # added as a system package, so it actually works
     # wl-clipboard  # For Wayland clipboard (wl-copy, wl-paste)
   ];
@@ -43,6 +45,13 @@ in
       name = "Vicinae";
       command = "vicinae toggle";
       binding = "<Super>space";
+    };
+
+    # Always-on box: GNOME's own idle-suspend would override the disabled
+    # systemd sleep targets, so turn it off here too.
+    "org/gnome/settings-daemon/plugins/power" = {
+      sleep-inactive-ac-type = "nothing";
+      sleep-inactive-battery-type = "nothing";
     };
 
     # Extension settings

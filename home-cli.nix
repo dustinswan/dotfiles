@@ -18,7 +18,7 @@ in
     supabase-cli
     bitwarden-cli
     # awscli2
-    # claude-code
+    # claude-code # using the native installer instead (~/.local/bin, needs programs.nix-ld)
     # claude-code-acp
     # opencode # see also: aider; toad;
     fd
