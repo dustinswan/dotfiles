@@ -1,12 +1,12 @@
 #!/bin/sh
 
-if command -v brew &> /dev/null; then
+if command -v brew >/dev/null 2>&1; then
   brew update
   brew upgrade -y
-  brew upgrade -y --cask
 fi
 
-if command -v nix &> /dev/null; then
-  nix-channel --update
-  home-manager switch
+if command -v nix >/dev/null 2>&1; then
+  sudo nix-channel --update  # nixpkgs + catppuccin live in root's channels
+  nix-channel --update       # home-manager lives in yours
+  home-manager switch -b backup
 fi
