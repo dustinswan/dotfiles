@@ -5,6 +5,11 @@ if command -v brew >/dev/null 2>&1; then
 fi
 
 if command -v nix >/dev/null 2>&1; then
-  nix-collect-garbage -d       # your profile + home-manager generations
-  sudo nix-collect-garbage -d  # root's channel generations, then a store-wide sweep
+  if [ -e /etc/NIXOS ]; then
+    nix-collect-garbage --delete-older-than 30d
+    sudo nix-collect-garbage --delete-older-than 30d
+  else
+    nix-collect-garbage -d
+    sudo nix-collect-garbage -d
+  fi
 fi
