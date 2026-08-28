@@ -43,6 +43,8 @@
       window-theme = "auto";
       macos-option-as-alt = "left";
       copy-on-select = "clipboard";
+      bell-features = "attention,title,border";
+      shell-integration-features = "cursor,no-sudo,title,ssh-env,ssh-terminfo,path";
     };
   };
 
