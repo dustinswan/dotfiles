@@ -1,9 +1,10 @@
 #!/bin/sh
 
-if command -v brew &> /dev/null; then
+if command -v brew >/dev/null 2>&1; then
   brew cleanup -s
 fi
 
-if command -v nix &> /dev/null; then
-  nix-collect-garbage -d
+if command -v nix >/dev/null 2>&1; then
+  nix-collect-garbage -d       # your profile + home-manager generations
+  sudo nix-collect-garbage -d  # root's channel generations, then a store-wide sweep
 fi
