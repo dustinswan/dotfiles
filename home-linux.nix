@@ -47,13 +47,6 @@ in
       binding = "<Super>space";
     };
 
-    # Always-on box: GNOME's own idle-suspend would override the disabled
-    # systemd sleep targets, so turn it off here too.
-    "org/gnome/settings-daemon/plugins/power" = {
-      sleep-inactive-ac-type = "nothing";
-      sleep-inactive-battery-type = "nothing";
-    };
-
     # Extension settings
     "org/gnome/shell/extensions/vitals" = {
       show-gpu = true;
