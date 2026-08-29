@@ -74,32 +74,6 @@ in
     };
   };
 
-  services.syncthing = {
-    enable = true;
-    settings = {
-      devices = {
-        "Desktop" = { id = secrets.syncthing.desktop; };
-        "Laptop" = { id = secrets.syncthing.laptop; };
-        "Phone" = { id = secrets.syncthing.phone; };
-      };
-      folders = {
-        "Camera" = {
-          id = "sm-n950u-photos";
-          path = "~/Camera";
-          devices = [ "Laptop" "Phone" ];
-        };
-        "Sync" = {
-          path = "~/Sync";
-          devices = [ "Laptop" "Phone" ];
-        };
-        "Passwords" = {
-          path = "~/.password-store";
-          devices = [ "Laptop" ];
-        };
-      };
-    };
-  };
-
   services.gpg-agent = {
     enable = true;
     enableSshSupport = true;
@@ -158,5 +132,5 @@ in
   #   };
   # };
 
-  imports = [ ./home-cli.nix ./home-gui.nix ./home-mail.nix ];
+  imports = [ ./home-cli.nix ./home-gui.nix ./home-mail.nix ./home-sync.nix ];
 }
