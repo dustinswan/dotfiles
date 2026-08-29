@@ -39,17 +39,12 @@
   # reachable from the tailnet only.
   networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
-  # Wake-on-LAN. eno1 has no cable today, so this does nothing until one is
-  # plugged in - at which point it's already configured. Also needs enabling in BIOS.
+  # Wake-on-LAN: this box sleeps normally, and a magic packet wakes it on demand.
+  # Needs an ethernet cable in eno1 (none today) and WoL enabled in BIOS. Note
+  # Tailscale cannot do the waking - a suspended machine has no tailnet interface -
+  # so the packet must come from something already on the LAN (router, or the
+  # future always-on rack node).
   networking.interfaces.eno1.wakeOnLan.enable = true;
-
-  # Always-on box: never sleep.
-  systemd.targets = {
-    sleep.enable = false;
-    suspend.enable = false;
-    hibernate.enable = false;
-    hybrid-sleep.enable = false;
-  };
 
   # Set your time zone.
   time.timeZone = "America/Denver";
