@@ -54,5 +54,5 @@
       source /nix/var/nix/profiles/default/etc/profile.d/nix.fish
   '';
 
-  imports = [ ./home-cli.nix ./home-gui.nix ./home-mail.nix ];
+  imports = [ ./home-cli.nix ./home-gui.nix ./home-mail.nix ./home-sync.nix ];
 }
