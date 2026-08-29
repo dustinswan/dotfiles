@@ -84,7 +84,10 @@ in
 
   services.vdirsyncer = {
     enable = true;
-    frequency = "*:0/15";  # every 15 minutes
+    # Offset from mbsync: identical schedules fired both jobs in the same second,
+    # and their two "pass show" calls raced for the GnuPG keyboxd lock - one won,
+    # the other timed out with "keydb_search failed" and the unit failed.
+    frequency = "*:7/15";  # every 15 minutes, 7 past
   };
 
   # Niri config - imported from separate file
