@@ -232,7 +232,7 @@ in
 
   programs.keychain = {
     enable = true;
-    keys = [ "id_rsa" "id_rsa_mr" "2B3A6377" ];
+    keys = (secrets.sshKeys or [ ]) ++ [ "2B3A6377" ];
   };
 
   programs.neovim = {
