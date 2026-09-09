@@ -1,11 +1,20 @@
 { pkgs, lib, ... }:
 
 let
+  secrets = import ./secrets.nix;
+
   # Cross-platform opener command
   openCmd = if pkgs.stdenv.isDarwin then "open" else "${pkgs.xdg-utils}/bin/xdg-open";
 in
 
-{
+# Self-gating on `secrets.mail`
+# mail = {
+#   address  = "you@example.com";
+#   aliases  = [ "old@example.com" ];
+#   realName = "Your Name";
+#   userName = "you@fastmail.com";
+# };
+lib.mkIf (secrets ? mail) {
   programs.mbsync.enable = true;
   programs.msmtp.enable = true;
   programs.himalaya.enable = true;
@@ -21,7 +30,6 @@ in
     };
   };
 
-  accounts.email.accounts.FastMail.notmuch.enable = true;
   programs.aerc = {
     enable = true;
     extraConfig = {
@@ -56,9 +64,8 @@ in
     accounts = {
       FastMail = {
         flavor = "fastmail.com";
-        address = "dustin@dustinswan.com";
-        aliases = [ "dustinswan@gmail.com" ];
-        realName = "Dustin Swan";
+        inherit (secrets.mail) address realName;
+        aliases = secrets.mail.aliases or [ ];
         primary = true;
         folders = {
           inbox = "INBOX";
@@ -66,7 +73,7 @@ in
           sent = "Sent";
           trash = "Trash";
         };
-        userName = "dustinswan@fastmail.com";
+        userName = secrets.mail.userName;
         gpg = {
           signByDefault = true;
           key = "AD11750151C10881970BD943AB49BD6B2B3A6377";
@@ -77,6 +84,7 @@ in
           create = "maildir";
           expunge = "maildir";
         };
+        notmuch.enable = true;
         msmtp.enable = true;
         aerc.enable = true;
         himalaya = {
@@ -110,7 +118,7 @@ in
           passwordCommand = ["pass" "show" "email/fastmail"];
           type = "caldav";
           url = "https://caldav.fastmail.com/dav/";
-          userName = "dustinswan@fastmail.com";
+          userName = secrets.mail.userName;
         };
         vdirsyncer = {
           enable = true;
@@ -129,7 +137,7 @@ in
           passwordCommand = ["pass" "show" "email/fastmail"];
           type = "carddav";
           url = "https://carddav.fastmail.com/dav/";
-          userName = "dustinswan@fastmail.com";
+          userName = secrets.mail.userName;
         };
         vdirsyncer = {
           enable = true;

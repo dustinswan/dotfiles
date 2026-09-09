@@ -128,5 +128,11 @@ in
   #   };
   # };
 
-  imports = [ ./home-cli.nix ./home-gui.nix ./home-mail.nix ./home-sync.nix ];
+  imports = [
+    ./home-cli.nix
+    ./home-gui.nix
+    ./home-majorrocket.nix
+    ./home-mail.nix
+    ./home-sync.nix
+  ];
 }

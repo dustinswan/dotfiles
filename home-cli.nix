@@ -17,7 +17,7 @@ in
   home.packages = with pkgs; [
     supabase-cli
     bitwarden-cli
-    # awscli2
+    awscli2
     # claude-code # using the native installer instead (~/.local/bin, needs programs.nix-ld)
     # claude-code-acp
     # opencode # see also: aider; toad;
@@ -189,28 +189,15 @@ in
     settings.updates.auto_update = true;
   };
 
-  # programs.intelli-shell.enable = true;
-
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false; # TODO: remove when defaults change
-    settings =
-      let
-        mrKey = {
-          IdentityFile = "/Users/dustinswan/.ssh/id_rsa_mr";
-          IdentitiesOnly = true;
-        };
-      in {
-        dustinswan = {
-          User = secrets.dustinswan.user;
-          HostName = secrets.dustinswan.hostname;
-        };
-        mr = mrKey // { User = secrets.mr.user; HostName = secrets.mr.hostname; };
-        mr-prod = mrKey // { User = secrets.mr-prod.user; HostName = secrets.mr-prod.hostname; };
-        mr-prod2 = mrKey // { User = secrets.mr-prod2.user; HostName = secrets.mr-prod2.hostname; };
-        mr-prod3 = mrKey // { User = secrets.mr-prod3.user; HostName = secrets.mr-prod3.hostname; };
-        mr-prod4 = mrKey // { User = secrets.mr-prod4.user; HostName = secrets.mr-prod4.hostname; };
+    settings = {
+      dustinswan = {
+        User = secrets.dustinswan.user;
+        HostName = secrets.dustinswan.hostname;
       };
+    };
   };
 
   programs.git = {
