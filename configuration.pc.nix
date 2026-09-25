@@ -180,6 +180,7 @@
   };
 
   programs.fish.enable = true;
+  environment.localBinInPath = true;  # ~/.local/bin on PATH (native claude install)
   programs.steam.enable = true;
   # Run non-Nix dynamically-linked binaries (e.g. Claude Code's native installer)
   programs.nix-ld.enable = true;

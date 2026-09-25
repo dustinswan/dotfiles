@@ -73,8 +73,6 @@ in
   home.sessionVariables = {
     EDITOR = "vim";
     BROWSER = "open";
-    inherit (secrets.openai) OPENAI_API_KEY;
-    inherit (secrets.gemini) GEMINI_API_KEY;
     inherit (secrets.gemini) GOOGLE_CLOUD_PROJECT;
     inherit (secrets.anthropic) CLAUDE_CODE_OAUTH_TOKEN;
   };
