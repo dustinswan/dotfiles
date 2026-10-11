@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   imports =
@@ -93,6 +93,12 @@
         #   m = "enter";           # C-m → Enter
         # };
 
+        # Cmd+1..9 → Alt+1..9: switch tabs (browsers, ghostty), like macOS.
+        # Also stops GNOME's Super+N "launch dock app N".
+        meta = lib.genAttrs (map toString (lib.range 1 9)) (n: "A-${n}");
+        # ...but pass Super+Shift+N through untouched (Super+Shift+3/4 = screenshots, the K3's screenshot key)
+        "meta+shift" = lib.genAttrs (map toString (lib.range 1 9)) (n: "M-S-${n}");
+
         # # macOS-style Super/Cmd shortcuts (Dvorak physical positions)
         # meta = {
         #   # a = "C-a";             # Cmd+a → select all
@@ -174,6 +180,7 @@
   };
 
   programs.fish.enable = true;
+  environment.localBinInPath = true;  # ~/.local/bin on PATH (native claude install)
   programs.steam.enable = true;
   # Run non-Nix dynamically-linked binaries (e.g. Claude Code's native installer)
   programs.nix-ld.enable = true;
