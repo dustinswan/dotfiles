@@ -51,14 +51,10 @@ vim.pack.add({
   gh('kylechui/nvim-surround'),                -- cs"' to change surrounding " to '
   gh('windwp/nvim-autopairs'),                -- auto-close brackets and quotes
   gh('cappyzawa/trim.nvim'),                  -- highlights and trims trailing whitespace
-  gh('christoomey/vim-tmux-navigator'),       -- ctrl-h/j/k/l to move between vim and tmux panes
   gh('folke/persistence.nvim'),               -- auto-saves and restores sessions per directory
 
   -- Git
   gh('lewis6991/gitsigns.nvim'),              -- git diff markers in the sign column
-
-  -- Formatting
-  gh('nvimtools/none-ls.nvim'),               -- bridge external formatters/linters to LSP
 
   -- Language support
   gh('neovim/nvim-lspconfig'),                -- default configs for the language servers enabled below
@@ -103,13 +99,6 @@ require('supermaven-nvim').setup({})
 require('orgmode').setup({
   org_agenda_files = '~/Sync/Notes/*',
   org_default_notes_file = '~/Sync/Notes/Main.org',
-})
--- none-ls (blade_formatter)
-local null_ls = require('null-ls')
-null_ls.setup({
-  sources = {
-    null_ls.builtins.formatting.blade_formatter,
-  },
 })
 
 -- Treesitter

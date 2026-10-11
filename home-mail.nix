@@ -4,7 +4,7 @@ let
   secrets = import ./secrets.nix;
 
   # Cross-platform opener command
-  openCmd = if pkgs.stdenv.isDarwin then "open" else "${pkgs.xdg-utils}/bin/xdg-open";
+  openCmd = if pkgs.stdenv.hostPlatform.isDarwin then "open" else "${pkgs.xdg-utils}/bin/xdg-open";
 in
 
 # Self-gating on `secrets.mail`

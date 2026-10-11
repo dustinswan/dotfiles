@@ -62,6 +62,7 @@
         use_smartcase_find = true;
       };
       format_on_save = "off";
+      languages.Nix.language_servers = [ "nixd" "!nil" ];
     };
   };
 }
