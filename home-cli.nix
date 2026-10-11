@@ -242,5 +242,6 @@ in
     viAlias = true;
     vimAlias = true;
     initLua = builtins.readFile ./init.lua;
+    extraPackages = [ pkgs.gcc ];
   };
 }
