@@ -35,9 +35,6 @@ vim.pack.add({
   gh('MunifTanjim/nui.nvim'),                 -- UI component library used by neo-tree
   gh('nvim-tree/nvim-web-devicons'),          -- file type icons
 
-  -- Theme
-  gh('catppuccin/nvim'),                      -- auto light/dark theme, follows OS appearance
-
   -- UI
   gh('akinsho/bufferline.nvim'),              -- tab bar for open buffers, :bnext/:bprev
   gh('nvim-lualine/lualine.nvim'),            -- status line at bottom
@@ -70,13 +67,6 @@ vim.pack.add({
   -- Fuzzy finder
   gh('ibhagwan/fzf-lua'),                     -- fuzzy finder, <leader>f for files, <leader>/ for text
 }, { confirm = false })
-
--- Theme (auto light/dark based on OS appearance)
-require('catppuccin').setup({
-  flavour = 'auto',
-  background = { light = 'latte', dark = 'mocha' },
-})
-vim.cmd.colorscheme('catppuccin')
 
 -- Plugin configs
 require('bufferline').setup()
