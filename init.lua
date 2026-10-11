@@ -19,6 +19,12 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   command = 'setlocal tabstop=2 shiftwidth=2',
 })
 
+-- 2-space indent for the JS/TS family
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact', 'json', 'jsonc' },
+  command = 'setlocal tabstop=2 shiftwidth=2',
+})
+
 -- Helper
 local gh = function(repo) return 'https://github.com/' .. repo end
 
@@ -162,6 +168,13 @@ vim.lsp.config('ts_ls', {
   root_markers = { 'tsconfig.json', 'jsconfig.json', 'package.json', '.git' },
 })
 
+vim.lsp.config('rust_analyzer', {
+  cmd = { 'rust-analyzer' },
+  filetypes = { 'rust' },
+  root_markers = { 'Cargo.toml', '.git' },
+  settings = { ['rust-analyzer'] = { check = { command = 'clippy' } } },
+})
+
 vim.lsp.config('roc_ls', {
   cmd = { 'roc_language_server' },
   filetypes = { 'roc' },
@@ -170,7 +183,7 @@ vim.lsp.config('roc_ls', {
 
 vim.lsp.enable({
   'elixirls', 'html', 'lua_ls', 'nixd',
-  'intelephense', 'ts_ls', 'roc_ls',
+  'intelephense', 'ts_ls', 'rust_analyzer', 'roc_ls',
 })
 
 -- LSP attach: completion + inlay hints
