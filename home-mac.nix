@@ -8,6 +8,7 @@
   ];
 
   home.sessionPath = [ "/opt/homebrew/bin" ];
+  home.sessionVariables.BROWSER = "open";
 
   programs.man.generateCaches = false;
 

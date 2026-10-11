@@ -72,12 +72,7 @@ in
     aspellDicts.es
   ];
 
-  home.sessionVariables = {
-    EDITOR = "vim";
-    BROWSER = "open";
-    inherit (secrets.gemini) GOOGLE_CLOUD_PROJECT;
-    inherit (secrets.anthropic) CLAUDE_CODE_OAUTH_TOKEN;
-  };
+  home.sessionVariables.EDITOR = "vim";
 
   home.sessionPath = [
     "$HOME/.local/bin"
