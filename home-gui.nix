@@ -1,11 +1,9 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
-  # fonts.fontconfig.enable = true;
-
   home.packages = with pkgs; [
     localsend
-    # deskflow
+    deskflow # share keyboard/mouse; needed on both machines
   ];
 
   programs.halloy = {
@@ -19,7 +17,7 @@
       servers.liberachat = {
         nickname = "sw4n";
         server = "irc.libera.chat";
-        nick_password_file = "/Users/dustinswan/.liberachat-nickserv-password";
+        nick_password_file = "${config.home.homeDirectory}/.liberachat-nickserv-password";
         channels = ["#halloy" "#haskell" "#nixos"];
       };
     };

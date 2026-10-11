@@ -80,11 +80,8 @@ in
   };
 
   home.sessionPath = [
-    "$HOME/.cache/.bun/bin"
     "$HOME/.local/bin"
     "$HOME/.cargo/bin"
-    "$HOME/.npm-global/bin"
-    "/opt/homebrew/bin"
   ];
 
   xdg.enable = true;
@@ -150,15 +147,6 @@ in
       {
         name = "plugin-git";
         src = pkgs.fishPlugins.plugin-git.src;
-      }
-      {
-        name = "foreign-env";
-        src = pkgs.fetchFromGitHub {
-          owner = "oh-my-fish";
-          repo = "plugin-foreign-env";
-          rev = "dddd9213272a0ab848d474d0cbde12ad034e65bc";
-          sha256 = "00xqlyl3lffc5l0viin1nyp819wf81fncqyz87jx8ljjdhilmgbs";
-        };
       }
     ];
 
