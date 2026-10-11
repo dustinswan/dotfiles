@@ -113,44 +113,6 @@ in
     frequency = "*:7/15";  # every 15 minutes, 7 past
   };
 
-  # Niri config - imported from separate file
-  # xdg.configFile."niri/config.kdl".source = ./niri-config.kdl;
-
-  # wayland.windowManager.hyprland = {
-  #   enable = true;
-  #   settings = {
-  #     "$mod" = "ALT";
-  #     input = {
-  #       kb_layout = "us";
-  #       kb_variant = "dvorak";
-  #     };
-  #     # general = {
-  #     #   gaps_in = 0;
-  #     #   gaps_out = 0;
-  #     #   border_size = 2;
-  #     #   "col.active_border" = "rgba(89b4faaa)"; # Example color
-  #     #   "col.inactive_border" = "rgba(303030aa)";
-  #     # };
-  #     # decoration = {
-  #     #   shadow_offset = "0 5";
-  #     #   "col.shadow" = "rgba(00000099)";
-  #     # };
-  #     # bindm = [ # Mouse bindings
-  #     #   "$mod, mouse:272, movewindow"
-  #     #   "$mod, mouse:273, resizewindow"
-  #     # ];
-  #     bind = [ # Keyboard bindings
-  #       # "$mod, Q, killactive,"
-  #       # "$mod, M, exit," # Exit Hyprland
-  #       # "$mod, E, exec, firefox" # Open Firefox
-  #       "$mod, Enter, exec, ghostty"
-  #     ];
-  #     exec-once = [ # Run once on startup
-  #       "vicinae server &"
-  #     ];
-  #   };
-  # };
-
   imports = [
     ./home-cli.nix
     ./home-gui.nix
