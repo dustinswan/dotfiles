@@ -22,8 +22,10 @@ lib.mkIf (secrets ? mail) {
   programs.khard.enable = true;
   programs.notmuch = {
     enable = true;
-    new = {
-      tags = [ "new" ];
+    settings = {
+        new = {
+          tags = [ "new" ];
+        };
     };
     hooks = {
       preNew = "mbsync -a";
@@ -79,6 +81,8 @@ lib.mkIf (secrets ? mail) {
           key = "AD11750151C10881970BD943AB49BD6B2B3A6377";
         };
         passwordCommand = "pass show email/fastmail";
+        imap.authentication = "plain";
+        smtp.authentication = "plain";
         mbsync = {
           enable = true;
           create = "maildir";
