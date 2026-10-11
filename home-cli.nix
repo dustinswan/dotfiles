@@ -18,52 +18,18 @@ in
     supabase-cli
     bitwarden-cli
     awscli2
-    # claude-code # using the native installer instead (~/.local/bin, needs programs.nix-ld)
-    # claude-code-acp
-    # opencode # see also: aider; toad;
     fd
-    # poppler-utils # pdftotext
-    # xan # e.g. xan slice 3,2 file.csv | xan behead | xan view -An; see also: csvi
-    # doxx # read docx files
-    # sqlit-tui # see also: pam; harlequin; lazysql; gobang; dblab
-    # snitch # see also: bandwhich
-    # epy # ebook reader. see also: erp; bookokrat; lue
-    # mimic # tts engine, used by epy
-    # posting # see also: httpie, yapi, sled, Yaak (GUI), Bruno (GUI)
-    # croc magic-wormhole # transfer files
-    # calcure # calendar cli app, can point to ics files or URL
-    # dust duf dua # disk usage. see also: cull
-    # doggo # dig
     ddev
     ngrok
     mkcert
-    yt-dlp
-    # ffmpeg
     gnupg
     cacert
-    nodejs
-    typescript
-    bun
-    pnpm
-    rustc
-    cargo
-    clippy
-    rustfmt
-    rust-analyzer
-    vscode-js-debug                                # DAP adapter for node/TypeScript
-    vscode-extensions.vadimcn.vscode-lldb.adapter  # codelldb, DAP adapter for Rust
-    uv
-    blade-formatter
-    nixd # Nix language server
-    comma
-    typescript-language-server
-    stylelint
-    js-beautify
-    intelephense
-    vscode-langservers-extracted
-    elixir-ls
+    # Language toolchains live per project (shell.nix + .envrc via direnv);
+    # only what's needed to edit this repo and nvim's config stays global.
+    nixd
     lua-language-server
     tree-sitter
+    comma # , cmd args: run any nixpkgs command without installing it
     dict
     ispell
     aspell
@@ -74,72 +40,15 @@ in
     aspellDicts.es
   ];
 
-  home.sessionVariables = {
-    EDITOR = "vim";
-    BROWSER = "open";
-    inherit (secrets.gemini) GOOGLE_CLOUD_PROJECT;
-    inherit (secrets.anthropic) CLAUDE_CODE_OAUTH_TOKEN;
-  };
+  home.sessionVariables.EDITOR = "vim";
 
-  home.sessionPath = [
-    "$HOME/.cache/.bun/bin"
-    "$HOME/.local/bin"
-    "$HOME/.cargo/bin"
-    "$HOME/.npm-global/bin"
-    "/opt/homebrew/bin"
-  ];
+  home.sessionPath = [ "$HOME/.local/bin" ];
 
   xdg.enable = true;
 
   programs.home-manager.enable = true;
 
   programs.nix-index.enable = true;
-
-  programs.tmux = {
-    enable = true;
-    shortcut = "a";
-    keyMode = "vi";
-    mouse = true;
-    baseIndex = 1;
-    newSession = true;
-    secureSocket = false;
-    terminal = "tmux-256color";
-    plugins = with pkgs.tmuxPlugins; [
-      sensible
-      resurrect # prefix ctrl-s to save sessions; prefix ctrl-r to restore
-      continuum # automatically save the session every 15 minutes
-      sessionist # prefix g to switch sessions; prefix C to create; prefix X to kill; prefix S to switch back; prefix @ to promote; prefix t f to join marked pane
-      pain-control # prefix |, -, \, _ to split; prefix h, j, k, l to switch; prefix H, J, K, L to resize; prefix <, > to move windows
-      fzf-tmux-url # prefix u -> fzf urls
-      yank # prefix y -> copy command line to clipboard; prefix Y -> copy pwd to clipboard; search + y -> copy to clipboard
-      # open # highlight: o -> open; ctrl-o -> $EDITOR; S -> web search
-      vim-tmux-navigator # ctrl-h, -j, -k, -l -> move between tmux and vim splits
-      # extrakto # prefix tab -> fuzzy find text on screen; enter to copy; tab to paste
-      # fingers # prefix F -> copy/open/edit items on screen by letter
-    ];
-    # Remove that SHELL thing when fixed upstream
-    extraConfig = ''
-      set -ag terminal-overrides ",xterm-256color:RGB"
-      set -g default-command "$SHELL"
-
-      # Status bar - inherits terminal fg/bg so it follows light/dark mode
-      set -g status-style "bg=default,fg=default"
-      set -g status-justify centre
-      set -g status-left ""
-      set -g status-right ""
-      set -g window-status-format "  #I  "
-      set -g window-status-current-format "  #I  "
-      set -g window-status-current-style "bold,reverse"
-      set -g window-status-style "dim"
-
-      # Pane borders
-      set -g pane-border-style "fg=brightblack"
-      set -g pane-active-border-style "fg=white"
-
-      # Messages
-      set -g message-style "bg=default,fg=default,bold"
-    '';
-  };
 
   programs.fish = {
     enable = true;
@@ -153,15 +62,6 @@ in
         name = "plugin-git";
         src = pkgs.fishPlugins.plugin-git.src;
       }
-      {
-        name = "foreign-env";
-        src = pkgs.fetchFromGitHub {
-          owner = "oh-my-fish";
-          repo = "plugin-foreign-env";
-          rev = "dddd9213272a0ab848d474d0cbde12ad034e65bc";
-          sha256 = "00xqlyl3lffc5l0viin1nyp819wf81fncqyz87jx8ljjdhilmgbs";
-        };
-      }
     ];
 
     interactiveShellInit = "set fish_greeting";
@@ -170,8 +70,7 @@ in
   programs.nix-your-shell.enable = true;
   programs.direnv.enable = true;
   programs.starship.enable = true;
-  programs.nix-search-tv.enable = true;
-  programs.fzf.enable = true; # used by other apps, tmux, etc.
+  programs.fzf.enable = true;
   programs.zoxide.enable = true;
   programs.bat = {
     enable = true;
@@ -179,7 +78,6 @@ in
   };
   programs.ripgrep.enable = true;
   programs.ripgrep-all.enable = true;
-  programs.yazi.enable = true;
 
   programs.eza = {
     enable = true;
@@ -213,6 +111,7 @@ in
       user.email = "dustin@dustinswan.com";
       user.name = "Dustin Swan";
     };
+    ignores = [ ".direnv/" "**/.claude/settings.local.json" ];
   };
   programs.gh.enable = true;
 
@@ -221,7 +120,7 @@ in
     enableGitIntegration = true;
   };
 
-  programs.gitui.enable = true;
+  # programs.gitui.enable = true;
 
   programs.gpg.enable = true;
 

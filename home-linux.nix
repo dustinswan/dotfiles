@@ -11,7 +11,6 @@ in
     # retroarch gimp blender
     brave
     nerd-fonts.iosevka
-    deskflow
     # CD ripping -> /srv/music (needs a USB optical drive; this box has none)
     abcde        # rips + encodes + tags in one command
     picard       # MusicBrainz tagger, for fixing what abcde gets wrong

@@ -19,6 +19,12 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   command = 'setlocal tabstop=2 shiftwidth=2',
 })
 
+-- 2-space indent for the JS/TS family
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact', 'json', 'jsonc' },
+  command = 'setlocal tabstop=2 shiftwidth=2',
+})
+
 -- Helper
 local gh = function(repo) return 'https://github.com/' .. repo end
 
@@ -45,16 +51,13 @@ vim.pack.add({
   gh('kylechui/nvim-surround'),                -- cs"' to change surrounding " to '
   gh('windwp/nvim-autopairs'),                -- auto-close brackets and quotes
   gh('cappyzawa/trim.nvim'),                  -- highlights and trims trailing whitespace
-  gh('christoomey/vim-tmux-navigator'),       -- ctrl-h/j/k/l to move between vim and tmux panes
   gh('folke/persistence.nvim'),               -- auto-saves and restores sessions per directory
 
   -- Git
   gh('lewis6991/gitsigns.nvim'),              -- git diff markers in the sign column
 
-  -- Formatting
-  gh('nvimtools/none-ls.nvim'),               -- bridge external formatters/linters to LSP
-
   -- Language support
+  gh('neovim/nvim-lspconfig'),                -- default configs for the language servers enabled below
   gh('hat0uma/csvview.nvim'),                 -- aligned column view for CSV files
   gh('dhruvasagar/vim-table-mode'),            -- <leader>tm to toggle, || for header, formulas with :TableEvalFormulaLine
   gh('mattn/emmet-vim'),                      -- expand abbreviations, e.g. div>ul>li then ctrl-y,
@@ -88,7 +91,6 @@ require('nvim-autopairs').setup()
 require('trim').setup({
   highlight = true,
   trim_on_write = false,
-  ft_blocklist = { 'dashboard' },
 })
 require('persistence').setup()
 require('gitsigns').setup()
@@ -97,13 +99,6 @@ require('supermaven-nvim').setup({})
 require('orgmode').setup({
   org_agenda_files = '~/Sync/Notes/*',
   org_default_notes_file = '~/Sync/Notes/Main.org',
-})
--- none-ls (blade_formatter)
-local null_ls = require('null-ls')
-null_ls.setup({
-  sources = {
-    null_ls.builtins.formatting.blade_formatter,
-  },
 })
 
 -- Treesitter
@@ -119,58 +114,18 @@ require('vim._core.ui2').enable({})
 -- Diagnostics
 vim.diagnostic.config({ virtual_lines = true })
 
--- LSP
-vim.lsp.config('*', {
-  root_markers = { '.git' },
-})
-
-vim.lsp.config('elixirls', {
-  cmd = { 'elixir-ls' },
-  filetypes = { 'elixir', 'eelixir', 'heex', 'surface' },
-  root_markers = { 'mix.exs', '.git' },
-})
-
-vim.lsp.config('html', {
-  cmd = { 'vscode-html-language-server', '--stdio' },
-  filetypes = { 'html' },
-})
-
+-- LSP (defaults from nvim-lspconfig; only overrides here)
 vim.lsp.config('lua_ls', {
-  cmd = { 'lua-language-server' },
-  filetypes = { 'lua' },
-  root_markers = { '.luarc.json', '.luarc.jsonc', '.git' },
-  settings = {
-    Lua = { runtime = { version = 'LuaJIT' } },
-  },
+  settings = { Lua = { runtime = { version = 'LuaJIT' } } },
 })
 
-vim.lsp.config('nixd', {
-  cmd = { 'nixd' },
-  filetypes = { 'nix' },
-  root_markers = { 'flake.nix', 'default.nix', 'shell.nix', '.git' },
-})
-
-vim.lsp.config('intelephense', {
-  cmd = { 'intelephense', '--stdio' },
-  filetypes = { 'php' },
-  root_markers = { 'composer.json', '.git' },
-})
-
-vim.lsp.config('ts_ls', {
-  cmd = { 'typescript-language-server', '--stdio' },
-  filetypes = { 'typescript', 'typescriptreact', 'javascript', 'javascriptreact' },
-  root_markers = { 'tsconfig.json', 'jsconfig.json', 'package.json', '.git' },
-})
-
-vim.lsp.config('roc_ls', {
-  cmd = { 'roc_language_server' },
-  filetypes = { 'roc' },
-  root_markers = { '.git' },
+vim.lsp.config('rust_analyzer', {
+  settings = { ['rust-analyzer'] = { check = { command = 'clippy' } } },
 })
 
 vim.lsp.enable({
   'elixirls', 'html', 'lua_ls', 'nixd',
-  'intelephense', 'ts_ls', 'roc_ls',
+  'intelephense', 'ts_ls', 'rust_analyzer', 'roc_ls',
 })
 
 -- LSP attach: completion + inlay hints

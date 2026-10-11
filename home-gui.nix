@@ -1,11 +1,9 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
-  # fonts.fontconfig.enable = true;
-
   home.packages = with pkgs; [
     localsend
-    # deskflow
+    deskflow # share keyboard/mouse; needed on both machines
   ];
 
   programs.halloy = {
@@ -19,7 +17,7 @@
       servers.liberachat = {
         nickname = "sw4n";
         server = "irc.libera.chat";
-        nick_password_file = "/Users/dustinswan/.liberachat-nickserv-password";
+        nick_password_file = "${config.home.homeDirectory}/.liberachat-nickserv-password";
         channels = ["#halloy" "#haskell" "#nixos"];
       };
     };
@@ -39,7 +37,6 @@
       window-padding-x = 12;
       window-padding-y = 8;
       window-padding-balance = true;
-      macos-titlebar-style = "tabs";
       window-theme = "auto";
       macos-option-as-alt = "left";
       copy-on-select = "clipboard";
@@ -65,6 +62,7 @@
         use_smartcase_find = true;
       };
       format_on_save = "off";
+      languages.Nix.language_servers = [ "nixd" "!nil" ];
     };
   };
 }
