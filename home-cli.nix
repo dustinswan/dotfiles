@@ -50,8 +50,6 @@ in
     clippy
     rustfmt
     rust-analyzer
-    vscode-js-debug                                # DAP adapter for node/TypeScript
-    vscode-extensions.vadimcn.vscode-lldb.adapter  # codelldb, DAP adapter for Rust
     uv
     blade-formatter
     nixd # Nix language server

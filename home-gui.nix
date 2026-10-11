@@ -39,7 +39,6 @@
       window-padding-x = 12;
       window-padding-y = 8;
       window-padding-balance = true;
-      macos-titlebar-style = "tabs";
       window-theme = "auto";
       macos-option-as-alt = "left";
       copy-on-select = "clipboard";
