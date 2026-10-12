@@ -81,6 +81,15 @@ in
     };
   };
 
+  # right Shift+F12
+  programs.mangohud = {
+    enable = true;
+    enableSessionWide = true;
+    settings = {
+      no_display = true;
+    };
+  };
+
   programs.vicinae = {
     enable = true;
     systemd = {

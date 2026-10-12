@@ -92,12 +92,6 @@ in
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false; # TODO: remove when defaults change
-    settings = {
-      dustinswan = {
-        User = secrets.dustinswan.user;
-        HostName = secrets.dustinswan.hostname;
-      };
-    };
   };
 
   programs.git = {
