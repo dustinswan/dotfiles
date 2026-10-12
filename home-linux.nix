@@ -1,14 +1,9 @@
-{pkgs, lib, ... }:
-
-let
-  machine = import ./machine.nix;
-in
+{ pkgs, machine, lib, ... }:
 
 {
   home.homeDirectory = "/home/dustinswan";
 
   home.packages = with pkgs; [
-    # retroarch gimp blender
     brave
     # CD ripping -> /srv/music (needs a USB optical drive; this box has none)
     abcde        # rips + encodes + tags in one command

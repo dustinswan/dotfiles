@@ -1,13 +1,9 @@
-{ pkgs, ... }:
+{ pkgs, machine, ... }:
 
-let
-  machine = import ./machine.nix;
-in
 {
   home.homeDirectory = "/Users/dustinswan";
 
   home.packages = with pkgs; [
-    pinentry_mac
     iina
     moonlight-qt
   ];
@@ -42,14 +38,12 @@ in
     }];
   };
 
-  home.file.gpg-agent = {
-    target = ".gnupg/gpg-agent.conf";
-    text = ''
-      pinentry-program ${pkgs.pinentry_mac}/Applications/pinentry-mac.app/Contents/MacOS/pinentry-mac
-      default-cache-ttl 34560000
-      max-cache-ttl 34560000
-    '';
-  };
+  # services.gpg-agent's launchd socket crash-loops on macOS; gpg starts its own agent
+  home.file.".gnupg/gpg-agent.conf".text = ''
+    pinentry-program ${pkgs.pinentry_mac}/bin/pinentry-mac
+    default-cache-ttl 34560000
+    max-cache-ttl 34560000
+  '';
 
   launchd.agents.mbsync = {
     enable = machine.isPersonal;
@@ -77,7 +71,7 @@ in
     };
   };
 
-  # https://codeberg.org/adamcstephens/dotfiles/src/commit/e14f35f6e9a9cb9174016948c512c0db364e0dec/apps/fish/init.fish
+  # The Nix installer only hooks bash/zsh; this is what puts nix on fish's PATH
   programs.fish.shellInit = ''
     source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
   '';

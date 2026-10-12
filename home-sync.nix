@@ -1,8 +1,6 @@
-{ pkgs, lib, ... }:
+{ pkgs, machine, lib, ... }:
 
 let
-  machine = import ./machine.nix;
-
   thisDevice = if pkgs.stdenv.hostPlatform.isDarwin then "Laptop" else "Desktop";
 
   members = {

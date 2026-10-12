@@ -1,10 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, machine, ... }:
 
 let
-  isMajorRocket = builtins.pathExists ./secrets-majorrocket.nix;
-
   work =
-    if isMajorRocket
+    if machine.isWork
     then import ./secrets-majorrocket.nix
     else { mr = { user = ""; hostname = ""; }; mrFleet = [ ]; };
 
@@ -19,7 +17,7 @@ let
     value = mrKey // { User = h.user; HostName = h.hostname; };
   }) work.mrFleet);
 in
-lib.mkIf isMajorRocket {
+lib.mkIf machine.isWork {
   home.packages = with pkgs; [ ddev mkcert ngrok ];
 
   programs.ssh.settings = {

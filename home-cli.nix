@@ -1,6 +1,11 @@
 { pkgs, ... }:
 
 {
+  _module.args.machine = rec {
+    isWork = builtins.pathExists ./secrets-majorrocket.nix;
+    isPersonal = !isWork;
+  };
+
   home.stateVersion = "26.05";
 
   home.username = "dustinswan";
@@ -50,19 +55,12 @@
   programs.starship.enable = true;
   programs.fzf.enable = true;
   programs.zoxide.enable = true;
-  programs.bat = {
-    enable = true;
-    config.theme = "ansi";
-  };
+  programs.bat.enable = true;
   programs.fd.enable = true;
   programs.awscli.enable = true;
   programs.ripgrep.enable = true;
   programs.ripgrep-all.enable = true;
-
-  programs.eza = {
-    enable = true;
-    git = true;
-  };
+  programs.eza.enable = true;
 
   programs.tealdeer = {
     enable = true;
