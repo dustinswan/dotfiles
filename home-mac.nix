@@ -1,5 +1,8 @@
 { pkgs, ... }:
 
+let
+  machine = import ./machine.nix;
+in
 {
   home.homeDirectory = "/Users/dustinswan";
 
@@ -28,7 +31,7 @@
   };
 
   launchd.agents.mbsync = {
-    enable = true;
+    enable = machine.isPersonal;
     config = {
       ProgramArguments = [ "${pkgs.isync}/bin/mbsync" "-a" ];
       StartInterval = 900;  # every 15 minutes
@@ -41,7 +44,7 @@
   };
 
   launchd.agents.vdirsyncer = {
-    enable = true;
+    enable = machine.isPersonal;
     config = {
       ProgramArguments = [ "${pkgs.vdirsyncer}/bin/vdirsyncer" "sync" ];
       StartInterval = 900;  # every 15 minutes

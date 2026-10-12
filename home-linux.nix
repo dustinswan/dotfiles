@@ -1,7 +1,7 @@
 {pkgs, lib, ... }:
 
 let
-  secrets = import ./secrets.nix;
+  machine = import ./machine.nix;
 in
 
 {
@@ -106,12 +106,12 @@ in
   };
 
   services.mbsync = {
-    enable = secrets ? mail;  # config comes from home-mail.nix, which is gated the same way
+    enable = machine.isPersonal;  # config comes from home-mail.nix, which is gated the same way
     frequency = "*:0/15";  # every 15 minutes
   };
 
   services.vdirsyncer = {
-    enable = secrets ? mail;
+    enable = machine.isPersonal;
     # Offset from mbsync: identical schedules fired both jobs in the same second,
     # and their two "pass show" calls raced for the GnuPG keyboxd lock - one won,
     # the other timed out with "keydb_search failed" and the unit failed.

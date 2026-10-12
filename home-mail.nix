@@ -1,20 +1,21 @@
 { pkgs, lib, ... }:
 
 let
-  secrets = import ./secrets.nix;
+  machine = import ./machine.nix;
+
+  mail = {
+    address = "dustin@dustinswan.com";
+    aliases = [ "dustinswan@gmail.com" ];
+    realName = "Dustin Swan";
+    userName = "dustinswan@fastmail.com";  # Fastmail login; the password comes from pass
+  };
 
   # Cross-platform opener command
   openCmd = if pkgs.stdenv.hostPlatform.isDarwin then "open" else "${pkgs.xdg-utils}/bin/xdg-open";
 in
 
-# Self-gating on `secrets.mail`
-# mail = {
-#   address  = "you@example.com";
-#   aliases  = [ "old@example.com" ];
-#   realName = "Your Name";
-#   userName = "you@fastmail.com";
-# };
-lib.mkIf (secrets ? mail) {
+# Personal machines only (not the work laptop)
+lib.mkIf machine.isPersonal {
   programs.mbsync.enable = true;
   programs.msmtp.enable = true;
   programs.himalaya.enable = true;
@@ -66,8 +67,7 @@ lib.mkIf (secrets ? mail) {
     accounts = {
       FastMail = {
         flavor = "fastmail.com";
-        inherit (secrets.mail) address realName;
-        aliases = secrets.mail.aliases or [ ];
+        inherit (mail) address realName aliases;
         primary = true;
         folders = {
           inbox = "INBOX";
@@ -75,7 +75,7 @@ lib.mkIf (secrets ? mail) {
           sent = "Sent";
           trash = "Trash";
         };
-        userName = secrets.mail.userName;
+        userName = mail.userName;
         gpg = {
           signByDefault = true;
           key = "AD11750151C10881970BD943AB49BD6B2B3A6377";
@@ -122,7 +122,7 @@ lib.mkIf (secrets ? mail) {
           passwordCommand = ["pass" "show" "email/fastmail"];
           type = "caldav";
           url = "https://caldav.fastmail.com/dav/";
-          userName = secrets.mail.userName;
+          userName = mail.userName;
         };
         vdirsyncer = {
           enable = true;
@@ -141,7 +141,7 @@ lib.mkIf (secrets ? mail) {
           passwordCommand = ["pass" "show" "email/fastmail"];
           type = "carddav";
           url = "https://carddav.fastmail.com/dav/";
-          userName = secrets.mail.userName;
+          userName = mail.userName;
         };
         vdirsyncer = {
           enable = true;

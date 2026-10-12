@@ -1,8 +1,5 @@
 { pkgs, ... }:
 
-let
-  secrets = import ./secrets.nix;
-in
 {
   home.stateVersion = "26.05";
 
