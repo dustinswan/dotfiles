@@ -23,6 +23,25 @@ in
   # Remember SSH key passphrases in the macOS Keychain
   programs.ssh.settings."*".UseKeychain = "yes";
 
+  # Read-only on purpose: edit here, not in the Karabiner GUI
+  xdg.configFile."karabiner/karabiner.json".text = builtins.toJSON {
+    global.show_in_menu_bar = false;
+    profiles = [{
+      name = "Default";
+      selected = true;
+      virtual_hid_keyboard.keyboard_type_v2 = "ansi";
+      complex_modifications.rules = [{
+        description = "Caps Lock: Escape when tapped, Control when held";
+        manipulators = [{
+          type = "basic";
+          from = { key_code = "caps_lock"; modifiers.optional = [ "any" ]; };
+          to = [{ key_code = "left_control"; }];
+          to_if_alone = [{ key_code = "escape"; }];
+        }];
+      }];
+    }];
+  };
+
   home.file.gpg-agent = {
     target = ".gnupg/gpg-agent.conf";
     text = ''
