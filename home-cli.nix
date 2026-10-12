@@ -12,29 +12,13 @@
   };
 
   home.packages = with pkgs; [
-    supabase-cli
-    bitwarden-cli
-    awscli2
-    fd
     ddev
     ngrok
     mkcert
-    gnupg
-    cacert
-    # Language toolchains live per project (shell.nix + .envrc via direnv);
-    # only what's needed to edit this repo and nvim's config stays global.
     nixd
     lua-language-server
     tree-sitter
     comma # , cmd args: run any nixpkgs command without installing it
-    dict
-    ispell
-    aspell
-    aspellDicts.en
-    aspellDicts.fr
-    aspellDicts.de
-    aspellDicts.eo
-    aspellDicts.es
   ];
 
   home.sessionVariables.EDITOR = "vim";
@@ -73,6 +57,8 @@
     enable = true;
     config.theme = "ansi";
   };
+  programs.fd.enable = true;
+  programs.awscli.enable = true;
   programs.ripgrep.enable = true;
   programs.ripgrep-all.enable = true;
 
@@ -111,8 +97,6 @@
     enable = true;
     enableGitIntegration = true;
   };
-
-  # programs.gitui.enable = true;
 
   programs.gpg.enable = true;
 

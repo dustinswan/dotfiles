@@ -62,7 +62,7 @@ lib.mkIf machine.isPersonal {
 
   accounts.email = {
     maildirBasePath = "Mail";
-    certificatesFile = "${builtins.getEnv "HOME"}/.nix-profile/etc/ssl/certs/ca-bundle.crt";
+    certificatesFile = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
 
     accounts = {
       FastMail = {
