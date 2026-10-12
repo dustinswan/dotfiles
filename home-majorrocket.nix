@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   isMajorRocket = builtins.pathExists ./secrets-majorrocket.nix;
@@ -20,6 +20,8 @@ let
   }) work.mrFleet);
 in
 lib.mkIf isMajorRocket {
+  home.packages = with pkgs; [ ddev mkcert ngrok ];
+
   programs.ssh.settings = {
     "bitbucket.org" = {
       IdentityFile = "${config.home.homeDirectory}/.ssh/id_ed25519";

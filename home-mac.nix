@@ -8,6 +8,8 @@ in
 
   home.packages = with pkgs; [
     pinentry_mac
+    iina
+    moonlight-qt
   ];
 
   home.sessionPath = [ "/opt/homebrew/bin" ];

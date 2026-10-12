@@ -12,9 +12,6 @@
   };
 
   home.packages = with pkgs; [
-    ddev
-    ngrok
-    mkcert
     nixd
     lua-language-server
     tree-sitter

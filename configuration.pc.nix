@@ -170,19 +170,6 @@
     "d /srv/music 0775 dustinswan navidrome -"
   ];
 
-  # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [
-    24800 # Deskflow
-    24801 # Deskflow
-    53317 # LocalSend
-  ];
-
-  networking.firewall.allowedUDPPorts = [
-    24800 # Deskflow
-    24801 # Deskflow
-    53317 # LocalSend
-  ];
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave

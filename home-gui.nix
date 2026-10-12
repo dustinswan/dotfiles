@@ -1,17 +1,14 @@
 { config, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    localsend
-    deskflow # share keyboard/mouse; needed on both machines
-  ];
+  home.packages = [ pkgs.nerd-fonts.iosevka ];
 
   programs.halloy = {
     enable = true;
     settings = {
       font = {
         size = 16;
-        family = "Iosevka NFM";
+        family = "Iosevka Nerd Font Mono";
       };
       servers.liberachat = {
         nickname = "sw4n";
@@ -27,7 +24,7 @@
     installBatSyntax = false;
 
     settings = {
-      font-family = "Iosevka NFM";
+      font-family = "Iosevka Nerd Font Mono";
       font-size = 12;
       font-thicken = true;
       theme = "dark:Apple System Colors,light:Apple System Colors Light";
