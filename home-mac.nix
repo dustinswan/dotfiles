@@ -15,6 +15,9 @@
   programs.ghostty.package = pkgs.ghostty-bin;
   programs.ghostty.settings.font-size = 16;
 
+  # Remember SSH key passphrases in the macOS Keychain
+  programs.ssh.settings."*".UseKeychain = "yes";
+
   home.file.gpg-agent = {
     target = ".gnupg/gpg-agent.conf";
     text = ''

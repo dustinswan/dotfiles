@@ -92,6 +92,7 @@ in
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false; # TODO: remove when defaults change
+    settings."*".AddKeysToAgent = "yes";
   };
 
   programs.git = {
@@ -123,11 +124,6 @@ in
     settings = {
       PASSWORD_STORE_DIR = "$HOME/.password-store";
     };
-  };
-
-  programs.keychain = {
-    enable = true;
-    keys = (secrets.sshKeys or [ ]) ++ [ "2B3A6377" ];
   };
 
   programs.neovim = {
