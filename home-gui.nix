@@ -40,19 +40,4 @@
       shell-integration-features = "cursor,no-sudo,title,ssh-env,ssh-terminfo,path";
     };
   };
-
-  programs.zed-editor = {
-    enable = true;
-    userSettings = {
-      vim_mode = true;
-      buffer_font_size = 16;
-      buffer_font_family = "Iosevka Nerd Font Mono";
-      vim = {
-        enable_vim_sneak = true;
-        use_smartcase_find = true;
-      };
-      format_on_save = "off";
-      languages.Nix.language_servers = [ "nixd" "!nil" ];
-    };
-  };
 }

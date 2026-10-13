@@ -61,9 +61,6 @@ vim.pack.add({
   gh('nvim-orgmode/orgmode'),                 -- org-mode notes/agenda in nvim
   { src = gh('nvim-treesitter/nvim-treesitter'), version = 'main' }, -- syntax tree parsing for highlighting/code nav
 
-  -- AI
-  gh('supermaven-inc/supermaven-nvim'),       -- inline ghost-text suggestions, Tab to accept
-
   -- Fuzzy finder
   gh('ibhagwan/fzf-lua'),                     -- fuzzy finder, <leader>f for files, <leader>/ for text
 }, { confirm = false })
@@ -85,7 +82,6 @@ require('trim').setup({
 require('persistence').setup()
 require('gitsigns').setup()
 require('csvview').setup()
-require('supermaven-nvim').setup({})
 require('orgmode').setup({
   org_agenda_files = '~/Sync/Notes/*',
   org_default_notes_file = '~/Sync/Notes/Main.org',
@@ -115,8 +111,14 @@ vim.lsp.config('rust_analyzer', {
 
 vim.lsp.enable({
   'elixirls', 'html', 'lua_ls', 'nixd',
-  'intelephense', 'ts_ls', 'rust_analyzer', 'roc_ls',
+  'intelephense', 'ts_ls', 'rust_analyzer', 'roc_ls', 'copilot',
 })
+
+-- AI ghost-text suggestions (Copilot); Tab accepts. :LspCopilotSignIn once
+vim.lsp.inline_completion.enable()
+vim.keymap.set('i', '<Tab>', function()
+  if not vim.lsp.inline_completion.get() then return '<Tab>' end
+end, { expr = true })
 
 -- LSP attach: completion + inlay hints
 vim.api.nvim_create_autocmd('LspAttach', {

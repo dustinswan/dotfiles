@@ -15,16 +15,13 @@
     package = pkgs.nix;
     settings.experimental-features = [ "nix-command" "flakes" ];
     gc = {
-      automatic = true;  # weekly
-      options = "-d";  # one word: on darwin HM passes this as a single argument
+      automatic = true;
+      options = "-d";
     };
   };
 
   home.packages = with pkgs; [
-    nixd
-    lua-language-server
-    tree-sitter
-    comma # , cmd args: run any nixpkgs command without installing it
+    comma
   ];
 
   home.sessionVariables.EDITOR = "vim";
@@ -55,8 +52,8 @@
       if command -q brew
         brew update; and brew upgrade; and brew cleanup --prune=all
       end
-      sudo nix-channel --update  # nixpkgs lives in root's channels
-      nix-channel --update       # home-manager lives in yours
+      sudo nix-channel --update
+      nix-channel --update
       home-manager switch -b backup
     '';
 
@@ -120,6 +117,6 @@
     viAlias = true;
     vimAlias = true;
     initLua = builtins.readFile ./init.lua;
-    extraPackages = [ pkgs.gcc ];
+    extraPackages = with pkgs; [ gcc tree-sitter nixd lua-language-server copilot-language-server ];
   };
 }
