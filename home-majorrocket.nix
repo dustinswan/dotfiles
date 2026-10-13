@@ -18,7 +18,7 @@ let
   }) work.mrFleet);
 in
 lib.mkIf machine.isWork {
-  home.packages = with pkgs; [ ddev mkcert ngrok ];
+  home.packages = with pkgs; [ ddev mkcert ngrok firebase-tools ];
 
   programs.ssh.settings = {
     "bitbucket.org" = {
