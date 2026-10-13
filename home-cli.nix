@@ -36,11 +36,6 @@
 
   programs.fish = {
     enable = true;
-    shellAbbrs = {
-      nrs = "sudo nixos-rebuild switch";
-      nrsu = "sudo nixos-rebuild switch --upgrade";
-      hms = "home-manager switch";
-    };
     plugins = [
       {
         name = "plugin-git";
@@ -54,7 +49,10 @@
       end
       sudo nix-channel --update
       nix-channel --update
-      home-manager switch -b backup
+      if test -e /etc/NIXOS
+        sudo nixos-rebuild switch; or return
+      end
+      home-manager switch
     '';
 
     interactiveShellInit = "set fish_greeting";
