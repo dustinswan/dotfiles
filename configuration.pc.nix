@@ -136,6 +136,11 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  nix.gc = {
+    automatic = true;  # weekly
+    options = "--delete-older-than 30d";
+  };
+
   # List packages installed in system profile
   environment.systemPackages = with pkgs; [
     vim
