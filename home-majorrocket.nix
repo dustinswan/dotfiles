@@ -28,6 +28,16 @@ lib.mkIf machine.isWork {
       AddKeysToAgent = "yes";
     };
 
+    # id_ed25519 is on the dustinmr GitHub account; personal repos use this alias
+    "github-personal" = {
+      HostName = "github.com";
+      User = "git";
+      IdentityFile = "${config.home.homeDirectory}/.ssh/id_ed25519_personal";
+      IdentitiesOnly = true;
+      UseKeychain = "yes";
+      AddKeysToAgent = "yes";
+    };
+
     mr = mrKey // { User = work.mr.user; HostName = work.mr.hostname; };
   } // fleetHosts;
 
