@@ -12,8 +12,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Machines are named for stars in Cygnus, the Swan. Deneb is its brightest.
-  # Names describe the box, never its role - roles move between machines.
   networking.hostName = "deneb";
 
   # Enable networking
@@ -81,6 +79,7 @@
     autoStart = true;
     capSysAdmin = true;
     openFirewall = true;
+    settings.capture = "kms";
   };
   # Upstream's unit ships "sleep 5: avoid starting before the desktop is fully
   # initialized" but the NixOS module drops it; without it the login-time start

@@ -5,13 +5,11 @@
 
   home.packages = with pkgs; [
     brave
-    # CD ripping -> /srv/music (needs a USB optical drive; this box has none)
+    beeper
     abcde        # rips + encodes + tags in one command
     picard       # MusicBrainz tagger, for fixing what abcde gets wrong
     flac
     cdparanoia   # error-correcting CD reader used by abcde
-    # sunshine # provided by services.sunshine in configuration.pc.nix (the module wraps the binary with CAP_SYS_ADMIN for KMS capture); a second copy here shipped a conflicting user unit
-    # steam # added as a system package, so it actually works
     wl-clipboard  # wl-copy/wl-paste; Claude Code needs wl-paste to paste images
   ];
 
@@ -23,7 +21,7 @@
       { package = appindicator; }
       { package = syncthing-indicator; }
       { package = blur-my-shell; }
-      { package = media-controller; }  # media-controller@naimur; the old media-controls is dead on GNOME 50
+      { package = media-controller; }
       { package = paperwm; }
     ];
   };
@@ -111,6 +109,16 @@
     # the other timed out with "keydb_search failed" and the unit failed.
     frequency = "*:7/15";  # every 15 minutes, 7 past
   };
+
+  # A run that came due during suspend fires the instant deneb wakes, before the
+  # network is back, so DNS fails and the unit sits "failed" (home-manager switch
+  # then warns the session is degraded). Retry instead of failing.
+  systemd.user.services = lib.mkIf machine.isPersonal (lib.genAttrs [ "mbsync" "vdirsyncer" ] (_: {
+    Service = {
+      Restart = "on-failure";
+      RestartSec = 30;
+    };
+  }));
 
   imports = [
     ./home-cli.nix

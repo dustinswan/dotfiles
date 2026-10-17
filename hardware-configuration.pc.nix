@@ -21,6 +21,7 @@
     "btusb.enable_autosuspend=0"
     "usbcore.autosuspend=-1"
     "btmtk.disable_sco_esco=Y"
+    "usbhid.mousepoll=4" # Orochi V2 dongle polls at 1000 Hz & tanks framerates; 250 Hz
   ];
   boot.kernelModules = [ "kvm-amd" "btusb" "btmtk" ];
 
