@@ -7,6 +7,7 @@ let
     Camera = [ "Desktop" "Laptop" "Phone" ];
     Sync = [ "Desktop" "Laptop" "Phone" ];
     Passwords = [ "Desktop" "Laptop" ];
+    Music = [ "Desktop" "Laptop" ];  # phone streams from Navidrome instead (FLAC is too big)
   };
 
   peers = folder: lib.filter (d: d != thisDevice) members.${folder};
@@ -34,6 +35,10 @@ lib.mkIf machine.isPersonal {
         "Passwords" = {
           path = "~/.password-store";
           devices = peers "Passwords";
+        };
+        "Music" = {
+          path = if pkgs.stdenv.hostPlatform.isDarwin then "~/Music/Library" else "/srv/music";
+          devices = peers "Music";
         };
       };
     };
