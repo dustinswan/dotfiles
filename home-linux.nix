@@ -120,6 +120,24 @@
     };
   }));
 
+  # abcde defaults to Ogg in the current dir with underscores for spaces.
+  # FLAC into the Navidrome library instead, tagged from MusicBrainz.
+  # (\''${...} is a literal ${...} to the shell; abcde expands it per track)
+  home.file.".abcde.conf".text = ''
+    CDROM=/dev/sr0
+    OUTPUTTYPE=flac
+    OUTPUTDIR=/srv/music
+    OUTPUTFORMAT="\''${ARTISTFILE}/\''${ALBUMFILE}/\''${TRACKNUM} \''${TRACKFILE}"
+    VAOUTPUTFORMAT="Various Artists/\''${ALBUMFILE}/\''${TRACKNUM} \''${ARTISTFILE} - \''${TRACKFILE}"
+    PADTRACKS=y
+    EJECTCD=y
+
+    # Keep spaces; only replace characters macOS/Android/Windows choke on
+    mungefilename () {
+      echo "$@" | sed -e 's/^\.*//' -e 's/[\\/:*?"<>|]/_/g'
+    }
+  '';
+
   imports = [
     ./home-cli.nix
     ./home-gui.nix
