@@ -1,4 +1,4 @@
-{ pkgs, machine, ... }:
+{ pkgs, lib, machine, ... }:
 
 {
   home.homeDirectory = "/Users/dustinswan";
@@ -18,6 +18,21 @@
 
   # Remember SSH key passphrases in the macOS Keychain
   programs.ssh.settings."*".UseKeychain = "yes";
+
+  # GUI apps that can't come from nix. `update` installs anything missing;
+  # `brew bundle cleanup --global` lists strays. Work mac manages its casks by hand.
+  xdg.configFile."homebrew/Brewfile" = lib.mkIf machine.isPersonal {
+    text = ''
+      cask "beeper"
+      cask "brave-browser"
+      cask "electrum"
+      cask "karabiner-elements"
+      cask "orbstack"
+      cask "raycast"
+      cask "steam"
+      cask "tailscale-app"
+    '';
+  };
 
   # Read-only on purpose: edit here, not in the Karabiner GUI
   xdg.configFile."karabiner/karabiner.json".text = builtins.toJSON {

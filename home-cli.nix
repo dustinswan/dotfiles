@@ -45,7 +45,11 @@
 
     functions.update = ''
       if command -q brew
-        brew update; and brew upgrade; and brew cleanup --prune=all
+        brew update; or return
+        if test -e ~/.config/homebrew/Brewfile
+          brew bundle --global; or return
+        end
+        brew upgrade; and brew cleanup --prune=all
       end
       sudo nix-channel --update
       nix-channel --update
@@ -59,7 +63,10 @@
   };
 
   programs.nix-your-shell.enable = true;
-  programs.direnv.enable = true;
+  programs.direnv = {
+    enable = true;
+    config.global.hide_env_diff = true;
+  };
   programs.starship.enable = true;
   programs.fzf.enable = true;
   programs.zoxide.enable = true;
