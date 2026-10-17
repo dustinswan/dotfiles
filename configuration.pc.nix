@@ -125,6 +125,7 @@
   programs.fish.enable = true;
   environment.localBinInPath = true;  # ~/.local/bin on PATH (native claude install)
   programs.steam.enable = true;
+  programs.steam.package = pkgs.steam.override { extraEnv.MANGOHUD = "1"; };
   # Run non-Nix dynamically-linked binaries (e.g. Claude Code's native installer)
   programs.nix-ld.enable = true;
   # programs.xwayland.enable = true;

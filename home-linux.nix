@@ -6,6 +6,7 @@
   home.packages = with pkgs; [
     brave
     beeper
+    feishin     # Navidrome client
     abcde        # rips + encodes + tags in one command
     picard       # MusicBrainz tagger, for fixing what abcde gets wrong
     flac
@@ -73,10 +74,9 @@
     };
   };
 
-  # right Shift+F12
+  # right Shift+F12. Enabled for Steam games only, in configuration.pc.nix
   programs.mangohud = {
     enable = true;
-    enableSessionWide = true;
     settings = {
       no_display = true;
     };
@@ -130,7 +130,6 @@
     OUTPUTFORMAT="\''${ARTISTFILE}/\''${ALBUMFILE}/\''${TRACKNUM} \''${TRACKFILE}"
     VAOUTPUTFORMAT="Various Artists/\''${ALBUMFILE}/\''${TRACKNUM} \''${ARTISTFILE} - \''${TRACKFILE}"
     PADTRACKS=y
-    EJECTCD=y
 
     # Keep spaces; only replace characters macOS/Android/Windows choke on
     mungefilename () {
