@@ -169,6 +169,8 @@
       Address = "0.0.0.0";
       Port = 4533;
     };
+    # ND_LASTFM_APIKEY/ND_LASTFM_SECRET, written from `pass navidrome/lastfm` (root-only, outside the store)
+    environmentFile = "/var/lib/secrets/navidrome.env";
   };
   # Owned by me for ripping, readable by the navidrome service user.
   systemd.tmpfiles.rules = [

@@ -1,7 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  home.packages = [ pkgs.nerd-fonts.iosevka ];
+  home.packages = [
+    pkgs.nerd-fonts.iosevka
+    pkgs.feishin  # Navidrome client
+  ];
 
   programs.halloy = {
     enable = true;

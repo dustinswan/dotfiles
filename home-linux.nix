@@ -6,7 +6,6 @@
   home.packages = with pkgs; [
     brave
     beeper
-    feishin     # Navidrome client
     abcde        # rips + encodes + tags in one command
     picard       # MusicBrainz tagger, for fixing what abcde gets wrong
     flac
