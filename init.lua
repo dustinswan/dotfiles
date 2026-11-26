@@ -116,6 +116,9 @@ vim.lsp.enable({
 
 -- AI ghost-text suggestions (Copilot); Tab accepts. :LspCopilotSignIn once
 vim.lsp.inline_completion.enable()
+vim.keymap.set('n', '<leader>ai', function()
+  vim.lsp.inline_completion.enable(not vim.lsp.inline_completion.is_enabled())
+end, { desc = 'Toggle Copilot suggestions' })
 vim.keymap.set('i', '<Tab>', function()
   if not vim.lsp.inline_completion.get() then return '<Tab>' end
 end, { expr = true })
